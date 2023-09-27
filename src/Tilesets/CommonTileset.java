@@ -30,15 +30,15 @@ public class CommonTileset extends Tileset {
 
         mapTiles.add(grassTile);
 
-        // sign
-        Frame signFrame = new FrameBuilder(getSubImage(3, 0))
+         // brick
+        Frame brickFrame = new FrameBuilder(getSubImage(3, 3))
                 .withScale(tileScale)
                 .build();
 
-        MapTileBuilder signTile = new MapTileBuilder(signFrame)
-                .withTileType(TileType.NOT_PASSABLE);
+        MapTileBuilder brickTile = new MapTileBuilder(brickFrame);
 
-        mapTiles.add(signTile);
+        mapTiles.add(brickTile);
+
 
         // sand
         Frame sandFrame = new FrameBuilder(getSubImage(0, 1))
@@ -199,16 +199,6 @@ public class CommonTileset extends Tileset {
                 .withTileType(TileType.PASSABLE);
 
         mapTiles.add(greyRockTile);
-
-        // bush
-        Frame bushFrame = new FrameBuilder(getSubImage(3, 3))
-                .withScale(tileScale)
-                .build();
-
-        MapTileBuilder bushTile = new MapTileBuilder(bushFrame)
-                .withTileType(TileType.NOT_PASSABLE);
-
-        mapTiles.add(bushTile);
 
         // house body
         Frame houseBodyFrame = new FrameBuilder(getSubImage(3, 4))
