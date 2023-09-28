@@ -85,6 +85,10 @@ public abstract class Script<T extends MapEntity> {
         player.setPlayerState(PlayerState.INTERACTING);
         player.setCurrentAnimationName(player.getFacingDirection() == Direction.RIGHT ? "STAND_RIGHT" : "STAND_LEFT");
     }
+     protected void movePlayer(float x, float y) {
+        player.setX(x);
+        player.setY(y);
+    }
 
     // allow player to go back to its usual game state (being able to move, talk to things, etc)
     // typically used right before script is finished to give control back to the player

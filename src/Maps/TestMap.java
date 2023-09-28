@@ -10,6 +10,7 @@ import NPCs.Walrus;
 import Scripts.SimpleTextScript;
 import Scripts.TestMap.DinoScript;
 import Scripts.TestMap.LostBallScript;
+import Scripts.TestMap.TeleportScript;
 import Scripts.TestMap.TreeScript;
 import Scripts.TestMap.WalrusScript;
 import Scripts.TestMap.placeHolderScript;
@@ -73,6 +74,10 @@ public class TestMap extends Map {
         getMapTile(20, 4).setInteractScript(new SimpleTextScript("Dino's house"));
 
         getMapTile(2, 6).setInteractScript(new TreeScript());
+
+        getMapTile(3, 11).setInteractScript(new TeleportScript(31, 4));
+
+        getMapTile(33, 4).setInteractScript(new TeleportScript(6, 13));
     }
 }
 
