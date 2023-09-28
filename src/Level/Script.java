@@ -10,6 +10,9 @@ public abstract class Script<T extends MapEntity> {
     // this is set to true if script is currently being executed
     protected boolean isActive = false;
 
+    // set to true if script is being executed
+    protected boolean isPortraitActive = false;
+
     // if true, script should perform "setup" logic
     protected boolean start = true;
 
@@ -102,8 +105,9 @@ public abstract class Script<T extends MapEntity> {
         map.getTextbox().setIsActive(true);
     }
 
+    //show character portrait
     protected void showPortrait(){
-        map.getTextSpriteDisplay().setIsActive();
+        map.getTextSpriteDisplay().setPortraitIsActive(true);
     }
 
     // adds text to be shown in textbox
@@ -124,6 +128,11 @@ public abstract class Script<T extends MapEntity> {
     // remove textbox from screen
     protected void hideTextbox() {
         map.getTextbox().setIsActive(false);
+    }
+
+    // remove portrait from screen
+    protected void hideTextSpriteDisplay() {
+        map.getTextSpriteDisplay().setPortraitIsActive(false);
     }
 
     // gets an npc instance by its id value

@@ -11,18 +11,22 @@ public class TextSpriteDisplay extends Screen {
 	protected int spriteWidth;
 	protected int spriteHeight;
     protected int spriteX;
-    protected int spriteY = 100;
+    protected int spriteY = 300;
 
     public TextSpriteDisplay(){
-        this.portrait = new Sprite(ImageLoader.load("Walrus.png"), spriteX, spriteY);
+        this.portrait = new Sprite(ImageLoader.load("WalrusPortrait.png"), spriteX, spriteY);
     }
 
     public Sprite getTextSpriteDisplay(){
         return portrait;
     }
 
-    public boolean setIsActive() {
-        return true;
+    public void setPortraitIsActive(Boolean isActive) {
+        this.isActive = isActive;
+    }
+
+    public boolean isPortraitActive() {
+        return isActive;
     }
 
     @Override

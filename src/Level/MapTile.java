@@ -3,7 +3,6 @@ package Level;
 import Engine.GraphicsHandler;
 import GameObject.GameObject;
 import GameObject.IntersectableRectangle;
-import GameObject.Rectangle;
 import GameObject.SpriteSheet;
 import Utils.Point;
 

@@ -1,7 +1,7 @@
 package Engine;
 
 
-import GameObject.Rectangle;
+import Level.Rectangle;
 
 /*
  * The game engine uses this class to start off the cascading Screen updating/drawing

@@ -1,7 +1,6 @@
 package Level;
 
 import Engine.GraphicsHandler;
-import GameObject.Rectangle;
 
 import java.awt.*;
 

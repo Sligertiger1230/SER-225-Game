@@ -2,6 +2,7 @@ package GameObject;
 
 import Engine.GraphicsHandler;
 import Level.*;
+import Level.Rectangle;
 import Utils.Direction;
 import Utils.ImageUtils;
 import Utils.MathUtils;
