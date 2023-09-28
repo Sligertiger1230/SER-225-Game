@@ -31,8 +31,8 @@ public class TeleportScript extends Script {
     @Override
     protected ScriptState execute() {
         if (!hasScaled) {
-            x = x * 47.35f;
-            y = y * 47.35f;
+            x = ((x * 48f) - 15f);
+            y = ((y * 48f) - 15f);
             hasScaled = true;
         }
 
