@@ -1,6 +1,7 @@
 package GameObject;
 
 import Engine.GraphicsHandler;
+import Level.Rectangle;
 import Utils.Point;
 
 import java.awt.*;

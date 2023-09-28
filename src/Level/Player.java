@@ -4,7 +4,6 @@ import Engine.Key;
 import Engine.KeyLocker;
 import Engine.Keyboard;
 import GameObject.GameObject;
-import GameObject.Rectangle;
 import GameObject.SpriteSheet;
 import Utils.Direction;
 

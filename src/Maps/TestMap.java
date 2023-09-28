@@ -12,6 +12,7 @@ import Scripts.TestMap.DinoScript;
 import Scripts.TestMap.LostBallScript;
 import Scripts.TestMap.TreeScript;
 import Scripts.TestMap.WalrusScript;
+import Scripts.TestMap.placeHolderScript;
 import Tilesets.CommonTileset;
 
 import java.util.ArrayList;
@@ -53,6 +54,10 @@ public class TestMap extends Map {
     @Override
     public ArrayList<Trigger> loadTriggers() {
         ArrayList<Trigger> triggers = new ArrayList<>();
+        //triggers for demonstration quest
+        triggers.add(new Trigger(100, 40, 20, 20, new placeHolderScript(), "placeholder1"));
+        triggers.add(new Trigger(20, 40, 20, 20, new placeHolderScript(), "placeholder2"));
+        //base game triggers
         triggers.add(new Trigger(790, 1030, 100, 10, new LostBallScript(), "hasLostBall"));
         triggers.add(new Trigger(790, 960, 10, 80, new LostBallScript(), "hasLostBall"));
         triggers.add(new Trigger(890, 960, 10, 80, new LostBallScript(), "hasLostBall"));

@@ -1,6 +1,7 @@
-package GameObject;
+package Level;
 
 import Engine.GraphicsHandler;
+import GameObject.IntersectableRectangle;
 import Utils.Point;
 
 import java.awt.*;

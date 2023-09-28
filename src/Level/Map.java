@@ -2,8 +2,10 @@ package Level;
 
 import Engine.Config;
 import Engine.GraphicsHandler;
+import Engine.Key;
+import Engine.Keyboard;
 import Engine.ScreenManager;
-import GameObject.Rectangle;
+import Scripts.TestMap.placeHolderScript;
 import Utils.Direction;
 import Utils.Point;
 
@@ -72,6 +74,9 @@ public abstract class Map {
     // map's textbox instance
     protected Textbox textbox;
 
+    //map's quest menu
+    protected QuestMenu questMenu;
+
     public Map(String mapFileName, Tileset tileset) {
         this.mapFileName = mapFileName;
         this.tileset = tileset;
@@ -112,6 +117,14 @@ public abstract class Map {
 
         this.camera = new Camera(0, 0, tileset.getScaledSpriteWidth(), tileset.getScaledSpriteHeight(), this);
         this.textbox = new Textbox(this);
+        //instantiates quest menu that draws on screen
+        this.questMenu = new QuestMenu();
+        //creates quests and adds them to the quest menu
+        questMenu.addQuest(new Quest("Do your laundry", "Hit trigger one"));
+        questMenu.addQuest(new Quest("File your taxes", "Hit trigger one"));
+        questMenu.addQuest(new Quest("Make your bed","Hit trigger one"));
+        questMenu.addQuest(new Quest("Slay a dragon", "Hit trigger one"));
+        questMenu.addQuest(new Quest("Do a backflip", "Hit trigger one"));
     }
 
     // reads in a map file to create the map's tilemap
@@ -547,6 +560,11 @@ public abstract class Map {
         if (textbox.isActive()) {
             textbox.draw(graphicsHandler);
         }
+        
+        //draws the quest menu whenever someone is holding down the q key
+        if (Keyboard.isKeyDown(Key.Q)){
+            questMenu.draw(graphicsHandler);
+        }
     }
 
     public FlagManager getFlagManager() { return flagManager; }
@@ -556,6 +574,9 @@ public abstract class Map {
     }
 
     public Textbox getTextbox() { return textbox; }
+
+    //fetches questMenu
+    public QuestMenu getQuestMenu() {return questMenu; }
 
     public int getEndBoundX() { return endBoundX; }
     public int getEndBoundY() { return endBoundY; }
