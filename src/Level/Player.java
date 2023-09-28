@@ -7,6 +7,8 @@ import GameObject.GameObject;
 import GameObject.Rectangle;
 import GameObject.SpriteSheet;
 import Utils.Direction;
+// Imported Sound class for footsteps (September 27th)
+import Utils.Sound;
 
 import java.util.ArrayList;
 
@@ -40,6 +42,9 @@ public abstract class Player extends GameObject {
     protected Key MOVE_UP_KEY = Key.UP;
     protected Key MOVE_DOWN_KEY = Key.DOWN;
     protected Key INTERACT_KEY = Key.SPACE;
+
+    // Setting walking sound variable (September 27th)
+    protected Sound walkSound;
 
     public Player(SpriteSheet spriteSheet, float x, float y, String startingAnimationName) {
         super(spriteSheet, x, y, startingAnimationName);
@@ -79,12 +84,18 @@ public abstract class Player extends GameObject {
         switch (playerState) {
             case STANDING:
                 playerStanding();
+                // Pauses walking sound if not moving (September 27th)
+                walkSound.pause();
                 break;
             case WALKING:
                 playerWalking();
+                // Plays walking sound if not moving (September 27th)
+                walkSound.play();
                 break;
             case INTERACTING:
                 playerInteracting();
+                // Pauses walking sound if interacting (September 27th)
+                walkSound.pause();
                 break;
         }
     }
@@ -218,6 +229,20 @@ public abstract class Player extends GameObject {
                 getBounds().getY1() - interactionRange,
                 getBounds().getWidth() + (interactionRange * 2),
                 getBounds().getHeight() + (interactionRange * 2));
+    }
+
+    // Addition September 27
+    // Setters and getters for walking sounds
+    public Sound getPlayerSound() {
+        return walkSound;
+    }
+
+    public void setWalkSound(Sound walkSound) {
+        this.walkSound = walkSound;
+    }
+
+    public Sound getWalkSound() {
+        return walkSound;
     }
 
     public Key getInteractKey() { return INTERACT_KEY; }
