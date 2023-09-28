@@ -70,7 +70,9 @@ public class TestMap extends Map {
 
         getMapTile(2, 6).setInteractScript(new TreeScript());
 
-        getMapTile(18, 13).setInteractScript(new TeleportScript());
+        getMapTile(18, 13).setInteractScript(new TeleportScript(31, 16));
+
+        getMapTile(31, 12).setInteractScript(new TeleportScript(18, 14));
     }
 }
 
