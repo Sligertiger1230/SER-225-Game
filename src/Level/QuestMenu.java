@@ -6,9 +6,7 @@ import java.util.ArrayList;
 import Engine.GraphicsHandler;
 import Engine.ImageLoader;
 import SpriteFont.SpriteFont;
-import Engine.Key;
 import GameObject.Sprite;
-import SpriteFont.SpriteFont;
 import Engine.Screen;
 
 public class QuestMenu extends Screen {

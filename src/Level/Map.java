@@ -5,7 +5,6 @@ import Engine.GraphicsHandler;
 import Engine.Key;
 import Engine.Keyboard;
 import Engine.ScreenManager;
-import Scripts.TestMap.placeHolderScript;
 import Utils.Direction;
 import Utils.Point;
 

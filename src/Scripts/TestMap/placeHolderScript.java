@@ -1,6 +1,5 @@
 package Scripts.TestMap;
 
-import Level.Map;
 import Level.Script;
 import Level.ScriptState;
 
