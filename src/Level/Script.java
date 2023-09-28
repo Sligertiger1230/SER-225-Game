@@ -1,5 +1,8 @@
 package Level;
+<<<<<<< HEAD
 
+=======
+>>>>>>> 8b0837c7dd87fcaf7e6e907a0f2f905f70110aa8
 import Utils.Direction;
 
 // This class is a base class for all scripts in the game -- all scripts should extend from it
@@ -221,5 +224,9 @@ public abstract class Script<T extends MapEntity> {
     protected boolean isPlayerBelowEntity() {
         Rectangle entityBounds = entity.getCalibratedBounds();
         return player.getBounds().getY1() > entityBounds.getY2();
+    }
+
+    protected QuestMenu getQuestMenu(){
+        return map.getQuestMenu();
     }
 }
