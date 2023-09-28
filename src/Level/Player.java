@@ -6,6 +6,7 @@ import Engine.Keyboard;
 import GameObject.GameObject;
 import GameObject.SpriteSheet;
 import Utils.Direction;
+import Utils.Point;
 // Imported Sound class for footsteps (September 27th)
 import Utils.Sound;
 
@@ -45,6 +46,8 @@ public abstract class Player extends GameObject {
     // Setting walking sound variable (September 27th)
     protected Sound walkSound;
 
+    protected Point previousTilePosition;
+
     public Player(SpriteSheet spriteSheet, float x, float y, String startingAnimationName) {
         super(spriteSheet, x, y, startingAnimationName);
         facingDirection = Direction.RIGHT;
@@ -54,6 +57,12 @@ public abstract class Player extends GameObject {
     }
 
     public void update() {
+
+        float previousX = getX();
+        float previousY = getY();
+
+        updateFootstepSound();
+
         moveAmountX = 0;
         moveAmountY = 0;
 
@@ -76,6 +85,10 @@ public abstract class Player extends GameObject {
 
         // update player's animation
         super.update();
+
+        if(getX() != previousX || getY() != previousY) {
+            updateFootstepSound();
+        }
     }
 
     // based on player's current state, call appropriate player state handling method
@@ -288,5 +301,17 @@ public abstract class Player extends GameObject {
         else if (direction == Direction.RIGHT) {
             moveX(speed);
         }
+    }
+
+    public void updateFootstepSound() {
+        Point tilePosition = map.getTileIndexByPosition(getX(), getY());
+        
+        if(!tilePosition.equals(previousTilePosition)) {
+            int tileIndex = map.getMapTile((int) tilePosition.x, (int) tilePosition.y).getTileIndex();
+            Audio.audioChange(tileIndex);
+            previousTilePosition = tilePosition;
+        }
+        int tileIndex = map.getMapTile((int) tilePosition.x, (int) tilePosition.y).getTileIndex();
+        Audio.audioChange(tileIndex);
     }
 }
