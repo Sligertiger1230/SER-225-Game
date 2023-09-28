@@ -1,5 +1,4 @@
 package Level;
-import GameObject.Rectangle;
 import Utils.Direction;
 
 // This class is a base class for all scripts in the game -- all scripts should extend from it
@@ -221,5 +220,9 @@ public abstract class Script<T extends MapEntity> {
     protected boolean isPlayerBelowEntity() {
         Rectangle entityBounds = entity.getCalibratedBounds();
         return player.getBounds().getY1() > entityBounds.getY2();
+    }
+
+    protected QuestMenu getQuestMenu(){
+        return map.getQuestMenu();
     }
 }
