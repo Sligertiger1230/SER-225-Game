@@ -1,10 +1,12 @@
 package Engine;
 
-import GameObject.Rectangle;
 import SpriteFont.SpriteFont;
 import Utils.Colors;
 
 import javax.swing.*;
+
+import Level.Rectangle;
+
 import java.awt.*;
 
 /*

@@ -2,6 +2,7 @@ package GameObject;
 
 import Engine.GraphicsHandler;
 import Engine.ImageLoader;
+import Level.Rectangle;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;

@@ -3,7 +3,6 @@ package Level;
 import Engine.GraphicsHandler;
 import Engine.ScreenManager;
 import GameObject.GameObject;
-import GameObject.Rectangle;
 
 import java.awt.*;
 import java.util.ArrayList;
