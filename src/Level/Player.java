@@ -6,6 +6,7 @@ import Engine.Keyboard;
 import GameObject.GameObject;
 import GameObject.SpriteSheet;
 import Utils.Direction;
+import Utils.Point;
 // Imported Sound class for footsteps (September 27th)
 import Utils.Sound;
 
@@ -54,6 +55,7 @@ public abstract class Player extends GameObject {
     }
 
     public void update() {
+
         moveAmountX = 0;
         moveAmountY = 0;
 

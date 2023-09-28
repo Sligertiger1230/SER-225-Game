@@ -73,6 +73,9 @@ public abstract class Map {
     // map's textbox instance
     protected Textbox textbox;
 
+    // map's textSpriteDisplay instance
+    protected TextSpriteDisplay portrait;
+
     //map's quest menu
     protected QuestMenu questMenu;
 
@@ -116,6 +119,7 @@ public abstract class Map {
 
         this.camera = new Camera(0, 0, tileset.getScaledSpriteWidth(), tileset.getScaledSpriteHeight(), this);
         this.textbox = new Textbox(this);
+        this.portrait = new TextSpriteDisplay();
         //instantiates quest menu that draws on screen
         this.questMenu = new QuestMenu();
         //creates quests and adds them to the quest menu
@@ -559,8 +563,9 @@ public abstract class Map {
         if (textbox.isActive()) {
             textbox.draw(graphicsHandler);
         }
-        
-        //draws the quest menu whenever someone is holding down the q key
+        if (portrait.isPortraitActive()) {
+            portrait.draw(graphicsHandler);
+        }
         if (Keyboard.isKeyDown(Key.Q)){
             questMenu.draw(graphicsHandler);
         }
@@ -576,6 +581,9 @@ public abstract class Map {
 
     //fetches questMenu
     public QuestMenu getQuestMenu() {return questMenu; }
+
+    // fetches portrait
+    public TextSpriteDisplay getTextSpriteDisplay() {return portrait; }
 
     public int getEndBoundX() { return endBoundX; }
     public int getEndBoundY() { return endBoundY; }

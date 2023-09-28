@@ -1,4 +1,5 @@
 package Level;
+import GameObject.Rectangle;
 import Utils.Direction;
 
 // This class is a base class for all scripts in the game -- all scripts should extend from it
@@ -8,6 +9,9 @@ import Utils.Direction;
 public abstract class Script<T extends MapEntity> {
     // this is set to true if script is currently being executed
     protected boolean isActive = false;
+
+    // set to true if script is being executed
+    protected boolean isPortraitActive = false;
 
     // if true, script should perform "setup" logic
     protected boolean start = true;
@@ -101,6 +105,11 @@ public abstract class Script<T extends MapEntity> {
         map.getTextbox().setIsActive(true);
     }
 
+    //show character portrait
+    protected void showPortrait(){
+        map.getTextSpriteDisplay().setPortraitIsActive(true);
+    }
+
     // adds text to be shown in textbox
     protected void addTextToTextboxQueue(String text) {
         map.getTextbox().addText(text);
@@ -119,6 +128,11 @@ public abstract class Script<T extends MapEntity> {
     // remove textbox from screen
     protected void hideTextbox() {
         map.getTextbox().setIsActive(false);
+    }
+
+    // remove portrait from screen
+    protected void hideTextSpriteDisplay() {
+        map.getTextSpriteDisplay().setPortraitIsActive(false);
     }
 
     // gets an npc instance by its id value
@@ -207,10 +221,5 @@ public abstract class Script<T extends MapEntity> {
     protected boolean isPlayerBelowEntity() {
         Rectangle entityBounds = entity.getCalibratedBounds();
         return player.getBounds().getY1() > entityBounds.getY2();
-    }
-
-    //gets quest menu, allows map.java's quest menu to be used in scripts
-    protected QuestMenu getQuestMenu(){
-        return map.getQuestMenu();
     }
 }
