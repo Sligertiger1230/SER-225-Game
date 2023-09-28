@@ -2,48 +2,44 @@
  * This class is in charge of all of the audio files for the game.
  * 
  * Introduced: September 27th (Sprint 1)
- * Last updated: September 27th (Sprint 1)
+ * Last updated: September 28th (Sprint 1)
  * @author bjaxqq
  */
 
 package Level;
 
 import Utils.Sound;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Audio {
-    
-    // Reference to player object
     protected static Player player1;
+    
+    // Creating a hash map to store sound object
+    protected static Map<Integer, Sound> sounds = new HashMap<>();
 
-    // References to sound files
-    protected static Sound grass = new Sound("grass.wav", true);
-    protected static Sound brick = new Sound("brick.wav", true);
+    static {
+        // Initializing the sounds map, expandable in the future
+        sounds.put(0, new Sound("grass.wav", true));
+        sounds.put(1, new Sound("brick.wav", true));
+    }
 
-    /**
-     * Sets player object for handling sounds
-     * @param player
-     */
+    // Set default sound to grass
+    private static Sound walkSound = sounds.get(0);
+
+    // Setting the player object
     public static void setPlayer(Player player) {
         player1 = player;
     }
 
-    /**
-     * Sets walk sound to grass footsteps and associates with player object
-     * Note: This needs to be updated in the future with terrain detection (September 27th)
-     * @param sound
-     */
-    public static void setWalkSound(Sound sound) {
-        grass = sound;
-        if(player1 != null) {
-            player1.setWalkSound(grass);
-        }
+    // Changing the audio based on what tile index the player is on
+    public static void audioChange(int tileIndex) {
+        player1.getWalkSound().stop();
+        walkSound = sounds.getOrDefault(tileIndex, null);
     }
 
-    /**
-     * Gets walk sound for grass footsteps
-     * @return
-     */
+    // Getting current walk sound
     public static Sound getWalkSound() {
-        return grass;
+        return walkSound;
     }
 }

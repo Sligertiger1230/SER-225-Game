@@ -108,6 +108,16 @@ public class Sound implements LineListener {
     }
 
     /**
+     * Stops the audio and sets to the beginning
+     */
+    public void stop() {
+        if(audioClip != null) {
+            audioClip.stop();
+            audioClip.setMicrosecondPosition(0);
+        }
+    }
+
+    /**
      * Checks if the audio is finished
      * @return
      */
