@@ -102,6 +102,10 @@ public abstract class Script<T extends MapEntity> {
         map.getTextbox().setIsActive(true);
     }
 
+    protected void showPortrait(){
+        map.getTextSpriteDisplay().setIsActive();
+    }
+
     // adds text to be shown in textbox
     protected void addTextToTextboxQueue(String text) {
         map.getTextbox().addText(text);

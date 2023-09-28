@@ -72,6 +72,9 @@ public abstract class Map {
     // map's textbox instance
     protected Textbox textbox;
 
+    // map's textSpriteDisplay instance
+    protected TextSpriteDisplay portrait;
+
     public Map(String mapFileName, Tileset tileset) {
         this.mapFileName = mapFileName;
         this.tileset = tileset;
@@ -112,6 +115,7 @@ public abstract class Map {
 
         this.camera = new Camera(0, 0, tileset.getScaledSpriteWidth(), tileset.getScaledSpriteHeight(), this);
         this.textbox = new Textbox(this);
+        this.portrait = new TextSpriteDisplay();
     }
 
     // reads in a map file to create the map's tilemap
@@ -546,8 +550,17 @@ public abstract class Map {
         camera.draw(player, graphicsHandler);
         if (textbox.isActive()) {
             textbox.draw(graphicsHandler);
+            portrait.draw(graphicsHandler);
         }
+        //portrait.draw(graphicsHandler);
     }
+
+    // public void draw(Player player, GraphicsHandler graphicsHandler){
+    //     camera.draw(player, graphicsHandler);
+    //     if (portrait.isActive()){
+    //         portrait.draw(graphicsHandler);
+    //     }
+    // }
 
     public FlagManager getFlagManager() { return flagManager; }
 
@@ -556,6 +569,8 @@ public abstract class Map {
     }
 
     public Textbox getTextbox() { return textbox; }
+
+    public TextSpriteDisplay getTextSpriteDisplay() { return portrait; }
 
     public int getEndBoundX() { return endBoundX; }
     public int getEndBoundY() { return endBoundY; }
