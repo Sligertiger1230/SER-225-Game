@@ -66,7 +66,7 @@ public class Audio {
     // Will change this based on what map/area the player is in later once we have
     // that set up
     public static void playBackgroundMusic() {
-        Sound backgroundMusic = sounds.get(10);
+        Sound backgroundMusic = sounds.get(14);
         if (backgroundMusic != null) {
             backgroundMusic.play();
         }
