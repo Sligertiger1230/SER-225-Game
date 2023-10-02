@@ -2,7 +2,7 @@
  * This class is in charge of all of the audio files for the game.
  * 
  * Introduced: September 27th (Sprint 1)
- * Last updated: September 28th (Sprint 1)
+ * Last updated: October 1st (Sprint 2)
  * @author bjaxqq
  */
 
@@ -20,9 +20,27 @@ public class Audio {
 
     static {
         // Initializing the sounds map, expandable in the future
-        sounds.put(0, new Sound("grass.wav", true));
-        sounds.put(1, new Sound("brick.wav", true));
-        sounds.put(10, new Sound("animalCrossing.wav", true));
+        // Grass footsteps
+        sounds.put(0, new Sound("grass1.wav", true));
+        sounds.put(1, new Sound("grass2.wav", true));
+        sounds.put(2, new Sound("grass3.wav", true));
+        sounds.put(3, new Sound("grass4.wav", true));
+        sounds.put(4, new Sound("grass5.wav", true));
+        sounds.put(5, new Sound("grass6.wav", true));
+
+        // Brick footsteps
+        sounds.put(6, new Sound("brick1.wav", true));
+        sounds.put(7, new Sound("brick2.wav", true));
+        sounds.put(8, new Sound("brick3.wav", true));
+        sounds.put(9, new Sound("brick4.wav", true));
+        sounds.put(10, new Sound("brick5.wav", true));
+        sounds.put(11, new Sound("brick6.wav", true));
+
+        // Door opening sounds
+        sounds.put(12, new Sound("door1.wav", true));
+        sounds.put(13, new Sound("door2.wav", true));
+
+        sounds.put(14, new Sound("animalCrossing.wav", true));
     }
 
     // Set default sound to grass
