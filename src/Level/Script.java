@@ -1,5 +1,4 @@
 package Level;
-import GameObject.Rectangle;
 import Utils.Direction;
 
 // This class is a base class for all scripts in the game -- all scripts should extend from it
