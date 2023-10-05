@@ -88,6 +88,7 @@ public class PlayLevelScreen extends Screen {
         switch (playLevelScreenState) {
             // if level is "running" update player and map to keep game logic for the platformer level going
             case RUNNING:
+                
                 player.update();
                 map.update(player);
                 break;

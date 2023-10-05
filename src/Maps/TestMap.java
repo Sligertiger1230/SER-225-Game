@@ -1,6 +1,7 @@
 package Maps;
 
 import EnhancedMapTiles.PushableRock;
+import Level.Audio;
 import Level.EnhancedMapTile;
 import Level.Map;
 import Level.NPC;
@@ -24,6 +25,8 @@ public class TestMap extends Map {
     public TestMap() {
         super("test_map.txt", new CommonTileset());
         this.playerStartPosition = getMapTile(17, 20).getLocation();
+        // Playing background music (September 29th)
+        Audio.playBackgroundMusic();
     }
 
     @Override
@@ -77,7 +80,7 @@ public class TestMap extends Map {
 
         getMapTile(1, 1).setInteractScript(new TeleportScript(32, 23));
 
-        getMapTile(32, 25).setInteractScript(new TeleportScript(0, 0));
+        getMapTile(32, 25).setInteractScript(new TeleportScript(2, 2));
     }
 }
 

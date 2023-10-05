@@ -221,4 +221,8 @@ public abstract class Script<T extends MapEntity> {
         Rectangle entityBounds = entity.getCalibratedBounds();
         return player.getBounds().getY1() > entityBounds.getY2();
     }
+
+    protected QuestMenu getQuestMenu(){
+        return map.getQuestMenu();
+    }
 }
