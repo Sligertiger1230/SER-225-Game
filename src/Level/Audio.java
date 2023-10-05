@@ -40,7 +40,7 @@ public class Audio {
         sounds.put(12, new Sound("door1.wav", true));
         sounds.put(13, new Sound("door2.wav", true));
 
-        sounds.put(14, new Sound("animalCrossing.wav", true));
+        sounds.put(14, new Sound("overworld.wav", true));
     }
 
     // Set default sound to grass
