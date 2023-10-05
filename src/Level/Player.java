@@ -16,6 +16,7 @@ public abstract class Player extends GameObject {
     // values that affect player movement
     // these should be set in a subclass
     protected float walkSpeed = 0;
+    protected float runSpeed = 0;
     protected int interactionRange = 5;
     protected Direction currentWalkingXDirection;
     protected Direction currentWalkingYDirection;
@@ -42,6 +43,7 @@ public abstract class Player extends GameObject {
     protected Key MOVE_UP_KEY = Key.UP;
     protected Key MOVE_DOWN_KEY = Key.DOWN;
     protected Key INTERACT_KEY = Key.SPACE;
+    protected Key SPRINT_KEY = Key.SHIFT;
 
     // Setting walking sound variable (September 27th)
     protected Sound walkSound;
@@ -123,7 +125,12 @@ public abstract class Player extends GameObject {
 
         // if walk left key is pressed, move player to the left
         if (Keyboard.isKeyDown(MOVE_LEFT_KEY)) {
-            moveAmountX -= walkSpeed;
+            if (Keyboard.isKeyDown(SPRINT_KEY)){
+                moveAmountX -= walkSpeed * 2;
+            }
+            else{
+                moveAmountX -= walkSpeed;
+            }
             facingDirection = Direction.LEFT;
             currentWalkingXDirection = Direction.LEFT;
             lastWalkingXDirection = Direction.LEFT;
@@ -131,7 +138,13 @@ public abstract class Player extends GameObject {
 
         // if walk right key is pressed, move player to the right
         else if (Keyboard.isKeyDown(MOVE_RIGHT_KEY)) {
-            moveAmountX += walkSpeed;
+            // if shift is held down player will sprint
+            if (Keyboard.isKeyDown(SPRINT_KEY)){
+                moveAmountX += walkSpeed * 2;
+            }
+            else{
+                moveAmountX += walkSpeed;
+            }
             facingDirection = Direction.RIGHT;
             currentWalkingXDirection = Direction.RIGHT;
             lastWalkingXDirection = Direction.RIGHT;
@@ -141,12 +154,24 @@ public abstract class Player extends GameObject {
         }
 
         if (Keyboard.isKeyDown(MOVE_UP_KEY)) {
-            moveAmountY -= walkSpeed;
+            // if shift is held down player will sprint
+            if (Keyboard.isKeyDown(SPRINT_KEY)){
+                moveAmountY -= walkSpeed * 2;
+            }
+            else{
+                moveAmountY -= walkSpeed;
+            }
             currentWalkingYDirection = Direction.UP;
             lastWalkingYDirection = Direction.UP;
         }
         else if (Keyboard.isKeyDown(MOVE_DOWN_KEY)) {
-            moveAmountY += walkSpeed;
+            // if shift is held down player will sprint
+            if (Keyboard.isKeyDown(SPRINT_KEY)){
+                moveAmountY += walkSpeed * 2;
+            }
+            else{
+                moveAmountY += walkSpeed;
+            }
             currentWalkingYDirection = Direction.DOWN;
             lastWalkingYDirection = Direction.DOWN;
         }
