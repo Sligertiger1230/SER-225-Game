@@ -69,7 +69,7 @@ public class DinoScript extends Script<NPC> {
     protected void cleanup() {
         if (!isFlagSet("hasTalkedToWalrus")) {
             unlockPlayer();
-            hideTextbox();
+            hideTextbox();8
         }
         else if (isFlagSet("hasTalkedToWalrus") && !isFlagSet("hasTalkedToDinosaur")) {
             if (sequence == 0) {

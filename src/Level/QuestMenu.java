@@ -5,11 +5,15 @@ import java.util.ArrayList;
 
 import Engine.GraphicsHandler;
 import Engine.ImageLoader;
+import Engine.Key;
+import Engine.KeyLocker;
+import Engine.Keyboard;
 import SpriteFont.SpriteFont;
 import GameObject.Sprite;
 import Engine.Screen;
 
 public class QuestMenu extends Screen {
+    private boolean menuActive = false;
     // coordinates for sprite
     private float x = 600;
     private float y = 5;
@@ -18,6 +22,8 @@ public class QuestMenu extends Screen {
     // how sprite is stored
     private Sprite questMenuGraphic;
     private ArrayList<Quest> quests;
+    private KeyLocker keyLocker = new KeyLocker();
+    private Key toggleMenu = Key.Q;
 
     // default constructor
     public QuestMenu() {
@@ -75,35 +81,44 @@ public class QuestMenu extends Screen {
 
     @Override
     public void update() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'update'");
+        for (int index = 0; index < quests.size(); index++) {
+            // if quest is completed, remove it from quest log
+            if (quests.get(index).isQuestStatus()) {
+                quests.remove(index);
+            }
+        }
     }
 
     @Override
     public void draw(GraphicsHandler graphicsHandler) {
-        // draws sprite of quest menu
-        questMenuGraphic.draw(graphicsHandler);
-        // handles up to five quests being dispalyed
-        for (int index = 0; index < quests.size(); index++) {
-            
-            // assigns quest names in quest to SpriteFont array
-            questText[index] = new SpriteFont(quests.get(index).getQuestName(), (x + 35), (y + 72) + (40 * index),
-                    "Comic Sans", 10, Color.BLACK);
-            // draws the SpriteFonts on the quest menu
-            questText[index].drawWithParsedNewLines(graphicsHandler, 5);
-            //checks to make sure the current step is not null
-            if (quests.get(index).getClass() != null) {
-                //SpriteFont of the most current step for each quest
-                questStepText[index] = new SpriteFont("To do: " + quests.get(index).getCurrStep(), (x + 35),
-                        (y + 87) + (40 * index),
-                        "Comic Sans", 8, Color.BLACK);
-                //draws most recent step
-                questStepText[index].drawWithParsedNewLines(graphicsHandler, 5);
-            }
+        if (Keyboard.isKeyDown(toggleMenu) && !keyLocker.isKeyLocked(toggleMenu)) {
+            keyLocker.lockKey(toggleMenu);
+            menuActive = !menuActive;
+        } else if (Keyboard.isKeyUp(toggleMenu)) {
+            keyLocker.unlockKey(toggleMenu);
+        }
 
-            // if quest is completed, remove it from quest log
-            if (quests.get(index).isQuestStatus()) {
-                quests.remove(index);
+        if (menuActive) {
+            // draws sprite of quest menu
+            questMenuGraphic.draw(graphicsHandler);
+            // handles up to five quests being dispalyed
+            for (int index = 0; index < quests.size(); index++) {
+
+                // assigns quest names in quest to SpriteFont array
+                questText[index] = new SpriteFont(quests.get(index).getQuestName(), (x + 35), (y + 72) + (40 * index),
+                        "Comic Sans", 10, Color.BLACK);
+                // draws the SpriteFonts on the quest menu
+                questText[index].drawWithParsedNewLines(graphicsHandler, 5);
+                // checks to make sure the current step is not null
+                if (quests.get(index).getClass() != null) {
+                    // SpriteFont of the most current step for each quest
+                    questStepText[index] = new SpriteFont("To do: " + quests.get(index).getCurrStep(), (x + 35),
+                            (y + 87) + (40 * index),
+                            "Comic Sans", 8, Color.BLACK);
+                    // draws most recent step
+                    questStepText[index].drawWithParsedNewLines(graphicsHandler, 5);
+                }
+
             }
         }
     }

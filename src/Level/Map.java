@@ -494,6 +494,8 @@ public abstract class Map {
         if (textbox.isActive()) {
             textbox.update();
         }
+
+        questMenu.update();
     }
 
     // based on the player's current X position (which in a level can potentially be updated each frame),
@@ -566,9 +568,8 @@ public abstract class Map {
         if (portrait.isPortraitActive()) {
             portrait.draw(graphicsHandler);
         }
-        if (Keyboard.isKeyDown(Key.Q)){
-            questMenu.draw(graphicsHandler);
-        }
+
+        questMenu.draw(graphicsHandler);
     }
 
     public FlagManager getFlagManager() { return flagManager; }
