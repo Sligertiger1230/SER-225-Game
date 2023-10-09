@@ -8,13 +8,15 @@ import Level.NPC;
 import Level.Trigger;
 import NPCs.Dinosaur;
 import NPCs.Walrus;
+import NPCs.JavaJohn;
 import Scripts.SimpleTextScript;
+import Scripts.Quests.placeHolderScript;
 import Scripts.TestMap.DinoScript;
+import Scripts.TestMap.JavaJohnScript;
 import Scripts.TestMap.LostBallScript;
 import Scripts.TestMap.TeleportScript;
 import Scripts.TestMap.TreeScript;
 import Scripts.TestMap.WalrusScript;
-import Scripts.TestMap.placeHolderScript;
 import Tilesets.CommonTileset;
 
 import java.util.ArrayList;
@@ -52,20 +54,48 @@ public class TestMap extends Map {
         dinosaur.setInteractScript(new DinoScript());
         npcs.add(dinosaur);
 
+        // adds javaJohn!
+        JavaJohn javaJohn = new JavaJohn(3, getMapTile(37, 7).getLocation());
+        javaJohn.setExistenceFlag("hasTalkedToJavaJohn");
+        javaJohn.setInteractScript(new JavaJohnScript());
+        npcs.add(javaJohn);
+
         return npcs;
     }
 
     @Override
     public ArrayList<Trigger> loadTriggers() {
         ArrayList<Trigger> triggers = new ArrayList<>();
-        //triggers for demonstration quest
+        // triggers for demonstration quest
         triggers.add(new Trigger(100, 40, 20, 20, new placeHolderScript(), "placeholder1"));
         triggers.add(new Trigger(20, 40, 20, 20, new placeHolderScript(), "placeholder2"));
-        //base game triggers
+        // base game triggers
         triggers.add(new Trigger(790, 1030, 100, 10, new LostBallScript(), "hasLostBall"));
         triggers.add(new Trigger(790, 960, 10, 80, new LostBallScript(), "hasLostBall"));
         triggers.add(new Trigger(890, 960, 10, 80, new LostBallScript(), "hasLostBall"));
         return triggers;
+    }
+
+    // updates the triggers
+    @Override
+    public ArrayList<Trigger> updateTriggers() {
+        ArrayList<Trigger> newTriggers = new ArrayList<>();
+
+        // searches each quest menu quest with index
+        for (int index = 0; index < getQuestMenu().getQuests().size(); index++) {
+            // if a quest in quest menu is still a new quest
+            if (getQuestMenu().isNewQuestStatus(index)) {
+                // go through each trigger in the quest
+                for (int triggerIndex = 0; triggerIndex < getQuestMenu().getTriggerList(index).size(); triggerIndex++) {
+                    // adds the trigger to newTriggers
+                    newTriggers.add(getQuestMenu().getTriggerList(index).get(triggerIndex));
+                }
+                // sets the quest just added to false
+                getQuestMenu().setNewQuestStatus(index, false);
+            }
+        }
+
+        return newTriggers;
     }
 
     @Override
@@ -83,4 +113,3 @@ public class TestMap extends Map {
         getMapTile(32, 25).setInteractScript(new TeleportScript(2, 2));
     }
 }
-

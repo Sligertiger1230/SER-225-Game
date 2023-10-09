@@ -1,4 +1,4 @@
-package Scripts.TestMap;
+package Scripts.Quests;
 
 import Level.Script;
 import Level.ScriptState;

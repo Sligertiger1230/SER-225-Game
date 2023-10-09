@@ -40,7 +40,7 @@ Both NPCs can be seen in the `TestMap` map.
 ## Adding a new NPC to the game
 
 This is simple -- create a new class in the `NPCs` package, subclass the `NPC` class, and then just implement desired logic from there.
-I recommend copying an existing NPC class as a "template" of sorts to help set up and design the NPC.
+I recommend copying an existing NPC class as a "template" of sorts to help set up and design the NPC.wa
 
 ## Adding an NPC to a map
 

@@ -17,6 +17,7 @@ public class QuestMenu extends Screen {
     // coordinates for sprite
     private float x = 600;
     private float y = 5;
+    private int completedQuests;
     // spritefont array that accounts for all 5 quest name spaces
     private SpriteFont[] questText, questStepText;
     // how sprite is stored
@@ -31,6 +32,7 @@ public class QuestMenu extends Screen {
         this.quests = new ArrayList<Quest>(5);
         this.questText = new SpriteFont[5];
         this.questStepText = new SpriteFont[5];
+        this.completedQuests = 0;
     }
 
     // retrieves arraylist of quests
@@ -45,6 +47,19 @@ public class QuestMenu extends Screen {
         } else {
             return false;
         }
+    }
+
+    public void setNewQuestStatus(int index, boolean newQuestStatus){
+        quests.get(index).setNewQuestStatus(newQuestStatus);
+    }
+
+    public boolean isNewQuestStatus(int index){
+        return quests.get(index).isQuestStatus();
+    }
+
+    //retrieves triggerList of specific quest in quest menu
+    public ArrayList<Trigger> getTriggerList(int index){
+        return quests.get(index).getTriggerList();
     }
 
     // adds quest to array list
@@ -79,25 +94,32 @@ public class QuestMenu extends Screen {
         throw new UnsupportedOperationException("Unimplemented method 'initialize'");
     }
 
+    //updates the game every frame if a quest has been completed or not
     @Override
     public void update() {
         for (int index = 0; index < quests.size(); index++) {
             // if quest is completed, remove it from quest log
             if (quests.get(index).isQuestStatus()) {
                 quests.remove(index);
+                completedQuests++;
             }
         }
     }
 
+    //draws the quest menu whenever the user presses q. is on toggle controls.
     @Override
     public void draw(GraphicsHandler graphicsHandler) {
+        //if user presses q, lock it so it only activates one and lets the game know menu should be active
         if (Keyboard.isKeyDown(toggleMenu) && !keyLocker.isKeyLocked(toggleMenu)) {
             keyLocker.lockKey(toggleMenu);
             menuActive = !menuActive;
-        } else if (Keyboard.isKeyUp(toggleMenu)) {
+        } 
+        //when user lets go of q key, it unlocks the key so user can press it again when they want it to dissapear
+        else if (Keyboard.isKeyUp(toggleMenu)) {
             keyLocker.unlockKey(toggleMenu);
         }
 
+        //while the menu should be active, creates the quest menu
         if (menuActive) {
             // draws sprite of quest menu
             questMenuGraphic.draw(graphicsHandler);

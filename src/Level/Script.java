@@ -1,6 +1,10 @@
 package Level;
 import Utils.Direction;
 
+import java.util.ArrayList;
+import Level.Trigger;
+import Level.Quest;
+
 // This class is a base class for all scripts in the game -- all scripts should extend from it
 // Scripts can be used to interact with map entities
 // Each script defines a set of instructions that will be carried out by the game when it is set to active
@@ -24,6 +28,8 @@ public abstract class Script<T extends MapEntity> {
 
     // reference to the player instance which can be used in any script
     protected Player player;
+
+    protected ArrayList<Trigger> questTriggers = new ArrayList<Trigger>();
 
     protected int frameDelayCounter = 0;
 
@@ -222,7 +228,21 @@ public abstract class Script<T extends MapEntity> {
         return player.getBounds().getY1() > entityBounds.getY2();
     }
 
+    //returns instantiated questMenu from Map.java
     protected QuestMenu getQuestMenu(){
         return map.getQuestMenu();
     }
+
+    //adds quest to instantiated questMenu in Map.java 
+    protected void addQuest(String questName, String currStep, ArrayList<Trigger> questTriggers){
+        map.addQuest(new Quest(questName, currStep, questTriggers));
+    }
+
+    //adds trigger to trigger list
+    protected void addTrigger(int x, int y, int width, int height, Script triggerScript, String existenceFlag){
+        questTriggers.add(new Trigger(x, y, width, height, triggerScript, existenceFlag));
+    }
+
+    //gets trigger list
+    protected ArrayList<Trigger> getQuestTriggers() {return questTriggers;}
 }
