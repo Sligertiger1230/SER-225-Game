@@ -15,6 +15,7 @@ public class PlayLevelScreen extends Screen {
     protected ScreenCoordinator screenCoordinator;
     protected Map map;
     protected Player player;
+    protected int triggerSize;
     protected PlayLevelScreenState playLevelScreenState;
     protected WinScreen winScreen;
     protected FlagManager flagManager;
@@ -26,10 +27,15 @@ public class PlayLevelScreen extends Screen {
     public void initialize() {
         // setup state
         flagManager = new FlagManager();
-        //custom placeholder flags
-        flagManager.addFlag("placeholder1", false);
-        flagManager.addFlag("placeholder2", false);
-        //base game flags
+
+        //java john quest flags. This is the best way to have flags right now
+        //will organize them better, but we will always have to instantiate them beforehand
+        flagManager.addFlag("hasTalkedToJavaJohn", false);
+        flagManager.addFlag("hasPickedUpGlasses", false);
+        flagManager.addFlag("hasEncounteredJavaJohnWalk", false);
+        flagManager.addFlag("isJavaJohnFloating", false);
+
+        // base game flags
         flagManager.addFlag("hasLostBall", false);
         flagManager.addFlag("hasTalkedToWalrus", false);
         flagManager.addFlag("hasTalkedToDinosaur", false);
@@ -73,6 +79,8 @@ public class PlayLevelScreen extends Screen {
                 enhancedMapTile.getInteractScript().setPlayer(player);
             }
         }
+
+        triggerSize = map.getTriggersSize();
         for (Trigger trigger : map.getTriggers()) {
             if (trigger.getTriggerScript() != null) {
                 trigger.getTriggerScript().setMap(map);
@@ -86,19 +94,30 @@ public class PlayLevelScreen extends Screen {
     public void update() {
         // based on screen state, perform specific actions
         switch (playLevelScreenState) {
-            // if level is "running" update player and map to keep game logic for the platformer level going
+            // if level is "running" update player and map to keep game logic for the
+            // platformer level going
             case RUNNING:
-                
+
                 player.update();
                 map.update(player);
+                //updateTriggers changes size of map triggers size. so check if previous value stored is the same
+                //if its not
+                if (map.getTriggersSize() != triggerSize) {
+                    //go through every new trigger addition
+                    for (int index = triggerSize; index < map.getTriggersSize(); index++) {
+                        //sets trigger script to map
+                        map.getTriggers().get(index).getTriggerScript().setMap(map);
+                        //sets trigger script to user
+                        map.getTriggers().get(index).getTriggerScript().setPlayer(player);
+                    }
+                    triggerSize = map.getTriggersSize();
+                }
                 break;
             // if level has been completed, bring up level cleared screen
             case LEVEL_COMPLETED:
                 winScreen.update();
                 break;
         }
-
-        
 
         // if flag is set at any point during gameplay, game is "won"
         if (map.getFlagManager().isFlagSet("hasFoundBall")) {
@@ -121,7 +140,6 @@ public class PlayLevelScreen extends Screen {
     public PlayLevelScreenState getPlayLevelScreenState() {
         return playLevelScreenState;
     }
-
 
     public void resetLevel() {
         initialize();

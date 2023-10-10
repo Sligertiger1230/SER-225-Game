@@ -29,7 +29,11 @@ public abstract class Script<T extends MapEntity> {
     // reference to the player instance which can be used in any script
     protected Player player;
 
-    protected ArrayList<Trigger> questTriggers = new ArrayList<Trigger>();
+    //holds steps
+    protected ArrayList<String> stepList;
+
+    //holds quests
+    protected ArrayList<Trigger> questTriggers;
 
     protected int frameDelayCounter = 0;
 
@@ -234,8 +238,28 @@ public abstract class Script<T extends MapEntity> {
     }
 
     //adds quest to instantiated questMenu in Map.java 
-    protected void addQuest(String questName, String currStep, ArrayList<Trigger> questTriggers){
-        map.addQuest(new Quest(questName, currStep, questTriggers));
+    protected void addQuest(String questName){
+        map.addQuest(new Quest(questName, stepList, questTriggers));
+    }
+
+    //creates list to hold steps for quest
+    protected void createStepList(){
+        stepList = new ArrayList<String>();
+    }
+    
+    //adds a new step to the quest
+    protected void addStep(String newStep){
+        stepList.add(newStep);
+    }
+
+    //moves the current step onto the next one
+    protected void nextStep(String questName){
+        getQuestMenu().searchQuest(questName).nextStep();
+    }
+
+    //creates trigger list to be used on quest
+    protected void createTriggerList(){
+        questTriggers = new ArrayList<Trigger>();
     }
 
     //adds trigger to trigger list

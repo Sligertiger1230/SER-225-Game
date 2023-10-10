@@ -63,6 +63,7 @@ public abstract class Map {
     protected ArrayList<EnhancedMapTile> enhancedMapTiles;
     protected ArrayList<NPC> npcs;
     protected ArrayList<Trigger> triggers;
+    protected ArrayList<Trigger> updatedTriggers;
 
     protected Script activeInteractScript;
 
@@ -125,6 +126,7 @@ public abstract class Map {
         this.camera = new Camera(0, 0, tileset.getScaledSpriteWidth(), tileset.getScaledSpriteHeight(), this);
         this.textbox = new Textbox(this);
         this.portrait = new TextSpriteDisplay();
+
         // instantiates quest menu that draws on screen
         this.questMenu = new QuestMenu();
 
@@ -334,6 +336,10 @@ public abstract class Map {
         return triggers;
     }
 
+    public int getTriggersSize() {
+        return triggers.size();
+    }
+
     public ArrayList<MapTile> getAnimatedMapTiles() {
         return animatedMapTiles;
     }
@@ -515,16 +521,22 @@ public abstract class Map {
             textbox.update();
         }
 
-        //updates quest info
+        // updates quest info
         questMenu.update();
 
-        // updates the triggers whenver new one added
-        triggers = updateTriggers();
-        // doesn't bother updating triggers if no new one is added, saves some
-        // processing power
-        if (!triggers.isEmpty()) {
-            for (Trigger trigger : this.triggers) {
+        //creates a placeholder version for the most recent triggers added
+        updatedTriggers = updateTriggers();
+
+        //the some new triggers were actually added, then run
+        if (updatedTriggers != null) {
+            //runs a for loop going through every trigger in updatedTriggers
+            for (Trigger trigger : this.updatedTriggers) {
+                //adds it's flag to flag manager
+                flagManager.addFlag((trigger.getExistenceFlag()), false);
+                //sets it to current map
                 trigger.setMap(this);
+                //adds it to map arrayList for triggers
+                triggers.add(trigger);
             }
         }
     }

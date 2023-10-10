@@ -14,7 +14,7 @@ import Utils.Point;
 public class JavaJohn extends NPC {
 
     public JavaJohn(int id, Point location) {
-        super(id, location.x, location.y, new SpriteSheet(ImageLoader.load("frontJavaJohn.png"), 21, 27), "STAND_LEFT");
+        super(id, location.x, location.y, new SpriteSheet(ImageLoader.load("javaJohn.png"), 21, 25), "STAND_LEFT");
     }
 
     @Override
@@ -24,18 +24,24 @@ public class JavaJohn extends NPC {
                 put("STAND_LEFT", new Frame[] {
                         new FrameBuilder(spriteSheet.getSprite(0, 0))
                                 .withScale(3)
-                                .withBounds(7, 13, 11, 7)
+                                .withBounds(1, 11, 19, 16)
                                 .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
                                 .build()
                 });
                 put("STAND_RIGHT", new Frame[] {
-                        new FrameBuilder(spriteSheet.getSprite(0, 0))
+                        new FrameBuilder(spriteSheet.getSprite(1, 0))
                                 .withScale(3)
-                                .withBounds(7, 13, 11, 7)
+                                .withBounds(1, 11, 19, 16)
                                 .build()
                 });
+                put("WALK_UP", new Frame[] {
+                        new FrameBuilder(spriteSheet.getSprite(2, 0))
+                                .withScale(3)
+                                .withBounds(1, 11, 19, 16)
+                                .build() });
             }
         };
+
     }
 
     @Override
