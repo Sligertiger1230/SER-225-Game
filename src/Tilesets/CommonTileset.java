@@ -1152,6 +1152,225 @@ public class CommonTileset extends Tileset {
 
        mapTiles.add(arcLeftTopTile);
 
+           // green trash can
+       Frame greenTrashFrame = new FrameBuilder(getSubImage(4, 11))
+               .withScale(tileScale)
+               .build();
+
+        MapTileBuilder greenTrashTile = new MapTileBuilder(arcRightBottomFrame)
+               .withTopLayer(greenTrashFrame)
+               .withTileType(TileType.NOT_PASSABLE);
+
+       mapTiles.add(greenTrashTile);
+
+        // cream trash can
+       Frame creamTrashFrame = new FrameBuilder(getSubImage(3, 11))
+               .withScale(tileScale)
+               .build();
+
+        MapTileBuilder creamTrashTile = new MapTileBuilder(arcLeftBottomFrame)
+               .withTopLayer(creamTrashFrame)
+               .withTileType(TileType.NOT_PASSABLE);
+
+       mapTiles.add(creamTrashTile);
+
+        //  cce pole with screen left side
+       Frame ccePoleLeftScreenSideFrame = new FrameBuilder(getSubImage(5, 9))
+               .withScale(tileScale)
+               .withBounds(0, 6, 16, 4)
+               .build();
+
+        MapTileBuilder ccePoleLeftScreenSideTile = new MapTileBuilder(cceFloorFrame)
+               .withTopLayer(ccePoleLeftScreenSideFrame)
+               .withTileType(TileType.PASSABLE);
+
+       mapTiles.add(ccePoleLeftScreenSideTile);
+
+        //  cce chair front
+       Frame cceChairFrontFrame = new FrameBuilder(getSubImage(2, 9))
+               .withScale(tileScale)
+               .withBounds(0, 6, 16, 4)
+               .build();
+
+        MapTileBuilder cceChairFrontTile = new MapTileBuilder(cceFloorFrame)
+               .withTopLayer(cceChairFrontFrame)
+               .withTileType(TileType.NOT_PASSABLE);
+
+       mapTiles.add(cceChairFrontTile);
+
+        //  cce chair back
+       Frame cceChairBackFrame = new FrameBuilder(getSubImage(11, 9))
+               .withScale(tileScale)
+               .build();
+
+        MapTileBuilder cceChairBackTile = new MapTileBuilder(cceFloorFrame)
+               .withTopLayer(cceChairBackFrame)
+               .withTileType(TileType.NOT_PASSABLE);
+
+       mapTiles.add(cceChairBackTile);
+
+         //  cce table left horizontal
+       Frame cceTableLeftHorizontalFrame = new FrameBuilder(getSubImage(12, 0))
+               .withScale(tileScale)
+               .build();
+
+        MapTileBuilder cceTableLeftHorizontalTile = new MapTileBuilder(cceFloorFrame)
+               .withTopLayer(cceTableLeftHorizontalFrame)
+               .withTileType(TileType.NOT_PASSABLE);
+
+       mapTiles.add(cceTableLeftHorizontalTile);
+
+         //  cce table right horizontal
+       Frame cceTableRightHorizontalFrame = new FrameBuilder(getSubImage(12, 1))
+               .withScale(tileScale)
+               .build();
+
+        MapTileBuilder cceTableRightHorizontalTile = new MapTileBuilder(cceFloorFrame)
+               .withTopLayer(cceTableRightHorizontalFrame)
+               .withTileType(TileType.NOT_PASSABLE);
+
+       mapTiles.add(cceTableRightHorizontalTile);
+
+         //  cce professor podium
+       Frame ccePodiumBaseFrame = new FrameBuilder(getSubImage(3, 8))
+               .withScale(tileScale)
+                .withBounds(0, 6, 16, 4)
+               .build();
+
+        MapTileBuilder ccePodiumBaseTile = new MapTileBuilder(cceFloorFrame)
+               .withTopLayer(ccePodiumBaseFrame)
+               .withTileType(TileType.NOT_PASSABLE);
+
+       mapTiles.add(ccePodiumBaseTile);
+
+         //  cce professor podium
+       Frame ccePodiumTopFrame = new FrameBuilder(getSubImage(2, 8))
+               .withScale(tileScale)
+                .withBounds(0, 6, 16, 4)
+               .build();
+
+        MapTileBuilder ccePodiumTopTile = new MapTileBuilder(cceFloorFrame)
+               .withTopLayer(ccePodiumTopFrame)
+               .withTileType(TileType.PASSABLE);
+
+       mapTiles.add(ccePodiumTopTile);
+
+         //  cce chair side right
+       Frame cceChairRightSideFrame = new FrameBuilder(getSubImage(3, 9))
+               .withScale(tileScale)
+               .build();
+
+        MapTileBuilder cceChairRightSideTile = new MapTileBuilder(cceFloorFrame)
+               .withTopLayer(cceChairRightSideFrame)
+               .withTileType(TileType.NOT_PASSABLE);
+
+       mapTiles.add(cceChairRightSideTile);
+
+         //  cce chair side left
+       Frame cceChairLeftSideFrame = new FrameBuilder(getSubImage(2, 11))
+               .withScale(tileScale)
+               .build();
+
+        MapTileBuilder cceChairLeftSideTile = new MapTileBuilder(cceFloorFrame)
+               .withTopLayer(cceChairLeftSideFrame)
+               .withTileType(TileType.NOT_PASSABLE);
+
+       mapTiles.add(cceChairLeftSideTile);
+
+         //  cce table middle horizontal
+       Frame cceTableMiddleHorizontalFrame = new FrameBuilder(getSubImage(1, 11))
+               .withScale(tileScale)
+               .build();
+
+        MapTileBuilder cceTableMiddleHorizontalTile = new MapTileBuilder(cceFloorFrame)
+               .withTopLayer(cceTableMiddleHorizontalFrame)
+               .withTileType(TileType.NOT_PASSABLE);
+
+       mapTiles.add(cceTableMiddleHorizontalTile);
+
+        //  cce table top vertical
+       Frame cceTableTopVerticalFrame = new FrameBuilder(getSubImage(0, 12))
+               .withScale(tileScale)
+               .build();
+
+        MapTileBuilder cceTableTopVerticalTile = new MapTileBuilder(cceFloorFrame)
+               .withTopLayer(cceTableTopVerticalFrame)
+               .withTileType(TileType.NOT_PASSABLE);
+
+       mapTiles.add(cceTableTopVerticalTile);
+
+        //  cce table bottom vertical
+       Frame cceTableBottomVerticalFrame = new FrameBuilder(getSubImage(2, 12))
+               .withScale(tileScale)
+               .build();
+
+        MapTileBuilder cceTableBottomVerticalTile = new MapTileBuilder(cceFloorFrame)
+               .withTopLayer(cceTableBottomVerticalFrame)
+               .withTileType(TileType.NOT_PASSABLE);
+
+       mapTiles.add(cceTableBottomVerticalTile);
+
+        //  cce table middle vertical
+       Frame cceTableMiddleVerticalFrame = new FrameBuilder(getSubImage(1, 12))
+               .withScale(tileScale)
+               .build();
+
+        MapTileBuilder cceTableMiddleVerticalTile = new MapTileBuilder(cceFloorFrame)
+               .withTopLayer(cceTableMiddleVerticalFrame)
+               .withTileType(TileType.NOT_PASSABLE);
+
+       mapTiles.add(cceTableMiddleVerticalTile);
+
+        // whiteboard bottom with marks
+       Frame whiteboardBottomMarksOneFrame = new FrameBuilder(getSubImage(15, 8))
+               .withScale(tileScale)
+               .build();
+
+        MapTileBuilder whiteboardBottomMarksOneTile = new MapTileBuilder(whiteboardBottomFrame)
+               .withTopLayer(whiteboardBottomMarksOneFrame)
+               .withTileType(TileType.NOT_PASSABLE);
+
+       mapTiles.add(whiteboardBottomMarksOneTile);
+
+        // whiteboard bottom with marks
+       Frame whiteboardBottomMarksTwoFrame = new FrameBuilder(getSubImage(12, 7))
+               .withScale(tileScale)
+               .build();
+
+        MapTileBuilder whiteboardBottomMarksTwoTile = new MapTileBuilder(whiteboardBottomFrame)
+               .withTopLayer(whiteboardBottomMarksTwoFrame)
+               .withTileType(TileType.NOT_PASSABLE);
+
+       mapTiles.add(whiteboardBottomMarksTwoTile);
+
+         // whiteboard top with marks
+       Frame whiteboardTopMarksOneFrame = new FrameBuilder(getSubImage(14, 8))
+               .withScale(tileScale)
+               .build();
+
+        MapTileBuilder whiteboardTopMarksOneTile = new MapTileBuilder(whiteboardBottomFrame)
+               .withTopLayer(whiteboardTopMarksOneFrame)
+               .withTileType(TileType.NOT_PASSABLE);
+
+       mapTiles.add(whiteboardTopMarksOneTile);
+
+         // whiteboard top with marks
+       Frame whiteboardTopMarksTwoFrame = new FrameBuilder(getSubImage(14, 9))
+               .withScale(tileScale)
+               .build();
+
+        MapTileBuilder whiteboardTopMarksTwoTile = new MapTileBuilder(whiteboardBottomFrame)
+               .withTopLayer(whiteboardTopMarksTwoFrame)
+               .withTileType(TileType.NOT_PASSABLE);
+
+       mapTiles.add(whiteboardTopMarksTwoTile);
+
+
+
+
+
+
+
 
 
 
