@@ -1,21 +1,32 @@
-package Scripts.TestMap;
+package Scripts.CCEClassroom;
 
+import Game.GameState;
+import Level.Camera;
+import Level.Map;
 import Level.Script;
 import Level.ScriptState;
 import Maps.CCEClassroom;
 import Players.Cat;
+import Game.GameState;
+import Game.ScreenCoordinator;
 
-public class TeleportScript extends Script {
+
+public class ChangeMapScript extends Script {
 
     private float x = 0;
     private float y = 0;
     private boolean hasScaled = false;
+    private Map map;
+    protected ScreenCoordinator screenCoordinator;
 
-    public TeleportScript(float x, float y) {
+    public ChangeMapScript(float x, float y) {
         this.x = x;
         this.y = y;
     }
 
+    public ChangeMapScript(ScreenCoordinator screenCoordinator) {
+        this.screenCoordinator = screenCoordinator;
+    }
 
     @Override
     protected void setup() {
@@ -37,8 +48,11 @@ public class TeleportScript extends Script {
             x = ((x * 48f) - 15f);
             y = ((y * 48f) - 15f);
             hasScaled = true;
-        }
 
+        }
+        this.map = new CCEClassroom();
+        this.player.setMap(map);
+        screenCoordinator.setGameState(null);
         player.setLocation(x, y); // Teleport the player
         return ScriptState.COMPLETED;
     }

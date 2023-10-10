@@ -10,9 +10,10 @@ import NPCs.Dinosaur;
 import NPCs.Walrus;
 import NPCs.JavaJohn;
 import Scripts.SimpleTextScript;
+import Scripts.CCEClassroom.ChangeMapScript;
 import Scripts.Quests.placeHolderScript;
 import Scripts.TestMap.DinoScript;
-import Scripts.TestMap.JavaJohnScript;
+//import Scripts.TestMap.JavaJohnScript;
 import Scripts.TestMap.LostBallScript;
 import Scripts.TestMap.TeleportScript;
 import Scripts.TestMap.TreeScript;
@@ -57,7 +58,7 @@ public class TestMap extends Map {
         // adds javaJohn!
         JavaJohn javaJohn = new JavaJohn(3, getMapTile(37, 7).getLocation());
         javaJohn.setExistenceFlag("hasTalkedToJavaJohn");
-        javaJohn.setInteractScript(new JavaJohnScript());
+        //javaJohn.setInteractScript(new JavaJohnScript());
         npcs.add(javaJohn);
 
         return npcs;
@@ -111,5 +112,7 @@ public class TestMap extends Map {
         getMapTile(1, 1).setInteractScript(new TeleportScript(32, 23));
 
         getMapTile(32, 25).setInteractScript(new TeleportScript(2, 2));
+
+         getMapTile(100, 59).setInteractScript(new ChangeMapScript(2, 2));
     }
 }

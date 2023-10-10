@@ -5,39 +5,28 @@ import Engine.*;
 import Game.GameState;
 import Game.ScreenCoordinator;
 import Level.*;
-import Maps.TestMap;
+import Maps.CCEClassroom;
 import Players.Cat;
 import Utils.Direction;
 import Utils.Point;
 
-// This class is for when the platformer game is actually being played
-public class PlayLevelScreen extends Screen {
+public class CCEClassroomScreen extends Screen{
     protected ScreenCoordinator screenCoordinator;
     protected Map map;
     protected Player player;
-    protected PlayLevelScreenState playLevelScreenState;
+    protected CCEClassroomScreenState cceClassroomScreenState;
     protected WinScreen winScreen;
     protected FlagManager flagManager;
 
-    public PlayLevelScreen(ScreenCoordinator screenCoordinator) {
+    public CCEClassroomScreen(ScreenCoordinator screenCoordinator) {
         this.screenCoordinator = screenCoordinator;
     }
 
     public void initialize() {
-        // setup state
         flagManager = new FlagManager();
-        //custom placeholder flags
-        flagManager.addFlag("placeholder1", false);
-        flagManager.addFlag("placeholder2", false);
-        //base game flags
-        flagManager.addFlag("hasLostBall", false);
-        flagManager.addFlag("hasTalkedToWalrus", false);
-        flagManager.addFlag("hasTalkedToDinosaur", false);
-        flagManager.addFlag("hasFoundBall", false);
-
-        // define/setup map
-        this.map = new TestMap();
+        map = new CCEClassroom();
         map.setFlagManager(flagManager);
+        map.setAdjustCamera(false);
 
         // setup player
         this.player = new Cat(map.getPlayerStartPosition().x, map.getPlayerStartPosition().y);
@@ -48,7 +37,7 @@ public class PlayLevelScreen extends Screen {
         this.player.setMap(map);
         Point playerStartPosition = map.getPlayerStartPosition();
         this.player.setLocation(playerStartPosition.x, playerStartPosition.y);
-        this.playLevelScreenState = PlayLevelScreenState.RUNNING;
+        this.cceClassroomScreenState = CCEClassroomScreenState.RUNNING;
         this.player.setFacingDirection(Direction.LEFT);
 
         // let pieces of map know which button to listen for as the "interact" button
@@ -79,15 +68,14 @@ public class PlayLevelScreen extends Screen {
                 trigger.getTriggerScript().setPlayer(player);
             }
         }
-
-        winScreen = new WinScreen(this);
     }
 
     public void update() {
         // based on screen state, perform specific actions
-        switch (playLevelScreenState) {
+        switch (cceClassroomScreenState) {
             // if level is "running" update player and map to keep game logic for the platformer level going
             case RUNNING:
+                
                 player.update();
                 map.update(player);
                 break;
@@ -101,13 +89,13 @@ public class PlayLevelScreen extends Screen {
 
         // if flag is set at any point during gameplay, game is "won"
         if (map.getFlagManager().isFlagSet("hasFoundBall")) {
-            playLevelScreenState = PlayLevelScreenState.LEVEL_COMPLETED;
+            cceClassroomScreenState = CCEClassroomScreenState.LEVEL_COMPLETED;
         }
     }
 
     public void draw(GraphicsHandler graphicsHandler) {
         // based on screen state, draw appropriate graphics
-        switch (playLevelScreenState) {
+        switch (cceClassroomScreenState) {
             case RUNNING:
                 map.draw(player, graphicsHandler);
                 break;
@@ -117,8 +105,8 @@ public class PlayLevelScreen extends Screen {
         }
     }
 
-    public PlayLevelScreenState getPlayLevelScreenState() {
-        return playLevelScreenState;
+    public CCEClassroomScreenState getCCEClassroomScreenState() {
+        return cceClassroomScreenState;
     }
 
 
@@ -129,9 +117,8 @@ public class PlayLevelScreen extends Screen {
     public void goBackToMenu() {
         screenCoordinator.setGameState(GameState.MENU);
     }
-
     // This enum represents the different states this screen can be in
-    private enum PlayLevelScreenState {
+    private enum CCEClassroomScreenState {
         RUNNING, LEVEL_COMPLETED
     }
 }
