@@ -34,6 +34,7 @@ public abstract class Map {
     // height-wise
     protected int width;
     protected int height;
+    protected int mapInt;
 
     // the tileset this map uses for its map tiles
     protected Tileset tileset;
@@ -238,6 +239,14 @@ public abstract class Map {
 
     public MapTile[] getMapTiles() {
         return mapTiles;
+    }
+
+    public void setMapInt(int mapInt){
+       //0 for main map, 1 for cce 
+       this.mapInt = mapInt;
+    }
+    public int getMapInt(){
+       return mapInt;
     }
 
     public void setMapTiles(MapTile[] mapTiles) {
