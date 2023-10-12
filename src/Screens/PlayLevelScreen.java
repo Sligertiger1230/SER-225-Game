@@ -5,6 +5,7 @@ import Engine.*;
 import Game.GameState;
 import Game.ScreenCoordinator;
 import Level.*;
+import Maps.CCEClassroom;
 import Maps.TestMap;
 import Players.Cat;
 import Utils.Direction;
@@ -112,6 +113,13 @@ public class PlayLevelScreen extends Screen {
                     }
                     triggerSize = map.getTriggersSize();
                 }
+                if(map.getMapInt() == 1){
+                    this.map = new CCEClassroom();
+                    map.setMapInt(0);
+                    this.player.setMap(this.map);
+                    Point playerStartPosition = map.getPlayerStartPosition();
+                    this.player.setLocation(playerStartPosition.x, playerStartPosition.y);
+                }
                 break;
             // if level has been completed, bring up level cleared screen
             case LEVEL_COMPLETED:
@@ -120,9 +128,9 @@ public class PlayLevelScreen extends Screen {
         }
 
         // if flag is set at any point during gameplay, game is "won"
-        if (map.getFlagManager().isFlagSet("hasFoundBall")) {
-            playLevelScreenState = PlayLevelScreenState.LEVEL_COMPLETED;
-        }
+        //if (map.getFlagManager().isFlagSet("hasFoundBall")) {
+            //playLevelScreenState = PlayLevelScreenState.LEVEL_COMPLETED;
+        //}
     }
 
     public void draw(GraphicsHandler graphicsHandler) {
