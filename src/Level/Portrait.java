@@ -12,6 +12,7 @@ public class Portrait extends Screen {
     protected Sprite portrait;
     protected final float imageX = 50;
     protected float imageY;
+    protected int spriteHeight;
     protected BufferedImage image;
     protected String imageName;
     private Map map;
@@ -33,6 +34,7 @@ public class Portrait extends Screen {
     public void setPortraitImage(String imageName){
         this.imageName = imageName;
         image = ImageLoader.load(imageName);
+        spriteHeight = image.getHeight();
     }
 
     public void setPortraitIsActive(Boolean isActive) {
@@ -45,10 +47,10 @@ public class Portrait extends Screen {
 
     public void updateImage(Boolean update){
         if(update){
-            imageY = 100;
+            imageY = 460 - spriteHeight;
         }
         else{
-            imageY = 0;
+            imageY = 0 - spriteHeight;
         }
         portrait = new Sprite(image, imageX, imageY);
         portrait.setScale(1);

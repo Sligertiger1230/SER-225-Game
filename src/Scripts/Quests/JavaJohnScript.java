@@ -14,6 +14,7 @@ public class JavaJohnScript extends Script<NPC> {
     @Override
     protected void setup() {
         lockPlayer();
+        showPortrait("JavaJohnPortrait.png");
         showTextbox();
 
         // if player have picked up glasses, shows them this text
@@ -63,6 +64,7 @@ public class JavaJohnScript extends Script<NPC> {
         //removes text and lets player walk 
         unlockPlayer();
         hideTextbox();
+        hidePortrait();
         //if the player finished talking to java john for the first time
         if (!isFlagSet("hasTalkedToJavaJohn")) {
             //set flag so john will react differently when talked to again
