@@ -105,8 +105,9 @@ public abstract class Script<T extends MapEntity> {
     }
 
     //show character portrait
-    protected void showPortrait(){
-        map.getTextSpriteDisplay().setPortraitIsActive(true);
+    protected void showPortrait(String imageName){
+        map.getPortrait().setPortraitImage(imageName);
+        map.getPortrait().setPortraitIsActive(true);
     }
 
     // adds text to be shown in textbox
@@ -130,8 +131,8 @@ public abstract class Script<T extends MapEntity> {
     }
 
     // remove portrait from screen
-    protected void hideTextSpriteDisplay() {
-        map.getTextSpriteDisplay().setPortraitIsActive(false);
+    protected void hidePortrait() {
+        map.getPortrait().setPortraitIsActive(false);
     }
 
     // gets an npc instance by its id value

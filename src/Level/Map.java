@@ -2,9 +2,11 @@ package Level;
 
 import Engine.Config;
 import Engine.GraphicsHandler;
+import Engine.ImageLoader;
 import Engine.Key;
 import Engine.Keyboard;
 import Engine.ScreenManager;
+import GameObject.Sprite;
 import Utils.Direction;
 import Utils.Point;
 
@@ -73,8 +75,8 @@ public abstract class Map {
     // map's textbox instance
     protected Textbox textbox;
 
-    // map's textSpriteDisplay instance
-    protected TextSpriteDisplay portrait;
+    // map's Portrait instance
+    protected Portrait portrait;
 
     //map's quest menu
     protected QuestMenu questMenu;
@@ -119,7 +121,7 @@ public abstract class Map {
 
         this.camera = new Camera(0, 0, tileset.getScaledSpriteWidth(), tileset.getScaledSpriteHeight(), this);
         this.textbox = new Textbox(this);
-        this.portrait = new TextSpriteDisplay();
+        this.portrait = new Portrait(this);
         //instantiates quest menu that draws on screen
         this.questMenu = new QuestMenu();
         //creates quests and adds them to the quest menu
@@ -560,11 +562,11 @@ public abstract class Map {
 
     public void draw(Player player, GraphicsHandler graphicsHandler) {
         camera.draw(player, graphicsHandler);
-        if (textbox.isActive()) {
-            textbox.draw(graphicsHandler);
-        }
         if (portrait.isPortraitActive()) {
             portrait.draw(graphicsHandler);
+        }
+        if (textbox.isActive()) {
+            textbox.draw(graphicsHandler);
         }
         if (Keyboard.isKeyDown(Key.Q)){
             questMenu.draw(graphicsHandler);
@@ -583,7 +585,7 @@ public abstract class Map {
     public QuestMenu getQuestMenu() {return questMenu; }
 
     // fetches portrait
-    public TextSpriteDisplay getTextSpriteDisplay() {return portrait; }
+    public Portrait getPortrait() {return portrait; }
 
     public int getEndBoundX() { return endBoundX; }
     public int getEndBoundY() { return endBoundY; }
