@@ -9,5 +9,5 @@
 package Level;
 
 public enum AudioState {
-    GRASS, BRICK
+    GRASS, BRICK, CARPET, DOOR
 }

@@ -47,10 +47,6 @@ public class PlayLevelScreen extends Screen {
 
         // setup player
         this.player = new Cat(map.getPlayerStartPosition().x, map.getPlayerStartPosition().y);
-        // Initializes the setPlayer from the Audio class (September 27th)
-        Audio.setPlayer(this.player);
-        // Sets the audio for playing the walk sound (September 27th)
-        this.player.setWalkSound(Audio.getWalkSound());
         this.player.setMap(map);
         Point playerStartPosition = map.getPlayerStartPosition();
         this.player.setLocation(playerStartPosition.x, playerStartPosition.y);
