@@ -1,6 +1,10 @@
 package Level;
 import Utils.Direction;
 
+import java.util.ArrayList;
+import Level.Trigger;
+import Level.Quest;
+
 // This class is a base class for all scripts in the game -- all scripts should extend from it
 // Scripts can be used to interact with map entities
 // Each script defines a set of instructions that will be carried out by the game when it is set to active
@@ -24,6 +28,12 @@ public abstract class Script<T extends MapEntity> {
 
     // reference to the player instance which can be used in any script
     protected Player player;
+
+    //holds steps
+    protected ArrayList<String> stepList;
+
+    //holds quests
+    protected ArrayList<Trigger> questTriggers;
 
     protected int frameDelayCounter = 0;
 
@@ -223,7 +233,41 @@ public abstract class Script<T extends MapEntity> {
         return player.getBounds().getY1() > entityBounds.getY2();
     }
 
+    //returns instantiated questMenu from Map.java
     protected QuestMenu getQuestMenu(){
         return map.getQuestMenu();
     }
+
+    //adds quest to instantiated questMenu in Map.java 
+    protected void addQuest(String questName){
+        map.addQuest(new Quest(questName, stepList, questTriggers));
+    }
+
+    //creates list to hold steps for quest
+    protected void createStepList(){
+        stepList = new ArrayList<String>();
+    }
+    
+    //adds a new step to the quest
+    protected void addStep(String newStep){
+        stepList.add(newStep);
+    }
+
+    //moves the current step onto the next one
+    protected void nextStep(String questName){
+        getQuestMenu().searchQuest(questName).nextStep();
+    }
+
+    //creates trigger list to be used on quest
+    protected void createTriggerList(){
+        questTriggers = new ArrayList<Trigger>();
+    }
+
+    //adds trigger to trigger list
+    protected void addTrigger(int x, int y, int width, int height, Script triggerScript, String existenceFlag){
+        questTriggers.add(new Trigger(x, y, width, height, triggerScript, existenceFlag));
+    }
+
+    //gets trigger list
+    protected ArrayList<Trigger> getQuestTriggers() {return questTriggers;}
 }

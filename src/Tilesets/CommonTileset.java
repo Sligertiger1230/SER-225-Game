@@ -665,7 +665,7 @@ public class CommonTileset extends Tileset {
                .withScale(tileScale)
                .build();
 
-        MapTileBuilder brickWallBorderTile = new MapTileBuilder(grassFrame)
+        MapTileBuilder brickWallBorderTile = new MapTileBuilder(horizontalBrickFrame)
                .withTopLayer(brickWallBorderFrame)
                .withTileType(TileType.NOT_PASSABLE);
 
@@ -900,6 +900,480 @@ public class CommonTileset extends Tileset {
                .withTileType(TileType.NOT_PASSABLE);
 
        mapTiles.add(studentCenterRoofTile);
+
+        // student center roof vertical
+       Frame studentCenterRoofVerticalFrame = new FrameBuilder(getSubImage(4, 9))
+               .withScale(tileScale)
+               .build();
+
+        MapTileBuilder studentCenterRoofVerticalTile = new MapTileBuilder(studentCenterRoofVerticalFrame)
+               .withTopLayer(studentCenterRoofVerticalFrame)
+               .withTileType(TileType.NOT_PASSABLE);
+
+       mapTiles.add(studentCenterRoofVerticalTile);
+
+        // student center roof outline left corner
+       Frame studentCenterRoofOutlineLeftCornerFrame = new FrameBuilder(getSubImage(6, 9))
+               .withScale(tileScale)
+               .build();
+
+        MapTileBuilder studentCenterRoofOutlineLeftCornerTile = new MapTileBuilder(studentCenterRoofOutlineLeftCornerFrame)
+               .withTopLayer(studentCenterRoofOutlineLeftCornerFrame)
+               .withTileType(TileType.NOT_PASSABLE);
+
+       mapTiles.add(studentCenterRoofOutlineLeftCornerTile);
+
+        // student center roof outline right corner
+       Frame studentCenterRoofOutlineRightCornerFrame = new FrameBuilder(getSubImage(9, 9))
+               .withScale(tileScale)
+               .build();
+
+        MapTileBuilder studentCenterRoofOutlineRightCornerTile = new MapTileBuilder(studentCenterRoofOutlineRightCornerFrame)
+               .withTopLayer(studentCenterRoofOutlineRightCornerFrame)
+               .withTileType(TileType.NOT_PASSABLE);
+
+       mapTiles.add(studentCenterRoofOutlineRightCornerTile);
+
+       // student center roof outline bottom 
+       Frame studentCenterRoofOutlineBottomFrame = new FrameBuilder(getSubImage(8, 9))
+               .withScale(tileScale)
+               .build();
+
+        MapTileBuilder studentCenterRoofOutlineBottomTile = new MapTileBuilder(studentCenterRoofOutlineBottomFrame)
+               .withTopLayer(studentCenterRoofOutlineBottomFrame)
+               .withTileType(TileType.NOT_PASSABLE);
+
+       mapTiles.add(studentCenterRoofOutlineBottomTile);
+
+        // student center roof outline left 
+       Frame studentCenterRoofOutlineLeftFrame = new FrameBuilder(getSubImage(7, 9))
+               .withScale(tileScale)
+               .build();
+
+        MapTileBuilder studentCenterRoofOutlineLeftTile = new MapTileBuilder(studentCenterRoofOutlineLeftFrame)
+               .withTopLayer(studentCenterRoofOutlineLeftFrame)
+               .withTileType(TileType.NOT_PASSABLE);
+
+       mapTiles.add(studentCenterRoofOutlineLeftTile);
+
+       // student center sign
+       Frame studentCenterSignFrame = new FrameBuilder(getSubImage(0, 7))
+               .withScale(tileScale)
+               .build();
+
+        MapTileBuilder studentCenterSignTile = new MapTileBuilder(horizontalBrickFrame)
+               .withTopLayer(studentCenterSignFrame)
+               .withTileType(TileType.NOT_PASSABLE);
+
+       mapTiles.add(studentCenterSignTile);
+
+       // student center table top
+       Frame studentCenterTableTopFrame = new FrameBuilder(getSubImage(12, 8))
+               .withScale(tileScale)
+               .build();
+
+        MapTileBuilder studentCenterTableTopTile = new MapTileBuilder(horizontalBrickFrame)
+               .withTopLayer(studentCenterTableTopFrame)
+               .withTileType(TileType.NOT_PASSABLE);
+
+       mapTiles.add(studentCenterTableTopTile);
+
+       // student center table bottom
+       Frame studentCenterTableBottomFrame = new FrameBuilder(getSubImage(13, 8))
+               .withScale(tileScale)
+               .build();
+
+        MapTileBuilder studentCenterTableBottomTile = new MapTileBuilder(horizontalBrickFrame)
+               .withTopLayer(studentCenterTableBottomFrame)
+               .withTileType(TileType.NOT_PASSABLE);
+
+       mapTiles.add(studentCenterTableBottomTile);
+
+       // student center table left front view
+       Frame studentCenterTableFrontLeftFrame = new FrameBuilder(getSubImage(11, 5))
+               .withScale(tileScale)
+               .build();
+
+        MapTileBuilder studentCenterTableFrontLeftTile = new MapTileBuilder(horizontalBrickFrame)
+               .withTopLayer(studentCenterTableFrontLeftFrame)
+               .withTileType(TileType.NOT_PASSABLE);
+
+       mapTiles.add(studentCenterTableFrontLeftTile);
+
+         // student center table right front view
+       Frame studentCenterTableFrontRightFrame = new FrameBuilder(getSubImage(11, 6))
+               .withScale(tileScale)
+               .build();
+
+        MapTileBuilder studentCenterTableFrontRightTile = new MapTileBuilder(horizontalBrickFrame)
+               .withTopLayer(studentCenterTableFrontRightFrame)
+               .withTileType(TileType.NOT_PASSABLE);
+
+       mapTiles.add(studentCenterTableFrontRightTile);
+
+        // student center roof outline right 
+       Frame studentCenterRoofOutlineRightFrame = new FrameBuilder(getSubImage(7, 10))
+               .withScale(tileScale)
+               .build();
+
+        MapTileBuilder studentCenterRoofOutlineRightTile = new MapTileBuilder(studentCenterRoofOutlineRightFrame)
+               .withTopLayer(studentCenterRoofOutlineRightFrame)
+               .withTileType(TileType.NOT_PASSABLE);
+
+       mapTiles.add(studentCenterRoofOutlineRightTile);
+
+        // student center roof outline left top corner 
+       Frame studentCenterRoofOutlineLeftTopCornerFrame = new FrameBuilder(getSubImage(6, 10))
+               .withScale(tileScale)
+               .build();
+
+        MapTileBuilder studentCenterRoofOutlineLeftTopCornerTile = new MapTileBuilder(studentCenterRoofOutlineLeftTopCornerFrame)
+               .withTopLayer(studentCenterRoofOutlineLeftTopCornerFrame)
+               .withTileType(TileType.NOT_PASSABLE);
+
+       mapTiles.add(studentCenterRoofOutlineLeftTopCornerTile);
+
+        // brick wall border right
+       Frame brickWallBorderRightFrame = new FrameBuilder(getSubImage(10, 10))
+               .withScale(tileScale)
+               .build();
+
+        MapTileBuilder brickWallBorderRightTile = new MapTileBuilder(horizontalBrickFrame)
+               .withTopLayer(brickWallBorderRightFrame)
+               .withTileType(TileType.NOT_PASSABLE);
+
+       mapTiles.add(brickWallBorderRightTile);
+
+        // brick wall border left
+       Frame brickWallBorderLeftFrame = new FrameBuilder(getSubImage(10, 9))
+               .withScale(tileScale)
+               .build();
+
+        MapTileBuilder brickWallBorderLeftTile = new MapTileBuilder(horizontalBrickFrame)
+               .withTopLayer(brickWallBorderLeftFrame)
+               .withTileType(TileType.NOT_PASSABLE);
+
+       mapTiles.add(brickWallBorderLeftTile);
+
+        // dark dirt
+        Frame darkDirtFrame = new FrameBuilder(getSubImage(4, 7))
+                .withScale(tileScale)
+                .build();
+
+        MapTileBuilder darkDirtTile = new MapTileBuilder(darkDirtFrame);
+
+        mapTiles.add(darkDirtTile);
+
+         // red flowers
+       Frame redFlowersFrame = new FrameBuilder(getSubImage(2, 7))
+               .withScale(tileScale)
+               .build();
+
+        MapTileBuilder redFlowersTile = new MapTileBuilder(grassFrame)
+               .withTopLayer(redFlowersFrame)
+               .withTileType(TileType.NOT_PASSABLE);
+
+       mapTiles.add(redFlowersTile);
+
+        // yellow flowers
+       Frame yellowFlowersFrame = new FrameBuilder(getSubImage(1, 7))
+               .withScale(tileScale)
+               .build();
+
+        MapTileBuilder yellowFlowersTile = new MapTileBuilder(grassFrame)
+               .withTopLayer(yellowFlowersFrame)
+               .withTileType(TileType.NOT_PASSABLE);
+
+       mapTiles.add(yellowFlowersTile);
+
+        // bush
+       Frame bushFrame = new FrameBuilder(getSubImage(1, 10))
+               .withScale(tileScale)
+               .build();
+
+        MapTileBuilder bushTile = new MapTileBuilder(grassFrame)
+               .withTopLayer(bushFrame)
+               .withTileType(TileType.NOT_PASSABLE);
+
+       mapTiles.add(bushTile);
+
+         // bush with white leaves
+       Frame bushWhiteFrame = new FrameBuilder(getSubImage(1, 9))
+               .withScale(tileScale)
+               .build();
+
+        MapTileBuilder bushWhiteTile = new MapTileBuilder(grassFrame)
+               .withTopLayer(bushWhiteFrame)
+               .withTileType(TileType.NOT_PASSABLE);
+
+       mapTiles.add(bushWhiteTile);
+
+          // arc right top
+       Frame arcRightTopFrame = new FrameBuilder(getSubImage(7, 11))
+               .withScale(tileScale)
+               .build();
+
+        MapTileBuilder arcRightTopTile = new MapTileBuilder(glassPanesFourFrame)
+               .withTopLayer(arcRightTopFrame)
+               .withTileType(TileType.NOT_PASSABLE);
+
+       mapTiles.add(arcRightTopTile);
+
+         // arc right bottom
+       Frame arcRightBottomFrame = new FrameBuilder(getSubImage(8, 11))
+               .withScale(tileScale)
+               .build();
+
+        MapTileBuilder arcRightBottomTile = new MapTileBuilder(brickWallFrame)
+               .withTopLayer(arcRightBottomFrame)
+               .withTileType(TileType.NOT_PASSABLE);
+
+       mapTiles.add(arcRightBottomTile);
+
+          // arc left bottom
+       Frame arcLeftBottomFrame = new FrameBuilder(getSubImage(6, 11))
+               .withScale(tileScale)
+               .build();
+
+        MapTileBuilder arcLeftBottomTile = new MapTileBuilder(brickWallFrame)
+               .withTopLayer(arcLeftBottomFrame)
+               .withTileType(TileType.NOT_PASSABLE);
+
+       mapTiles.add(arcLeftBottomTile);
+
+           // arc left top
+       Frame arcLeftTopFrame = new FrameBuilder(getSubImage(5, 11))
+               .withScale(tileScale)
+               .build();
+
+        MapTileBuilder arcLeftTopTile = new MapTileBuilder(glassPanesFourFrame)
+               .withTopLayer(arcLeftTopFrame)
+               .withTileType(TileType.NOT_PASSABLE);
+
+       mapTiles.add(arcLeftTopTile);
+
+           // green trash can
+       Frame greenTrashFrame = new FrameBuilder(getSubImage(4, 11))
+               .withScale(tileScale)
+               .build();
+
+        MapTileBuilder greenTrashTile = new MapTileBuilder(arcRightBottomFrame)
+               .withTopLayer(greenTrashFrame)
+               .withTileType(TileType.NOT_PASSABLE);
+
+       mapTiles.add(greenTrashTile);
+
+        // cream trash can
+       Frame creamTrashFrame = new FrameBuilder(getSubImage(3, 11))
+               .withScale(tileScale)
+               .build();
+
+        MapTileBuilder creamTrashTile = new MapTileBuilder(arcLeftBottomFrame)
+               .withTopLayer(creamTrashFrame)
+               .withTileType(TileType.NOT_PASSABLE);
+
+       mapTiles.add(creamTrashTile);
+
+        //  cce pole with screen left side
+       Frame ccePoleLeftScreenSideFrame = new FrameBuilder(getSubImage(5, 9))
+               .withScale(tileScale)
+               .withBounds(0, 6, 16, 4)
+               .build();
+
+        MapTileBuilder ccePoleLeftScreenSideTile = new MapTileBuilder(cceFloorFrame)
+               .withTopLayer(ccePoleLeftScreenSideFrame)
+               .withTileType(TileType.PASSABLE);
+
+       mapTiles.add(ccePoleLeftScreenSideTile);
+
+        //  cce chair front
+       Frame cceChairFrontFrame = new FrameBuilder(getSubImage(2, 9))
+               .withScale(tileScale)
+               .withBounds(0, 6, 16, 4)
+               .build();
+
+        MapTileBuilder cceChairFrontTile = new MapTileBuilder(cceFloorFrame)
+               .withTopLayer(cceChairFrontFrame)
+               .withTileType(TileType.NOT_PASSABLE);
+
+       mapTiles.add(cceChairFrontTile);
+
+        //  cce chair back
+       Frame cceChairBackFrame = new FrameBuilder(getSubImage(11, 9))
+               .withScale(tileScale)
+               .build();
+
+        MapTileBuilder cceChairBackTile = new MapTileBuilder(cceFloorFrame)
+               .withTopLayer(cceChairBackFrame)
+               .withTileType(TileType.NOT_PASSABLE);
+
+       mapTiles.add(cceChairBackTile);
+
+         //  cce table left horizontal
+       Frame cceTableLeftHorizontalFrame = new FrameBuilder(getSubImage(12, 0))
+               .withScale(tileScale)
+               .build();
+
+        MapTileBuilder cceTableLeftHorizontalTile = new MapTileBuilder(cceFloorFrame)
+               .withTopLayer(cceTableLeftHorizontalFrame)
+               .withTileType(TileType.NOT_PASSABLE);
+
+       mapTiles.add(cceTableLeftHorizontalTile);
+
+         //  cce table right horizontal
+       Frame cceTableRightHorizontalFrame = new FrameBuilder(getSubImage(12, 1))
+               .withScale(tileScale)
+               .build();
+
+        MapTileBuilder cceTableRightHorizontalTile = new MapTileBuilder(cceFloorFrame)
+               .withTopLayer(cceTableRightHorizontalFrame)
+               .withTileType(TileType.NOT_PASSABLE);
+
+       mapTiles.add(cceTableRightHorizontalTile);
+
+         //  cce professor podium
+       Frame ccePodiumBaseFrame = new FrameBuilder(getSubImage(3, 8))
+               .withScale(tileScale)
+                .withBounds(0, 6, 16, 4)
+               .build();
+
+        MapTileBuilder ccePodiumBaseTile = new MapTileBuilder(cceFloorFrame)
+               .withTopLayer(ccePodiumBaseFrame)
+               .withTileType(TileType.NOT_PASSABLE);
+
+       mapTiles.add(ccePodiumBaseTile);
+
+         //  cce professor podium
+       Frame ccePodiumTopFrame = new FrameBuilder(getSubImage(2, 8))
+               .withScale(tileScale)
+                .withBounds(0, 6, 16, 4)
+               .build();
+
+        MapTileBuilder ccePodiumTopTile = new MapTileBuilder(cceFloorFrame)
+               .withTopLayer(ccePodiumTopFrame)
+               .withTileType(TileType.PASSABLE);
+
+       mapTiles.add(ccePodiumTopTile);
+
+         //  cce chair side right
+       Frame cceChairRightSideFrame = new FrameBuilder(getSubImage(3, 9))
+               .withScale(tileScale)
+               .build();
+
+        MapTileBuilder cceChairRightSideTile = new MapTileBuilder(cceFloorFrame)
+               .withTopLayer(cceChairRightSideFrame)
+               .withTileType(TileType.NOT_PASSABLE);
+
+       mapTiles.add(cceChairRightSideTile);
+
+         //  cce chair side left
+       Frame cceChairLeftSideFrame = new FrameBuilder(getSubImage(2, 11))
+               .withScale(tileScale)
+               .build();
+
+        MapTileBuilder cceChairLeftSideTile = new MapTileBuilder(cceFloorFrame)
+               .withTopLayer(cceChairLeftSideFrame)
+               .withTileType(TileType.NOT_PASSABLE);
+
+       mapTiles.add(cceChairLeftSideTile);
+
+         //  cce table middle horizontal
+       Frame cceTableMiddleHorizontalFrame = new FrameBuilder(getSubImage(1, 11))
+               .withScale(tileScale)
+               .build();
+
+        MapTileBuilder cceTableMiddleHorizontalTile = new MapTileBuilder(cceFloorFrame)
+               .withTopLayer(cceTableMiddleHorizontalFrame)
+               .withTileType(TileType.NOT_PASSABLE);
+
+       mapTiles.add(cceTableMiddleHorizontalTile);
+
+        //  cce table top vertical
+       Frame cceTableTopVerticalFrame = new FrameBuilder(getSubImage(0, 12))
+               .withScale(tileScale)
+               .build();
+
+        MapTileBuilder cceTableTopVerticalTile = new MapTileBuilder(cceFloorFrame)
+               .withTopLayer(cceTableTopVerticalFrame)
+               .withTileType(TileType.NOT_PASSABLE);
+
+       mapTiles.add(cceTableTopVerticalTile);
+
+        //  cce table bottom vertical
+       Frame cceTableBottomVerticalFrame = new FrameBuilder(getSubImage(2, 12))
+               .withScale(tileScale)
+               .build();
+
+        MapTileBuilder cceTableBottomVerticalTile = new MapTileBuilder(cceFloorFrame)
+               .withTopLayer(cceTableBottomVerticalFrame)
+               .withTileType(TileType.NOT_PASSABLE);
+
+       mapTiles.add(cceTableBottomVerticalTile);
+
+        //  cce table middle vertical
+       Frame cceTableMiddleVerticalFrame = new FrameBuilder(getSubImage(1, 12))
+               .withScale(tileScale)
+               .build();
+
+        MapTileBuilder cceTableMiddleVerticalTile = new MapTileBuilder(cceFloorFrame)
+               .withTopLayer(cceTableMiddleVerticalFrame)
+               .withTileType(TileType.NOT_PASSABLE);
+
+       mapTiles.add(cceTableMiddleVerticalTile);
+
+        // whiteboard bottom with marks
+       Frame whiteboardBottomMarksOneFrame = new FrameBuilder(getSubImage(15, 8))
+               .withScale(tileScale)
+               .build();
+
+        MapTileBuilder whiteboardBottomMarksOneTile = new MapTileBuilder(whiteboardBottomFrame)
+               .withTopLayer(whiteboardBottomMarksOneFrame)
+               .withTileType(TileType.NOT_PASSABLE);
+
+       mapTiles.add(whiteboardBottomMarksOneTile);
+
+        // whiteboard bottom with marks
+       Frame whiteboardBottomMarksTwoFrame = new FrameBuilder(getSubImage(12, 7))
+               .withScale(tileScale)
+               .build();
+
+        MapTileBuilder whiteboardBottomMarksTwoTile = new MapTileBuilder(whiteboardBottomFrame)
+               .withTopLayer(whiteboardBottomMarksTwoFrame)
+               .withTileType(TileType.NOT_PASSABLE);
+
+       mapTiles.add(whiteboardBottomMarksTwoTile);
+
+         // whiteboard top with marks
+       Frame whiteboardTopMarksOneFrame = new FrameBuilder(getSubImage(14, 8))
+               .withScale(tileScale)
+               .build();
+
+        MapTileBuilder whiteboardTopMarksOneTile = new MapTileBuilder(whiteboardBottomFrame)
+               .withTopLayer(whiteboardTopMarksOneFrame)
+               .withTileType(TileType.NOT_PASSABLE);
+
+       mapTiles.add(whiteboardTopMarksOneTile);
+
+         // whiteboard top with marks
+       Frame whiteboardTopMarksTwoFrame = new FrameBuilder(getSubImage(14, 9))
+               .withScale(tileScale)
+               .build();
+
+        MapTileBuilder whiteboardTopMarksTwoTile = new MapTileBuilder(whiteboardBottomFrame)
+               .withTopLayer(whiteboardTopMarksTwoFrame)
+               .withTileType(TileType.NOT_PASSABLE);
+
+       mapTiles.add(whiteboardTopMarksTwoTile);
+
+
+
+
+
+
+
+
+
+
 
 
 

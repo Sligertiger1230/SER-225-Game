@@ -16,7 +16,7 @@ public class ScreenCoordinator extends Screen {
 	protected Screen currentScreen = new DefaultScreen();
 
 	// keep track of gameState so ScreenCoordinator knows which Screen to show
-	protected GameState gameState;
+	public static GameState gameState;
 	protected GameState previousGameState;
 
 	public GameState getGameState() {
@@ -25,7 +25,7 @@ public class ScreenCoordinator extends Screen {
 
 	// Other Screens can set the gameState of this class to force it to change the currentScreen
 	public void setGameState(GameState gameState) {
-		this.gameState = gameState;
+		ScreenCoordinator.gameState = gameState;
 	}
 
 	@Override
@@ -49,6 +49,8 @@ public class ScreenCoordinator extends Screen {
 						break;
 					case CREDITS:
 						currentScreen = new CreditsScreen(this);
+						break;
+					default:
 						break;
 				}
 				currentScreen.initialize();

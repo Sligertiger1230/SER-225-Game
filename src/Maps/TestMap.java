@@ -8,13 +8,16 @@ import Level.NPC;
 import Level.Trigger;
 import NPCs.Dinosaur;
 import NPCs.Walrus;
+import NPCs.JavaJohn;
+import NPCs.JavaJohnGlasses;
 import Scripts.SimpleTextScript;
+import Scripts.CCEClassroom.ChangeMapScript;
+import Scripts.Quests.*;
 import Scripts.TestMap.DinoScript;
 import Scripts.TestMap.LostBallScript;
 import Scripts.TestMap.TeleportScript;
 import Scripts.TestMap.TreeScript;
 import Scripts.TestMap.WalrusScript;
-import Scripts.TestMap.placeHolderScript;
 import Tilesets.CommonTileset;
 
 import java.util.ArrayList;
@@ -43,14 +46,25 @@ public class TestMap extends Map {
     public ArrayList<NPC> loadNPCs() {
         ArrayList<NPC> npcs = new ArrayList<>();
 
-        Walrus walrus = new Walrus(1, getMapTile(4, 28).getLocation().subtractY(40));
+        Walrus walrus = new Walrus(0, getMapTile(4, 28).getLocation().subtractY(40));
         walrus.setInteractScript(new WalrusScript());
         npcs.add(walrus);
 
-        Dinosaur dinosaur = new Dinosaur(2, getMapTile(13, 4).getLocation());
+        Dinosaur dinosaur = new Dinosaur(1, getMapTile(13, 4).getLocation());
         dinosaur.setExistenceFlag("hasTalkedToDinosaur");
         dinosaur.setInteractScript(new DinoScript());
         npcs.add(dinosaur);
+
+        // adds javaJohn!
+        JavaJohn javaJohn = new JavaJohn(2, getMapTile(37, 7).getLocation());
+        javaJohn.setInteractScript(new JavaJohnScript());
+        npcs.add(javaJohn);
+
+        //adds the glasses of java john's that need finding
+        JavaJohnGlasses javaJohnGlasses = new JavaJohnGlasses(3, getMapTile(97, 39).getLocation());
+        javaJohnGlasses.setInteractScript(new JavaJohnGlassesScript());
+        javaJohnGlasses.setIsHidden(true);
+        npcs.add(javaJohnGlasses);
 
         return npcs;
     }
@@ -58,14 +72,34 @@ public class TestMap extends Map {
     @Override
     public ArrayList<Trigger> loadTriggers() {
         ArrayList<Trigger> triggers = new ArrayList<>();
-        //triggers for demonstration quest
-        triggers.add(new Trigger(100, 40, 20, 20, new placeHolderScript(), "placeholder1"));
-        triggers.add(new Trigger(20, 40, 20, 20, new placeHolderScript(), "placeholder2"));
-        //base game triggers
+
+        // base game triggers
         triggers.add(new Trigger(790, 1030, 100, 10, new LostBallScript(), "hasLostBall"));
         triggers.add(new Trigger(790, 960, 10, 80, new LostBallScript(), "hasLostBall"));
         triggers.add(new Trigger(890, 960, 10, 80, new LostBallScript(), "hasLostBall"));
         return triggers;
+    }
+
+    // updates the triggers
+    @Override
+    public ArrayList<Trigger> updateTriggers() {
+        ArrayList<Trigger> newTriggers = new ArrayList<>();
+
+        // searches each quest menu quest with index
+        for (int index = 0; index < getQuestMenu().getQuests().size(); index++) {
+            // if a quest in quest menu is still a new quest
+            if (getQuestMenu().isNewQuestStatus(index)) {
+                // go through each trigger in the quest
+                for (int triggerIndex = 0; triggerIndex < getQuestMenu().getTriggerList(index)
+                        .size(); triggerIndex++) {
+                    // adds the trigger to newTriggers
+                    newTriggers.add(getQuestMenu().getTriggerList(index).get(triggerIndex));
+                }
+                // sets the quest just added to false
+                getQuestMenu().setNewQuestStatus(index, false);
+            }
+        }
+        return newTriggers;
     }
 
     @Override
@@ -81,6 +115,7 @@ public class TestMap extends Map {
         getMapTile(1, 1).setInteractScript(new TeleportScript(32, 23));
 
         getMapTile(32, 25).setInteractScript(new TeleportScript(2, 2));
+
+        getMapTile(100, 59).setInteractScript(new ChangeMapScript());
     }
 }
-

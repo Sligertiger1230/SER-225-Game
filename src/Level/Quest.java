@@ -1,44 +1,75 @@
 package Level;
 
+import java.util.ArrayList;
+
 public class Quest {
-    private String questName, currStep;
-    private boolean questCompletionStatus;
+    private String questName;
+    private int currStep;
+    private boolean questCompletionStatus, newQuestStatus;
+    private ArrayList<String> stepList;
+    private ArrayList<Trigger> triggerList;
 
-    //constructor for name and status
-    public Quest(String questName, boolean questCompletionStatus, String currStep) {
-        this.questName = questName;
-        this.questCompletionStatus = questCompletionStatus;
-        this.currStep = currStep;
-    }
-
-    //constructor for just name
-    public Quest(String questName, String currStep) {
+    // constructor for new uncompleted quest
+    public Quest(String questName, ArrayList<String> stepList, ArrayList<Trigger> triggerList) {
         this.questName = questName;
         this.questCompletionStatus = false;
-        this.currStep = currStep;
+        this.newQuestStatus = true;
+        this.currStep = 0;
+        this.stepList = stepList;
+        this.triggerList = triggerList;
+
     }
 
-    public void setCurrStep(String currStep){
-        this.currStep = currStep;
+    // sets most recent status
+    public void nextStep() {
+        if (!isLastStep())
+            currStep++;
+        else
+            questCompletionStatus = true;
     }
 
-    public String getCurrStep(){
-        return currStep;
+    // checks if the current step is the last step in the quest
+    public boolean isLastStep() {
+        if (currStep == stepList.size() - 1) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
-    //changes quest status
+    // gets most recent step
+    public String currStep() {
+        return stepList.get(currStep);
+    }
+
+    // changes quest status
     public void setQuestStatus(boolean questStatus) {
         this.questCompletionStatus = questStatus;
     }
 
-    //returns the quest name
+    // returns the quest name
     public String getQuestName() {
         return questName;
     }
 
-    //returns the quest status
+    // retrieves the triggerList of a specific quest
+    public ArrayList<Trigger> getTriggerList() {
+        return triggerList;
+    }
+
+    // returns the quest status
     public boolean isQuestStatus() {
         return questCompletionStatus;
+    }
+
+    // reports whether the quest is new or not
+    public boolean isNewQuestStatus() {
+        return newQuestStatus;
+    }
+
+    // sets new quest status
+    public void setNewQuestStatus(boolean newQuestStatus) {
+        this.newQuestStatus = newQuestStatus;
     }
 
 }
