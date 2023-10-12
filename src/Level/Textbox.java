@@ -110,5 +110,4 @@ public class Textbox {
     public void setInteractKey(Key interactKey) {
         this.interactKey = interactKey;
     }
-
 }

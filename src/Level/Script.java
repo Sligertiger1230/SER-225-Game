@@ -1,9 +1,14 @@
 package Level;
+
 import Utils.Direction;
 
 import java.util.ArrayList;
-import Level.Trigger;
-import Level.Quest;
+
+import Engine.Screen;
+import Game.GameState;
+import Game.ScreenCoordinator;
+import Maps.CCEClassroom;
+import Screens.CCEClassroomScreen;
 
 // This class is a base class for all scripts in the game -- all scripts should extend from it
 // Scripts can be used to interact with map entities
@@ -29,19 +34,34 @@ public abstract class Script<T extends MapEntity> {
     // reference to the player instance which can be used in any script
     protected Player player;
 
-    //holds steps
+    // holds steps
     protected ArrayList<String> stepList;
 
-    //holds quests
+    // holds quests
     protected ArrayList<Trigger> questTriggers;
 
     protected int frameDelayCounter = 0;
 
-    public Map getMap() { return map; }
-    public void setMap(Map map) { this.map = map; }
-    public Player getPlayer() { return player; }
-    public void setPlayer(Player player) { this.player = player; }
-    public T getEntity() { return entity; }
+    public Map getMap() {
+        return map;
+    }
+
+    public void setMap(Map map) {
+        this.map = map;
+    }
+
+    public Player getPlayer() {
+        return player;
+    }
+
+    public void setPlayer(Player player) {
+        this.player = player;
+    }
+
+    public T getEntity() {
+        return entity;
+    }
+
     public void setMapEntity(T entity) {
         this.entity = entity;
     }
@@ -49,10 +69,12 @@ public abstract class Script<T extends MapEntity> {
     // "setup" logic for a script to prepare for execution update cycle
     protected abstract void setup();
 
-    // "cleanup" logic for a script to be carried out after execution update cycle ends
+    // "cleanup" logic for a script to be carried out after execution update cycle
+    // ends
     protected abstract void cleanup();
 
-    // the "meat" of the script, it's the logic to be carried out when the script becomes active
+    // the "meat" of the script, it's the logic to be carried out when the script
+    // becomes active
     // when script is finished, it should return the COMPLETED Script State
     // if script is still running, it should return the RUNNING Script State
     protected abstract ScriptState execute();
@@ -81,30 +103,40 @@ public abstract class Script<T extends MapEntity> {
     }
 
     // call cleanup logic
-    // reset start in case more setup logic is to be carried out in the case of multistep scripts
+    // reset start in case more setup logic is to be carried out in the case of
+    // multistep scripts
     protected void end() {
         cleanup();
         start = true;
     }
 
     // if is active is true, game will execute script
-    public boolean isActive() { return isActive; }
+    public boolean isActive() {
+        return isActive;
+    }
 
-    public void setIsActive(boolean isActive) { this.isActive = isActive; }
+    public void setIsActive(boolean isActive) {
+        this.isActive = isActive;
+    }
 
-    // prevents player from being able to do anything (such as move) while script is being executed
-    // useful to prevent player from moving away while interacting with something, etc
+    // prevents player from being able to do anything (such as move) while script is
+    // being executed
+    // useful to prevent player from moving away while interacting with something,
+    // etc
     protected void lockPlayer() {
         player.setPlayerState(PlayerState.INTERACTING);
         player.setCurrentAnimationName(player.getFacingDirection() == Direction.RIGHT ? "STAND_RIGHT" : "STAND_LEFT");
     }
-     protected void movePlayer(float x, float y) {
+
+    protected void movePlayer(float x, float y) {
         player.setX(x);
         player.setY(y);
     }
 
-    // allow player to go back to its usual game state (being able to move, talk to things, etc)
-    // typically used right before script is finished to give control back to the player
+    // allow player to go back to its usual game state (being able to move, talk to
+    // things, etc)
+    // typically used right before script is finished to give control back to the
+    // player
     protected void unlockPlayer() {
         player.setPlayerState(PlayerState.STANDING);
     }
@@ -221,7 +253,8 @@ public abstract class Script<T extends MapEntity> {
         return map.getMapTile(x, y);
     }
 
-    // changes a specified map tile instance by index from the map to the provided map tile
+    // changes a specified map tile instance by index from the map to the provided
+    // map tile
     protected void setMapTile(int x, int y, MapTile mapTile) {
         mapTile.setMap(map);
         map.setMapTile(x, y, mapTile);
@@ -233,41 +266,44 @@ public abstract class Script<T extends MapEntity> {
         return player.getBounds().getY1() > entityBounds.getY2();
     }
 
-    //returns instantiated questMenu from Map.java
-    protected QuestMenu getQuestMenu(){
+    // returns instantiated questMenu from Map.java
+    protected QuestMenu getQuestMenu() {
         return map.getQuestMenu();
     }
 
-    //adds quest to instantiated questMenu in Map.java 
-    protected void addQuest(String questName){
+    // adds quest to instantiated questMenu in Map.java
+    protected void addQuest(String questName) {
         map.addQuest(new Quest(questName, stepList, questTriggers));
     }
 
-    //creates list to hold steps for quest
-    protected void createStepList(){
+    // creates list to hold steps for quest
+    protected void createStepList() {
         stepList = new ArrayList<String>();
     }
-    
-    //adds a new step to the quest
-    protected void addStep(String newStep){
+
+    // adds a new step to the quest
+    protected void addStep(String newStep) {
         stepList.add(newStep);
     }
 
-    //moves the current step onto the next one
-    protected void nextStep(String questName){
+    // moves the current step onto the next one
+    protected void nextStep(String questName) {
         getQuestMenu().searchQuest(questName).nextStep();
     }
 
-    //creates trigger list to be used on quest
-    protected void createTriggerList(){
+    // creates trigger list to be used on quest
+    protected void createTriggerList() {
         questTriggers = new ArrayList<Trigger>();
     }
 
-    //adds trigger to trigger list
-    protected void addTrigger(int x, int y, int width, int height, Script triggerScript, String existenceFlag){
+    // adds trigger to trigger list
+    protected void addTrigger(int x, int y, int width, int height, Script triggerScript, String existenceFlag) {
         questTriggers.add(new Trigger(x, y, width, height, triggerScript, existenceFlag));
     }
 
-    //gets trigger list
-    protected ArrayList<Trigger> getQuestTriggers() {return questTriggers;}
+    // gets trigger list
+    protected ArrayList<Trigger> getQuestTriggers() {
+        return questTriggers;
+    }
+
 }
