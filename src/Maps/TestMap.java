@@ -26,7 +26,6 @@ import java.util.ArrayList;
 // Represents a test map to be used in a level
 public class TestMap extends Map {
 
-
     public TestMap() {
         super("test_map.txt", new CommonTileset());
         this.playerStartPosition = getMapTile(17, 20).getLocation();
@@ -62,7 +61,7 @@ public class TestMap extends Map {
         javaJohn.setInteractScript(new JavaJohnScript());
         npcs.add(javaJohn);
 
-        //adds the glasses of java john's that need finding
+        // adds the glasses of java john's that need finding
         JavaJohnGlasses javaJohnGlasses = new JavaJohnGlasses(3, getMapTile(97, 39).getLocation());
         javaJohnGlasses.setInteractScript(new JavaJohnGlassesScript());
         javaJohnGlasses.setIsHidden(true);
@@ -81,8 +80,6 @@ public class TestMap extends Map {
         triggers.add(new Trigger(890, 960, 10, 80, new LostBallScript(), "hasLostBall"));
         return triggers;
     }
-
-    
 
     @Override
     public void loadScripts() {

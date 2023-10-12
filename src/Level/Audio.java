@@ -22,28 +22,28 @@ public class Audio {
     static {
         for (int i = 0; i <= 17; i++) {
             sounds.put(0, new Sound("grass1.wav", true));
-            sounds.put(0, new Sound("grass2.wav", true));
-            sounds.put(0, new Sound("grass3.wav", true));
-            sounds.put(0, new Sound("grass4.wav", true));
-            sounds.put(0, new Sound("grass5.wav", true));
-            sounds.put(0, new Sound("grass6.wav", true));
+            sounds.put(1, new Sound("grass2.wav", true));
+            sounds.put(2, new Sound("grass3.wav", true));
+            sounds.put(3, new Sound("grass4.wav", true));
+            sounds.put(4, new Sound("grass5.wav", true));
+            sounds.put(5, new Sound("grass6.wav", true));
 
-            sounds.put(0, new Sound("bricks1.wav", true));
-            sounds.put(0, new Sound("bricks2.wav", true));
-            sounds.put(0, new Sound("bricks3.wav", true));
-            sounds.put(0, new Sound("bricks4.wav", true));
-            sounds.put(0, new Sound("bricks5.wav", true));
-            sounds.put(0, new Sound("bricks6.wav", true));
+            sounds.put(6, new Sound("bricks1.wav", true));
+            sounds.put(7, new Sound("bricks2.wav", true));
+            sounds.put(8, new Sound("bricks3.wav", true));
+            sounds.put(9, new Sound("bricks4.wav", true));
+            sounds.put(10, new Sound("bricks5.wav", true));
+            sounds.put(11, new Sound("bricks6.wav", true));
 
-            sounds.put(0, new Sound("carpet1.wav", true));
-            sounds.put(0, new Sound("carpet2.wav", true));
-            sounds.put(0, new Sound("carpet3.wav", true));
-            sounds.put(0, new Sound("carpet4.wav", true));
+            sounds.put(12, new Sound("carpet1.wav", true));
+            sounds.put(13, new Sound("carpet2.wav", true));
+            sounds.put(14, new Sound("carpet3.wav", true));
+            sounds.put(15, new Sound("carpet4.wav", true));
 
-            sounds.put(0, new Sound("door1.wav", true));
-            sounds.put(0, new Sound("door2.wav", true));
+            sounds.put(16, new Sound("door1.wav", true));
+            sounds.put(17, new Sound("door2.wav", true));
 
-            sounds.put(0, new Sound("overworld.wav", true));
+            sounds.put(18, new Sound("overworld.wav", true));
         }
     }
 
@@ -55,7 +55,7 @@ public class Audio {
         return walkSound;
     }
 
-    public static void playFootstepSound (AudioState audioState) {
+    public static void playFootstepSound(AudioState audioState) {
         int minIndex;
         int maxIndex;
 
