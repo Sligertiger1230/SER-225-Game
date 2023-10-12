@@ -2,14 +2,14 @@ package Scripts.TestMap;
 
 import Level.*;
 
-public class TestMapAudioScript extends Script<Player> {
+public class TestMapAudioScript extends Script<MapEntity> {
 
     private float previousX;
     private float previousY;
-    private TileDetector tileDetector;
+    private TileDetector tileDetector; // Reference to TileDetector
 
-    public TestMapAudioScript(Player player, TileDetector tileDetector) {
-        this.entity = player;
+    public TestMapAudioScript(MapEntity entity, TileDetector tileDetector) {
+        this.entity = entity;
         this.tileDetector = tileDetector;
     }
 
@@ -53,29 +53,5 @@ public class TestMapAudioScript extends Script<Player> {
         }
 
         return ScriptState.RUNNING;
-    }
-
-    public float getPreviousX() {
-        return previousX;
-    }
-
-    public void setPreviousX(float previousX) {
-        this.previousX = previousX;
-    }
-
-    public float getPreviousY() {
-        return previousY;
-    }
-
-    public void setPreviousY(float previousY) {
-        this.previousY = previousY;
-    }
-
-    public TileDetector getTileDetector() {
-        return tileDetector;
-    }
-
-    public void setTileDetector(TileDetector tileDetector) {
-        this.tileDetector = tileDetector;
     }
 }
