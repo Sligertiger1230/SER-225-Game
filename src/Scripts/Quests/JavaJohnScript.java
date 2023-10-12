@@ -3,6 +3,7 @@ package Scripts.Quests;
 import Level.NPC;
 import Level.Script;
 import Level.ScriptState;
+import Maps.TestMap;
 import Utils.Direction;
 
 // trigger script at beginning of game to set that heavy emotional plot

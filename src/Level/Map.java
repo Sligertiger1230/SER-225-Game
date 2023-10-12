@@ -2,9 +2,11 @@ package Level;
 
 import Engine.Config;
 import Engine.GraphicsHandler;
+import Engine.ImageLoader;
 import Engine.Key;
 import Engine.Keyboard;
 import Engine.ScreenManager;
+import GameObject.Sprite;
 import Utils.Direction;
 import Utils.Point;
 import Maps.TestMap;
@@ -34,6 +36,7 @@ public abstract class Map {
     // height-wise
     protected int width;
     protected int height;
+    protected int mapInt;
 
     // the tileset this map uses for its map tiles
     protected Tileset tileset;
@@ -79,8 +82,8 @@ public abstract class Map {
     // map's textbox instance
     protected Textbox textbox;
 
-    // map's textSpriteDisplay instance
-    protected TextSpriteDisplay portrait;
+    // map's Portrait instance
+    protected Portrait portrait;
 
     // map's quest menu
     protected QuestMenu questMenu;
@@ -125,9 +128,8 @@ public abstract class Map {
 
         this.camera = new Camera(0, 0, tileset.getScaledSpriteWidth(), tileset.getScaledSpriteHeight(), this);
         this.textbox = new Textbox(this);
-        this.portrait = new TextSpriteDisplay();
-
-        // instantiates quest menu that draws on screen
+        this.portrait = new Portrait(this);
+        //instantiates quest menu that draws on screen
         this.questMenu = new QuestMenu();
 
     }
@@ -240,6 +242,14 @@ public abstract class Map {
         return mapTiles;
     }
 
+    public void setMapInt(int mapInt){
+       //0 for main map, 1 for cce 
+       this.mapInt = mapInt;
+    }
+    public int getMapInt(){
+       return mapInt;
+    }
+
     public void setMapTiles(MapTile[] mapTiles) {
         this.mapTiles = mapTiles;
     }
@@ -316,8 +326,25 @@ public abstract class Map {
         return new ArrayList<>();
     }
 
-    protected ArrayList<Trigger> updateTriggers() {
-        return new ArrayList<>();
+    // updates the triggers
+    public ArrayList<Trigger> updateTriggers() {
+        ArrayList<Trigger> newTriggers = new ArrayList<>();
+
+        // searches each quest menu quest with index
+        for (int index = 0; index < getQuestMenu().getQuests().size(); index++) {
+            // if a quest in quest menu is still a new quest
+            if (getQuestMenu().isNewQuestStatus(index)) {
+                // go through each trigger in the quest
+                for (int triggerIndex = 0; triggerIndex < getQuestMenu().getTriggerList(index)
+                        .size(); triggerIndex++) {
+                    // adds the trigger to newTriggers
+                    newTriggers.add(getQuestMenu().getTriggerList(index).get(triggerIndex));
+                }
+                // sets the quest just added to false
+                getQuestMenu().setNewQuestStatus(index, false);
+            }
+        }
+        return newTriggers;
     }
 
     public Camera getCamera() {
@@ -524,18 +551,18 @@ public abstract class Map {
         // updates quest info
         questMenu.update();
 
-        //creates a placeholder version for the most recent triggers added
+        // creates a placeholder version for the most recent triggers added
         updatedTriggers = updateTriggers();
 
-        //the some new triggers were actually added, then run
+        // the some new triggers were actually added, then run
         if (updatedTriggers != null) {
-            //runs a for loop going through every trigger in updatedTriggers
+            // runs a for loop going through every trigger in updatedTriggers
             for (Trigger trigger : this.updatedTriggers) {
-                //adds it's flag to flag manager
+                // adds it's flag to flag manager
                 flagManager.addFlag((trigger.getExistenceFlag()), false);
-                //sets it to current map
+                // sets it to current map
                 trigger.setMap(this);
-                //adds it to map arrayList for triggers
+                // adds it to map arrayList for triggers
                 triggers.add(trigger);
             }
         }
@@ -617,11 +644,11 @@ public abstract class Map {
 
     public void draw(Player player, GraphicsHandler graphicsHandler) {
         camera.draw(player, graphicsHandler);
-        if (textbox.isActive()) {
-            textbox.draw(graphicsHandler);
-        }
         if (portrait.isPortraitActive()) {
             portrait.draw(graphicsHandler);
+        }
+        if (textbox.isActive()) {
+            textbox.draw(graphicsHandler);
         }
 
         questMenu.draw(graphicsHandler);
@@ -650,9 +677,7 @@ public abstract class Map {
     }
 
     // fetches portrait
-    public TextSpriteDisplay getTextSpriteDisplay() {
-        return portrait;
-    }
+    public Portrait getPortrait() {return portrait; }
 
     public int getEndBoundX() {
         return endBoundX;
