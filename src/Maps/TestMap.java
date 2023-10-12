@@ -8,6 +8,7 @@ import Level.NPC;
 import Level.Trigger;
 import NPCs.Dinosaur;
 import NPCs.Walrus;
+import Players.Cat;
 import NPCs.JavaJohn;
 import NPCs.JavaJohnGlasses;
 import Scripts.SimpleTextScript;
@@ -24,6 +25,7 @@ import java.util.ArrayList;
 
 // Represents a test map to be used in a level
 public class TestMap extends Map {
+
 
     public TestMap() {
         super("test_map.txt", new CommonTileset());
