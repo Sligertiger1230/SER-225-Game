@@ -52,7 +52,7 @@ public class ChangeMapScript extends Script {
         }
         this.map = new CCEClassroom();
         this.player.setMap(map);
-        screenCoordinator.setGameState(null);
+        //screenCoordinator.setGameState(GameState.CCE);
         player.setLocation(x, y); // Teleport the player
         return ScriptState.COMPLETED;
     }

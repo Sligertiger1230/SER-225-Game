@@ -11,6 +11,7 @@ import NPCs.Walrus;
 import NPCs.JavaJohn;
 import NPCs.JavaJohnGlasses;
 import Scripts.SimpleTextScript;
+import Scripts.CCEClassroom.ChangeMapScript;
 import Scripts.Quests.*;
 import Scripts.TestMap.DinoScript;
 import Scripts.TestMap.LostBallScript;
@@ -79,27 +80,7 @@ public class TestMap extends Map {
         return triggers;
     }
 
-    // updates the triggers
-    @Override
-    public ArrayList<Trigger> updateTriggers() {
-        ArrayList<Trigger> newTriggers = new ArrayList<>();
-
-        // searches each quest menu quest with index
-        for (int index = 0; index < getQuestMenu().getQuests().size(); index++) {
-            // if a quest in quest menu is still a new quest
-            if (getQuestMenu().isNewQuestStatus(index)) {
-                // go through each trigger in the quest
-                for (int triggerIndex = 0; triggerIndex < getQuestMenu().getTriggerList(index)
-                        .size(); triggerIndex++) {
-                    // adds the trigger to newTriggers
-                    newTriggers.add(getQuestMenu().getTriggerList(index).get(triggerIndex));
-                }
-                // sets the quest just added to false
-                getQuestMenu().setNewQuestStatus(index, false);
-            }
-        }
-        return newTriggers;
-    }
+    
 
     @Override
     public void loadScripts() {
@@ -115,6 +96,6 @@ public class TestMap extends Map {
 
         getMapTile(32, 25).setInteractScript(new TeleportScript(2, 2));
 
-         //getMapTile(100, 59).setInteractScript(new ChangeMapScript(2, 2));
+        getMapTile(100, 59).setInteractScript(new ChangeMapScript(2, 2));
     }
 }

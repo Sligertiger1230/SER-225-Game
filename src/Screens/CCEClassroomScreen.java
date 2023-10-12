@@ -105,11 +105,6 @@ public class CCEClassroomScreen extends Screen{
         }
     }
 
-    public CCEClassroomScreenState getCCEClassroomScreenState() {
-        return cceClassroomScreenState;
-    }
-
-
     public void resetLevel() {
         initialize();
     }

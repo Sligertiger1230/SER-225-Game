@@ -125,7 +125,7 @@ public abstract class Map {
 
         this.camera = new Camera(0, 0, tileset.getScaledSpriteWidth(), tileset.getScaledSpriteHeight(), this);
         this.textbox = new Textbox(this);
-        this.portrait = new TextSpriteDisplay();
+        this.portrait = new TextSpriteDisplay(this);
 
         // instantiates quest menu that draws on screen
         this.questMenu = new QuestMenu();
@@ -316,8 +316,25 @@ public abstract class Map {
         return new ArrayList<>();
     }
 
-    protected ArrayList<Trigger> updateTriggers() {
-        return new ArrayList<>();
+    // updates the triggers
+    public ArrayList<Trigger> updateTriggers() {
+        ArrayList<Trigger> newTriggers = new ArrayList<>();
+
+        // searches each quest menu quest with index
+        for (int index = 0; index < getQuestMenu().getQuests().size(); index++) {
+            // if a quest in quest menu is still a new quest
+            if (getQuestMenu().isNewQuestStatus(index)) {
+                // go through each trigger in the quest
+                for (int triggerIndex = 0; triggerIndex < getQuestMenu().getTriggerList(index)
+                        .size(); triggerIndex++) {
+                    // adds the trigger to newTriggers
+                    newTriggers.add(getQuestMenu().getTriggerList(index).get(triggerIndex));
+                }
+                // sets the quest just added to false
+                getQuestMenu().setNewQuestStatus(index, false);
+            }
+        }
+        return newTriggers;
     }
 
     public Camera getCamera() {
@@ -524,18 +541,18 @@ public abstract class Map {
         // updates quest info
         questMenu.update();
 
-        //creates a placeholder version for the most recent triggers added
+        // creates a placeholder version for the most recent triggers added
         updatedTriggers = updateTriggers();
 
-        //the some new triggers were actually added, then run
+        // the some new triggers were actually added, then run
         if (updatedTriggers != null) {
-            //runs a for loop going through every trigger in updatedTriggers
+            // runs a for loop going through every trigger in updatedTriggers
             for (Trigger trigger : this.updatedTriggers) {
-                //adds it's flag to flag manager
+                // adds it's flag to flag manager
                 flagManager.addFlag((trigger.getExistenceFlag()), false);
-                //sets it to current map
+                // sets it to current map
                 trigger.setMap(this);
-                //adds it to map arrayList for triggers
+                // adds it to map arrayList for triggers
                 triggers.add(trigger);
             }
         }
