@@ -109,10 +109,18 @@ public class PlayLevelScreen extends Screen {
                     }
                     triggerSize = map.getTriggersSize();
                 }
-                if(map.getMapInt() == 1){
+                String mapName = map.getMapFileName();
+
+                if(map.getMapInt() == 1 && mapName != "CCEClassroom.txt"){
                     this.map = new CCEClassroom();
-                    map.setMapInt(0);
                     this.player.setMap(this.map);
+                    Point playerStartPosition = map.getPlayerStartPosition();
+                    this.player.setLocation(playerStartPosition.x, playerStartPosition.y);
+                }
+
+                if(map.getMapInt() == 2 && mapName != "TestMap.txt"){
+                    this.map = new TestMap();
+                    player.setMap(this.map);
                     Point playerStartPosition = map.getPlayerStartPosition();
                     this.player.setLocation(playerStartPosition.x, playerStartPosition.y);
                 }

@@ -94,9 +94,9 @@ public class TestMap extends Map {
 
         getMapTile(2, 6).setInteractScript(new TreeScript());
 
-        getMapTile(1, 1).setInteractScript(new TeleportScript(32, 23));
+        //getMapTile(1, 1).setInteractScript(new TeleportScript(32, 23));
 
-        getMapTile(32, 25).setInteractScript(new TeleportScript(2, 2));
+        //getMapTile(32, 25).setInteractScript(new TeleportScript(2, 2));
 
         getMapTile(100, 59).setInteractScript(new ChangeMapScript());
     }

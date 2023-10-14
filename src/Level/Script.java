@@ -8,7 +8,6 @@ import Engine.Screen;
 import Game.GameState;
 import Game.ScreenCoordinator;
 import Maps.CCEClassroom;
-import Screens.CCEClassroomScreen;
 
 // This class is a base class for all scripts in the game -- all scripts should extend from it
 // Scripts can be used to interact with map entities
