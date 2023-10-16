@@ -9,7 +9,7 @@ public class Sounds {
     private Clip clip;
     private final URL soundURL[] = new URL[30];
 
-    public SoundManager() {
+    public Sounds() {
         soundURL[0] = getClass().getResource("/sounds/overworld.wav");
     }
 
