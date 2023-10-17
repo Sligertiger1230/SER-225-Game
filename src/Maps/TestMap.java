@@ -4,6 +4,7 @@ import EnhancedMapTiles.PushableRock;
 import Level.EnhancedMapTile;
 import Level.Map;
 import Level.NPC;
+import Level.SoundManager;
 import Level.Trigger;
 import NPCs.Dinosaur;
 import NPCs.Walrus;
@@ -25,12 +26,15 @@ import java.util.ArrayList;
 
 // Represents a test map to be used in a level
 public class TestMap extends Map {
+    private SoundManager soundManager;
 
     public TestMap() {
         super("test_map.txt", new CommonTileset());
         this.playerStartPosition = getMapTile(17, 20).getLocation();
         this.mapInt = 0;
         this.idSwitch = 0;
+        this.soundManager = new SoundManager();
+        soundManager.playBackgroundMusic(0);
     }
 
     @Override

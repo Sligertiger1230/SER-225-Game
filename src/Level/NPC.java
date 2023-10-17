@@ -38,13 +38,14 @@ public class NPC extends MapEntity {
         this.id = id;
     }
 
-    public int getId() { return id; }
+    public int getId() {
+        return id;
+    }
 
     public void facePlayer(Player player) {
         if (Math.round(getBoundsX2()) - (getBounds().getWidth() / 2) < Math.round(player.getBoundsX2())) {
             this.currentAnimationName = "STAND_RIGHT";
-        }
-        else if (Math.round(getBoundsX1()) + (getBounds().getWidth() / 2) > Math.round(player.getBoundsX1())) {
+        } else if (Math.round(getBoundsX1()) + (getBounds().getWidth() / 2) > Math.round(player.getBoundsX1())) {
             this.currentAnimationName = "STAND_LEFT";
         }
     }
@@ -52,47 +53,42 @@ public class NPC extends MapEntity {
     public void stand(Direction direction) {
         if (direction == Direction.RIGHT) {
             this.currentAnimationName = "STAND_RIGHT";
-        }
-        else if (direction == Direction.LEFT) {
+        } else if (direction == Direction.LEFT) {
             this.currentAnimationName = "STAND_LEFT";
+        } else if (direction == Direction.UP) {
+            this.currentAnimationName = "STAND_UP";
+        } else if (direction == Direction.DOWN) {
+            this.currentAnimationName = "STAND_DOWN";
         }
     }
 
     public void walk(Direction direction, float speed) {
         if (direction == Direction.RIGHT) {
             this.currentAnimationName = "WALK_RIGHT";
-        }
-        else if (direction == Direction.LEFT) {
+        } else if (direction == Direction.LEFT) {
             this.currentAnimationName = "WALK_LEFT";
-        }
-        else if (direction == Direction.UP){
+        } else if (direction == Direction.UP) {
             this.currentAnimationName = "WALK_UP";
-        }
-        else {
+        } else {
             if (this.currentAnimationName.contains("RIGHT")) {
                 this.currentAnimationName = "WALK_RIGHT";
-            }
-            else {
+            } else {
                 this.currentAnimationName = "WALK_LEFT";
             }
         }
         if (direction == Direction.UP) {
             moveY(-speed);
-        }
-        else if (direction == Direction.DOWN) {
+        } else if (direction == Direction.DOWN) {
             moveY(speed);
-        }
-        else if (direction == Direction.LEFT) {
+        } else if (direction == Direction.LEFT) {
             moveX(-speed);
-        }
-        else if (direction == Direction.RIGHT) {
+        } else if (direction == Direction.RIGHT) {
             moveX(speed);
-        }
-        else if (direction == Direction.UP) {
+        } else if (direction == Direction.UP) {
             moveY(-speed);
         }
     }
-    
+
     public void update(Player player) {
         super.update();
     }
