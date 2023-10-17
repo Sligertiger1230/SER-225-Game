@@ -22,6 +22,7 @@ public class PlayLevelScreen extends Screen {
     protected PlayLevelScreenState playLevelScreenState;
     protected WinScreen winScreen;
     protected FlagManager flagManager;
+    protected ArrayList<FlagManager> flagManagers;
 
     public PlayLevelScreen(ScreenCoordinator screenCoordinator) {
         this.screenCoordinator = screenCoordinator;
@@ -49,8 +50,10 @@ public class PlayLevelScreen extends Screen {
         this.maps = new ArrayList<Map>();
         maps.add(new TestMap());
         maps.add(new CCEClassroom());
+        for (int index = 0; index < maps.size(); index++){
+            maps.get(index).setFlagManager(flagManager);
+        }
         this.map = maps.get(0);
-        map.setFlagManager(flagManager);
 
         // setup player
         this.player = new Cat(map.getPlayerStartPosition().x, map.getPlayerStartPosition().y);
@@ -106,6 +109,7 @@ public class PlayLevelScreen extends Screen {
                 if (map.getMapInt() != map.getIdSwitch()) {
                     int prevMap = map.getMapInt();
                     this.map = maps.get(map.getIdSwitch());
+                    loadMap(this.map);
                     maps.get(prevMap).setIdSwitch(prevMap);
                     this.player.setMap(this.map);
                     Point playerStartPosition = map.getPlayerStartPosition();
@@ -148,6 +152,37 @@ public class PlayLevelScreen extends Screen {
                 break;
         }
     }
+    
+    public void loadMap(Map map){
+        // setup map scripts to have references to the map and player
+        for (MapTile mapTile : map.getMapTiles()) {
+            if (mapTile.getInteractScript() != null) {
+                mapTile.getInteractScript().setMap(map);
+                mapTile.getInteractScript().setPlayer(player);
+            }
+        }
+        for (NPC npc : map.getNPCs()) {
+            if (npc.getInteractScript() != null) {
+                npc.getInteractScript().setMap(map);
+                npc.getInteractScript().setPlayer(player);
+            }
+        }
+        for (EnhancedMapTile enhancedMapTile : map.getEnhancedMapTiles()) {
+            if (enhancedMapTile.getInteractScript() != null) {
+                enhancedMapTile.getInteractScript().setMap(map);
+                enhancedMapTile.getInteractScript().setPlayer(player);
+            }
+        }
+
+        triggerSize = map.getTriggersSize();
+        for (Trigger trigger : map.getTriggers()) {
+            if (trigger.getTriggerScript() != null) {
+                trigger.getTriggerScript().setMap(map);
+                trigger.getTriggerScript().setPlayer(player);
+            }
+        }
+    }
+
 
     public PlayLevelScreenState getPlayLevelScreenState() {
         return playLevelScreenState;
