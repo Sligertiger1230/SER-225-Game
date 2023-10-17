@@ -22,13 +22,15 @@ public class PlayLevelScreen extends Screen {
     protected PlayLevelScreenState playLevelScreenState;
     protected WinScreen winScreen;
     protected FlagManager flagManager;
-    protected ArrayList<FlagManager> flagManagers;
+    protected QuestMenu questMenu;
 
     public PlayLevelScreen(ScreenCoordinator screenCoordinator) {
         this.screenCoordinator = screenCoordinator;
     }
 
     public void initialize() {
+        questMenu = new QuestMenu();
+
         // setup state
         flagManager = new FlagManager();
 
@@ -52,6 +54,7 @@ public class PlayLevelScreen extends Screen {
         maps.add(new CCEClassroom());
         for (int index = 0; index < maps.size(); index++){
             maps.get(index).setFlagManager(flagManager);
+            maps.get(index).setQuestMenu(questMenu);
         }
         this.map = maps.get(0);
 

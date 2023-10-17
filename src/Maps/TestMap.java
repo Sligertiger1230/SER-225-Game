@@ -33,8 +33,8 @@ public class TestMap extends Map {
         this.playerStartPosition = getMapTile(17, 20).getLocation();
         this.mapInt = 0;
         this.idSwitch = 0;
-        this.soundManager = new SoundManager();
-        soundManager.playBackgroundMusic(0);
+        //this.soundManager = new SoundManager();
+        //soundManager.playBackgroundMusic(0);
     }
 
     @Override

@@ -130,9 +130,6 @@ public abstract class Map {
         this.camera = new Camera(0, 0, tileset.getScaledSpriteWidth(), tileset.getScaledSpriteHeight(), this);
         this.textbox = new Textbox(this);
         this.portrait = new Portrait(this);
-        //instantiates quest menu that draws on screen
-        this.questMenu = new QuestMenu();
-
     }
 
     // reads in a map file to create the map's tilemap
@@ -243,20 +240,21 @@ public abstract class Map {
         return mapTiles;
     }
 
-    public void setIdSwitch(int idSwitch){
-        //0 for main map, 1 for cce 
+    public void setIdSwitch(int idSwitch) {
+        // 0 for main map, 1 for cce
         this.idSwitch = idSwitch;
     }
 
-    public int getIdSwitch(){
+    public int getIdSwitch() {
         return idSwitch;
     }
 
-    public void setMapInt(int mapInt){
-       this.mapInt = mapInt;
+    public void setMapInt(int mapInt) {
+        this.mapInt = mapInt;
     }
-    public int getMapInt(){
-       return mapInt;
+
+    public int getMapInt() {
+        return mapInt;
     }
 
     public void setMapTiles(MapTile[] mapTiles) {
@@ -557,24 +555,27 @@ public abstract class Map {
             textbox.update();
         }
 
-        // updates quest info
-        questMenu.update();
+        if (questMenu != null) {
+            // updates quest info
+            questMenu.update();
 
-        // creates a placeholder version for the most recent triggers added
-        updatedTriggers = updateTriggers();
+            // creates a placeholder version for the most recent triggers added
+            updatedTriggers = updateTriggers();
 
-        // the some new triggers were actually added, then run
-        if (updatedTriggers != null) {
-            // runs a for loop going through every trigger in updatedTriggers
-            for (Trigger trigger : this.updatedTriggers) {
-                // adds it's flag to flag manager
-                flagManager.addFlag((trigger.getExistenceFlag()), false);
-                // sets it to current map
-                trigger.setMap(this);
-                // adds it to map arrayList for triggers
-                triggers.add(trigger);
+            // the some new triggers were actually added, then run
+            if (updatedTriggers != null) {
+                // runs a for loop going through every trigger in updatedTriggers
+                for (Trigger trigger : this.updatedTriggers) {
+                    // adds it's flag to flag manager
+                    flagManager.addFlag((trigger.getExistenceFlag()), false);
+                    // sets it to current map
+                    trigger.setMap(this);
+                    // adds it to map arrayList for triggers
+                    triggers.add(trigger);
+                }
             }
         }
+
     }
 
     // based on the player's current X position (which in a level can potentially be
@@ -675,6 +676,10 @@ public abstract class Map {
         return textbox;
     }
 
+    public void setQuestMenu(QuestMenu questMenu) {
+        this.questMenu = questMenu;
+    }
+
     // fetches questMenu
     public QuestMenu getQuestMenu() {
         return questMenu;
@@ -686,7 +691,9 @@ public abstract class Map {
     }
 
     // fetches portrait
-    public Portrait getPortrait() {return portrait; }
+    public Portrait getPortrait() {
+        return portrait;
+    }
 
     public int getEndBoundX() {
         return endBoundX;
