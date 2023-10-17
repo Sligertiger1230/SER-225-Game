@@ -1,13 +1,13 @@
 package Maps;
 
 import EnhancedMapTiles.PushableRock;
-import Level.Audio;
 import Level.EnhancedMapTile;
 import Level.Map;
 import Level.NPC;
 import Level.Trigger;
 import NPCs.Dinosaur;
 import NPCs.Walrus;
+import Players.Cat;
 import NPCs.JavaJohn;
 import NPCs.JavaJohnGlasses;
 import Scripts.SimpleTextScript;
@@ -29,8 +29,6 @@ public class TestMap extends Map {
     public TestMap() {
         super("test_map.txt", new CommonTileset());
         this.playerStartPosition = getMapTile(17, 20).getLocation();
-        // Playing background music (September 29th)
-        Audio.playBackgroundMusic();
     }
 
     @Override
@@ -61,7 +59,7 @@ public class TestMap extends Map {
         javaJohn.setInteractScript(new JavaJohnScript());
         npcs.add(javaJohn);
 
-        //adds the glasses of java john's that need finding
+        // adds the glasses of java john's that need finding
         JavaJohnGlasses javaJohnGlasses = new JavaJohnGlasses(3, getMapTile(97, 39).getLocation());
         javaJohnGlasses.setInteractScript(new JavaJohnGlassesScript());
         javaJohnGlasses.setIsHidden(true);
@@ -81,8 +79,6 @@ public class TestMap extends Map {
         return triggers;
     }
 
-    
-
     @Override
     public void loadScripts() {
         getMapTile(21, 19).setInteractScript(new SimpleTextScript("Cat's house"));
@@ -97,6 +93,6 @@ public class TestMap extends Map {
 
         getMapTile(32, 25).setInteractScript(new TeleportScript(2, 2));
 
-         //getMapTile(100, 59).setInteractScript(new ChangeMapScript(2, 2));
+        getMapTile(100, 59).setInteractScript(new ChangeMapScript());
     }
 }
