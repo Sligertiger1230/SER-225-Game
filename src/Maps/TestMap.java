@@ -16,7 +16,7 @@ import Scripts.Quests.*;
 import Scripts.TestMap.DinoScript;
 import Scripts.TestMap.LostBallScript;
 import Scripts.TestMap.TeleportScript;
-import Scripts.TestMap.TestMapAudioScript;
+//import Scripts.TestMap.TestMapAudioScript;
 import Scripts.TestMap.TreeScript;
 import Scripts.TestMap.WalrusScript;
 import Tilesets.CommonTileset;
@@ -29,6 +29,8 @@ public class TestMap extends Map {
     public TestMap() {
         super("test_map.txt", new CommonTileset());
         this.playerStartPosition = getMapTile(17, 20).getLocation();
+        this.mapInt = 0;
+        this.idSwitch = 0;
     }
 
     @Override

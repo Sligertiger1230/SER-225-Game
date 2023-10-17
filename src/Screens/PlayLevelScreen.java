@@ -1,6 +1,7 @@
 package Screens;
 
 // Changed the engine import to all so that we can use Config (September 27th)
+import java.util.ArrayList;
 import Engine.*;
 import Game.GameState;
 import Game.ScreenCoordinator;
@@ -15,6 +16,7 @@ import Utils.Point;
 public class PlayLevelScreen extends Screen {
     protected ScreenCoordinator screenCoordinator;
     protected Map map;
+    protected ArrayList<Map> maps;
     protected Player player;
     protected int triggerSize;
     protected PlayLevelScreenState playLevelScreenState;
@@ -29,8 +31,9 @@ public class PlayLevelScreen extends Screen {
         // setup state
         flagManager = new FlagManager();
 
-        //java john quest flags. This is the best way to have flags right now
-        //will organize them better, but we will always have to instantiate them beforehand
+        // java john quest flags. This is the best way to have flags right now
+        // will organize them better, but we will always have to instantiate them
+        // beforehand
         flagManager.addFlag("hasTalkedToJavaJohn", false);
         flagManager.addFlag("hasPickedUpGlasses", false);
         flagManager.addFlag("hasEncounteredJavaJohnWalk", false);
@@ -43,7 +46,10 @@ public class PlayLevelScreen extends Screen {
         flagManager.addFlag("hasFoundBall", false);
 
         // define/setup map
-        this.map = new TestMap();
+        this.maps = new ArrayList<Map>();
+        maps.add(new TestMap());
+        maps.add(new CCEClassroom());
+        this.map = maps.get(0);
         map.setFlagManager(flagManager);
 
         // setup player
@@ -56,7 +62,7 @@ public class PlayLevelScreen extends Screen {
 
         // let pieces of map know which button to listen for as the "interact" button
         map.getTextbox().setInteractKey(player.getInteractKey());
-        
+
         // setup map scripts to have references to the map and player
         for (MapTile mapTile : map.getMapTiles()) {
             if (mapTile.getInteractScript() != null) {
@@ -94,27 +100,29 @@ public class PlayLevelScreen extends Screen {
             // if level is "running" update player and map to keep game logic for the
             // platformer level going
             case RUNNING:
-                
+
                 player.update();
                 map.update(player);
-                //updateTriggers changes size of map triggers size. so check if previous value stored is the same
-                //if its not
-                if (map.getTriggersSize() != triggerSize) {
-                    //go through every new trigger addition
-                    for (int index = triggerSize; index < map.getTriggersSize(); index++) {
-                        //sets trigger script to map
-                        map.getTriggers().get(index).getTriggerScript().setMap(map);
-                        //sets trigger script to user
-                        map.getTriggers().get(index).getTriggerScript().setPlayer(player);
-                    }
-                    triggerSize = map.getTriggersSize();
-                }
-                if(map.getMapInt() == 1){
-                    this.map = new CCEClassroom();
-                    map.setMapInt(0);
+                if (map.getMapInt() != map.getIdSwitch()) {
+                    int prevMap = map.getMapInt();
+                    this.map = maps.get(map.getIdSwitch());
+                    maps.get(prevMap).setIdSwitch(prevMap);
                     this.player.setMap(this.map);
                     Point playerStartPosition = map.getPlayerStartPosition();
                     this.player.setLocation(playerStartPosition.x, playerStartPosition.y);
+                }
+                // updateTriggers changes size of map triggers size. so check if previous value
+                // stored is the same
+                // if its not
+                if (map.getTriggersSize() != triggerSize) {
+                    // go through every new trigger addition
+                    for (int index = triggerSize; index < map.getTriggersSize(); index++) {
+                        // sets trigger script to map
+                        map.getTriggers().get(index).getTriggerScript().setMap(map);
+                        // sets trigger script to user
+                        map.getTriggers().get(index).getTriggerScript().setPlayer(player);
+                    }
+                    triggerSize = map.getTriggersSize();
                 }
                 break;
             // if level has been completed, bring up level cleared screen
@@ -124,9 +132,9 @@ public class PlayLevelScreen extends Screen {
         }
 
         // if flag is set at any point during gameplay, game is "won"
-        //if (map.getFlagManager().isFlagSet("hasFoundBall")) {
-            //playLevelScreenState = PlayLevelScreenState.LEVEL_COMPLETED;
-        //}
+        // if (map.getFlagManager().isFlagSet("hasFoundBall")) {
+        // playLevelScreenState = PlayLevelScreenState.LEVEL_COMPLETED;
+        // }
     }
 
     public void draw(GraphicsHandler graphicsHandler) {
@@ -145,7 +153,7 @@ public class PlayLevelScreen extends Screen {
         return playLevelScreenState;
     }
 
-    public Map playLevel(){
+    public Map playLevel() {
         return map;
     }
 
