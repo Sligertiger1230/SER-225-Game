@@ -37,6 +37,7 @@ public abstract class Map {
     protected int width;
     protected int height;
     protected int mapInt;
+    protected int idSwitch;
 
     // the tileset this map uses for its map tiles
     protected Tileset tileset;
@@ -242,8 +243,16 @@ public abstract class Map {
         return mapTiles;
     }
 
+    public void setIdSwitch(int idSwitch){
+        //0 for main map, 1 for cce 
+        this.idSwitch = idSwitch;
+    }
+
+    public int getIdSwitch(){
+        return idSwitch;
+    }
+
     public void setMapInt(int mapInt){
-       //0 for main map, 1 for cce 
        this.mapInt = mapInt;
     }
     public int getMapInt(){

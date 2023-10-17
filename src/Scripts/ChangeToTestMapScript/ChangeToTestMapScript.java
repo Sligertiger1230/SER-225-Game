@@ -31,7 +31,7 @@ public class ChangeToTestMapScript extends Script {
 
     @Override
     protected ScriptState execute() {
-        map.setMapInt(2);
+        map.setIdSwitch(0);
         return ScriptState.COMPLETED;
     }
 }

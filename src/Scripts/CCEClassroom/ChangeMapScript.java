@@ -31,7 +31,7 @@ public class ChangeMapScript extends Script {
 
     @Override
     protected ScriptState execute() {
-        map.setMapInt(1);
+        map.setIdSwitch(1);
         return ScriptState.COMPLETED;
     }
 }

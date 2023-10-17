@@ -4,10 +4,16 @@ import Utils.Direction;
 
 import java.util.ArrayList;
 
+import Engine.Key;
+import Engine.KeyLocker;
+import Engine.Keyboard;
 import Engine.Screen;
 import Game.GameState;
 import Game.ScreenCoordinator;
 import Maps.CCEClassroom;
+import Engine.Key;
+import Engine.KeyLocker;
+import Engine.Keyboard;
 
 // This class is a base class for all scripts in the game -- all scripts should extend from it
 // Scripts can be used to interact with map entities
@@ -22,6 +28,11 @@ public abstract class Script<T extends MapEntity> {
 
     // if true, script should perform "setup" logic
     protected boolean start = true;
+
+    // define keys
+    protected KeyLocker keyLocker = new KeyLocker();
+    protected Key Choice1_KEY = Key.UP;
+    protected Key Choice2_KEY = Key.DOWN;
 
     // references to the map entity the script is attached to
     // use generic type if you need to use this reference
@@ -154,6 +165,15 @@ public abstract class Script<T extends MapEntity> {
     // adds text to be shown in textbox
     protected void addTextToTextboxQueue(String text) {
         map.getTextbox().addText(text);
+    }
+
+    protected void choiceAddTextToTextboxQueue(String text, String text2) {
+        if(Keyboard.isKeyDown(Choice1_KEY)){
+            addTextToTextboxQueue(text);
+        }
+        else if(Keyboard.isKeyDown(Choice2_KEY)){
+            addTextToTextboxQueue(text2);
+        }
     }
 
     // adds a series of text to be shown in textbox
