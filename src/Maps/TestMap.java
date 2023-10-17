@@ -17,7 +17,6 @@ import Scripts.Quests.*;
 import Scripts.TestMap.DinoScript;
 import Scripts.TestMap.LostBallScript;
 import Scripts.TestMap.TeleportScript;
-//import Scripts.TestMap.TestMapAudioScript;
 import Scripts.TestMap.TreeScript;
 import Scripts.TestMap.WalrusScript;
 import Tilesets.CommonTileset;
@@ -26,15 +25,12 @@ import java.util.ArrayList;
 
 // Represents a test map to be used in a level
 public class TestMap extends Map {
-    // private SoundManager soundManager;
 
     public TestMap() {
         super("test_map.txt", new CommonTileset());
         this.playerStartPosition = getMapTile(17, 20).getLocation();
         this.mapInt = 0;
         this.idSwitch = 0;
-        // this.soundManager = new SoundManager();
-        // soundManager.playBackgroundMusic(0);
     }
 
     @Override
