@@ -53,7 +53,7 @@ public class JavaJohnScript extends Script<NPC> {
                 createTriggerList();
                 //adds demonstration trigger
                 //REMINDER: triggers need script files to correlate to, don't add triggers without planninf
-                addTrigger(3000, 1550, 10, 200, new JavaJohnWalkScript(), "hasEncounteredJavaJohnWalk");
+                addTrigger(3000, 1550, 10, 200, new JavaJohnWalkScript(), "hasEncounteredJavaJohnWalk", 0);
                 addQuest("Help Java John get his glasses");
             }
         }

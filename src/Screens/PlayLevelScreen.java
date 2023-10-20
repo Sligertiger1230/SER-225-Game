@@ -22,11 +22,7 @@ public class PlayLevelScreen extends Screen {
     protected WinScreen winScreen;
     protected FlagManager flagManager;
     protected QuestMenu questMenu;
-
-    protected MapTile[][] mapTiles;
-    protected ArrayList<ArrayList<NPC>> npcs;
-    protected ArrayList<ArrayList<EnhancedMapTile>> enhancedMapTiles;
-    protected ArrayList<ArrayList<Trigger>> triggers;
+    protected ArrayList<QuestTrigger> triggers;
 
     public PlayLevelScreen(ScreenCoordinator screenCoordinator) {
         this.screenCoordinator = screenCoordinator;
@@ -34,6 +30,8 @@ public class PlayLevelScreen extends Screen {
 
     public void initialize() {
         questMenu = new QuestMenu();
+
+        triggers = new ArrayList<QuestTrigger>();
 
         // setup state
         flagManager = new FlagManager();
@@ -67,14 +65,14 @@ public class PlayLevelScreen extends Screen {
         // let pieces of map know which button to listen for as the "interact" button
         map.getTextbox().setInteractKey(player.getInteractKey());
 
-        /* 
-        mapTiles = new MapTile[2][];
-        mapTiles[map.getMapInt()] = map.getMapTiles();
-
-        npcs.add(map.getNPCs());
-        enhancedMapTiles.add(map.getEnhancedMapTiles());
-        triggers.add(map.getTriggers());
-        */
+        /*
+         * mapTiles = new MapTile[2][];
+         * mapTiles[map.getMapInt()] = map.getMapTiles();
+         * 
+         * npcs.add(map.getNPCs());
+         * enhancedMapTiles.add(map.getEnhancedMapTiles());
+         * triggers.add(map.getTriggers());
+         */
 
         // setup map scripts to have references to the map and player
         for (MapTile mapTile : map.getMapTiles()) {
@@ -96,7 +94,8 @@ public class PlayLevelScreen extends Screen {
             }
         }
 
-        triggerSize = map.getTriggersSize();
+        triggerSize = map.getUpdatedTriggerSize();
+
         for (Trigger trigger : map.getTriggers()) {
             if (trigger.getTriggerScript() != null) {
                 trigger.getTriggerScript().setMap(map);
@@ -128,15 +127,15 @@ public class PlayLevelScreen extends Screen {
                 // updateTriggers changes size of map triggers size. so check if previous value
                 // stored is the same
                 // if its not
-                if (map.getTriggersSize() != triggerSize) {
+                if (map.getUpdatedTriggerSize() != triggerSize) {
                     // go through every new trigger addition
-                    for (int index = triggerSize; index < map.getTriggersSize(); index++) {
-                        // sets trigger script to map
-                        map.getTriggers().get(index).getTriggerScript().setMap(map);
-                        // sets trigger script to user
-                        map.getTriggers().get(index).getTriggerScript().setPlayer(player);
+                    for (int index = triggerSize; index < map.getUpdatedTriggerSize(); index++) {
+                        if (map.getUpdatedTriggers().get(index).getMapInt() == map.getMapInt()) {
+                            map.getUpdatedTriggers().get(index).getTrigger().getTriggerScript().setMap(map);
+                            map.getUpdatedTriggers().get(index).getTrigger().getTriggerScript().setPlayer(player);
+                        }
                     }
-                    triggerSize = map.getTriggersSize();
+                    triggerSize = map.getUpdatedTriggerSize();
                 }
                 break;
             // if level has been completed, bring up level cleared screen
@@ -163,21 +162,26 @@ public class PlayLevelScreen extends Screen {
         }
     }
 
-    public Map loadMap(int mapId){
-        switch (mapId){
+    public Map loadMap(int mapId) {
+        switch (mapId) {
             case 0:
                 Map newMap = new TestMap();
                 newMap.setFlagManager(flagManager);
                 newMap.setNPCs();
+                newMap.setQuestMenu(questMenu);
                 return newMap;
             case 1:
-                return new CCEClassroom();
+                newMap = new CCEClassroom();
+                newMap.setFlagManager(flagManager);
+                newMap.setNPCs();
+                newMap.setQuestMenu(questMenu);
+                return newMap;
             default:
                 return null;
         }
     }
-    
-    public void loadMapInfo(Map map){
+
+    public void loadMapInfo(Map map) {
         // setup map scripts to have references to the map and player
         for (MapTile mapTile : map.getMapTiles()) {
             if (mapTile.getInteractScript() != null) {
@@ -198,15 +202,24 @@ public class PlayLevelScreen extends Screen {
             }
         }
 
-        triggerSize = map.getTriggersSize();
         for (Trigger trigger : map.getTriggers()) {
             if (trigger.getTriggerScript() != null) {
                 trigger.getTriggerScript().setMap(map);
                 trigger.getTriggerScript().setPlayer(player);
             }
         }
-    }
 
+        for (QuestTrigger trigger : map.getUpdatedTriggers()) {
+            if (trigger.getTrigger().getTriggerScript() != null) {
+                System.out.println(trigger.getMapInt() + " " + map.getMapInt());
+                if (trigger.getMapInt() == map.getMapInt()) {
+                    System.out.println("Added to map");
+                    trigger.getTrigger().getTriggerScript().setMap(map);
+                    trigger.getTrigger().getTriggerScript().setPlayer(player);
+                }
+            }
+        }
+    }
 
     public PlayLevelScreenState getPlayLevelScreenState() {
         return playLevelScreenState;
