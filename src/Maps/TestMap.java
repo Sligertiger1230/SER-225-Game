@@ -4,7 +4,7 @@ import EnhancedMapTiles.PushableRock;
 import Level.EnhancedMapTile;
 import Level.Map;
 import Level.NPC;
-import Level.SoundManager;
+// import Level.SoundManager;
 import Level.Trigger;
 import NPCs.Dinosaur;
 import NPCs.Walrus;
@@ -17,7 +17,6 @@ import Scripts.Quests.*;
 import Scripts.TestMap.DinoScript;
 import Scripts.TestMap.LostBallScript;
 import Scripts.TestMap.TeleportScript;
-//import Scripts.TestMap.TestMapAudioScript;
 import Scripts.TestMap.TreeScript;
 import Scripts.TestMap.WalrusScript;
 import Tilesets.CommonTileset;
@@ -26,15 +25,12 @@ import java.util.ArrayList;
 
 // Represents a test map to be used in a level
 public class TestMap extends Map {
-    private SoundManager soundManager;
 
     public TestMap() {
         super("test_map.txt", new CommonTileset());
         this.playerStartPosition = getMapTile(17, 20).getLocation();
         this.mapInt = 0;
         this.idSwitch = 0;
-        //this.soundManager = new SoundManager();
-        //soundManager.playBackgroundMusic(0);
     }
 
     @Override
@@ -60,15 +56,21 @@ public class TestMap extends Map {
         dinosaur.setInteractScript(new DinoScript());
         npcs.add(dinosaur);
 
-        // adds javaJohn!
-        JavaJohn javaJohn = new JavaJohn(2, getMapTile(37, 7).getLocation());
-        javaJohn.setInteractScript(new JavaJohnScript());
-        npcs.add(javaJohn);
+        if (!getFlagManager().isFlagSet("isJavaJohnFloating")) {
+            JavaJohn javaJohn = new JavaJohn(2, getMapTile(37, 7).getLocation());
+            javaJohn.setInteractScript(new JavaJohnScript());
+            npcs.add(javaJohn);
+        }
 
         // adds the glasses of java john's that need finding
+
         JavaJohnGlasses javaJohnGlasses = new JavaJohnGlasses(3, getMapTile(97, 39).getLocation());
         javaJohnGlasses.setInteractScript(new JavaJohnGlassesScript());
-        javaJohnGlasses.setIsHidden(true);
+        if (getFlagManager().isFlagSet("hasTalkedToJavaJohn")) {
+            javaJohnGlasses.setIsHidden(false);
+        } else {
+            javaJohnGlasses.setIsHidden(true);
+        }
         npcs.add(javaJohnGlasses);
 
         return npcs;
@@ -95,9 +97,9 @@ public class TestMap extends Map {
 
         getMapTile(2, 6).setInteractScript(new TreeScript());
 
-        getMapTile(1, 1).setInteractScript(new TeleportScript(32, 23));
+        // getMapTile(1, 1).setInteractScript(new TeleportScript(32, 23));
 
-        getMapTile(32, 25).setInteractScript(new TeleportScript(2, 2));
+        // getMapTile(32, 25).setInteractScript(new TeleportScript(2, 2));
 
         getMapTile(100, 59).setInteractScript(new ChangeMapScript());
     }

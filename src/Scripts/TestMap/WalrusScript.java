@@ -1,26 +1,41 @@
 package Scripts.TestMap;
 
+import Engine.Key;
+import Engine.KeyLocker;
+import Engine.Keyboard;
 import Level.NPC;
+import Level.PlayerListener;
 import Level.Script;
 import Level.ScriptState;
+import java.util.ArrayList;
 
 // script for talking to walrus npc
 public class WalrusScript extends Script<NPC> {
+     // classes that listen to player events can be added to this list
+     protected ArrayList<PlayerListener> listeners = new ArrayList<>();
+
+     // define keys
+     protected KeyLocker keyLocker = new KeyLocker();
+     protected Key Choice1_KEY = Key.UP;
+     protected Key Choice2_KEY = Key.DOWN;
 
     @Override
     protected void setup() {
+
+       // this.addKeyListener(Keyboard.getKeyListener());
         lockPlayer();
         showPortrait("WalrusPortrait.png");
         showTextbox();
 
         // changes what walrus says when talking to him the first time (flag is not set) vs talking to him afterwards (flag is set)
-        if (!isFlagSet("hasTalkedToWalrus")) {
+        if (!isFlagSet("hasTalkedToWalrus")){
             addTextToTextboxQueue( "Hi Cat!");
             addTextToTextboxQueue( "...oh, you lost your ball?");
-            addTextToTextboxQueue( "Hmmm...my walrus brain remembers seeing Dino with\nit last. Maybe you can check with him?");
+            addTextToTextboxQueue("oops");
         }
         else {
             addTextToTextboxQueue( "I sure love doing walrus things!");
+             choiceAddTextToTextboxQueue("1", "2");
         }
         entity.facePlayer(player);
     }

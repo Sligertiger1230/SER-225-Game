@@ -16,13 +16,17 @@ import Utils.Point;
 public class PlayLevelScreen extends Screen {
     protected ScreenCoordinator screenCoordinator;
     protected Map map;
-    protected ArrayList<Map> maps;
     protected Player player;
     protected int triggerSize;
     protected PlayLevelScreenState playLevelScreenState;
     protected WinScreen winScreen;
     protected FlagManager flagManager;
     protected QuestMenu questMenu;
+
+    protected MapTile[][] mapTiles;
+    protected ArrayList<ArrayList<NPC>> npcs;
+    protected ArrayList<ArrayList<EnhancedMapTile>> enhancedMapTiles;
+    protected ArrayList<ArrayList<Trigger>> triggers;
 
     public PlayLevelScreen(ScreenCoordinator screenCoordinator) {
         this.screenCoordinator = screenCoordinator;
@@ -49,14 +53,8 @@ public class PlayLevelScreen extends Screen {
         flagManager.addFlag("hasFoundBall", false);
 
         // define/setup map
-        this.maps = new ArrayList<Map>();
-        maps.add(new TestMap());
-        maps.add(new CCEClassroom());
-        for (int index = 0; index < maps.size(); index++){
-            maps.get(index).setFlagManager(flagManager);
-            maps.get(index).setQuestMenu(questMenu);
-        }
-        this.map = maps.get(0);
+        this.map = loadMap(0);
+        this.map.setQuestMenu(questMenu);
 
         // setup player
         this.player = new Cat(map.getPlayerStartPosition().x, map.getPlayerStartPosition().y);
@@ -68,6 +66,15 @@ public class PlayLevelScreen extends Screen {
 
         // let pieces of map know which button to listen for as the "interact" button
         map.getTextbox().setInteractKey(player.getInteractKey());
+
+        /* 
+        mapTiles = new MapTile[2][];
+        mapTiles[map.getMapInt()] = map.getMapTiles();
+
+        npcs.add(map.getNPCs());
+        enhancedMapTiles.add(map.getEnhancedMapTiles());
+        triggers.add(map.getTriggers());
+        */
 
         // setup map scripts to have references to the map and player
         for (MapTile mapTile : map.getMapTiles()) {
@@ -110,10 +117,10 @@ public class PlayLevelScreen extends Screen {
                 player.update();
                 map.update(player);
                 if (map.getMapInt() != map.getIdSwitch()) {
-                    int prevMap = map.getMapInt();
-                    this.map = maps.get(map.getIdSwitch());
-                    loadMap(this.map);
-                    maps.get(prevMap).setIdSwitch(prevMap);
+                    this.map = loadMap(map.getIdSwitch());
+                    this.map.setFlagManager(flagManager);
+                    this.map.setQuestMenu(questMenu);
+                    loadMapInfo(this.map);
                     this.player.setMap(this.map);
                     Point playerStartPosition = map.getPlayerStartPosition();
                     this.player.setLocation(playerStartPosition.x, playerStartPosition.y);
@@ -155,8 +162,22 @@ public class PlayLevelScreen extends Screen {
                 break;
         }
     }
+
+    public Map loadMap(int mapId){
+        switch (mapId){
+            case 0:
+                Map newMap = new TestMap();
+                newMap.setFlagManager(flagManager);
+                newMap.setNPCs();
+                return newMap;
+            case 1:
+                return new CCEClassroom();
+            default:
+                return null;
+        }
+    }
     
-    public void loadMap(Map map){
+    public void loadMapInfo(Map map){
         // setup map scripts to have references to the map and player
         for (MapTile mapTile : map.getMapTiles()) {
             if (mapTile.getInteractScript() != null) {

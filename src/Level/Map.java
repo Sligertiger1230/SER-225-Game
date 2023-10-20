@@ -115,10 +115,7 @@ public abstract class Map {
             enhancedMapTile.setMap(this);
         }
 
-        this.npcs = loadNPCs();
-        for (NPC npc : this.npcs) {
-            npc.setMap(this);
-        }
+        this.npcs = new ArrayList<NPC>();
 
         this.triggers = loadTriggers();
         for (Trigger trigger : this.triggers) {
@@ -130,6 +127,13 @@ public abstract class Map {
         this.camera = new Camera(0, 0, tileset.getScaledSpriteWidth(), tileset.getScaledSpriteHeight(), this);
         this.textbox = new Textbox(this);
         this.portrait = new Portrait(this);
+    }
+
+    public void setNPCs() {
+        this.npcs = loadNPCs();
+        for (NPC npc : this.npcs) {
+            npc.setMap(this);
+        }
     }
 
     // reads in a map file to create the map's tilemap
