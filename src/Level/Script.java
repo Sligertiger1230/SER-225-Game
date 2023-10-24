@@ -167,14 +167,22 @@ public abstract class Script<T extends MapEntity> {
         map.getTextbox().addText(text);
     }
 
-    protected void choiceAddTextToTextboxQueue(String text, String text2) {
-        if(Keyboard.isKeyDown(Choice1_KEY)){
-            addTextToTextboxQueue(text);
-        }
-        else if(Keyboard.isKeyDown(Choice2_KEY)){
-            addTextToTextboxQueue(text2);
-        }
+    // adds text to be shown in textbox with the option for selectable text
+    protected void addTextToTextboxQueue(String text, String[] selectableText, String[] responses) {
+        map.getTextbox().setResponses(responses);
+        map.getTextbox().addSelectableText(text, selectableText);
     }
+
+    // returns the value of the last choice made from a selectable textbox
+    protected int getChoice() {
+        return map.getTextbox().getChoice();
+        }
+    
+        // sets the value of the last choice made from a selectable textbox
+        protected void setChoice(int choice) {
+        map.getTextbox().setChoice(choice);
+        }
+        
 
     // adds a series of text to be shown in textbox
     protected void addTextToTextboxQueue(String[] text) {

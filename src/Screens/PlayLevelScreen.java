@@ -7,6 +7,7 @@ import Game.GameState;
 import Game.ScreenCoordinator;
 import Level.*;
 import Maps.CCEClassroom;
+import Maps.IceRink;
 import Maps.TestMap;
 import Players.Cat;
 import Utils.Direction;
@@ -37,6 +38,10 @@ public class PlayLevelScreen extends Screen {
 
         // setup state
         flagManager = new FlagManager();
+
+        //Walrus Fish quest
+        flagManager.addFlag("RedFish", false);
+        flagManager.addFlag("PurpleFish", false);
 
         // java john quest flags. This is the best way to have flags right now
         // will organize them better, but we will always have to instantiate them
@@ -172,6 +177,8 @@ public class PlayLevelScreen extends Screen {
                 return newMap;
             case 1:
                 return new CCEClassroom();
+            case 2:
+                return new IceRink();
             default:
                 return null;
         }

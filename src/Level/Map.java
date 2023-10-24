@@ -89,6 +89,8 @@ public abstract class Map {
     // map's quest menu
     protected QuestMenu questMenu;
 
+    private int currentChoice;
+
     public Map(String mapFileName, Tileset tileset) {
         this.mapFileName = mapFileName;
         this.tileset = tileset;
@@ -245,12 +247,21 @@ public abstract class Map {
     }
 
     public void setIdSwitch(int idSwitch) {
-        // 0 for main map, 1 for cce
+        // 0 for main map, 1 for cce, 2 for Ice rink
         this.idSwitch = idSwitch;
+    }
+    
+    public void setCurrentChoice(int currentChoice) {
+        // 0 for main map, 1 for cce, 2 for Ice rink
+        this.currentChoice = currentChoice;
     }
 
     public int getIdSwitch() {
         return idSwitch;
+    }
+
+    public int getCurrentChoice() {
+        return currentChoice;
     }
 
     public void setMapInt(int mapInt) {
