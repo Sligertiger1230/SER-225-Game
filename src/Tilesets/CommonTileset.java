@@ -1351,52 +1351,92 @@ public class CommonTileset extends Tileset {
 
                 mapTiles.add(whiteboardTopMarksOneTile);
 
-                // whiteboard top with marks
+                // Whiteboard top with marks
                 Frame whiteboardTopMarksTwoFrame = new FrameBuilder(getSubImage(14, 9))
-                                .withScale(tileScale)
-                                .build();
+                        .withScale(tileScale)
+                        .build();
 
                 MapTileBuilder whiteboardTopMarksTwoTile = new MapTileBuilder(whiteboardBottomFrame)
-                                .withTopLayer(whiteboardTopMarksTwoFrame)
-                                .withTileType(TileType.NOT_PASSABLE);
+                        .withTopLayer(whiteboardTopMarksTwoFrame)
+                        .withTileType(TileType.NOT_PASSABLE);
 
                 mapTiles.add(whiteboardTopMarksTwoTile);
 
-                // white color
-                Frame whiteColorFrame = new FrameBuilder(getSubImage(3, 12))
-                                .withScale(tileScale)
-                                .build();
+                // Student center dark panel
+                Frame scDarkPanelFrame = new FrameBuilder(getSubImage(9, 11))
+                        .withScale(tileScale)
+                        .build();
+                MapTileBuilder scDarkPanelTile = new MapTileBuilder(scDarkPanelFrame)
+                        .withTopLayer(scDarkPanelFrame)
+                        .withTileType(TileType.NOT_PASSABLE);
+                mapTiles.add(scDarkPanelTile);
 
-                MapTileBuilder whiteColorTile = new MapTileBuilder(whiteColorFrame);
+                // Student center dark panel side left
+                Frame scDarkPanelSideLeftFrame = new FrameBuilder(getSubImage(11, 11))
+                        .withScale(tileScale)
+                        .build();
+                MapTileBuilder scDarkPanelSideLeftTile = new MapTileBuilder(scDarkPanelSideLeftFrame)
+                        .withTopLayer(scDarkPanelSideLeftFrame)
+                        .withTileType(TileType.NOT_PASSABLE);
+                mapTiles.add(scDarkPanelSideLeftTile);
 
-                mapTiles.add(whiteColorTile);
+                // Student center dark panel side right
+                Frame scDarkPanelSideRightFrame = new FrameBuilder(getSubImage(10, 11))
+                        .withScale(tileScale)
+                        .build();
+                MapTileBuilder scDarkPanelSideRightTile = new MapTileBuilder(scDarkPanelSideRightFrame); 
 
-                // grass
-                Frame redColorFrame = new FrameBuilder(getSubImage(4, 12))
-                                .withScale(tileScale)
-                                .build();
+                 //  quad white thing
+                Frame quadWhiteBumpFrame = new FrameBuilder(getSubImage(14, 5))
+                .withScale(tileScale)
+                .build();
+                MapTileBuilder quadWhiteBumpTile = new MapTileBuilder(grassFrame)
+                .withTopLayer(quadWhiteBumpFrame)
+                .withTileType(TileType.NOT_PASSABLE);
+                mapTiles.add(quadWhiteBumpTile);
+                //  outside table chair 
+                Frame outsideTableChairRightFrame = new FrameBuilder(getSubImage(14, 10))
+                .withScale(tileScale)
+                .build();
+                MapTileBuilder outsideTableChairRightTile = new MapTileBuilder(horizontalBrickFrame)
+                .withTopLayer(outsideTableChairRightFrame)
+                .withTileType(TileType.NOT_PASSABLE);
+                mapTiles.add(outsideTableChairRightTile);
+                //  outside table chair left
+                Frame outsideTableChairLeftFrame = new FrameBuilder(getSubImage(15, 9))
+                .withScale(tileScale)
+                .build();
+                MapTileBuilder outsideTableChairLeftTile = new MapTileBuilder(horizontalBrickFrame)
+                .withTopLayer(outsideTableChairLeftFrame)
+                .withTileType(TileType.NOT_PASSABLE);
+                mapTiles.add(outsideTableChairLeftTile);
+                // sewer cap frame
+                Frame sewerCapFrame = new FrameBuilder(getSubImage(13, 7))
+                        .withScale(tileScale)
+                        .build();
+                MapTileBuilder sewerCapTile = new MapTileBuilder(sewerCapFrame);
+                mapTiles.add(sewerCapTile);
 
-                MapTileBuilder redColorTile = new MapTileBuilder(redColorFrame);
+                
 
-                mapTiles.add(redColorTile);
 
-                // grass
-                Frame yellowColorFrame = new FrameBuilder(getSubImage(5, 12))
-                                .withScale(tileScale)
-                                .build();
 
-                MapTileBuilder yellowColorTile = new MapTileBuilder(yellowColorFrame);
 
-                mapTiles.add(yellowColorTile);
 
-                // grass
-                Frame blueColorFrame = new FrameBuilder(getSubImage(6, 12))
-                                .withScale(tileScale)
-                                .build();
 
-                MapTileBuilder blueColorTile = new MapTileBuilder(blueColorFrame);
 
-                mapTiles.add(blueColorTile);
+
+
+
+
+
+
+
+
+
+
+      
+
 
                 // tree trunk with full hole
                 // Frame treeTrunkWithFullHoleFrame = new FrameBuilder(getSubImage(2, 2))
