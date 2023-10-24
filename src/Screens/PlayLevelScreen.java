@@ -40,6 +40,9 @@ public class PlayLevelScreen extends Screen {
         //Walrus Fish quest
         flagManager.addFlag("RedFish", false);
         flagManager.addFlag("PurpleFish", false);
+        
+        //pubSafetyDect flags
+        flagManager.addFlag("hasEncounteredDect");
 
         // java john quest flags. This is the best way to have flags right now
         // will organize them better, but we will always have to instantiate them
