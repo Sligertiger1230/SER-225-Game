@@ -36,6 +36,9 @@ public class PlayLevelScreen extends Screen {
         // setup state
         flagManager = new FlagManager();
 
+        //pubSafetyDect flags
+        flagManager.addFlag("hasEncounteredDect");
+
         // java john quest flags. This is the best way to have flags right now
         // will organize them better, but we will always have to instantiate them
         // beforehand
@@ -167,9 +170,10 @@ public class PlayLevelScreen extends Screen {
     }
 
     public Map loadMap(int mapId) {
+        Map newMap;
         switch (mapId) {
             case 0:
-                Map newMap = new TestMap();
+                newMap = new TestMap();
                 newMap.setFlagManager(flagManager);
                 newMap.setNPCs();
                 newMap.setQuestMenu(questMenu);
