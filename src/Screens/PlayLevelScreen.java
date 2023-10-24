@@ -94,7 +94,7 @@ public class PlayLevelScreen extends Screen {
             }
         }
 
-        triggerSize = map.getUpdatedTriggerSize();
+        triggerSize = 0;
 
         for (Trigger trigger : map.getTriggers()) {
             if (trigger.getTriggerScript() != null) {
@@ -115,6 +115,28 @@ public class PlayLevelScreen extends Screen {
 
                 player.update();
                 map.update(player);
+
+                // updateTriggers changes size of map triggers size. so check if previous value
+                // stored is the same
+                // if its not
+                if (map.getUpdatedTriggerSize() != triggerSize) {
+                    System.out.println(map.getUpdatedTriggerSize() + " " + triggerSize);
+                    // go through every new trigger addition
+                    for (int index = triggerSize; index < map.getUpdatedTriggerSize(); index++) {
+                        if (map.getUpdatedTriggers().get(index).getMapInt() == map.getMapInt()) {
+                            System.out.println(index);
+                            System.out.println("adding trigger");
+                            System.out.println(map.getUpdatedTriggers().get(index).getTrigger().getExistenceFlag());
+                            System.out.println(map.getUpdatedTriggers().get(index).getTrigger().getX());
+                            System.out.println(map.getUpdatedTriggers().get(index).getTrigger().getY());
+                            System.out.println(
+                                    map.getUpdatedTriggers().get(index).getTrigger().getTriggerScript().toString());
+                            map.getUpdatedTriggers().get(index).getTrigger().getTriggerScript().setMap(map);
+                            map.getUpdatedTriggers().get(index).getTrigger().getTriggerScript().setPlayer(player);
+                        }
+                    }
+                    triggerSize = map.getUpdatedTriggerSize();
+                }
                 if (map.getMapInt() != map.getIdSwitch()) {
                     this.map = loadMap(map.getIdSwitch());
                     this.map.setFlagManager(flagManager);
@@ -124,30 +146,12 @@ public class PlayLevelScreen extends Screen {
                     Point playerStartPosition = map.getPlayerStartPosition();
                     this.player.setLocation(playerStartPosition.x, playerStartPosition.y);
                 }
-                // updateTriggers changes size of map triggers size. so check if previous value
-                // stored is the same
-                // if its not
-                if (map.getUpdatedTriggerSize() != triggerSize) {
-                    // go through every new trigger addition
-                    for (int index = triggerSize; index < map.getUpdatedTriggerSize(); index++) {
-                        if (map.getUpdatedTriggers().get(index).getMapInt() == map.getMapInt()) {
-                            map.getUpdatedTriggers().get(index).getTrigger().getTriggerScript().setMap(map);
-                            map.getUpdatedTriggers().get(index).getTrigger().getTriggerScript().setPlayer(player);
-                        }
-                    }
-                    triggerSize = map.getUpdatedTriggerSize();
-                }
                 break;
             // if level has been completed, bring up level cleared screen
             case LEVEL_COMPLETED:
                 winScreen.update();
                 break;
         }
-
-        // if flag is set at any point during gameplay, game is "won"
-        // if (map.getFlagManager().isFlagSet("hasFoundBall")) {
-        // playLevelScreenState = PlayLevelScreenState.LEVEL_COMPLETED;
-        // }
     }
 
     public void draw(GraphicsHandler graphicsHandler) {
@@ -211,9 +215,9 @@ public class PlayLevelScreen extends Screen {
 
         for (QuestTrigger trigger : map.getUpdatedTriggers()) {
             if (trigger.getTrigger().getTriggerScript() != null) {
-                System.out.println(trigger.getMapInt() + " " + map.getMapInt());
                 if (trigger.getMapInt() == map.getMapInt()) {
-                    System.out.println("Added to map");
+                    trigger.getTrigger().setMap(map);
+                    map.getTriggers().add(trigger.getTrigger());
                     trigger.getTrigger().getTriggerScript().setMap(map);
                     trigger.getTrigger().getTriggerScript().setPlayer(player);
                 }

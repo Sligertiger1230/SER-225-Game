@@ -166,6 +166,7 @@ public class Camera extends Rectangle {
     public void draw(GraphicsHandler graphicsHandler) {
         drawMapTilesBottomLayer(graphicsHandler);
         drawMapTilesTopLayer(graphicsHandler);
+        
     }
 
     public void draw(Player player, GraphicsHandler graphicsHandler) {

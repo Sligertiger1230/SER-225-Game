@@ -43,10 +43,24 @@ public class NPC extends MapEntity {
     }
 
     public void facePlayer(Player player) {
-        if (Math.round(getBoundsX2()) - (getBounds().getWidth() / 2) < Math.round(player.getBoundsX2())) {
-            this.currentAnimationName = "STAND_RIGHT";
-        } else if (Math.round(getBoundsX1()) + (getBounds().getWidth() / 2) > Math.round(player.getBoundsX1())) {
+        if (Math.round(getBoundsY1()) + (getBounds().getHeight() / 2) > Math.round(player.getBoundsY2())
+                && Math.round(player.getBoundsX1()) + (player.getBounds().getWidth() / 2) > Math.round(getBoundsX1())
+                && Math.round(player.getBoundsX1()) + (player.getBounds().getWidth() / 2) < Math.round(getBoundsX2())) {
+            this.currentAnimationName = "STAND_UP";
+        } else if (Math.round(getBoundsY2()) - (getBounds().getHeight() / 2) < Math.round(player.getBoundsY1())
+                && Math.round(player.getBoundsX1()) + (player.getBounds().getWidth() / 2) > Math.round(getBoundsX1())
+                && Math.round(player.getBoundsX1()) + (player.getBounds().getWidth() / 2) < Math.round(getBoundsX2())) {
+            this.currentAnimationName = "STAND_DOWN";
+        } else if (Math.round(getBoundsX1()) + (getBounds().getWidth() / 2) > Math.round(player.getBoundsX2())
+                && Math.round(player.getBoundsY1()) + (player.getBounds().getHeight() / 2) > Math.round(getBoundsY1())
+                && Math.round(player.getBoundsY1()) + (player.getBounds().getHeight() / 2) < Math
+                        .round(getBoundsY2())) {
             this.currentAnimationName = "STAND_LEFT";
+        } else if (Math.round(getBoundsX2()) - (getBounds().getHeight() / 2) < Math.round(player.getBoundsX1())
+                && Math.round(player.getBoundsY1()) + (player.getBounds().getHeight() / 2) > Math.round(getBoundsY1())
+                && Math.round(player.getBoundsY1()) + (player.getBounds().getHeight() / 2) < Math
+                        .round(getBoundsY2())) {
+            this.currentAnimationName = "STAND_RIGHT";
         }
     }
 
@@ -69,11 +83,17 @@ public class NPC extends MapEntity {
             this.currentAnimationName = "WALK_LEFT";
         } else if (direction == Direction.UP) {
             this.currentAnimationName = "WALK_UP";
+        } else if (direction == Direction.DOWN) {
+            this.currentAnimationName = "WALK_DOWN";
         } else {
             if (this.currentAnimationName.contains("RIGHT")) {
                 this.currentAnimationName = "WALK_RIGHT";
-            } else {
+            } else if (this.currentAnimationName.contains("LEFT")) {
                 this.currentAnimationName = "WALK_LEFT";
+            } else if (this.currentAnimationName.contains("UP")) {
+                this.currentAnimationName = "WALK_UP";
+            } else if (this.currentAnimationName.contains("DOWN")) {
+                this.currentAnimationName = "WALK_DOWN";
             }
         }
         if (direction == Direction.UP) {

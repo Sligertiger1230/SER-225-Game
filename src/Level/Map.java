@@ -340,7 +340,7 @@ public abstract class Map {
     }
 
     // updates the triggers
-    public ArrayList<QuestTrigger> updateTriggers() {
+    public ArrayList<QuestTrigger> figgers() {
         ArrayList<QuestTrigger> newTriggers = new ArrayList<QuestTrigger>();
 
         // searches each quest menu quest with index
@@ -559,6 +559,27 @@ public abstract class Map {
         return false;
     }
 
+    // updates the triggers
+    public ArrayList<QuestTrigger> updateTriggers() {
+        ArrayList<QuestTrigger> newTriggers = new ArrayList<>();
+
+        // searches each quest menu quest with index
+        for (int index = 0; index < getQuestMenu().getQuests().size(); index++) {
+            // if a quest in quest menu is still a new quest
+            if (getQuestMenu().isNewQuestStatus(index)) {
+                // go through each trigger in the quest
+                for (int triggerIndex = 0; triggerIndex < getQuestMenu().getTriggerList(index)
+                        .size(); triggerIndex++) {
+                    // adds the trigger to newTriggers
+                    newTriggers.add(getQuestMenu().getTriggerList(index).get(triggerIndex));
+                }
+                // sets the quest just added to false
+                getQuestMenu().setNewQuestStatus(index, false);
+            }
+        }
+        return newTriggers;
+    }
+
     public void update(Player player) {
         if (adjustCamera) {
             adjustMovementY(player);
@@ -575,13 +596,17 @@ public abstract class Map {
 
             newTriggers = updateTriggers();
 
-            // the some new triggers were actually added, then run
+            // if some new triggers were actually added, then run
             if (newTriggers != null) {
                 // runs a for loop going through every trigger in updatedTriggers
                 for (QuestTrigger trigger : newTriggers) {
                     // adds it's flag to flag manager
-                    flagManager.addFlag((trigger.getTrigger().getExistenceFlag()), false);
+                    //flagManager.addFlag((trigger.getTrigger().getExistenceFlag()), false);
                     // adds it to map arrayList for triggers
+                    if (trigger.getMapInt() == mapInt){
+                        trigger.getTrigger().setMap(this);
+                        triggers.add(trigger.getTrigger());
+                    }
                     updatedTriggers.add(trigger);
                 }
             }

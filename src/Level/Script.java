@@ -162,6 +162,11 @@ public abstract class Script<T extends MapEntity> {
         map.getPortrait().setPortraitIsActive(true);
     }
 
+    protected void showPortrait(String imageName, int scale){
+        map.getPortrait().setPortraitImage(imageName, scale);
+        map.getPortrait().setPortraitIsActive(true);
+    }
+
     // adds text to be shown in textbox
     protected void addTextToTextboxQueue(String text) {
         map.getTextbox().addText(text);

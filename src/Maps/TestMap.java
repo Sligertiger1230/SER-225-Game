@@ -11,12 +11,13 @@ import NPCs.Walrus;
 import Players.Cat;
 import NPCs.JavaJohn;
 import NPCs.JavaJohnGlasses;
+import NPCs.PubSafetyDect;
 import Scripts.SimpleTextScript;
 import Scripts.CCEClassroom.ChangeMapScript;
 import Scripts.Quests.*;
 import Scripts.TestMap.DinoScript;
 import Scripts.TestMap.LostBallScript;
-import Scripts.TestMap.TeleportScript;
+//import Scripts.TestMap.TeleportScript;
 import Scripts.TestMap.TreeScript;
 import Scripts.TestMap.WalrusScript;
 import Tilesets.CommonTileset;
@@ -73,6 +74,10 @@ public class TestMap extends Map {
         }
         npcs.add(javaJohnGlasses);
 
+        PubSafetyDect pubSafetyDect = new PubSafetyDect(4, getMapTile(45, 47).getLocation());
+        pubSafetyDect.setInteractScript(new PubSafetyDectScript());
+        npcs.add(pubSafetyDect);
+
         return npcs;
     }
 
@@ -84,7 +89,6 @@ public class TestMap extends Map {
         triggers.add(new Trigger(790, 1030, 100, 10, new LostBallScript(), "hasLostBall"));
         triggers.add(new Trigger(790, 960, 10, 80, new LostBallScript(), "hasLostBall"));
         triggers.add(new Trigger(890, 960, 10, 80, new LostBallScript(), "hasLostBall"));
-        triggers.add(new Trigger(3000, 1550, 10, 200, new JavaJohnWalkScript(), "hasEncounteredJavaJohnWalk"));
         return triggers;
     }
 
