@@ -1,4 +1,5 @@
 package Level;
+
 // the data type of the sprite that appears when you speak to an npc
 import Engine.GraphicsHandler;
 import GameObject.Sprite;
@@ -13,28 +14,37 @@ public class Portrait extends Screen {
     protected final float imageX = 50;
     protected float imageY;
     protected int spriteHeight;
+    protected int scale;
     protected BufferedImage image;
     protected String imageName;
     private Map map;
 
-    public Portrait(Map map){
+    public Portrait(Map map) {
         this.map = map;
         this.portrait = null;
         this.imageName = null;
+        this.scale = 1;
     }
 
-    public BufferedImage getPortrait(){
+    public BufferedImage getPortrait() {
         return image;
     }
 
-    public int getHeight(){
+    public int getHeight() {
         return ImageLoader.load(imageName).getHeight(null);
     }
 
-    public void setPortraitImage(String imageName){
+    public void setPortraitImage(String imageName) {
         this.imageName = imageName;
         image = ImageLoader.load(imageName);
         spriteHeight = image.getHeight();
+    }
+
+    public void setPortraitImage(String imageName, int scale) {
+        this.imageName = imageName;
+        image = ImageLoader.load(imageName);
+        spriteHeight = image.getHeight();
+        this.scale = scale;
     }
 
     public void setPortraitIsActive(Boolean isActive) {
@@ -45,15 +55,14 @@ public class Portrait extends Screen {
         return isActive;
     }
 
-    public void updateImage(Boolean update){
-        if(update){
-            imageY = 460 - spriteHeight;
-        }
-        else{
-            imageY = 0 - spriteHeight;
+    public void updateImage(Boolean update) {
+        if (update) {
+            imageY = 460 - (spriteHeight * scale);
+        } else {
+            imageY = 0 - (spriteHeight * scale);
         }
         portrait = new Sprite(image, imageX, imageY);
-        portrait.setScale(1);
+        portrait.setScale(scale);
     }
 
     @Override
@@ -72,8 +81,7 @@ public class Portrait extends Screen {
     public void draw(GraphicsHandler graphicsHandler) {
         if (!map.getCamera().isAtBottomOfMap()) {
             updateImage(true);
-        }
-        else {
+        } else {
             updateImage(false);
         }
         portrait.draw(graphicsHandler);

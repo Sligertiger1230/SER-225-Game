@@ -13,13 +13,14 @@ import NPCs.WalrusPurpFish;
 import Players.Cat;
 import NPCs.JavaJohn;
 import NPCs.JavaJohnGlasses;
+import NPCs.PubSafetyDect;
 import Scripts.SimpleTextScript;
 import Scripts.CCEClassroom.ChangeMapScript;
 import Scripts.CCEClassroom.ChangeToIceRinkScript;
 import Scripts.Quests.*;
 import Scripts.TestMap.DinoScript;
 import Scripts.TestMap.LostBallScript;
-import Scripts.TestMap.TeleportScript;
+//import Scripts.TestMap.TeleportScript;
 import Scripts.TestMap.TreeScript;
 import Scripts.TestMap.WalrusScript;
 import Tilesets.CommonTileset;
@@ -102,6 +103,10 @@ public class TestMap extends Map {
 
 
 
+
+        PubSafetyDect pubSafetyDect = new PubSafetyDect(4, getMapTile(45, 47).getLocation());
+        pubSafetyDect.setInteractScript(new PubSafetyDectScript());
+        npcs.add(pubSafetyDect);
 
         return npcs;
 

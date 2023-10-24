@@ -93,7 +93,7 @@ public class QuestMenu extends Screen {
     }
 
     // retrieves triggerList of specific quest in quest menu
-    public ArrayList<Trigger> getTriggerList(int index) {
+    public ArrayList<QuestTrigger> getTriggerList(int index) {
         return quests.get(index).getTriggerList();
     }
 

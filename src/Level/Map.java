@@ -67,7 +67,8 @@ public abstract class Map {
     protected ArrayList<EnhancedMapTile> enhancedMapTiles;
     protected ArrayList<NPC> npcs;
     protected ArrayList<Trigger> triggers;
-    protected ArrayList<Trigger> updatedTriggers;
+    protected ArrayList<QuestTrigger> updatedTriggers;
+    protected ArrayList<QuestTrigger> newTriggers;
 
     protected Script activeInteractScript;
 
@@ -102,6 +103,7 @@ public abstract class Map {
         this.xMidPoint = ScreenManager.getScreenWidth() / 2;
         this.yMidPoint = (ScreenManager.getScreenHeight() / 2);
         this.playerStartPosition = new Point(0, 0);
+        this.updatedTriggers = new ArrayList<QuestTrigger>();
     }
 
     // sets up map by reading in the map file to create the tile map
@@ -349,8 +351,8 @@ public abstract class Map {
     }
 
     // updates the triggers
-    public ArrayList<Trigger> updateTriggers() {
-        ArrayList<Trigger> newTriggers = new ArrayList<>();
+    public ArrayList<QuestTrigger> figgers() {
+        ArrayList<QuestTrigger> newTriggers = new ArrayList<QuestTrigger>();
 
         // searches each quest menu quest with index
         for (int index = 0; index < getQuestMenu().getQuests().size(); index++) {
@@ -367,6 +369,14 @@ public abstract class Map {
             }
         }
         return newTriggers;
+    }
+
+    public ArrayList<QuestTrigger> getUpdatedTriggers() {
+        return updatedTriggers;
+    }
+
+    public int getUpdatedTriggerSize() {
+        return updatedTriggers.size();
     }
 
     public Camera getCamera() {
@@ -560,6 +570,27 @@ public abstract class Map {
         return false;
     }
 
+    // updates the triggers
+    public ArrayList<QuestTrigger> updateTriggers() {
+        ArrayList<QuestTrigger> newTriggers = new ArrayList<>();
+
+        // searches each quest menu quest with index
+        for (int index = 0; index < getQuestMenu().getQuests().size(); index++) {
+            // if a quest in quest menu is still a new quest
+            if (getQuestMenu().isNewQuestStatus(index)) {
+                // go through each trigger in the quest
+                for (int triggerIndex = 0; triggerIndex < getQuestMenu().getTriggerList(index)
+                        .size(); triggerIndex++) {
+                    // adds the trigger to newTriggers
+                    newTriggers.add(getQuestMenu().getTriggerList(index).get(triggerIndex));
+                }
+                // sets the quest just added to false
+                getQuestMenu().setNewQuestStatus(index, false);
+            }
+        }
+        return newTriggers;
+    }
+
     public void update(Player player) {
         if (adjustCamera) {
             adjustMovementY(player);
@@ -574,19 +605,20 @@ public abstract class Map {
             // updates quest info
             questMenu.update();
 
-            // creates a placeholder version for the most recent triggers added
-            updatedTriggers = updateTriggers();
+            newTriggers = updateTriggers();
 
-            // the some new triggers were actually added, then run
-            if (updatedTriggers != null) {
+            // if some new triggers were actually added, then run
+            if (newTriggers != null) {
                 // runs a for loop going through every trigger in updatedTriggers
-                for (Trigger trigger : this.updatedTriggers) {
+                for (QuestTrigger trigger : newTriggers) {
                     // adds it's flag to flag manager
-                    flagManager.addFlag((trigger.getExistenceFlag()), false);
-                    // sets it to current map
-                    trigger.setMap(this);
+                    //flagManager.addFlag((trigger.getTrigger().getExistenceFlag()), false);
                     // adds it to map arrayList for triggers
-                    triggers.add(trigger);
+                    if (trigger.getMapInt() == mapInt){
+                        trigger.getTrigger().setMap(this);
+                        triggers.add(trigger.getTrigger());
+                    }
+                    updatedTriggers.add(trigger);
                 }
             }
         }
