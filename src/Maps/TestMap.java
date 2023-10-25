@@ -11,8 +11,17 @@ import NPCs.Walrus;
 import Players.Cat;
 import NPCs.JavaJohn;
 import NPCs.JavaJohnGlasses;
+import NPCs.NPCBoy1;
+import NPCs.NPCBoy2;
+import NPCs.NPCGirl1;
+import NPCs.NPCSwimmer;
+import NPCs.Nathan;
 import Scripts.SimpleTextScript;
 import Scripts.CCEClassroom.ChangeMapScript;
+import Scripts.NPCDialogue.NPCBoy1Script;
+import Scripts.NPCDialogue.NPCBoy2Script;
+import Scripts.NPCDialogue.NPCGirl1Script;
+import Scripts.NPCDialogue.NPCSwimmerScript;
 import Scripts.Quests.*;
 import Scripts.TestMap.DinoScript;
 import Scripts.TestMap.LostBallScript;
@@ -47,7 +56,7 @@ public class TestMap extends Map {
     public ArrayList<NPC> loadNPCs() {
         ArrayList<NPC> npcs = new ArrayList<>();
 
-        Walrus walrus = new Walrus(0, getMapTile(4, 28).getLocation().subtractY(40));
+        Walrus walrus = new Walrus(0, getMapTile(67, 12).getLocation().subtractY(40));
         walrus.setInteractScript(new WalrusScript());
         npcs.add(walrus);
 
@@ -66,6 +75,31 @@ public class TestMap extends Map {
         javaJohnGlasses.setInteractScript(new JavaJohnGlassesScript());
         javaJohnGlasses.setIsHidden(true);
         npcs.add(javaJohnGlasses);
+
+        // adds Nathan
+        Nathan nathan = new Nathan(2, getMapTile(6, 33).getLocation());
+        nathan.setInteractScript(new NathanScript());
+        npcs.add(nathan);
+
+        // adds an npc boy (brunette white shirt)
+        NPCBoy1 npcBoy1 = new NPCBoy1(4, getMapTile(20, 6).getLocation());
+        npcBoy1.setInteractScript(new NPCBoy1Script());
+        npcs.add(npcBoy1);
+        
+        // adds an npc girl (blonde with green shirt)
+        NPCGirl1 npcGirl1 = new NPCGirl1(4, getMapTile(52, 32).getLocation());
+        npcGirl1.setInteractScript(new NPCGirl1Script());
+        npcs.add(npcGirl1);
+
+        // adds an npc boy (red shirt hat)
+        NPCBoy2 npcBoy2 = new NPCBoy2(4, getMapTile(4, 33).getLocation());
+        npcBoy2.setInteractScript(new NPCBoy2Script());
+        npcs.add(npcBoy2);
+
+        // adds an npc swimmer
+        NPCSwimmer npcSwimmer = new NPCSwimmer(4, getMapTile(85, 52).getLocation());
+        npcSwimmer.setInteractScript(new NPCSwimmerScript());
+        npcs.add(npcSwimmer);
 
         return npcs;
     }

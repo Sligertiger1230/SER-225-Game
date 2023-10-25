@@ -36,11 +36,18 @@ public class PlayLevelScreen extends Screen {
         flagManager.addFlag("hasEncounteredJavaJohnWalk", false);
         flagManager.addFlag("isJavaJohnFloating", false);
 
+        //Nathan quest flags
+        flagManager.addFlag("hasTalkedToNathan", false);
+
         // base game flags
         flagManager.addFlag("hasLostBall", false);
         flagManager.addFlag("hasTalkedToWalrus", false);
         flagManager.addFlag("hasTalkedToDinosaur", false);
         flagManager.addFlag("hasFoundBall", false);
+
+        //NPC flags
+        flagManager.addFlag("hasTalkedToNPCBoy1", false);
+        flagManager.addFlag("hasTalkedToNPCGirl1", false);
 
         // define/setup map
         this.map = new TestMap();
