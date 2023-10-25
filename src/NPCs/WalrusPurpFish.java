@@ -14,7 +14,7 @@ import Utils.Point;
 public class WalrusPurpFish extends NPC {
 
     public WalrusPurpFish(int id, Point location) {
-        super(id, location.x, location.y, new SpriteSheet(ImageLoader.load("red_fish.png"), 16, 16), "STAND_LEFT");
+        super(id, location.x, location.y, new SpriteSheet(ImageLoader.load("purple_fish.png"), 16, 16), "STAND_LEFT");
     }
 
     @Override

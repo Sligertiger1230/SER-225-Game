@@ -22,6 +22,8 @@ import Scripts.TestMap.DinoScript;
 import Scripts.TestMap.LostBallScript;
 //import Scripts.TestMap.TeleportScript;
 import Scripts.TestMap.TreeScript;
+import Scripts.TestMap.WalrusPurpFishScript;
+import Scripts.TestMap.WalrusRedFishScript;
 import Scripts.TestMap.WalrusScript;
 import Tilesets.CommonTileset;
 
@@ -80,25 +82,25 @@ public class TestMap extends Map {
         npcs.add(javaJohnGlasses);
         
 
-        WalrusFish walrusFish = new WalrusFish(4, getMapTile(98, 39).getLocation());
-        javaJohnGlasses.setInteractScript(new JavaJohnGlassesScript());
-        
-        WalrusPurpFish walrusPurpFish = new WalrusPurpFish(5, getMapTile(96, 39).getLocation());
-        javaJohnGlasses.setInteractScript(new JavaJohnGlassesScript());
+        WalrusFish walrusFish = new WalrusFish(6, getMapTile(4, 32).getLocation());
+        walrusFish.setInteractScript(new WalrusRedFishScript());
+        npcs.add(walrusFish);
 
-        if(getFlagManager().isFlagSet("RedFish")){
+        WalrusPurpFish walrusPurpFish = new WalrusPurpFish(5, getMapTile(4, 30).getLocation());
+        walrusPurpFish.setInteractScript(new WalrusPurpFishScript());
+
+        /*if(getFlagManager().isFlagSet("RedFish")){
             walrusFish.setIsHidden(false);
             walrusPurpFish.setIsHidden(true);
         }
         else if(getFlagManager().isFlagSet("PurpleFish")){
             walrusPurpFish.setIsHidden(false);
             walrusFish.setIsHidden(true);
-        }
-        else{
+        }*/
+        //else{
             walrusFish.setIsHidden(true);
             walrusPurpFish.setIsHidden(true);
-        }
-        npcs.add(walrusFish);
+        //}
         npcs.add(walrusPurpFish);
 
 

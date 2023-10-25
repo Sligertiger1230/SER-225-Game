@@ -40,7 +40,6 @@ public class PlayLevelScreen extends Screen {
         //Walrus Fish quest
         flagManager.addFlag("RedFish", false);
         flagManager.addFlag("PurpleFish", false);
-        
         //pubSafetyDect flags
         flagManager.addFlag("hasEncounteredDect");
 
@@ -185,11 +184,13 @@ public class PlayLevelScreen extends Screen {
                 return newMap;
             case 1:
                 newMap = new CCEClassroom();
-                newMap.setFlagManager(flagManager);
-                newMap.setNPCs();
-                newMap.setQuestMenu(questMenu);
+                //newMap.setFlagManager(flagManager);
+                //newMap.setNPCs();
+                //newMap.setQuestMenu(questMenu);
+                return newMap;
             case 2:
-                return new IceRink();
+                newMap = new IceRink();
+                return newMap;
             default:
                 return null;
         }
