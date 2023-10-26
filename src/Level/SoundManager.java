@@ -1,10 +1,10 @@
 package Level;
 
 public class SoundManager {
-    private Sounds backgroundMusic;
+    private Sound backgroundMusic;
 
     public SoundManager() {
-        backgroundMusic = new Sounds();
+        backgroundMusic = new Sound();
     }
 
     public void playBackgroundMusic(int musicIndex) {

@@ -2,8 +2,9 @@ package Builders;
 
 import GameObject.Frame;
 import GameObject.GameObject;
-import Level.MapTile;
 import Level.TileType;
+import Level.MapTile;
+import Level.SoundType; // Import the SoundType enum
 
 import java.util.HashMap;
 
@@ -11,9 +12,10 @@ import java.util.HashMap;
 public class MapTileBuilder {
 
     private TileType tileType = TileType.PASSABLE;
+    private SoundType soundType = SoundType.GRASS_SOUND; // Add the sound type
     private int tileIndex = -1;
-    private HashMap<String, Frame[]> bottomLayer = new HashMap<>();;
-    private HashMap<String, Frame[]> topLayer = new HashMap<>();;
+    private HashMap<String, Frame[]> bottomLayer = new HashMap<>();
+    private HashMap<String, Frame[]> topLayer = new HashMap<>();
 
     public MapTileBuilder(Frame bottomLayer) {
         this.bottomLayer.put("DEFAULT", new Frame[] { bottomLayer });
@@ -25,6 +27,11 @@ public class MapTileBuilder {
 
     public MapTileBuilder withTileType(TileType tileType) {
         this.tileType = tileType;
+        return this;
+    }
+
+    public MapTileBuilder withSoundType(SoundType soundType) {
+        this.soundType = soundType;
         return this;
     }
 
@@ -73,6 +80,6 @@ public class MapTileBuilder {
             topLayerAnimation = new GameObject(x, y, cloneAnimations(topLayer), "DEFAULT");
         }
 
-        return new MapTile(x, y, bottomLayerAnimation, topLayerAnimation, tileType, tileIndex);
+        return new MapTile(x, y, bottomLayerAnimation, topLayerAnimation, tileType, soundType, tileIndex);
     }
 }
