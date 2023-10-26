@@ -29,12 +29,12 @@ public class WalrusScript extends Script<NPC> {
 
     @Override
     protected void setup() {
+        lockPlayer();
         showPortrait("WalrusPortrait.png");
         showTextbox();
 
-        // changes what walrus says when talking to him the first time (flag is not set)
-        // vs talking to him afterwards (flag is set)
-        if (!isFlagSet("hasTalkedToWalrus")) {
+        // changes what walrus says when talking to him the first time (flag is not set) vs talking to him afterwards (flag is set)
+        if (!isFlagSet("hasTalkedToWalrus")){
             createStepList();
             // steps are the objectives that appear under the quest name in menu
             // wherever you type nextQuest(String questName), as long as the quest name
