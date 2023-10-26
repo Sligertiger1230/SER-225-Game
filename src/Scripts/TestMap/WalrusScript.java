@@ -9,6 +9,7 @@ import Level.Script;
 import Level.ScriptState;
 import Scripts.Quests.JavaJohnWalkScript;
 
+import java.security.Principal;
 import java.util.ArrayList;
 
 // script for talking to walrus npc
@@ -28,51 +29,43 @@ public class WalrusScript extends Script<NPC> {
 
     @Override
     protected void setup() {
-
-        createStepList();
-        //steps are the objectives that appear under the quest name in menu
-        //wherever you type nextQuest(String questName), as long as the quest name exists and is instantiated within memory, 
-        //it will advance to the next step. If there is no next step then quest is completed
-        //two new steps added
-        addStep("Find fish on the quad");
-        addStep("Take the fish back \nto Walrus");
-        // this.addKeyListener(Keyboard.getKeyListener());
-        createTriggerList();
-        //adds demonstration trigger
-        //REMINDER: triggers need script files to correlate to, don't add triggers without planninf
-        //addTrigger(3000, 1550, 10, 200, new JavaJohnWalkScript(), "hasEncounteredJavaJohnWalk", 0);
-        addQuest("Help walrus Get a fish");
-        lockPlayer();
-        setChoice(2);
         showPortrait("WalrusPortrait.png");
         showTextbox();
 
         // changes what walrus says when talking to him the first time (flag is not set) vs talking to him afterwards (flag is set)
         if (!isFlagSet("hasTalkedToWalrus")){
+            createStepList();
+            //steps are the objectives that appear under the quest name in menu
+            //wherever you type nextQuest(String questName), as long as the quest name exists and is instantiated within memory, 
+            //it will advance to the next step. If there is no next step then quest is completed
+            //two new steps added
+            addStep("Find fish on the quad");
+            addStep("Take the fish back \nto Walrus");
+            // this.addKeyListener(Keyboard.getKeyListener());
+            createTriggerList();
+            //adds demonstration trigger
+            //REMINDER: triggers need script files to correlate to, don't add triggers without planninf
+            //addTrigger(3000, 1550, 10, 200, new JavaJohnWalkScript(), "hasEncounteredJavaJohnWalk", 0);
+            addQuest("Help walrus Get a fish");
+            lockPlayer();
+            setChoice(2);
             addTextToTextboxQueue( "Hi Riley!");
             addTextToTextboxQueue( "I seem to have a problem,\nI just caught 2 fish from the pond");
             addTextToTextboxQueue("Can you go get me one of them", selections, answers);
         }
         else{
             if(isFlagSet("hasPickedUpPurpl")){
+                System.out.println("hi");
                 addTextToTextboxQueue( "Great, you found him.");
                 addTextToTextboxQueue( "Dinner?? \n Why would I eat a Fish?");
                 addTextToTextboxQueue( "I'm a vegitarian");
             }
             else if(isFlagSet("hasPickedUpRed")){
+                System.out.println("hi");
                 addTextToTextboxQueue( "Great, you found her.");
                 addTextToTextboxQueue( "Dinner?? \n Why would I eat a Fish?");
                 addTextToTextboxQueue( "I'm a vegitarian");
             }
-            /*else if (isFlagSet("RedFish")) {
-                // text reminding player to continue quest
-                addTextToTextboxQueue("You Still haven't seen it?,\nIt's by the Picnic tables");
-            }
-            else if (isFlagSet("PurpleFish")) {
-                // text reminding player to continue quest
-                addTextToTextboxQueue("You Still haven't seen it?,\nIt's by the Enterance to thet Engineering buildings.");
-                addTextToTextboxQueue("One of those Engineers must've taken it");
-            }*/
         }     
     }
 
