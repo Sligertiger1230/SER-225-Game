@@ -22,6 +22,14 @@ public class WalrusScript extends Script<NPC> {
     String[] selections = { "Red Fish", "  Purple Fish" };
     String[] answers = { "I think I dropped it right after I left the pond", "I think I left it by the Cafeteria" };
 
+     String[] selections2 = { "1", "  2" };
+    String[] answers2 = { "Making sure it can work with diff scripts \n 1, for the same npc", "Making sure it can work with diff scripts \n" + //
+            " 2, for the same npc" };
+
+     String[] selections3 = { "3", "  4" };
+    String[] answers3 = { "Making sure it can work with diff scripts \n 3, for the same npc", "Making sure it can work with diff scripts \n" + //
+            " 4, for the same npc" };
+
     // define keys
     protected KeyLocker keyLocker = new KeyLocker();
     protected Key Choice1_KEY = Key.UP;
@@ -61,15 +69,21 @@ public class WalrusScript extends Script<NPC> {
             addTextToTextboxQueue("Well, where's my fish?");
         } else if (isFlagSet("hasPickedUpFish")) {
             if (isFlagSet("redFish")) {
-                System.out.println("hi");
                 addTextToTextboxQueue("Great, you found him.");
                 addTextToTextboxQueue("Dinner?? \n Why would I eat a Fish?");
                 addTextToTextboxQueue("I'm a vegitarian");
+                nextStep("Help walrus Get a fish");
+                addTextToTextboxQueue("Make sure the textbox works again", selections2, answers2);
+                addTextToTextboxQueue("Goodbye my Friend \n I must go Catch More Fish");
+                addTextToTextboxQueue("For My aquarium");
             } else if (isFlagSet("purpleFish")) {
-                System.out.println("hi");
                 addTextToTextboxQueue("Great, you found her.");
                 addTextToTextboxQueue("Dinner?? \n Why would I eat a Fish?");
                 addTextToTextboxQueue("I'm a vegitarian");
+                nextStep("Help walrus Get a fish");
+                addTextToTextboxQueue("Make sure the textbox works again", selections3, answers3);
+                addTextToTextboxQueue("Goodbye my Friend \n I must go Catch More Fish");
+                addTextToTextboxQueue("For My aquarium");
             }
         }
     }
@@ -87,6 +101,9 @@ public class WalrusScript extends Script<NPC> {
             setFlag("purpleFish");
             getNPC(6).setIsHidden(false);
         }
+        if (isFlagSet("hasPickedUpFish")) {
+                getNPC(0).setIsHidden(true);
+            }
 
         // set flag so that if walrus is talked to again after the first time, what he
         // says changes
