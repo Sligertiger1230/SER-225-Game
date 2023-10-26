@@ -6,8 +6,19 @@ import Level.Map;
 import Level.NPC;
 // import Level.SoundManager;
 import Level.Trigger;
-import NPCs.*;
+import NPCs.Dinosaur;
+import NPCs.Walrus;
+import NPCs.WalrusFish;
+import NPCs.WalrusPurpFish;
 import Players.Cat;
+import NPCs.JavaJohn;
+import NPCs.JavaJohnGlasses;
+import NPCs.NPCBoy1;
+import NPCs.NPCBoy2;
+import NPCs.NPCGirl1;
+import NPCs.NPCSwimmer;
+import NPCs.Nathan;
+import NPCs.NathanBicycle;
 import Scripts.SimpleTextScript;
 import Scripts.CCEClassroom.ChangeMapScript;
 import Scripts.NPCDialogue.NPCBoy1Script;
@@ -82,16 +93,16 @@ public class TestMap extends Map {
         }
         npcs.add(javaJohnGlasses);
 
-        PubSafetyDect pubSafetyDect = new PubSafetyDect(4, getMapTile(45, 46).getLocation());
+        PubSafetyDect pubSafetyDect = new PubSafetyDect(4, getMapTile(45, 47).getLocation());
         pubSafetyDect.setInteractScript(new PubSafetyDectScript());
         npcs.add(pubSafetyDect);
         
  
-        WalrusPurpFish walrusPurpFish = new WalrusPurpFish(5, getMapTile(4, 30).getLocation());
+        WalrusPurpFish walrusPurpFish = new WalrusPurpFish(6, getMapTile(4, 30).getLocation());
         walrusPurpFish.setInteractScript(new WalrusPurpFishScript());
         npcs.add(walrusPurpFish);
-
-        WalrusFish walrusFish = new WalrusFish(6, getMapTile(5, 32).getLocation());
+        
+        WalrusFish walrusFish = new WalrusFish(5, getMapTile(5, 32).getLocation());
         walrusFish.setInteractScript(new WalrusRedFishScript());
         npcs.add(walrusFish);
 
@@ -129,10 +140,6 @@ public class TestMap extends Map {
         npcSwimmer.setInteractScript(new NPCSwimmerScript());
         npcs.add(npcSwimmer);
 
-        PubSDectLooker pubSDectLooker = new PubSDectLooker(13, getMapTile(95, 14).getLocation());
-        pubSDectLooker.setInteractScript(new PubSDectLookerScript());
-        npcs.add(pubSDectLooker);
-
         return npcs;
 
     }
@@ -141,10 +148,14 @@ public class TestMap extends Map {
     public ArrayList<Trigger> loadTriggers() {
         ArrayList<Trigger> triggers = new ArrayList<>();
 
-        triggers.add(new Trigger(2256, 1968, 196, 10, new PubSafetyDectScript(), "hasEncounteredPubSafetyDect"));
-        triggers.add(new Trigger(1776, 2304, 10, 196, new PubSafetyDectScript(), "hasEncounteredPubSafetyDect"));
+        triggers.add(new Trigger(2256, 1968, 196, 10, new PubSafetyDectScript(), "hasEncounteredDect"));
+        triggers.add(new Trigger(1920, 2304, 10, 196, new PubSafetyDectScript(), "hasEncounteredDect"));
 
         // base game triggers
+        //This is the code to display a textbox once a user moves in the test map for the first time 
+        /*triggers.add(new Trigger(790, 1030, 100, 10, new LostBallScript(), "hasLostBall"));
+        triggers.add(new Trigger(790, 960, 10, 80, new LostBallScript(), "hasLostBall"));
+        triggers.add(new Trigger(890, 960, 10, 80, new LostBallScript(), "hasLostBall"));*/
         return triggers;
     }
 

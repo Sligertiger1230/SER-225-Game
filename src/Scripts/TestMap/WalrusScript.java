@@ -29,11 +29,16 @@ public class WalrusScript extends Script<NPC> {
 
     @Override
     protected void setup() {
+        lockPlayer();
         showPortrait("WalrusPortrait.png");
         showTextbox();
 
-        // changes what walrus says when talking to him the first time (flag is not set) vs talking to him afterwards (flag is set)
-        if (!isFlagSet("hasTalkedToWalrus")){
+        if(isFlagSet("hasPickedUpRed") || isFlagSet("hasPickUpPurp") ){
+            System.out.println("hi");
+            addTextToTextboxQueue( "Great, you found him.");
+            addTextToTextboxQueue( "Dinner?? \n Why would I eat a Fish?");
+            addTextToTextboxQueue( "I'm a vegitarian");
+        } else {
             createStepList();
             //steps are the objectives that appear under the quest name in menu
             //wherever you type nextQuest(String questName), as long as the quest name exists and is instantiated within memory, 
@@ -53,20 +58,7 @@ public class WalrusScript extends Script<NPC> {
             addTextToTextboxQueue( "I seem to have a problem,\nI just caught 2 fish from the pond");
             addTextToTextboxQueue("Can you go get me one of them", selections, answers);
         }
-        else{
-            if(isFlagSet("hasPickedUpPurpl")){
-                System.out.println("hi");
-                addTextToTextboxQueue( "Great, you found him.");
-                addTextToTextboxQueue( "Dinner?? \n Why would I eat a Fish?");
-                addTextToTextboxQueue( "I'm a vegitarian");
-            }
-            else if(isFlagSet("hasPickedUpRed")){
-                System.out.println("hi");
-                addTextToTextboxQueue( "Great, you found her.");
-                addTextToTextboxQueue( "Dinner?? \n Why would I eat a Fish?");
-                addTextToTextboxQueue( "I'm a vegitarian");
-            }
-        }     
+
     }
 
     @Override
