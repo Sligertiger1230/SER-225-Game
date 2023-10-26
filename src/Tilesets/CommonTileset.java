@@ -1707,6 +1707,201 @@ public class CommonTileset extends Tileset {
 
                 mapTiles.add(shuttleBottomLeftTile);
 
+                // boomer frame 1 
+                Frame boomer1Frame = new FrameBuilder(getSubImage(7, 13))
+                        .withScale(tileScale)
+                        .build();
+
+                MapTileBuilder boomer1Tile = new MapTileBuilder(boomer1Frame);
+                
+                mapTiles.add(boomer1Tile);
+
+                // boomer frame 2
+                Frame boomer2Frame = new FrameBuilder(getSubImage(7, 14))
+                        .withScale(tileScale)
+                        .build();
+
+                MapTileBuilder boomer2Tile = new MapTileBuilder(boomer2Frame);
+                
+                mapTiles.add(boomer2Tile);
+
+                 // boomer frame 3
+                Frame boomer3Frame = new FrameBuilder(getSubImage(7, 15))
+                        .withScale(tileScale)
+                        .build();
+
+                MapTileBuilder boomer3Tile = new MapTileBuilder(boomer3Frame);
+                
+                mapTiles.add(boomer3Tile);
+
+                 // boomer frame 4
+                Frame boomer4Frame = new FrameBuilder(getSubImage(8, 13))
+                        .withScale(tileScale)
+                        .build();
+
+                MapTileBuilder boomer4Tile = new MapTileBuilder(boomer4Frame);
+                
+                mapTiles.add(boomer4Tile);
+
+                 // boomer frame 5
+                Frame boomer5Frame = new FrameBuilder(getSubImage(8, 14))
+                        .withScale(tileScale)
+                        .build();
+
+                MapTileBuilder boomer5Tile = new MapTileBuilder(boomer5Frame);
+                
+                mapTiles.add(boomer5Tile);
+
+                 // boomer frame 6
+                Frame boomer6Frame = new FrameBuilder(getSubImage(8, 15))
+                        .withScale(tileScale)
+                        .build();
+
+                MapTileBuilder boomer6Tile = new MapTileBuilder(boomer6Frame);
+                
+                mapTiles.add(boomer6Tile);
+
+                 // boomer frame 7
+                Frame boomer7Frame = new FrameBuilder(getSubImage(9, 13))
+                        .withScale(tileScale)
+                        .build();
+
+                MapTileBuilder boomer7Tile = new MapTileBuilder(boomer7Frame);
+                
+                mapTiles.add(boomer7Tile);
+
+                 // boomer frame 8
+                Frame boomer8Frame = new FrameBuilder(getSubImage(9, 14))
+                        .withScale(tileScale)
+                        .build();
+
+                MapTileBuilder boomer8Tile = new MapTileBuilder(boomer8Frame);
+                
+                mapTiles.add(boomer8Tile);
+
+                   // boomer frame 9
+                Frame boomer9Frame = new FrameBuilder(getSubImage(9, 15))
+                        .withScale(tileScale)
+                        .build();
+
+                MapTileBuilder boomer9Tile = new MapTileBuilder(boomer9Frame);
+                
+                mapTiles.add(boomer9Tile);
+
+                   // boomer frame 10
+                Frame boomer10Frame = new FrameBuilder(getSubImage(10, 13))
+                        .withScale(tileScale)
+                        .build();
+
+                MapTileBuilder boomer10Tile = new MapTileBuilder(boomer10Frame);
+                
+                mapTiles.add(boomer10Tile);
+
+                  // boomer frame 11
+                Frame boomer11Frame = new FrameBuilder(getSubImage(10, 14))
+                        .withScale(tileScale)
+                        .build();
+
+                MapTileBuilder boomer11Tile = new MapTileBuilder(boomer11Frame);
+                
+                mapTiles.add(boomer11Tile);
+
+                  // boomer frame 12
+                Frame boomer12Frame = new FrameBuilder(getSubImage(10, 15))
+                        .withScale(tileScale)
+                        .build();
+
+                MapTileBuilder boomer12Tile = new MapTileBuilder(boomer12Frame);
+                
+                mapTiles.add(boomer12Tile);
+
+                  // red right top circle
+                Frame redTopRightCircleFrame = new FrameBuilder(getSubImage(4, 13))
+                        .withScale(tileScale)
+                        .build();
+
+                MapTileBuilder redTopRightCircleTile = new MapTileBuilder(redTopRightCircleFrame);
+                
+                mapTiles.add(redTopRightCircleTile);
+
+                  // red mid top circle
+                Frame redTopMidCircleFrame = new FrameBuilder(getSubImage(4, 14))
+                        .withScale(tileScale)
+                        .build();
+
+                MapTileBuilder redTopMidCircleTile = new MapTileBuilder(redTopMidCircleFrame);
+                
+                mapTiles.add(redTopMidCircleTile);
+
+                  // red mid top circle
+                Frame redTopLeftCircleFrame = new FrameBuilder(getSubImage(4, 15))
+                        .withScale(tileScale)
+                        .build();
+
+                MapTileBuilder redTopLeftCircleTile = new MapTileBuilder(redTopLeftCircleFrame);
+                
+                mapTiles.add(redTopLeftCircleTile);
+
+                  // red mid left circle
+                Frame redMidLeftCircleFrame = new FrameBuilder(getSubImage(5, 13))
+                        .withScale(tileScale)
+                        .build();
+
+                MapTileBuilder redMidLeftCircleTile = new MapTileBuilder(redMidLeftCircleFrame);
+                
+                mapTiles.add(redMidLeftCircleTile);
+
+                 // red mid mid circle
+                Frame redMidMidCircleFrame = new FrameBuilder(getSubImage(5, 14))
+                        .withScale(tileScale)
+                        .build();
+
+                MapTileBuilder redMidMidCircleTile = new MapTileBuilder(redMidMidCircleFrame);
+                
+                mapTiles.add(redMidMidCircleTile);
+
+                // red mid right circle
+                Frame redMidRightCircleFrame = new FrameBuilder(getSubImage(5, 15))
+                        .withScale(tileScale)
+                        .build();
+
+                MapTileBuilder redMidRightCircleTile = new MapTileBuilder(redMidRightCircleFrame);
+                
+                mapTiles.add(redMidRightCircleTile);
+
+                 // red bottom right circle
+                Frame redBotRightCircleFrame = new FrameBuilder(getSubImage(6, 15))
+                        .withScale(tileScale)
+                        .build();
+
+                MapTileBuilder redBotRightCircleTile = new MapTileBuilder(redBotRightCircleFrame);
+                
+                mapTiles.add(redBotRightCircleTile);
+
+                  // red bottom mid circle
+                Frame redBotMidCircleFrame = new FrameBuilder(getSubImage(6, 14))
+                        .withScale(tileScale)
+                        .build();
+
+                MapTileBuilder redBotMidCircleTile = new MapTileBuilder(redBotMidCircleFrame);
+                
+                mapTiles.add(redBotMidCircleTile);
+
+                  // red bottom left circle
+                Frame redBotLeftCircleFrame = new FrameBuilder(getSubImage(6, 13))
+                        .withScale(tileScale)
+                        .build();
+
+                MapTileBuilder redBotLeftCircleTile = new MapTileBuilder(redBotLeftCircleFrame);
+                
+                mapTiles.add(redBotLeftCircleTile);
+
+
+
+
+
+
+
                 
 
                 
