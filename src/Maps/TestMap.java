@@ -85,8 +85,6 @@ public class TestMap extends Map {
     public ArrayList<Trigger> loadTriggers() {
         ArrayList<Trigger> triggers = new ArrayList<>();
 
-        System.out.println(getMapTile(40, 48).getLocation());
-
         triggers.add(new Trigger(2256, 1968, 196, 10, new PubSafetyDectScript(), "hasEncounteredDect"));
         triggers.add(new Trigger(1920, 2304, 10, 196, new PubSafetyDectScript(), "hasEncounteredDect"));
 

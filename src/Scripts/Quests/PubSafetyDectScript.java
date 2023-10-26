@@ -7,53 +7,86 @@ import Utils.Direction;
 
 public class PubSafetyDectScript extends Script<NPC> {
     protected int amountMoved = 0;
+    protected boolean encounteredAbove = false;
+    protected boolean encounteredLeft = false;
+    protected boolean walkingAway = false;
 
     @Override
     protected void setup() {
         lockPlayer();
-        showPortrait("PubSafetyDectPortrait.png", 4);
-        showTextbox();
 
-        if (!isFlagSet("hasEncounteredDect")){
-            if (player.getX() > player.getY()){
-                entity.setLocation(player.getX(), player.getY() + 400);
+        if (!isFlagSet("hasEncounteredDect")) {
+            if (player.getX() > player.getY()) {
+                getNPC(4).setLocation(player.getX(), player.getY() + 240);
+                encounteredAbove = true;
+            } else if (player.getX() < player.getY()) {
+                getNPC(4).setLocation(player.getX() + 240, player.getY());
+                encounteredLeft = true;
             }
-            else if (player.getX() < player.getY()){
-                entity.setLocation(player.getX() + 100, player.getY());
-            }
-            addTextToTextboxQueue("HALT SUSPECT!!! Show me your qcard");
-            addTextToTextboxQueue(".... you're good. Rather dashing young man you are!");
-            addTextToTextboxQueue("Sorry for interrogating you, it's my job.\nFor am I DETECTIVE BOOKER");
-            addTextToTextboxQueue("Public safety detective, not a real detective\nWe've had a criminal on campus");
-            addTextToTextboxQueue("So I've taken measures to try and\nstop this fiend!");
-            addTextToTextboxQueue("If you see any suspicious figures around campus\nholla at your boy");
+            addTextToTextboxQueue("HALT SUSPECT!!! *sniffs* Are you a student? You\ndon't smell like one. Show me your qcard!");
+            addTextToTextboxQueue(".... you're good. Rather dashing young man you are!\nSorry for interrogating you, it's my job. For I am...");
+            addTextToTextboxQueue("DETECTIVE BOOKER!!!!!!!!! Well... public safety \ndetective, not a real detective. But I'm training to be a");
+            addTextToTextboxQueue("real detective. So, I apoligize for the sudden\ninterrogation, I did an stench assessment and");
+            addTextToTextboxQueue("determined you as a possible threat. But nope, you\njust smell bad. Anyways, normally I wouldn't stop you ");
+            addTextToTextboxQueue("like I did, but we've had a criminal on campus. So I've\nbeen taking extra measures to try and stop this fiend!");
+            addTextToTextboxQueue("If you see any suspicious figures around campus\nthen holla at your boy");
         }
     }
 
     @Override
     protected void cleanup() {
-        hideTextbox();
+        // hideTextbox();
         unlockPlayer();
-        hidePortrait();
+        // hidePortrait();
+
+        if (!isFlagSet("hasEncounteredDect")) {
+            getNPC(4).stand(Direction.DOWN);
+            setFlag("hasEncounteredDect");
+        }
     }
 
     @Override
     protected ScriptState execute() {
-        start();
-        if (!isFlagSet("hasEncounteredDect")){
+        if (!isFlagSet("hasEncounteredDect")) {
             start();
-            if (player.getX() > player.getY()){
-                entity.walk(Direction.UP, 3);
-                amountMoved+=3;
-                if (amountMoved != 350){
+            if (encounteredAbove) {
+                getNPC(4).walk(Direction.UP, 2);
+                amountMoved += 2;
+                if (amountMoved <= 192) {
+                    return ScriptState.RUNNING;
+                } else {
+                    encounteredAbove = false;
+                }
+            } else if (encounteredLeft) {
+                getNPC(4).walk(Direction.LEFT, 2);
+                amountMoved += 3;
+                if (amountMoved != 192) {
+                    return ScriptState.RUNNING;
+                } else {
+                    encounteredLeft = false;
+                }
+            }
+            if (!walkingAway) {
+                amountMoved = 0;
+                getNPC(4).facePlayer(player);
+                showTextbox();
+                showPortrait("PubSafetyDectPortrait.png", 4);
+            }
+            if (!isTextboxQueueEmpty()) {
+                return ScriptState.RUNNING;
+            }
+            hideTextbox();
+            hidePortrait();
+            if (isTextboxQueueEmpty()) {
+                getNPC(4).walk(Direction.DOWN, 2);
+                amountMoved += 2;
+                if (amountMoved <= 240) {
+                    walkingAway = true;
                     return ScriptState.RUNNING;
                 }
             }
-            else if (player.getX() < player.getY()){
-                entity.walk(Direction.LEFT, 3);
-                amountMoved+=3;
-            }
             end();
+            getNPC(4).setLocation(getMapTile(45, 47).getLocation().x, getMapTile(45, 47).getLocation().y);
         }
         return ScriptState.COMPLETED;
     }

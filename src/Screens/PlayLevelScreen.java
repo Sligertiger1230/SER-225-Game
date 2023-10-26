@@ -68,14 +68,6 @@ public class PlayLevelScreen extends Screen {
         // let pieces of map know which button to listen for as the "interact" button
         map.getTextbox().setInteractKey(player.getInteractKey());
 
-        /*
-         * mapTiles = new MapTile[2][];
-         * mapTiles[map.getMapInt()] = map.getMapTiles();
-         * 
-         * npcs.add(map.getNPCs());
-         * enhancedMapTiles.add(map.getEnhancedMapTiles());
-         * triggers.add(map.getTriggers());
-         */
 
         // setup map scripts to have references to the map and player
         for (MapTile mapTile : map.getMapTiles()) {
@@ -123,17 +115,9 @@ public class PlayLevelScreen extends Screen {
                 // stored is the same
                 // if its not
                 if (map.getUpdatedTriggerSize() != triggerSize) {
-                    System.out.println(map.getUpdatedTriggerSize() + " " + triggerSize);
                     // go through every new trigger addition
                     for (int index = triggerSize; index < map.getUpdatedTriggerSize(); index++) {
                         if (map.getUpdatedTriggers().get(index).getMapInt() == map.getMapInt()) {
-                            System.out.println(index);
-                            System.out.println("adding trigger");
-                            System.out.println(map.getUpdatedTriggers().get(index).getTrigger().getExistenceFlag());
-                            System.out.println(map.getUpdatedTriggers().get(index).getTrigger().getX());
-                            System.out.println(map.getUpdatedTriggers().get(index).getTrigger().getY());
-                            System.out.println(
-                                    map.getUpdatedTriggers().get(index).getTrigger().getTriggerScript().toString());
                             map.getUpdatedTriggers().get(index).getTrigger().getTriggerScript().setMap(map);
                             map.getUpdatedTriggers().get(index).getTrigger().getTriggerScript().setPlayer(player);
                         }
