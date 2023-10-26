@@ -77,11 +77,11 @@ public class WalrusScript extends Script<NPC> {
         var currentChoice = getChoice();
         if(currentChoice == 0){
                 setFlag("RedFish");
-                getNPC(6).setIsHidden(false);
+                getNPC(5).setIsHidden(false);
             }
             else if(currentChoice == 1){
                 setFlag("PurpleFish");
-                getNPC(5).setIsHidden(false);
+                getNPC(6).setIsHidden(false);
             }
 
         // set flag so that if walrus is talked to again after the first time, what he says changes

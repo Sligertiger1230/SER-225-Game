@@ -85,7 +85,8 @@ public abstract class Map {
     protected Textbox textbox;
 
     // map's Portrait instance
-    protected Portrait portrait;
+    protected Portrait portrait1;
+    protected Portrait portrait2;
 
     // map's quest menu
     protected QuestMenu questMenu;
@@ -130,7 +131,8 @@ public abstract class Map {
 
         this.camera = new Camera(0, 0, tileset.getScaledSpriteWidth(), tileset.getScaledSpriteHeight(), this);
         this.textbox = new Textbox(this);
-        this.portrait = new Portrait(this);
+        this.portrait1 = new Portrait(this);
+        this.portrait2 = new Portrait(this);
     }
 
     public void setNPCs() {
@@ -701,8 +703,11 @@ public abstract class Map {
 
     public void draw(Player player, GraphicsHandler graphicsHandler) {
         camera.draw(player, graphicsHandler);
-        if (portrait.isPortraitActive()) {
-            portrait.draw(graphicsHandler);
+        if (portrait1.isPortraitActive()) {
+            portrait1.draw(graphicsHandler);
+        }
+        if (portrait2.isPortraitActive()){
+            portrait2.draw(graphicsHandler);
         }
         if (textbox.isActive()) {
             textbox.draw(graphicsHandler);
@@ -737,9 +742,14 @@ public abstract class Map {
         questMenu.addQuest(newQuest);
     }
 
-    // fetches portrait
-    public Portrait getPortrait() {
-        return portrait;
+    // fetches portrait 1
+    public Portrait getPortrait1() {
+        return portrait1;
+    }
+
+     // fetches portrait 2
+    public Portrait getPortrait2() {
+        return portrait2;
     }
 
     public int getEndBoundX() {

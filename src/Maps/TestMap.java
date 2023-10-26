@@ -6,19 +6,8 @@ import Level.Map;
 import Level.NPC;
 // import Level.SoundManager;
 import Level.Trigger;
-import NPCs.Dinosaur;
-import NPCs.Walrus;
-import NPCs.WalrusFish;
-import NPCs.WalrusPurpFish;
+import NPCs.*;
 import Players.Cat;
-import NPCs.JavaJohn;
-import NPCs.JavaJohnGlasses;
-import NPCs.NPCBoy1;
-import NPCs.NPCBoy2;
-import NPCs.NPCGirl1;
-import NPCs.NPCSwimmer;
-import NPCs.Nathan;
-import NPCs.NathanBicycle;
 import Scripts.SimpleTextScript;
 import Scripts.CCEClassroom.ChangeMapScript;
 import Scripts.NPCDialogue.NPCBoy1Script;
@@ -93,7 +82,7 @@ public class TestMap extends Map {
         }
         npcs.add(javaJohnGlasses);
 
-        PubSafetyDect pubSafetyDect = new PubSafetyDect(4, getMapTile(45, 47).getLocation());
+        PubSafetyDect pubSafetyDect = new PubSafetyDect(4, getMapTile(45, 46).getLocation());
         pubSafetyDect.setInteractScript(new PubSafetyDectScript());
         npcs.add(pubSafetyDect);
         
@@ -140,6 +129,10 @@ public class TestMap extends Map {
         npcSwimmer.setInteractScript(new NPCSwimmerScript());
         npcs.add(npcSwimmer);
 
+        PubSDectLooker pubSDectLooker = new PubSDectLooker(13, getMapTile(95, 14).getLocation());
+        pubSDectLooker.setInteractScript(new PubSDectLookerScript());
+        npcs.add(pubSDectLooker);
+
         return npcs;
 
     }
@@ -148,8 +141,8 @@ public class TestMap extends Map {
     public ArrayList<Trigger> loadTriggers() {
         ArrayList<Trigger> triggers = new ArrayList<>();
 
-        triggers.add(new Trigger(2256, 1968, 196, 10, new PubSafetyDectScript(), "hasEncounteredDect"));
-        triggers.add(new Trigger(1920, 2304, 10, 196, new PubSafetyDectScript(), "hasEncounteredDect"));
+        triggers.add(new Trigger(2256, 1968, 196, 10, new PubSafetyDectScript(), "hasEncounteredPubSafetyDect"));
+        triggers.add(new Trigger(1776, 2304, 10, 196, new PubSafetyDectScript(), "hasEncounteredPubSafetyDect"));
 
         // base game triggers
         return triggers;
