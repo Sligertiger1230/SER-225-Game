@@ -38,8 +38,9 @@ public class PlayLevelScreen extends Screen {
         flagManager = new FlagManager();
 
         //Walrus Fish quest
-        flagManager.addFlag("hasPickedUpRed", false);
-        flagManager.addFlag("hasPickedUpPurpl", false);
+        flagManager.addFlag("redFish", false);
+        flagManager.addFlag("purpleFish", false);
+        flagManager.addFlag("hasPickedUpFish", false);
 
 
         //pubSafetyDect flags

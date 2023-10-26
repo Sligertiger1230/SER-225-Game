@@ -23,7 +23,7 @@ public class WalrusPurpFishScript extends Script<NPC> {
         unlockPlayer();
         hideTextbox();
         entity.setIsHidden(true);
-        setFlag("hasPickedUpPurpl");
+        setFlag("hasPickedUpFish");
     }
 
     @Override

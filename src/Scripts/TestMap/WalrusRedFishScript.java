@@ -25,7 +25,7 @@ public class WalrusRedFishScript extends Script<NPC> {
         //glasses are hidden, to give the illusion of being picked up
         entity.setIsHidden(true);
         //sets flag so java john can react as if you have glasses
-        setFlag("hasPickedUpRed");
+        setFlag("hasPickedUpFish");
     }
 
     @Override
