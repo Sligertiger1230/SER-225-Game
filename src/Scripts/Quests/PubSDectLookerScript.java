@@ -165,7 +165,6 @@ public class PubSDectLookerScript extends Script<NPC> {
                     getNPC(4).setIsHidden(true);
                 }
             }
-            nextStep("World's Best Detective");
             end();
             return ScriptState.COMPLETED;
         }
