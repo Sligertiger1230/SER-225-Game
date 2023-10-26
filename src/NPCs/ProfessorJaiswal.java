@@ -24,97 +24,97 @@ public class ProfessorJaiswal extends NPC {
                         {
                                 put("STAND_DOWN", new Frame[] {
                                                 new FrameBuilder(spriteSheet.getSprite(0, 0))
-                                                                .withScale(2)
+                                                                .withScale((float) 1.5)
                                                                 .withBounds(1, 1, 62, 68)
                                                                 .build()
                                 });
                                 put("STAND_LEFT", new Frame[] {
                                                 new FrameBuilder(spriteSheet.getSprite(1, 0))
-                                                                .withScale(2)
+                                                                .withScale((float) 1.5)
                                                                 .withBounds(1, 72, 62, 138)
                                                                 .build()
                                 });
                                 put("STAND_RIGHT", new Frame[] {
                                                 new FrameBuilder(spriteSheet.getSprite(2, 0))
-                                                                .withScale(2)
+                                                                .withScale((float) 1.5)
                                                                 .withBounds(1, 141, 62, 208)
                                                                 .build()
                                 });
                                 put("STAND_UP", new Frame[] {
                                                 new FrameBuilder(spriteSheet.getSprite(0, 0))
-                                                                .withScale(2)
+                                                                .withScale((float) 1.5)
                                                                 .withBounds(1, 211, 62, 280)
                                                                 .build()
                                 });
                                 put("WALK_DOWN", new Frame[] {
                                                 new FrameBuilder(spriteSheet.getSprite(0, 1), 14)
-                                                                .withScale(3)
+                                                                .withScale((float) 1.5)
                                                                 .withBounds(1, 1, 62, 62)
                                                                 .build(),
                                                 new FrameBuilder(spriteSheet.getSprite(0, 2), 14)
-                                                                .withScale(3)
+                                                                .withScale((float) 1.5)
                                                                 .withBounds(1, 1, 62, 68)
                                                                 .build(),
                                                 new FrameBuilder(spriteSheet.getSprite(0, 3), 14)
-                                                                .withScale(3)
+                                                                .withScale((float) 1.5)
                                                                 .withBounds(1, 1, 62, 68)
                                                                 .build(),
                                                 new FrameBuilder(spriteSheet.getSprite(0, 2), 14)
-                                                                .withScale(3)
+                                                                .withScale((float) 1.5)
                                                                 .withBounds(1, 1, 62, 68)
                                                                 .build(),
                                 });
                                 put("WALK_LEFT", new Frame[] {
                                                 new FrameBuilder(spriteSheet.getSprite(1, 1), 14)
-                                                                .withScale(2)
+                                                                .withScale((float) 1.5)
                                                                 .withBounds(1, 1, 62, 62)
                                                                 .build(),
                                                 new FrameBuilder(spriteSheet.getSprite(1, 2), 14)
-                                                                .withScale(2)
+                                                                .withScale((float) 1.5)
                                                                 .withBounds(1, 1, 62, 68)
                                                                 .build(),
                                                 new FrameBuilder(spriteSheet.getSprite(1, 3), 14)
-                                                                .withScale(2)
+                                                                .withScale((float) 1.5)
                                                                 .withBounds(1, 1, 62, 68)
                                                                 .build(),
                                                 new FrameBuilder(spriteSheet.getSprite(1, 2), 14)
-                                                                .withScale(2)
+                                                                .withScale((float) 1.5)
                                                                 .withBounds(1, 1, 62, 68)
                                                                 .build(),
                                 });
                                 put("WALK_RIGHT", new Frame[] {
                                                 new FrameBuilder(spriteSheet.getSprite(2, 1), 14)
-                                                                .withScale(2)
+                                                                .withScale((float) 1.5)
                                                                 .withBounds(1, 1, 62, 62)
                                                                 .build(),
                                                 new FrameBuilder(spriteSheet.getSprite(2, 2), 14)
-                                                                .withScale(2)
+                                                                .withScale((float) 1.5)
                                                                 .withBounds(1, 1, 62, 68)
                                                                 .build(),
                                                 new FrameBuilder(spriteSheet.getSprite(2, 3), 14)
-                                                                .withScale(2)
+                                                                .withScale((float) 1.5)
                                                                 .withBounds(1, 1, 62, 68)
                                                                 .build(),
                                                 new FrameBuilder(spriteSheet.getSprite(2, 2), 14)
-                                                                .withScale(2)
+                                                                .withScale((float) 1.5)
                                                                 .withBounds(1, 1, 62, 68)
                                                                 .build(),
                                 });
                                 put("WALK_UP", new Frame[] {
                                                 new FrameBuilder(spriteSheet.getSprite(3, 1), 14)
-                                                                .withScale(2)
+                                                                .withScale((float) 1.5)
                                                                 .withBounds(1, 1, 62, 62)
                                                                 .build(),
                                                 new FrameBuilder(spriteSheet.getSprite(3, 2), 14)
-                                                                .withScale(2)
+                                                                .withScale((float) 1.5)
                                                                 .withBounds(1, 1, 62, 68)
                                                                 .build(),
                                                 new FrameBuilder(spriteSheet.getSprite(3, 3), 14)
-                                                                .withScale(2)
+                                                                .withScale((float) 1.5)
                                                                 .withBounds(1, 1, 62, 68)
                                                                 .build(),
                                                 new FrameBuilder(spriteSheet.getSprite(3, 2), 14)
-                                                                .withScale(2)
+                                                                .withScale((float) 1.5)
                                                                 .withBounds(1, 1, 62, 68)
                                                                 .build(),
                                 });

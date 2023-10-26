@@ -89,7 +89,7 @@ public abstract class Player extends GameObject {
         // update player's animation
         super.update();
 
-        printPlayerLocation();
+        // printPlayerLocation();
     }
 
     // based on player's current state, call appropriate player state handling
@@ -192,24 +192,6 @@ public abstract class Player extends GameObject {
                 && Keyboard.isKeyUp(MOVE_DOWN_KEY)) {
             playerState = PlayerState.STANDING;
         }
-
-        if (!isPlayingSound) {
-            playGrassFootstepSound();
-        }
-    }
-
-    private void playGrassFootstepSound() {
-        isPlayingSound = true;
-
-        int grassFootstepSoundIndex = 1;
-
-        sounds.setFile(grassFootstepSoundIndex);
-        sounds.play();
-
-        soundExecutor.schedule(() -> {
-            sounds.stop();
-            isPlayingSound = false;
-        }, 500, TimeUnit.MILLISECONDS);
     }
 
     // player INTERACTING state logic -- intentionally does nothing so player is
@@ -333,9 +315,12 @@ public abstract class Player extends GameObject {
         }
     }
 
-    public void printPlayerLocation() {
-        int xCoordinate = (int) getX() / 48;
-        int yCoordinate = (int) getY() / 48;
-        System.out.println("Player Location: X = " + xCoordinate + ", Y = " + yCoordinate);
-    }
+    /*
+     * public void printPlayerLocation() {
+     * int xCoordinate = (int) getX() / 48;
+     * int yCoordinate = (int) getY() / 48;
+     * System.out.println("Player Location: X = " + xCoordinate + ", Y = " +
+     * yCoordinate);
+     * }
+     */
 }

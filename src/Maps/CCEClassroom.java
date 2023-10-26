@@ -7,6 +7,7 @@ import Level.NPC;
 import NPCs.NPCBoy3;
 import NPCs.ProfessorJaiswal;
 import Scripts.NPCDialogue.NPCBoy3Script;
+import Scripts.Quests.JaiswalDrawQuestCCE;
 import Scripts.TestMap.WalrusScript;
 import Scripts.SimpleTextScript;
 import Scripts.CCEClassroom.ChangeMapScript;
@@ -38,8 +39,8 @@ public class CCEClassroom extends Map {
         npcs.add(npcBoy3);
 
         // adds professor jaiswal
-        ProfessorJaiswal drJ = new ProfessorJaiswal(0, getMapTile(8, 4).getLocation().subtractY(40));
-        drJ.setInteractScript(new WalrusScript());
+        ProfessorJaiswal drJ = new ProfessorJaiswal(0, getMapTile(8, 3).getLocation());
+        drJ.setInteractScript(new JaiswalDrawQuestCCE());
         npcs.add(drJ);
 
         return npcs;

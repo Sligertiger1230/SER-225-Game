@@ -12,6 +12,8 @@ public class Sound {
     public Sound() {
         // Music
         soundURL[0] = getClass().getResource("/sounds/overworld.wav");
+        soundURL[17] = getClass().getResource("/sounds/drawing.wav");
+        soundURL[18] = getClass().getResource("/sounds/cce.wav");
 
         // Grass
         soundURL[1] = getClass().getResource("/sounds/grass1.wav");
@@ -55,6 +57,8 @@ public class Sound {
     }
 
     public void stop() {
-        clip.stop();
+        if (clip != null) {
+            clip.stop();
+        }
     }
 }

@@ -12,6 +12,7 @@ This game has fairly straight forward controls:
 - Right Arrow - Move right
 - Space Bar - Interact
 - Q - Pull up quest menu
+- Shift - Sprint
 
 ## How to run this project?
 

@@ -7,6 +7,7 @@ import Game.GameState;
 import Game.ScreenCoordinator;
 import Level.*;
 import Maps.CCEClassroom;
+import Maps.DrawQuest;
 import Maps.IceRink;
 import Maps.TestMap;
 import Players.Cat;
@@ -25,8 +26,11 @@ public class PlayLevelScreen extends Screen {
     protected QuestMenu questMenu;
     protected ArrayList<QuestTrigger> triggers;
 
+    private Sound musicPlayer;
+
     public PlayLevelScreen(ScreenCoordinator screenCoordinator) {
         this.screenCoordinator = screenCoordinator;
+        this.musicPlayer = new Sound();
     }
 
     public void initialize() {
@@ -37,13 +41,12 @@ public class PlayLevelScreen extends Screen {
         // setup state
         flagManager = new FlagManager();
 
-        //Walrus Fish quest
+        // Walrus Fish quest
         flagManager.addFlag("redFish", false);
         flagManager.addFlag("purpleFish", false);
         flagManager.addFlag("hasPickedUpFish", false);
 
-
-        //pubSafetyDect flags
+        // pubSafetyDect flags
         flagManager.addFlag("hasEncounteredPubSafetyDect", false);
         flagManager.addFlag("hasTalkedToPubSDectLooker", false);
         flagManager.addFlag("hasReportedPubSDectLooker", false);
@@ -57,7 +60,7 @@ public class PlayLevelScreen extends Screen {
         flagManager.addFlag("hasEncounteredJavaJohnWalk", false);
         flagManager.addFlag("isJavaJohnFloating", false);
 
-        //Nathan quest flags
+        // Nathan quest flags
         flagManager.addFlag("hasTalkedToNathan", false);
         flagManager.addFlag("nathanRunning", false);
 
@@ -67,7 +70,7 @@ public class PlayLevelScreen extends Screen {
         flagManager.addFlag("hasTalkedToDinosaur", false);
         flagManager.addFlag("hasFoundBall", false);
 
-        //NPC flags
+        // NPC flags
         flagManager.addFlag("hasTalkedToNPCBoy1", false);
         flagManager.addFlag("hasTalkedToNPCGirl1", false);
 
@@ -85,7 +88,6 @@ public class PlayLevelScreen extends Screen {
 
         // let pieces of map know which button to listen for as the "interact" button
         map.getTextbox().setInteractKey(player.getInteractKey());
-
 
         // setup map scripts to have references to the map and player
         for (MapTile mapTile : map.getMapTiles()) {
@@ -173,28 +175,43 @@ public class PlayLevelScreen extends Screen {
 
     public Map loadMap(int mapId) {
         Map newMap;
+        musicPlayer.stop();
+
         switch (mapId) {
             case 0:
                 newMap = new TestMap();
                 newMap.setFlagManager(flagManager);
                 newMap.setNPCs();
                 newMap.setQuestMenu(questMenu);
+                musicPlayer.setFile(0);
+                musicPlayer.loop();
                 return newMap;
             case 1:
                 newMap = new CCEClassroom();
                 newMap.setFlagManager(flagManager);
                 newMap.setNPCs();
                 newMap.setQuestMenu(questMenu);
+                musicPlayer.setFile(18);
+                musicPlayer.loop();
                 return newMap;
             case 2:
                 newMap = new IceRink();
                 newMap.setFlagManager(flagManager);
                 newMap.setNPCs();
                 newMap.setQuestMenu(questMenu);
-                //not sure why the player location isnt getting properly set.
-                //player.setLocation(10, 10);
+                // not sure why the player location isnt getting properly set.
+                // player.setLocation(10, 10);
                 return newMap;
-                
+            case 3:
+                newMap = new DrawQuest();
+                newMap.setFlagManager(flagManager);
+                newMap.setNPCs();
+                newMap.setQuestMenu(questMenu);
+                // not sure why the player location isnt getting properly set.
+                // player.setLocation(10, 10);
+                musicPlayer.setFile(17);
+                musicPlayer.loop();
+                return newMap;
 
             default:
                 return null;
