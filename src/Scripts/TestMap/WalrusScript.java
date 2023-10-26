@@ -54,6 +54,7 @@ public class WalrusScript extends Script<NPC> {
             addTextToTextboxQueue("Can you go get me one of them", selections, answers);
         }
         else{
+            
             if(isFlagSet("hasPickedUpPurpl")){
                 System.out.println("hi");
                 addTextToTextboxQueue( "Great, you found him.");

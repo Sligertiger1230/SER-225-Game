@@ -22,9 +22,7 @@ public class WalrusPurpFishScript extends Script<NPC> {
         //allows player to move again
         unlockPlayer();
         hideTextbox();
-        //glasses are hidden, to give the illusion of being picked up
         entity.setIsHidden(true);
-        //sets flag so java john can react as if you have glasses
         setFlag("hasPickedUpPurpl");
     }
 
