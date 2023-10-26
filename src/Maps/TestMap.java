@@ -128,7 +128,7 @@ public class TestMap extends Map {
         npcs.add(nathanBike);
 
         // adds Nathan
-        Nathan nathan = new Nathan(4, getMapTile(8, 33).getLocation());
+        Nathan nathan = new Nathan(4, getMapTile(6, 33).getLocation());
         nathan.setInteractScript(new NathanScript());
         npcs.add(nathan);
 
