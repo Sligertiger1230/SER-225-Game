@@ -13,6 +13,8 @@ public class MapTile extends MapEntity {
     // this determines a tile's properties, like if it's passable or not
     protected TileType tileType;
 
+    protected SoundType soundType;
+
     // bottom layer of tile
     protected GameObject bottomLayer;
 
@@ -21,12 +23,14 @@ public class MapTile extends MapEntity {
 
     private int tileIndex;
 
-    public MapTile(float x, float y, GameObject bottomLayer, GameObject topLayer, TileType tileType, int tileIndex) {
+    public MapTile(float x, float y, GameObject bottomLayer, GameObject topLayer, TileType tileType,
+            SoundType soundType, int tileIndex) {
         super(x, y);
         this.bottomLayer = bottomLayer;
         this.topLayer = topLayer;
         this.tileType = tileType;
         this.tileIndex = tileIndex;
+        this.soundType = soundType;
     }
 
     public MapTile(float x, float y, GameObject bottomLayer, GameObject topLayer, TileType tileType) {
@@ -59,11 +63,21 @@ public class MapTile extends MapEntity {
         return tileIndex;
     }
 
-    public GameObject getBottomLayer() { return bottomLayer; }
-    public void setBottomLayer(GameObject bottomLayer) { this.bottomLayer = bottomLayer; }
+    public GameObject getBottomLayer() {
+        return bottomLayer;
+    }
 
-    public GameObject getTopLayer() { return topLayer; }
-    public void setTopLayer(GameObject topLayer) { this.topLayer = topLayer; }
+    public void setBottomLayer(GameObject bottomLayer) {
+        this.bottomLayer = bottomLayer;
+    }
+
+    public GameObject getTopLayer() {
+        return topLayer;
+    }
+
+    public void setTopLayer(GameObject topLayer) {
+        this.topLayer = topLayer;
+    }
 
     // determines if tile is animated or not
     public boolean isAnimated() {
@@ -71,7 +85,8 @@ public class MapTile extends MapEntity {
                 (topLayer != null && topLayer.getCurrentAnimation().length > 1);
     }
 
-    // set this game object's map to make it a "part of" the map, allowing calibrated positions and collision handling logic to work
+    // set this game object's map to make it a "part of" the map, allowing
+    // calibrated positions and collision handling logic to work
     // note that both the bottom layer and the top layer need the map reference
     public void setMap(Map map) {
         this.map = map;
@@ -100,23 +115,25 @@ public class MapTile extends MapEntity {
     public void drawBottomLayer(GraphicsHandler graphicsHandler) {
         bottomLayer.draw(graphicsHandler);
 
-        // uncomment this to draw bounds of all non passable tiles (useful for debugging)
+        // uncomment this to draw bounds of all non passable tiles (useful for
+        // debugging)
         /*
-        if (tileType == TileType.NOT_PASSABLE) {
-            drawBounds(graphicsHandler, new Color(0, 0, 255, 100));
-        }
-        */
+         * if (tileType == TileType.NOT_PASSABLE) {
+         * drawBounds(graphicsHandler, new Color(0, 0, 255, 100));
+         * }
+         */
     }
 
     public void drawTopLayer(GraphicsHandler graphicsHandler) {
         topLayer.draw(graphicsHandler);
 
-        // uncomment this to draw bounds of all non passable tiles (useful for debugging)
+        // uncomment this to draw bounds of all non passable tiles (useful for
+        // debugging)
         /*
-        if (tileType == TileType.NOT_PASSABLE) {
-            drawBounds(graphicsHandler, new Color(0, 0, 255, 100));
-        }
-        */
+         * if (tileType == TileType.NOT_PASSABLE) {
+         * drawBounds(graphicsHandler, new Color(0, 0, 255, 100));
+         * }
+         */
     }
 
     @Override
@@ -130,16 +147,24 @@ public class MapTile extends MapEntity {
     }
 
     @Override
-    public float getX1() { return bottomLayer.getX(); }
+    public float getX1() {
+        return bottomLayer.getX();
+    }
 
     @Override
-    public float getY1() { return bottomLayer.getY(); }
+    public float getY1() {
+        return bottomLayer.getY();
+    }
 
     @Override
-    public float getX2() { return bottomLayer.getX2(); }
+    public float getX2() {
+        return bottomLayer.getX2();
+    }
 
     @Override
-    public float getY2() { return bottomLayer.getY2(); }
+    public float getY2() {
+        return bottomLayer.getY2();
+    }
 
     @Override
     public float getBoundsX1() {
@@ -270,8 +295,12 @@ public class MapTile extends MapEntity {
     }
 
     @Override
-    public boolean overlaps(IntersectableRectangle other) { return bottomLayer.overlaps(other); }
+    public boolean overlaps(IntersectableRectangle other) {
+        return bottomLayer.overlaps(other);
+    }
 
     @Override
-    public float getAreaOverlapped(IntersectableRectangle other) { return bottomLayer.getAreaOverlapped(other); }
+    public float getAreaOverlapped(IntersectableRectangle other) {
+        return bottomLayer.getAreaOverlapped(other);
+    }
 }

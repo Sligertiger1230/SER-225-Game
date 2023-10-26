@@ -5,11 +5,11 @@ import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 
-public class Sounds {
+public class Sound {
     private Clip clip;
     private final URL soundURL[] = new URL[30];
 
-    public Sounds() {
+    public Sound() {
         // Music
         soundURL[0] = getClass().getResource("/sounds/overworld.wav");
 

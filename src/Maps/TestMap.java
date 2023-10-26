@@ -19,6 +19,7 @@ import NPCs.NPCGirl1;
 import NPCs.NPCSwimmer;
 import NPCs.Nathan;
 import NPCs.NathanBicycle;
+import NPCs.PubSDectLooker;
 import Scripts.SimpleTextScript;
 import Scripts.CCEClassroom.ChangeMapScript;
 import Scripts.NPCDialogue.NPCBoy1Script;
@@ -95,6 +96,9 @@ public class TestMap extends Map {
 
         PubSafetyDect pubSafetyDect = new PubSafetyDect(4, getMapTile(45, 47).getLocation());
         pubSafetyDect.setInteractScript(new PubSafetyDectScript());
+        if (getFlagManager().isFlagSet("hasBookerBeenDemoted")) {
+            pubSafetyDect.setIsHidden(true);
+        }
         npcs.add(pubSafetyDect);
         
  
@@ -124,7 +128,7 @@ public class TestMap extends Map {
         NPCBoy1 npcBoy1 = new NPCBoy1(9, getMapTile(20, 6).getLocation());
         npcBoy1.setInteractScript(new NPCBoy1Script());
         npcs.add(npcBoy1);
-        
+
         // adds an npc girl (blonde with green shirt)
         NPCGirl1 npcGirl1 = new NPCGirl1(10, getMapTile(52, 32).getLocation());
         npcGirl1.setInteractScript(new NPCGirl1Script());
@@ -139,6 +143,13 @@ public class TestMap extends Map {
         NPCSwimmer npcSwimmer = new NPCSwimmer(12, getMapTile(85, 52).getLocation());
         npcSwimmer.setInteractScript(new NPCSwimmerScript());
         npcs.add(npcSwimmer);
+
+        PubSDectLooker pubSDectLooker = new PubSDectLooker(13, getMapTile(95, 14).getLocation());
+        pubSDectLooker.setInteractScript(new PubSDectLookerScript());
+        if (getFlagManager().isFlagSet("hasBookerBeenDemoted")) {
+            pubSDectLooker.setIsHidden(true);
+        }
+        npcs.add(pubSDectLooker);
 
         return npcs;
 
