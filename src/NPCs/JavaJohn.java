@@ -34,7 +34,7 @@ public class JavaJohn extends NPC {
                                 .withBounds(1, 11, 19, 16)
                                 .build()
                 });
-                put("WALK_RIGHT", new Frame[] {
+                put("WALK_UP", new Frame[] {
                         new FrameBuilder(spriteSheet.getSprite(2, 0))
                                 .withScale(3)
                                 .withBounds(1, 11, 19, 16)

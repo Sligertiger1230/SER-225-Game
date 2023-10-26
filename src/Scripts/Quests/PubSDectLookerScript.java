@@ -72,6 +72,12 @@ public class PubSDectLookerScript extends Script<NPC> {
         if (isFlagSet("hasEncounteredPubSafetyDect") && !isFlagSet("hasTalkedToPubSDectLooker")) {
             setFlag("hasTalkedToPubSDectLooker");
             nextStep("World's Best Detective");
+        } else if (isFlagSet("hasEncounteredPubSafetyDect")
+                && isFlagSet("hasTalkedToPubSDectLooker")
+                && isFlagSet("hasReportedPubSDectLooker")
+                && !isFlagSet("hasBookerBeenDemoted")) {
+            setFlag("hasBookerBeenDemoted");
+            nextStep("World's Best Detective");
         }
     }
 
@@ -122,7 +128,7 @@ public class PubSDectLookerScript extends Script<NPC> {
                 amountMoved = 0;
                 outfitRevealSequence();
             }
-            if (!isTextboxQueueEmpty()){
+            if (!isTextboxQueueEmpty()) {
                 return ScriptState.RUNNING;
             }
             if (direction.equals("bottom")) {
@@ -174,7 +180,8 @@ public class PubSDectLookerScript extends Script<NPC> {
         }
         addTextToTextboxQueue(
                 "Detective Looker: Booker, you failed your detective \ntest! I pretended to be a criminal so that you would ");
-        addTextToTextboxQueue("track me down and arrest me. But you sent a KID\nafter me. A KID BOOKER A KID YOU SENT! I'm not");
+        addTextToTextboxQueue(
+                "track me down and arrest me. But you sent a KID\nafter me. A KID BOOKER A KID YOU SENT! I'm not");
         addTextToTextboxQueue("even that far. You can see me across the quad.");
         addTextToTextboxQueue("Detective Booker: ...");
         addTextToTextboxQueue("...");

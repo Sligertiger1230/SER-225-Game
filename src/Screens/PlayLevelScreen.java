@@ -46,6 +46,7 @@ public class PlayLevelScreen extends Screen {
         flagManager.addFlag("hasEncounteredPubSafetyDect", false);
         flagManager.addFlag("hasTalkedToPubSDectLooker", false);
         flagManager.addFlag("hasReportedPubSDectLooker", false);
+        flagManager.addFlag("hasBookerBeenDemoted", false);
 
         // java john quest flags. This is the best way to have flags right now
         // will organize them better, but we will always have to instantiate them
