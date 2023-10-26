@@ -57,8 +57,7 @@ public class WalrusScript extends Script<NPC> {
             addTextToTextboxQueue( "Hi Riley!");
             addTextToTextboxQueue( "I seem to have a problem,\nI just caught 2 fish from the pond");
             addTextToTextboxQueue("Can you go get me one of them", selections, answers);
-        }
-
+        }     
     }
 
     @Override
