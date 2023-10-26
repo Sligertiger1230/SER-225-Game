@@ -158,13 +158,27 @@ public abstract class Script<T extends MapEntity> {
 
     // show character portrait
     protected void showPortrait(String imageName) {
-        map.getPortrait().setPortraitImage(imageName);
-        map.getPortrait().setPortraitIsActive(true);
+        map.getPortrait1().setPortraitImage(imageName);
+        map.getPortrait1().setPortraitIsActive(true);
     }
 
     protected void showPortrait(String imageName, int scale){
-        map.getPortrait().setPortraitImage(imageName, scale);
-        map.getPortrait().setPortraitIsActive(true);
+        map.getPortrait1().setPortraitImage(imageName, scale);
+        map.getPortrait1().setPortraitIsActive(true);
+    }
+
+    protected void showConversationPortraits(String imageName1, String imageName2){
+        map.getPortrait1().setPortraitImage(imageName1);
+        map.getPortrait1().setPortraitIsActive(true);
+        map.getPortrait2().setPortraitImage(imageName2, true);
+        map.getPortrait2().setPortraitIsActive(true);
+    }
+
+    protected void showConversationPortraits(String imageName1, int scale1, String imageName2, int scale2){
+        map.getPortrait1().setPortraitImage(imageName1, scale1);
+        map.getPortrait1().setPortraitIsActive(true);
+        map.getPortrait2().setPortraitImage(imageName2, scale2, true);
+        map.getPortrait2().setPortraitIsActive(true);
     }
 
     // adds text to be shown in textbox
@@ -212,7 +226,12 @@ public abstract class Script<T extends MapEntity> {
 
     // remove portrait from screen
     protected void hidePortrait() {
-        map.getPortrait().setPortraitIsActive(false);
+        map.getPortrait1().setPortraitIsActive(false);
+    }
+
+    protected void hidePortraitConversation() {
+        map.getPortrait1().setPortraitIsActive(false);
+        map.getPortrait2().setPortraitIsActive(false);
     }
 
     // gets an npc instance by its id value

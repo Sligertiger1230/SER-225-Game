@@ -10,10 +10,12 @@ import java.awt.image.BufferedImage;
 
 public class Portrait extends Screen {
     protected boolean isActive;
+    protected boolean rightSide;
     protected Sprite portrait;
-    protected final float imageX = 50;
+    protected float imageX = 50;
     protected float imageY;
     protected int spriteHeight;
+    protected int spriteWidth;
     protected int scale;
     protected BufferedImage image;
     protected String imageName;
@@ -38,13 +40,34 @@ public class Portrait extends Screen {
         this.imageName = imageName;
         image = ImageLoader.load(imageName);
         spriteHeight = image.getHeight();
+        spriteWidth = image.getWidth();
     }
 
     public void setPortraitImage(String imageName, int scale) {
         this.imageName = imageName;
         image = ImageLoader.load(imageName);
         spriteHeight = image.getHeight();
+        spriteWidth = image.getWidth();
         this.scale = scale;
+        this.rightSide = false;
+    }
+
+    public void setPortraitImage(String imageName, boolean rightSide){
+        this.imageName = imageName;
+        image = ImageLoader.load(imageName);
+        spriteHeight = image.getHeight();
+        spriteWidth = image.getWidth();
+        this.scale = 1;
+        this.rightSide = rightSide;
+    }
+
+    public void setPortraitImage(String imageName, int scale, boolean rightSide) {
+        this.imageName = imageName;
+        image = ImageLoader.load(imageName);
+        spriteHeight = image.getHeight();
+        spriteWidth = image.getWidth();
+        this.scale = scale;
+        this.rightSide = rightSide;
     }
 
     public void setPortraitIsActive(Boolean isActive) {
@@ -58,9 +81,12 @@ public class Portrait extends Screen {
     public void updateImage(Boolean update) {
         if (update) {
             imageY = 460 - (spriteHeight * scale);
-        } else {
+        } 
+        else {
             imageY = 0 - (spriteHeight * scale);
         }
+        if (rightSide)
+            imageX = 767 - (spriteWidth * scale);
         portrait = new Sprite(image, imageX, imageY);
         portrait.setScale(scale);
     }

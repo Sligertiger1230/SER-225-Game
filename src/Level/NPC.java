@@ -64,6 +64,15 @@ public class NPC extends MapEntity {
         }
     }
 
+    public void animate(Player player, int animationID){
+        if (animationID == 1){
+            this.currentAnimationName = "ANIMATION_1";
+        }
+        else if (animationID == 2){
+            this.currentAnimationName = "ANIMATION_2";
+        }
+    }
+
     public void stand(Direction direction) {
         if (direction == Direction.RIGHT) {
             this.currentAnimationName = "STAND_RIGHT";
