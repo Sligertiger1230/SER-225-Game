@@ -1,7 +1,6 @@
 # Quinnipiac RPG
 
 Welcome to Quinnipiac University! As a new student you will get to explore campus exploring all the academic buildings, completing fun quests, and interacting with all of the school's wacky characters!
-![intro screen](file:///Users/brooksjackson/Desktop/Screenshot%202023-10-25%20at%208.21.18%20PM.png)
 
 ## Controls
 
