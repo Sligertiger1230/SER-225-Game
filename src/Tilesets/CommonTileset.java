@@ -1609,7 +1609,7 @@ public class CommonTileset extends Tileset {
                  mapTiles.add(quLogoRightMidFlippedTile);
 
                    //ecac logo top
-                Frame ecacLogoTopFrame = new FrameBuilder(getSubImage(15, 15))
+                Frame ecacLogoTopFrame = new FrameBuilder(getSubImage(15, 14))
                         .withScale(tileScale)
                         .build();
 
@@ -1619,7 +1619,7 @@ public class CommonTileset extends Tileset {
                 mapTiles.add(ecacLogoTopTile);
 
                    //ecac logo bottom
-                Frame ecacLogoBottomFrame = new FrameBuilder(getSubImage(15, 16))
+                Frame ecacLogoBottomFrame = new FrameBuilder(getSubImage(15, 15))
                         .withScale(tileScale)
                         .build();
 
@@ -1895,6 +1895,146 @@ public class CommonTileset extends Tileset {
                 MapTileBuilder redBotLeftCircleTile = new MapTileBuilder(redBotLeftCircleFrame);
                 
                 mapTiles.add(redBotLeftCircleTile);
+
+                 // goalie box top
+                Frame goalieBoxTopFrame = new FrameBuilder(getSubImage(12, 13))
+                        .withScale(tileScale)
+                        .build();
+
+                MapTileBuilder goalieBoxTopTile = new MapTileBuilder(goalieBoxTopFrame);
+                
+                mapTiles.add(goalieBoxTopTile);
+                
+                 // goalie box bottom
+                Frame goalieBoxBotFrame = new FrameBuilder(getSubImage(12, 12))
+                        .withScale(tileScale)
+                        .build();
+
+                MapTileBuilder goalieBoxBotTile = new MapTileBuilder(goalieBoxBotFrame);
+                
+                mapTiles.add(goalieBoxBotTile);
+
+                // top corner rink wall
+                Frame rinkWallTopCornerRightFrame = new FrameBuilder(getSubImage(4, 16))
+                                .withScale(tileScale)
+                                .build();
+
+                MapTileBuilder rinkWallTopCornerRightTile = new MapTileBuilder(rinkWallTopCornerRightFrame)
+                                .withTileType(TileType.NOT_PASSABLE);
+
+                mapTiles.add(rinkWallTopCornerRightTile);
+
+                 // top corner rink edge wall
+                Frame rinkWallTopCornerRightEdgeFrame = new FrameBuilder(getSubImage(5, 16))
+                                .withScale(tileScale)
+                                .build();
+
+                MapTileBuilder rinkWallTopCornerRightEdgeTile = new MapTileBuilder(rinkWallTopCornerRightEdgeFrame)
+                                .withTileType(TileType.NOT_PASSABLE);
+
+                mapTiles.add(rinkWallTopCornerRightEdgeTile);
+
+                 // top corner rink wall
+                Frame rinkWallTopCornerLeftFrame = new FrameBuilder(getSubImage(6, 16))
+                                .withScale(tileScale)
+                                .build();
+
+                MapTileBuilder rinkWallTopCornerLeftTile = new MapTileBuilder(rinkWallTopCornerLeftFrame)
+                                .withTileType(TileType.NOT_PASSABLE);
+
+                mapTiles.add(rinkWallTopCornerLeftTile);
+
+                 // top corner rink edge wall
+                Frame rinkWallTopCornerLeftEdgeFrame = new FrameBuilder(getSubImage(7, 16))
+                                .withScale(tileScale)
+                                .build();
+
+                MapTileBuilder rinkWallTopCornerLeftEdgeTile = new MapTileBuilder(rinkWallTopCornerLeftEdgeFrame)
+                                .withTileType(TileType.NOT_PASSABLE);
+
+                mapTiles.add(rinkWallTopCornerLeftEdgeTile);
+
+                  // rink wall right
+                Frame rinkWallRightFrame = new FrameBuilder(getSubImage(8, 16))
+                                .withScale(tileScale)
+                                .build();
+
+                MapTileBuilder rinkWallRightTile = new MapTileBuilder(rinkWallRightFrame)
+                                .withTileType(TileType.NOT_PASSABLE);
+
+                mapTiles.add(rinkWallRightTile);
+
+                   // rink wall left
+                Frame rinkWallLeftFrame = new FrameBuilder(getSubImage(9, 16))
+                                .withScale(tileScale)
+                                .build();
+
+                MapTileBuilder rinkWallLeftTile = new MapTileBuilder(rinkWallLeftFrame)
+                                .withTileType(TileType.NOT_PASSABLE);
+
+                mapTiles.add(rinkWallLeftTile);
+
+                  // rink wall top
+                Frame rinkWallTopFrame = new FrameBuilder(getSubImage(10, 16))
+                                .withScale(tileScale)
+                                .build();
+
+                MapTileBuilder rinkWallTopTile = new MapTileBuilder(rinkWallTopFrame)
+                                .withTileType(TileType.NOT_PASSABLE);
+
+                mapTiles.add(rinkWallTopTile);
+
+                  // rink wall bottom edge
+                Frame rinkWallBottomEdgeLeftFrame = new FrameBuilder(getSubImage(11, 16))
+                                .withScale(tileScale)
+                                .build();
+
+                MapTileBuilder rinkWallBottomEdgeLeftTile = new MapTileBuilder(rinkWallBottomEdgeLeftFrame)
+                                .withTileType(TileType.NOT_PASSABLE);
+
+                mapTiles.add(rinkWallBottomEdgeLeftTile);
+
+                   // rink wall bottom corner
+                Frame rinkWallBottomCornerLeftFrame = new FrameBuilder(getSubImage(12, 16))
+                                .withScale(tileScale)
+                                .build();
+
+                MapTileBuilder rinkWallBottomCornerLeftTile = new MapTileBuilder(rinkWallBottomCornerLeftFrame)
+                                .withTileType(TileType.NOT_PASSABLE);
+
+                mapTiles.add(rinkWallBottomCornerLeftTile);
+
+                   // rink wall bottom edge
+                Frame rinkWallBottomEdgeRightFrame = new FrameBuilder(getSubImage(13, 16))
+                                .withScale(tileScale)
+                                .build();
+
+                MapTileBuilder rinkWallBottomEdgeRightTile = new MapTileBuilder(rinkWallBottomEdgeRightFrame)
+                                .withTileType(TileType.NOT_PASSABLE);
+
+                mapTiles.add(rinkWallBottomEdgeRightTile);
+
+                    // rink wall bottom corner
+                Frame rinkWallBottomCornerRightFrame = new FrameBuilder(getSubImage(14, 16))
+                                .withScale(tileScale)
+                                .build();
+
+                MapTileBuilder rinkWallBottomCornerRightTile = new MapTileBuilder(rinkWallBottomCornerRightFrame)
+                                .withTileType(TileType.NOT_PASSABLE);
+
+                mapTiles.add(rinkWallBottomCornerRightTile);
+
+                    // rink wall bottom corner
+                Frame rinkWallBottomFrame = new FrameBuilder(getSubImage(15, 16))
+                                .withScale(tileScale)
+                                .build();
+
+                MapTileBuilder rinkWallBottomTile = new MapTileBuilder(rinkWallBottomFrame)
+                                .withTileType(TileType.NOT_PASSABLE);
+
+                mapTiles.add(rinkWallBottomTile);
+
+
 
 
 
