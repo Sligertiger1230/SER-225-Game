@@ -29,7 +29,7 @@ public class CCEClassroom extends Map {
         ArrayList<NPC> npcs = new ArrayList<>();
 
         // adds an npc boy
-        NPCBoy3 npcBoy3 = new NPCBoy3(4, getMapTile(5, 12).getLocation());
+        NPCBoy3 npcBoy3 = new NPCBoy3(2, getMapTile(5, 12).getLocation());
         npcBoy3.setInteractScript(new NPCBoy3Script());
         npcs.add(npcBoy3);
 

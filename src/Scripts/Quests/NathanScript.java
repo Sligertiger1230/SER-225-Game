@@ -73,6 +73,7 @@ public class NathanScript extends Script<NPC> {
                 if (amountMoved == 200) {
                     amountMoved = 0;
                     unsetFlag("nathanRunning");
+                    entity.stand(Direction.LEFT);
                     end();
                 }
                 else {
