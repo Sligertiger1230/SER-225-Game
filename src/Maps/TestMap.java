@@ -86,12 +86,12 @@ public class TestMap extends Map {
         pubSafetyDect.setInteractScript(new PubSafetyDectScript());
         npcs.add(pubSafetyDect);
         
-
-        WalrusFish walrusFish = new WalrusFish(5, getMapTile(5, 32).getLocation());
+ 
+        WalrusFish walrusFish = new WalrusFish(6, getMapTile(5, 32).getLocation());
         walrusFish.setInteractScript(new WalrusRedFishScript());
         npcs.add(walrusFish);
 
-        WalrusPurpFish walrusPurpFish = new WalrusPurpFish(6, getMapTile(4, 30).getLocation());
+        WalrusPurpFish walrusPurpFish = new WalrusPurpFish(5, getMapTile(4, 30).getLocation());
         walrusPurpFish.setInteractScript(new WalrusPurpFishScript());
 
         /*if(getFlagManager().isFlagSet("RedFish")){
@@ -176,6 +176,6 @@ public class TestMap extends Map {
 
         getMapTile(100, 59).setInteractScript(new ChangeMapScript());
 
-        getMapTile(25, 16).setInteractScript(new ChangeToIceRinkScript());
+        getMapTile(122, 40).setInteractScript(new ChangeToIceRinkScript());
     }
 }
