@@ -101,13 +101,11 @@ public class TestMap extends Map {
         }
         npcs.add(pubSafetyDect);
         
- 
-        WalrusPurpFish walrusPurpFish = new WalrusPurpFish(6, getMapTile(4, 30).getLocation());
-        walrusPurpFish.setInteractScript(new WalrusPurpFishScript());
-        npcs.add(walrusPurpFish);
-        
         WalrusFish walrusFish = new WalrusFish(5, getMapTile(5, 32).getLocation());
         walrusFish.setInteractScript(new WalrusRedFishScript());
+
+        WalrusPurpFish walrusPurpFish = new WalrusPurpFish(6, getMapTile(4, 30).getLocation());
+        walrusPurpFish.setInteractScript(new WalrusPurpFishScript());
         
         walrusFish.setIsHidden(true);
         walrusPurpFish.setIsHidden(true);
