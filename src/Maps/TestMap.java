@@ -98,26 +98,17 @@ public class TestMap extends Map {
         npcs.add(pubSafetyDect);
         
  
+        WalrusPurpFish walrusPurpFish = new WalrusPurpFish(5, getMapTile(4, 30).getLocation());
+        walrusPurpFish.setInteractScript(new WalrusPurpFishScript());
+        npcs.add(walrusPurpFish);
+
         WalrusFish walrusFish = new WalrusFish(6, getMapTile(5, 32).getLocation());
         walrusFish.setInteractScript(new WalrusRedFishScript());
         npcs.add(walrusFish);
 
-        WalrusPurpFish walrusPurpFish = new WalrusPurpFish(5, getMapTile(4, 30).getLocation());
-        walrusPurpFish.setInteractScript(new WalrusPurpFishScript());
+        walrusFish.setIsHidden(true);
+        walrusPurpFish.setIsHidden(true);
 
-        /*if(getFlagManager().isFlagSet("RedFish")){
-            walrusFish.setIsHidden(false);
-            walrusPurpFish.setIsHidden(true);
-        }
-        else if(getFlagManager().isFlagSet("PurpleFish")){
-            walrusPurpFish.setIsHidden(false);
-            walrusFish.setIsHidden(true);
-        }*/
-        //else{
-            walrusFish.setIsHidden(true);
-            walrusPurpFish.setIsHidden(true);
-        //}
-        npcs.add(walrusPurpFish);
 
         // adds Nathan's bike
         NathanBicycle nathanBike = new NathanBicycle(7, getMapTile(5, 33).getLocation());
@@ -161,9 +152,6 @@ public class TestMap extends Map {
         triggers.add(new Trigger(1920, 2304, 10, 196, new PubSafetyDectScript(), "hasEncounteredDect"));
 
         // base game triggers
-        triggers.add(new Trigger(790, 1030, 100, 10, new LostBallScript(), "hasLostBall"));
-        triggers.add(new Trigger(790, 960, 10, 80, new LostBallScript(), "hasLostBall"));
-        triggers.add(new Trigger(890, 960, 10, 80, new LostBallScript(), "hasLostBall"));
         return triggers;
     }
 

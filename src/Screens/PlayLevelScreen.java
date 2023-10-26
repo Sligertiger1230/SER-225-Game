@@ -176,13 +176,20 @@ public class PlayLevelScreen extends Screen {
                 return newMap;
             case 1:
                 newMap = new CCEClassroom();
-                //newMap.setFlagManager(flagManager);
-                //newMap.setNPCs();
-                //newMap.setQuestMenu(questMenu);
+                newMap.setFlagManager(flagManager);
+                newMap.setNPCs();
+                newMap.setQuestMenu(questMenu);
                 return newMap;
             case 2:
                 newMap = new IceRink();
+                newMap.setFlagManager(flagManager);
+                newMap.setNPCs();
+                newMap.setQuestMenu(questMenu);
+                //not sure why the player location isnt getting properly set.
+                //player.setLocation(10, 10);
                 return newMap;
+                
+
             default:
                 return null;
         }
