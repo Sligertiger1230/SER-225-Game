@@ -7,6 +7,7 @@ import Game.GameState;
 import Game.ScreenCoordinator;
 import Level.*;
 import Maps.CCEClassroom;
+import Maps.IceRink;
 import Maps.TestMap;
 import Players.Cat;
 import Utils.Direction;
@@ -36,6 +37,9 @@ public class PlayLevelScreen extends Screen {
         // setup state
         flagManager = new FlagManager();
 
+        //Walrus Fish quest
+        flagManager.addFlag("RedFish", false);
+        flagManager.addFlag("PurpleFish", false);
         //pubSafetyDect flags
         flagManager.addFlag("hasEncounteredDect");
 
@@ -47,11 +51,19 @@ public class PlayLevelScreen extends Screen {
         flagManager.addFlag("hasEncounteredJavaJohnWalk", false);
         flagManager.addFlag("isJavaJohnFloating", false);
 
+        //Nathan quest flags
+        flagManager.addFlag("hasTalkedToNathan", false);
+        flagManager.addFlag("nathanRunning", false);
+
         // base game flags
         flagManager.addFlag("hasLostBall", false);
         flagManager.addFlag("hasTalkedToWalrus", false);
         flagManager.addFlag("hasTalkedToDinosaur", false);
         flagManager.addFlag("hasFoundBall", false);
+
+        //NPC flags
+        flagManager.addFlag("hasTalkedToNPCBoy1", false);
+        flagManager.addFlag("hasTalkedToNPCGirl1", false);
 
         // define/setup map
         this.map = loadMap(0);
@@ -164,9 +176,12 @@ public class PlayLevelScreen extends Screen {
                 return newMap;
             case 1:
                 newMap = new CCEClassroom();
-                newMap.setFlagManager(flagManager);
-                newMap.setNPCs();
-                newMap.setQuestMenu(questMenu);
+                //newMap.setFlagManager(flagManager);
+                //newMap.setNPCs();
+                //newMap.setQuestMenu(questMenu);
+                return newMap;
+            case 2:
+                newMap = new IceRink();
                 return newMap;
             default:
                 return null;

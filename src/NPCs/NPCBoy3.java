@@ -11,10 +11,10 @@ import GameObject.SpriteSheet;
 import Level.NPC;
 import Utils.Point;
 
-public class JavaJohn extends NPC {
+public class NPCBoy3 extends NPC {
 
-    public JavaJohn(int id, Point location) {
-        super(id, location.x, location.y, new SpriteSheet(ImageLoader.load("javaJohn.png"), 21, 25), "STAND_LEFT");
+    public NPCBoy3(int id, Point location) {
+        super(id, location.x, location.y, new SpriteSheet(ImageLoader.load("npcBoy3.png"), 15, 21), "STAND_LEFT");
     }
 
     @Override
@@ -24,21 +24,10 @@ public class JavaJohn extends NPC {
                 put("STAND_LEFT", new Frame[] {
                         new FrameBuilder(spriteSheet.getSprite(0, 0))
                                 .withScale(3)
-                                .withBounds(1, 11, 19, 16)
+                                .withBounds(0, 0, 15, 21)
                                 .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
                                 .build()
                 });
-                put("STAND_RIGHT", new Frame[] {
-                        new FrameBuilder(spriteSheet.getSprite(1, 0))
-                                .withScale(3)
-                                .withBounds(1, 11, 19, 16)
-                                .build()
-                });
-                put("WALK_RIGHT", new Frame[] {
-                        new FrameBuilder(spriteSheet.getSprite(2, 0))
-                                .withScale(3)
-                                .withBounds(1, 11, 19, 16)
-                                .build() });
             }
         };
 

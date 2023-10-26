@@ -1351,52 +1351,393 @@ public class CommonTileset extends Tileset {
 
                 mapTiles.add(whiteboardTopMarksOneTile);
 
-                // whiteboard top with marks
+                // Whiteboard top with marks
                 Frame whiteboardTopMarksTwoFrame = new FrameBuilder(getSubImage(14, 9))
-                                .withScale(tileScale)
-                                .build();
+                        .withScale(tileScale)
+                        .build();
 
                 MapTileBuilder whiteboardTopMarksTwoTile = new MapTileBuilder(whiteboardBottomFrame)
-                                .withTopLayer(whiteboardTopMarksTwoFrame)
-                                .withTileType(TileType.NOT_PASSABLE);
+                        .withTopLayer(whiteboardTopMarksTwoFrame)
+                        .withTileType(TileType.NOT_PASSABLE);
 
                 mapTiles.add(whiteboardTopMarksTwoTile);
 
-                // white color
-                Frame whiteColorFrame = new FrameBuilder(getSubImage(3, 12))
+                // Student center dark panel
+                Frame scDarkPanelFrame = new FrameBuilder(getSubImage(9, 11))
+                        .withScale(tileScale)
+                        .build();
+                MapTileBuilder scDarkPanelTile = new MapTileBuilder(scDarkPanelFrame)
+                        .withTopLayer(scDarkPanelFrame)
+                        .withTileType(TileType.NOT_PASSABLE);
+                mapTiles.add(scDarkPanelTile);
+
+                // Student center dark panel side left
+                Frame scDarkPanelSideLeftFrame = new FrameBuilder(getSubImage(11, 11))
+                        .withScale(tileScale)
+                        .build();
+                MapTileBuilder scDarkPanelSideLeftTile = new MapTileBuilder(scDarkPanelSideLeftFrame)
+                        .withTopLayer(scDarkPanelSideLeftFrame)
+                        .withTileType(TileType.NOT_PASSABLE);
+                mapTiles.add(scDarkPanelSideLeftTile);
+
+                // Student center dark panel side right
+                Frame scDarkPanelSideRightFrame = new FrameBuilder(getSubImage(10, 11))
+                        .withScale(tileScale)
+                        .build();
+                MapTileBuilder scDarkPanelSideRightTile = new MapTileBuilder(scDarkPanelSideRightFrame); 
+
+                 //  quad white thing
+                Frame quadWhiteBumpFrame = new FrameBuilder(getSubImage(14, 5))
+                .withScale(tileScale)
+                .build();
+                MapTileBuilder quadWhiteBumpTile = new MapTileBuilder(grassFrame)
+                .withTopLayer(quadWhiteBumpFrame)
+                .withTileType(TileType.NOT_PASSABLE);
+                mapTiles.add(quadWhiteBumpTile);
+                //  outside table chair 
+                Frame outsideTableChairRightFrame = new FrameBuilder(getSubImage(14, 10))
+                .withScale(tileScale)
+                .build();
+                MapTileBuilder outsideTableChairRightTile = new MapTileBuilder(horizontalBrickFrame)
+                .withTopLayer(outsideTableChairRightFrame)
+                .withTileType(TileType.NOT_PASSABLE);
+                mapTiles.add(outsideTableChairRightTile);
+                //  outside table chair left
+                Frame outsideTableChairLeftFrame = new FrameBuilder(getSubImage(15, 9))
+                .withScale(tileScale)
+                .build();
+                MapTileBuilder outsideTableChairLeftTile = new MapTileBuilder(horizontalBrickFrame)
+                .withTopLayer(outsideTableChairLeftFrame)
+                .withTileType(TileType.NOT_PASSABLE);
+                mapTiles.add(outsideTableChairLeftTile);
+                // sewer cap frame
+                Frame sewerCapFrame = new FrameBuilder(getSubImage(13, 7))
+                        .withScale(tileScale)
+                        .build();
+                MapTileBuilder sewerCapTile = new MapTileBuilder(sewerCapFrame);
+                mapTiles.add(sewerCapTile);
+
+                // ice blank
+                Frame iceBlankFrame = new FrameBuilder(getSubImage(3, 15))
+                        .withScale(tileScale)
+                        .build();
+
+                MapTileBuilder iceBlankTile = new MapTileBuilder(iceBlankFrame);
+                mapTiles.add(iceBlankTile);
+
+                 // ice with red stripe right side
+                Frame iceRedStripeRightFrame = new FrameBuilder(getSubImage(11, 15))
+                        .withScale(tileScale)
+                        .build();
+
+                MapTileBuilder iceRedStripeRightTile = new MapTileBuilder(iceRedStripeRightFrame);
+                     
+
+                mapTiles.add(iceRedStripeRightTile);
+
+
+                 // ice with red stripe left side
+                Frame iceRedStripeLeftFrame = new FrameBuilder(getSubImage(11, 13))
+                        .withScale(tileScale)
+                        .build();
+
+                MapTileBuilder iceRedStripeLeftTile = new MapTileBuilder(iceRedStripeLeftFrame);
+                        
+                mapTiles.add(iceRedStripeLeftTile);
+
+                // ice with red stripe 
+                Frame iceRedStripeMiddleFrame = new FrameBuilder(getSubImage(3, 13))
+                        .withScale(tileScale)
+                        .build();
+
+                MapTileBuilder iceRedStripeMiddleTile = new MapTileBuilder(iceRedStripeMiddleFrame);
+                        
+
+                mapTiles.add(iceRedStripeMiddleTile);
+
+                // ice with thin red stripe vertical
+                Frame iceThinRedVerticalStripeMiddleFrame = new FrameBuilder(getSubImage(15, 12))
+                        .withScale(tileScale)
+                        .build();
+
+                MapTileBuilder iceThinRedVerticalStripeMiddleTile = new MapTileBuilder(iceThinRedVerticalStripeMiddleFrame);
+                        
+
+                mapTiles.add(iceThinRedVerticalStripeMiddleTile);
+
+                // ice with thin red stripe horizontal
+                Frame iceThinRedHorizontalStripeMiddleFrame = new FrameBuilder(getSubImage(15, 13))
+                        .withScale(tileScale)
+                        .build();
+
+                MapTileBuilder iceThinRedHorizontalStripeMiddleTile = new MapTileBuilder(iceThinRedHorizontalStripeMiddleFrame);
+                        
+
+                mapTiles.add(iceThinRedHorizontalStripeMiddleTile);
+
+                  // ice with blue stripe right side
+                Frame iceBlueStripeRightFrame = new FrameBuilder(getSubImage(11, 12))
+                        .withScale(tileScale)
+                        .build();
+
+                MapTileBuilder iceBlueStripeRightTile = new MapTileBuilder(iceBlueStripeRightFrame);
+                     
+
+                mapTiles.add(iceBlueStripeRightTile);
+
+                  // ice with blue stripe left side
+                Frame iceBlueStripeLeftFrame = new FrameBuilder(getSubImage(11, 14))
+                        .withScale(tileScale)
+                        .build();
+
+                MapTileBuilder iceBlueStripeLeftTile = new MapTileBuilder(iceBlueStripeLeftFrame);
+                     
+
+                mapTiles.add(iceBlueStripeLeftTile);
+
+
+                  // ice with blue stripe middle 
+                Frame iceBlueStripeMiddleFrame = new FrameBuilder(getSubImage(3, 14))
+                        .withScale(tileScale)
+                        .build();
+
+                MapTileBuilder iceBlueStripeMiddleTile = new MapTileBuilder(iceBlueStripeMiddleFrame);
+                     
+
+                mapTiles.add(iceBlueStripeMiddleTile);
+
+                  // m and t bank logo top
+                Frame bankTopLogoFrame = new FrameBuilder(getSubImage(12, 14))
+                        .withScale(tileScale)
+                        .build();
+
+                MapTileBuilder bankTopLogoTile = new MapTileBuilder(bankTopLogoFrame);
+                     
+
+                mapTiles.add(bankTopLogoTile);
+
+                  // m and t bank logo bottom
+                Frame bankBottomLogoFrame = new FrameBuilder(getSubImage(12, 15))
+                        .withScale(tileScale)
+                        .build();
+
+                MapTileBuilder bankBottomLogoTile = new MapTileBuilder(bankBottomLogoFrame);
+                     
+
+                mapTiles.add(bankBottomLogoTile);
+
+                   // quinnipiac logo left hand side 
+                Frame quLogoLeftFrame = new FrameBuilder(getSubImage(13, 12))
+                        .withScale(tileScale)
+                        .build();
+
+                MapTileBuilder quLogoLeftTile = new MapTileBuilder(quLogoLeftFrame);
+                     
+
+                mapTiles.add(quLogoLeftTile);
+
+                    // quinnipiac logo left mid hand side 
+                Frame quLogoLeftMidFrame = new FrameBuilder(getSubImage(13, 13))
+                        .withScale(tileScale)
+                        .build();
+
+                MapTileBuilder quLogoLeftMidTile = new MapTileBuilder(quLogoLeftMidFrame);
+                     
+
+                mapTiles.add(quLogoLeftMidTile);
+
+                     // quinnipiac logo right mid hand side 
+                Frame quLogoRightMidFrame = new FrameBuilder(getSubImage(13, 14))
+                        .withScale(tileScale)
+                        .build();
+
+                MapTileBuilder quLogoRightMidTile = new MapTileBuilder(quLogoRightMidFrame);
+                     
+
+                mapTiles.add(quLogoRightMidTile);
+
+                   // quinnipiac logo right hand side 
+                Frame quLogoRightFrame = new FrameBuilder(getSubImage(13, 15))
+                        .withScale(tileScale)
+                        .build();
+
+                MapTileBuilder quLogoRightTile = new MapTileBuilder(quLogoRightFrame);
+                     
+
+                mapTiles.add(quLogoRightTile);
+
+                    // quinnipiac logo left hand side flipped 
+                Frame quLogoLeftFlippedFrame = new FrameBuilder(getSubImage(14, 12))
+                        .withScale(tileScale)
+                        .build();
+
+                MapTileBuilder quLogoLeftFlippedTile = new MapTileBuilder(quLogoLeftFlippedFrame);
+                     
+
+                mapTiles.add(quLogoLeftFlippedTile);
+
+                    // quinnipiac logo left mid hand side flipped
+                Frame quLogoLeftMidFlippedFrame = new FrameBuilder(getSubImage(14, 13))
+                        .withScale(tileScale)
+                        .build();
+
+                MapTileBuilder quLogoLeftMidFlippedTile = new MapTileBuilder(quLogoLeftMidFlippedFrame);
+                     
+
+                mapTiles.add(quLogoLeftMidFlippedTile);
+
+                     // quinnipiac logo right mid hand side flipped
+                Frame quLogoRightMidFlippedFrame = new FrameBuilder(getSubImage(14, 14))
+                        .withScale(tileScale)
+                        .build();
+
+                MapTileBuilder quLogoRightMidFlippedTile = new MapTileBuilder(quLogoRightMidFlippedFrame);
+                     
+
+                mapTiles.add(quLogoRightMidFlippedTile);
+
+                   // quinnipiac logo right hand side 
+                Frame quLogoRightFlippedFrame = new FrameBuilder(getSubImage(14, 15))
+                        .withScale(tileScale)
+                        .build();
+
+                MapTileBuilder quLogoRightFlippedTile = new MapTileBuilder(quLogoRightFlippedFrame);
+                     
+
+                mapTiles.add(quLogoRightFlippedTile);
+
+                 mapTiles.add(quLogoRightMidFlippedTile);
+
+                   //ecac logo top
+                Frame ecacLogoTopFrame = new FrameBuilder(getSubImage(15, 15))
+                        .withScale(tileScale)
+                        .build();
+
+                MapTileBuilder ecacLogoTopTile = new MapTileBuilder(ecacLogoTopFrame);
+                     
+
+                mapTiles.add(ecacLogoTopTile);
+
+                   //ecac logo bottom
+                Frame ecacLogoBottomFrame = new FrameBuilder(getSubImage(15, 16))
+                        .withScale(tileScale)
+                        .build();
+
+                MapTileBuilder ecacLogoBottomTile = new MapTileBuilder(ecacLogoBottomFrame);
+                     
+
+                mapTiles.add(ecacLogoBottomTile);
+
+                // concrete 
+                Frame concreteFrame = new FrameBuilder(getSubImage(7, 3))
+                        .withScale(tileScale)
+                        .build();
+
+                MapTileBuilder concreteTile = new MapTileBuilder(concreteFrame);
+                     
+
+                mapTiles.add(concreteTile);
+
+                // shuttle top frame
+                Frame shuttleTopFrontFrame = new FrameBuilder(getSubImage(1, 13))
+                                .withScale(tileScale)
+                                .withBounds(0, 6, 16, 4)
+                                .build();
+
+                MapTileBuilder shuttleTopFrontTile = new MapTileBuilder(concreteFrame)
+                                .withTopLayer(shuttleTopFrontFrame)
+                                .withTileType(TileType.PASSABLE);
+
+                mapTiles.add(shuttleTopFrontTile);
+
+                 // shuttle top frame middle
+                Frame shuttleTopMidFrame = new FrameBuilder(getSubImage(1, 14))
+                                .withScale(tileScale)
+                                .withBounds(0, 6, 16, 4)
+                                .build();
+
+                MapTileBuilder shuttleTopMidTile = new MapTileBuilder(concreteFrame)
+                                .withTopLayer(shuttleTopMidFrame)
+                                .withTileType(TileType.PASSABLE);
+
+                mapTiles.add(shuttleTopMidTile);
+
+                 // shuttle top frame right
+                Frame shuttleTopRightFrame = new FrameBuilder(getSubImage(1, 15))
+                                .withScale(tileScale)
+                                .withBounds(0, 6, 16, 4)
+                                .build();
+
+                MapTileBuilder shuttleTopRightTile = new MapTileBuilder(concreteFrame)
+                                .withTopLayer(shuttleTopRightFrame)
+                                .withTileType(TileType.PASSABLE);
+
+                mapTiles.add(shuttleTopRightTile);
+
+                 // shuttle bottom frame right
+                Frame shuttleBottomRightFrame = new FrameBuilder(getSubImage(2, 15))
                                 .withScale(tileScale)
                                 .build();
 
-                MapTileBuilder whiteColorTile = new MapTileBuilder(whiteColorFrame);
+                MapTileBuilder shuttleBottomRightTile = new MapTileBuilder(concreteFrame)
+                                .withTopLayer(shuttleBottomRightFrame)
+                                .withTileType(TileType.NOT_PASSABLE);
 
-                mapTiles.add(whiteColorTile);
+                mapTiles.add(shuttleBottomRightTile);
 
-                // grass
-                Frame redColorFrame = new FrameBuilder(getSubImage(4, 12))
+                 // shuttle bottom frame mid
+                Frame shuttleBottomMidFrame = new FrameBuilder(getSubImage(2, 14))
                                 .withScale(tileScale)
                                 .build();
 
-                MapTileBuilder redColorTile = new MapTileBuilder(redColorFrame);
+                MapTileBuilder shuttleBottomMidTile = new MapTileBuilder(concreteFrame)
+                                .withTopLayer(shuttleBottomMidFrame)
+                                .withTileType(TileType.NOT_PASSABLE);
 
-                mapTiles.add(redColorTile);
+                mapTiles.add(shuttleBottomMidTile);
 
-                // grass
-                Frame yellowColorFrame = new FrameBuilder(getSubImage(5, 12))
+                 // shuttle bottom frame left
+                Frame shuttleBottomLeftFrame = new FrameBuilder(getSubImage(2, 13))
                                 .withScale(tileScale)
                                 .build();
 
-                MapTileBuilder yellowColorTile = new MapTileBuilder(yellowColorFrame);
+                MapTileBuilder shuttleBottomLeftTile = new MapTileBuilder(concreteFrame)
+                                .withTopLayer(shuttleBottomLeftFrame)
+                                .withTileType(TileType.NOT_PASSABLE);
 
-                mapTiles.add(yellowColorTile);
+                mapTiles.add(shuttleBottomLeftTile);
 
-                // grass
-                Frame blueColorFrame = new FrameBuilder(getSubImage(6, 12))
-                                .withScale(tileScale)
-                                .build();
+                
 
-                MapTileBuilder blueColorTile = new MapTileBuilder(blueColorFrame);
+                
 
-                mapTiles.add(blueColorTile);
+        
+                
+
+                
+
+
+
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      
+
 
                 // tree trunk with full hole
                 // Frame treeTrunkWithFullHoleFrame = new FrameBuilder(getSubImage(2, 2))
