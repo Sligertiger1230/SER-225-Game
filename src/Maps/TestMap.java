@@ -92,13 +92,17 @@ public class TestMap extends Map {
             javaJohnGlasses.setIsHidden(true);
         }
         npcs.add(javaJohnGlasses);
+
+        PubSafetyDect pubSafetyDect = new PubSafetyDect(4, getMapTile(45, 47).getLocation());
+        pubSafetyDect.setInteractScript(new PubSafetyDectScript());
+        npcs.add(pubSafetyDect);
         
 
-        WalrusFish walrusFish = new WalrusFish(6, getMapTile(4, 32).getLocation());
+        WalrusFish walrusFish = new WalrusFish(6, getMapTile(5, 32).getLocation());
         walrusFish.setInteractScript(new WalrusRedFishScript());
         npcs.add(walrusFish);
 
-        WalrusPurpFish walrusPurpFish = new WalrusPurpFish(5, getMapTile(4, 30).getLocation());
+        WalrusPurpFish walrusPurpFish = new WalrusPurpFish(6, getMapTile(4, 30).getLocation());
         walrusPurpFish.setInteractScript(new WalrusPurpFishScript());
 
         /*if(getFlagManager().isFlagSet("RedFish")){
@@ -115,20 +119,13 @@ public class TestMap extends Map {
         //}
         npcs.add(walrusPurpFish);
 
-
-
-
-        PubSafetyDect pubSafetyDect = new PubSafetyDect(4, getMapTile(45, 47).getLocation());
-        pubSafetyDect.setInteractScript(new PubSafetyDectScript());
-        npcs.add(pubSafetyDect);
-
         // adds Nathan's bike
         NathanBicycle nathanBike = new NathanBicycle(7, getMapTile(5, 33).getLocation());
         nathanBike.setInteractScript(new NathanBicycleScript());
         npcs.add(nathanBike);
 
         // adds Nathan
-        Nathan nathan = new Nathan(4, getMapTile(8, 33).getLocation());
+        Nathan nathan = new Nathan(8, getMapTile(8, 33).getLocation());
         nathan.setInteractScript(new NathanScript());
         npcs.add(nathan);
 
