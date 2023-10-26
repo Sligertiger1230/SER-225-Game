@@ -14,32 +14,44 @@ import Utils.Point;
 public class Nathan extends NPC {
 
     public Nathan(int id, Point location) {
-        super(id, location.x, location.y, new SpriteSheet(ImageLoader.load("nathan.png"), 18, 22), "STILL");
+        super(id, location.x, location.y, new SpriteSheet(ImageLoader.load("nathan.png"), 19, 23), "STAND_LEFT");
     }
 
     @Override
     public HashMap<String, Frame[]> loadAnimations(SpriteSheet spriteSheet) {
         return new HashMap<String, Frame[]>() {
             {
-                put("STILL", new Frame[] {
+                //s
+                put("STAND_LEFT", new Frame[] {
                         new FrameBuilder(spriteSheet.getSprite(0, 0))
                                 .withScale(3)
                                 .withBounds(0, 0, 18, 22)
                                 .build()
                 });
-                put("STILL_GlASSES", new Frame[] {
-                        new FrameBuilder(spriteSheet.getSprite(0, 0))
+                put("WALK_RIGHT", new Frame[] {
+                        new FrameBuilder(spriteSheet.getSprite(0, 2), 8)
                                 .withScale(3)
-                                .withBounds(23, 0, 22, 27)
-                                .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
+                                .withBounds(1, 1, 19, 22)
+                                .build(),
+                        new FrameBuilder(spriteSheet.getSprite(1, 1), 8)
+                                .withScale(3)
+                                .withBounds(1, 1, 19, 22)
+                                .build(),
+                        new FrameBuilder(spriteSheet.getSprite(1, 2), 8)
+                                .withScale(3)
+                                .withBounds(1, 1, 19, 22)
                                 .build()
                 });
-                put("STILL", new Frame[] {
-                        new FrameBuilder(spriteSheet.getSprite(0, 0))
+                put("WALK_DOWN", new Frame[] {
+                        new FrameBuilder(spriteSheet.getSprite(1, 0), 8)
                                 .withScale(3)
-                                .withBounds(0, 0, 16, 19)
+                                .withBounds(1, 1, 19, 22)
+                                .build(),
+                        new FrameBuilder(spriteSheet.getSprite(1, 0), 8)
+                                .withScale(3)
+                                .withBounds(1, 1, 19, 22)
                                 .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
-                                .build()
+                                .build(),
                 });
             }
         };

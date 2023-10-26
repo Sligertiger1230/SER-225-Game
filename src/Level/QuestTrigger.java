@@ -2,19 +2,27 @@ package Level;
 
 public class QuestTrigger {
     private Trigger trigger;
-    private String mapFileName;
+    private int mapInt;
 
-    public QuestTrigger(Trigger trigger, String mapFileName){
+    public QuestTrigger(Trigger trigger, int mapInt){
         this.trigger = trigger;
-        this.mapFileName = mapFileName;
+        this.mapInt = mapInt;
     }
 
     public Trigger getTrigger(){
         return trigger;
     }
 
-    public String getMapFileName(){
-        return mapFileName;
+    public int getMapInt(){
+        return mapInt;
+    }
+
+    public void setTrigger(Trigger trigger){
+        this.trigger = trigger;
+    }
+
+    public void setMapInt(int mapInt){
+        this.mapInt = mapInt;
     }
 
     

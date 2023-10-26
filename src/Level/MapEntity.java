@@ -64,6 +64,7 @@ public class MapEntity extends GameObject {
     }
 
     public Script getInteractScript() { return interactScript; }
+    
     public void setInteractScript(Script interactScript) {
         this.interactScript = interactScript;
         this.interactScript.setMapEntity(this);

@@ -10,18 +10,21 @@ import Utils.Direction;
 public class NathanScript extends Script<NPC> {
 
     private int amountMoved;
+    private int sequence = 0;
 
     @Override
     protected void setup() {
-        lockPlayer();
-        showPortrait("nathanPortrait.png");
-        showTextbox();
-        
-        if (!isFlagSet("hasTalkedToNathan")){
-            addTextToTextboxQueue("Talk to me again if you want me to run away.");
-        }
-        else {
-            addTextToTextboxQueue("I'm going to run away now.");
+        if(!isFlagSet("nathanRunning")){
+            lockPlayer();
+            showPortrait("nathanPortrait.png", 3);
+            showTextbox();
+
+            if (!isFlagSet("hasTalkedToNathan")){
+            addTextToTextboxQueue("I'm literally the fastest on campus.");
+            }
+            else {
+                addTextToTextboxQueue("I'll race you to CCE right now!");
+            }
         }
     }
 
@@ -32,7 +35,12 @@ public class NathanScript extends Script<NPC> {
         hideTextbox();
         hidePortrait();
         
-        setFlag("hasTalkedToNathan");
+        if (!isFlagSet("hasTalkedToNathan")){
+            setFlag("hasTalkedToNathan");
+        }
+        else {
+            setFlag("nathanRunning");
+        }
     }
 
     @Override
@@ -47,21 +55,41 @@ public class NathanScript extends Script<NPC> {
             //cleanup() function
             end();
         } 
-        else {
-            //will rise until off screen
-            entity.walk(Direction.UP, 2);
-            amountMoved += 10;
-            //if has gone off screen
-            if (amountMoved == 2000) {
-                //clean up function
-                end();
-            } 
-            //if hasn't gone off screen, continue running
-            else {
+        else if (isFlagSet("nathanRunning")) {
+        //player is not locked, but nathan walks
+        //sequence determines whether nathan is moving right or down
+            if (sequence == 0){
+                entity.walk(Direction.RIGHT, 4);
+                amountMoved += 1;
+                if (amountMoved >= 1115) {
+                    sequence++;
+                    amountMoved = 0;
+                }
                 return ScriptState.RUNNING;
             }
+            else {
+                entity.walk(Direction.DOWN, 4);
+                amountMoved += 1;
+                if (amountMoved == 200) {
+                    amountMoved = 0;
+                    unsetFlag("nathanRunning");
+                    end();
+                }
+                else {
+                    return ScriptState.RUNNING;
+                }
+            }
         }
-
+        else {
+            //setup() function
+            start();
+            //goes through text
+            if (!isTextboxQueueEmpty()) {
+                return ScriptState.RUNNING;
+            }
+            //cleanup() function
+            end();
+        }
         return ScriptState.COMPLETED;
     }
 }

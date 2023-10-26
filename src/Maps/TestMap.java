@@ -1,13 +1,15 @@
 package Maps;
 
 import EnhancedMapTiles.PushableRock;
-import Level.Audio;
 import Level.EnhancedMapTile;
 import Level.Map;
 import Level.NPC;
+// import Level.SoundManager;
 import Level.Trigger;
 import NPCs.Dinosaur;
 import NPCs.Walrus;
+import NPCs.WalrusFish;
+import NPCs.WalrusPurpFish;
 import Players.Cat;
 import NPCs.JavaJohn;
 import NPCs.JavaJohnGlasses;
@@ -16,17 +18,24 @@ import NPCs.NPCBoy2;
 import NPCs.NPCGirl1;
 import NPCs.NPCSwimmer;
 import NPCs.Nathan;
+import NPCs.NathanBicycle;
 import Scripts.SimpleTextScript;
 import Scripts.CCEClassroom.ChangeMapScript;
 import Scripts.NPCDialogue.NPCBoy1Script;
 import Scripts.NPCDialogue.NPCBoy2Script;
 import Scripts.NPCDialogue.NPCGirl1Script;
 import Scripts.NPCDialogue.NPCSwimmerScript;
+import NPCs.PubSafetyDect;
+import Scripts.SimpleTextScript;
+import Scripts.CCEClassroom.ChangeMapScript;
+import Scripts.CCEClassroom.ChangeToIceRinkScript;
 import Scripts.Quests.*;
 import Scripts.TestMap.DinoScript;
 import Scripts.TestMap.LostBallScript;
-import Scripts.TestMap.TeleportScript;
+//import Scripts.TestMap.TeleportScript;
 import Scripts.TestMap.TreeScript;
+import Scripts.TestMap.WalrusPurpFishScript;
+import Scripts.TestMap.WalrusRedFishScript;
 import Scripts.TestMap.WalrusScript;
 import Tilesets.CommonTileset;
 
@@ -35,11 +44,13 @@ import java.util.ArrayList;
 // Represents a test map to be used in a level
 public class TestMap extends Map {
 
+    private int currentChoice;
+
     public TestMap() {
         super("test_map.txt", new CommonTileset());
         this.playerStartPosition = getMapTile(17, 20).getLocation();
-        // Playing background music (September 29th)
-        Audio.playBackgroundMusic();
+        this.mapInt = 0;
+        this.idSwitch = 0;
     }
 
     @Override
@@ -65,48 +76,95 @@ public class TestMap extends Map {
         dinosaur.setInteractScript(new DinoScript());
         npcs.add(dinosaur);
 
-        // adds javaJohn!
-        JavaJohn javaJohn = new JavaJohn(2, getMapTile(37, 7).getLocation());
-        javaJohn.setInteractScript(new JavaJohnScript());
-        npcs.add(javaJohn);
+        if (!getFlagManager().isFlagSet("isJavaJohnFloating")) {
+            JavaJohn javaJohn = new JavaJohn(2, getMapTile(37, 7).getLocation());
+            javaJohn.setInteractScript(new JavaJohnScript());
+            npcs.add(javaJohn);
+        }
 
         // adds the glasses of java john's that need finding
+
         JavaJohnGlasses javaJohnGlasses = new JavaJohnGlasses(3, getMapTile(97, 39).getLocation());
         javaJohnGlasses.setInteractScript(new JavaJohnGlassesScript());
-        javaJohnGlasses.setIsHidden(true);
+        if (getFlagManager().isFlagSet("hasTalkedToJavaJohn")) {
+            javaJohnGlasses.setIsHidden(false);
+        } else {
+            javaJohnGlasses.setIsHidden(true);
+        }
         npcs.add(javaJohnGlasses);
+        
+
+        WalrusFish walrusFish = new WalrusFish(6, getMapTile(4, 32).getLocation());
+        walrusFish.setInteractScript(new WalrusRedFishScript());
+        npcs.add(walrusFish);
+
+        WalrusPurpFish walrusPurpFish = new WalrusPurpFish(5, getMapTile(4, 30).getLocation());
+        walrusPurpFish.setInteractScript(new WalrusPurpFishScript());
+
+        /*if(getFlagManager().isFlagSet("RedFish")){
+            walrusFish.setIsHidden(false);
+            walrusPurpFish.setIsHidden(true);
+        }
+        else if(getFlagManager().isFlagSet("PurpleFish")){
+            walrusPurpFish.setIsHidden(false);
+            walrusFish.setIsHidden(true);
+        }*/
+        //else{
+            walrusFish.setIsHidden(true);
+            walrusPurpFish.setIsHidden(true);
+        //}
+        npcs.add(walrusPurpFish);
+
+
+
+
+        PubSafetyDect pubSafetyDect = new PubSafetyDect(4, getMapTile(45, 47).getLocation());
+        pubSafetyDect.setInteractScript(new PubSafetyDectScript());
+        npcs.add(pubSafetyDect);
+
+        // adds Nathan's bike
+        NathanBicycle nathanBike = new NathanBicycle(7, getMapTile(5, 33).getLocation());
+        nathanBike.setInteractScript(new NathanBicycleScript());
+        npcs.add(nathanBike);
 
         // adds Nathan
-        Nathan nathan = new Nathan(2, getMapTile(6, 33).getLocation());
+        Nathan nathan = new Nathan(4, getMapTile(8, 33).getLocation());
         nathan.setInteractScript(new NathanScript());
         npcs.add(nathan);
 
+
         // adds an npc boy (brunette white shirt)
-        NPCBoy1 npcBoy1 = new NPCBoy1(4, getMapTile(20, 6).getLocation());
+        NPCBoy1 npcBoy1 = new NPCBoy1(9, getMapTile(20, 6).getLocation());
         npcBoy1.setInteractScript(new NPCBoy1Script());
         npcs.add(npcBoy1);
         
         // adds an npc girl (blonde with green shirt)
-        NPCGirl1 npcGirl1 = new NPCGirl1(4, getMapTile(52, 32).getLocation());
+        NPCGirl1 npcGirl1 = new NPCGirl1(10, getMapTile(52, 32).getLocation());
         npcGirl1.setInteractScript(new NPCGirl1Script());
         npcs.add(npcGirl1);
 
         // adds an npc boy (red shirt hat)
-        NPCBoy2 npcBoy2 = new NPCBoy2(4, getMapTile(4, 33).getLocation());
+        NPCBoy2 npcBoy2 = new NPCBoy2(11, getMapTile(4, 45).getLocation());
         npcBoy2.setInteractScript(new NPCBoy2Script());
         npcs.add(npcBoy2);
 
         // adds an npc swimmer
-        NPCSwimmer npcSwimmer = new NPCSwimmer(4, getMapTile(85, 52).getLocation());
+        NPCSwimmer npcSwimmer = new NPCSwimmer(12, getMapTile(85, 52).getLocation());
         npcSwimmer.setInteractScript(new NPCSwimmerScript());
         npcs.add(npcSwimmer);
 
         return npcs;
+
     }
 
     @Override
     public ArrayList<Trigger> loadTriggers() {
         ArrayList<Trigger> triggers = new ArrayList<>();
+
+        System.out.println(getMapTile(40, 48).getLocation());
+
+        triggers.add(new Trigger(2256, 1968, 196, 10, new PubSafetyDectScript(), "hasEncounteredDect"));
+        triggers.add(new Trigger(1920, 2304, 10, 196, new PubSafetyDectScript(), "hasEncounteredDect"));
 
         // base game triggers
         triggers.add(new Trigger(790, 1030, 100, 10, new LostBallScript(), "hasLostBall"));
@@ -125,10 +183,12 @@ public class TestMap extends Map {
 
         getMapTile(2, 6).setInteractScript(new TreeScript());
 
-        getMapTile(1, 1).setInteractScript(new TeleportScript(32, 23));
+        // getMapTile(1, 1).setInteractScript(new TeleportScript(32, 23));
 
-        getMapTile(32, 25).setInteractScript(new TeleportScript(2, 2));
+        // getMapTile(32, 25).setInteractScript(new TeleportScript(2, 2));
 
         getMapTile(100, 59).setInteractScript(new ChangeMapScript());
+
+        getMapTile(25, 16).setInteractScript(new ChangeToIceRinkScript());
     }
 }

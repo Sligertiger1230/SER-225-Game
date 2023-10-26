@@ -7,10 +7,10 @@ public class Quest {
     private int currStep;
     private boolean questCompletionStatus, newQuestStatus;
     private ArrayList<String> stepList;
-    private ArrayList<Trigger> triggerList;
+    private ArrayList<QuestTrigger> triggerList;
 
     // constructor for new uncompleted quest
-    public Quest(String questName, ArrayList<String> stepList, ArrayList<Trigger> triggerList) {
+    public Quest(String questName, ArrayList<String> stepList, ArrayList<QuestTrigger> triggerList) {
         this.questName = questName;
         this.questCompletionStatus = false;
         this.newQuestStatus = true;
@@ -53,7 +53,7 @@ public class Quest {
     }
 
     // retrieves the triggerList of a specific quest
-    public ArrayList<Trigger> getTriggerList() {
+    public ArrayList<QuestTrigger> getTriggerList() {
         return triggerList;
     }
 

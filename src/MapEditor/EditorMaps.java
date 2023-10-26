@@ -2,6 +2,8 @@ package MapEditor;
 
 import Level.Map;
 import Maps.CCEClassroom;
+import Maps.DrawQuest;
+import Maps.IceRink;
 import Maps.TestMap;
 import Maps.TitleScreenMap;
 
@@ -13,6 +15,8 @@ public class EditorMaps {
             add("TestMap");
             add("TitleScreen");
             add("CCEClassroom");
+            add("DrawQuest");
+            add("IceRink");
         }};
     }
 
@@ -24,6 +28,10 @@ public class EditorMaps {
                 return new TitleScreenMap();
             case "CCEClassroom":
                 return new CCEClassroom();
+            case "DrawQuest":
+                return new DrawQuest();
+            case "IceRink":
+                return new IceRink();
             default:
                 throw new RuntimeException("Unrecognized map name");
         }

@@ -12,10 +12,10 @@ import Game.ScreenCoordinator;
 
 
 
-public class ChangeMapScript extends Script {
+public class ChangeToIceRinkScript extends Script {
 
 
-    public ChangeMapScript() {
+    public ChangeToIceRinkScript() {
     }
 
 
@@ -31,7 +31,7 @@ public class ChangeMapScript extends Script {
 
     @Override
     protected ScriptState execute() {
-        map.setIdSwitch(1);
+        map.setIdSwitch(2);
         return ScriptState.COMPLETED;
     }
 }

@@ -4,11 +4,16 @@ import Utils.Direction;
 
 import java.util.ArrayList;
 
+import Engine.Key;
+import Engine.KeyLocker;
+import Engine.Keyboard;
 import Engine.Screen;
 import Game.GameState;
 import Game.ScreenCoordinator;
 import Maps.CCEClassroom;
-import Screens.CCEClassroomScreen;
+import Engine.Key;
+import Engine.KeyLocker;
+import Engine.Keyboard;
 
 // This class is a base class for all scripts in the game -- all scripts should extend from it
 // Scripts can be used to interact with map entities
@@ -24,6 +29,11 @@ public abstract class Script<T extends MapEntity> {
     // if true, script should perform "setup" logic
     protected boolean start = true;
 
+    // define keys
+    protected KeyLocker keyLocker = new KeyLocker();
+    protected Key Choice1_KEY = Key.UP;
+    protected Key Choice2_KEY = Key.DOWN;
+
     // references to the map entity the script is attached to
     // use generic type if you need to use this reference
     protected T entity;
@@ -38,7 +48,7 @@ public abstract class Script<T extends MapEntity> {
     protected ArrayList<String> stepList;
 
     // holds quests
-    protected ArrayList<Trigger> questTriggers;
+    protected ArrayList<QuestTrigger> questTriggers;
 
     protected int frameDelayCounter = 0;
 
@@ -146,15 +156,43 @@ public abstract class Script<T extends MapEntity> {
         map.getTextbox().setIsActive(true);
     }
 
-    //show character portrait
-    protected void showPortrait(String imageName){
+    // show character portrait
+    protected void showPortrait(String imageName) {
         map.getPortrait().setPortraitImage(imageName);
+        map.getPortrait().setPortraitIsActive(true);
+    }
+
+    protected void showPortrait(String imageName, int scale){
+        map.getPortrait().setPortraitImage(imageName, scale);
         map.getPortrait().setPortraitIsActive(true);
     }
 
     // adds text to be shown in textbox
     protected void addTextToTextboxQueue(String text) {
         map.getTextbox().addText(text);
+    }
+
+    // adds text to be shown in textbox with the option for selectable text
+    protected void addTextToTextboxQueue(String text, String[] selectableText, String[] responses) {
+        map.getTextbox().setResponses(responses);
+        map.getTextbox().addSelectableText(text, selectableText);
+    }
+
+    // returns the value of the last choice made from a selectable textbox
+    protected int getChoice() {
+        return map.getTextbox().getChoice();
+        }
+    
+        // sets the value of the last choice made from a selectable textbox
+        protected void setChoice(int choice) {
+        map.getTextbox().setChoice(choice);
+        }
+        protected void choiceAddTextToTextboxQueue(String text, String text2) {
+        if (Keyboard.isKeyDown(Choice1_KEY)) {
+            addTextToTextboxQueue(text);
+        } else if (Keyboard.isKeyDown(Choice2_KEY)) {
+            addTextToTextboxQueue(text2);
+        }
     }
 
     // adds a series of text to be shown in textbox
@@ -293,16 +331,17 @@ public abstract class Script<T extends MapEntity> {
 
     // creates trigger list to be used on quest
     protected void createTriggerList() {
-        questTriggers = new ArrayList<Trigger>();
+        questTriggers = new ArrayList<QuestTrigger>();
     }
 
     // adds trigger to trigger list
-    protected void addTrigger(int x, int y, int width, int height, Script triggerScript, String existenceFlag) {
-        questTriggers.add(new Trigger(x, y, width, height, triggerScript, existenceFlag));
+    protected void addTrigger(int x, int y, int width, int height, Script triggerScript, String existenceFlag,
+            int mapInt) {
+        questTriggers.add(new QuestTrigger(new Trigger(x, y, width, height, triggerScript, existenceFlag), mapInt));
     }
 
     // gets trigger list
-    protected ArrayList<Trigger> getQuestTriggers() {
+    protected ArrayList<QuestTrigger> getQuestTriggers() {
         return questTriggers;
     }
 

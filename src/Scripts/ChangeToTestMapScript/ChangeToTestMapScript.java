@@ -1,4 +1,4 @@
-package Scripts.CCEClassroom;
+package Scripts.ChangeToTestMapScript;
 
 import Game.GameState;
 import Level.Camera;
@@ -12,10 +12,10 @@ import Game.ScreenCoordinator;
 
 
 
-public class ChangeMapScript extends Script {
+public class ChangeToTestMapScript extends Script {
 
 
-    public ChangeMapScript() {
+    public ChangeToTestMapScript() {
     }
 
 
@@ -31,7 +31,7 @@ public class ChangeMapScript extends Script {
 
     @Override
     protected ScriptState execute() {
-        map.setIdSwitch(1);
+        map.setIdSwitch(0);
         return ScriptState.COMPLETED;
     }
 }
