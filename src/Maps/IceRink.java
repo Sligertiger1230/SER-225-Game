@@ -1,7 +1,6 @@
 package Maps;
 
 import Level.Map;
-import Scripts.ChangeToTestMapScript.ChangeToTestMapScript;
 import Tilesets.CommonTileset;
 import Utils.Point;
 

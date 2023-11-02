@@ -27,12 +27,8 @@ import Scripts.NPCDialogue.NPCBoy2Script;
 import Scripts.NPCDialogue.NPCGirl1Script;
 import Scripts.NPCDialogue.NPCSwimmerScript;
 import NPCs.PubSafetyDect;
-import Scripts.SimpleTextScript;
-import Scripts.CCEClassroom.ChangeMapScript;
-import Scripts.CCEClassroom.ChangeToIceRinkScript;
 import Scripts.Quests.*;
 import Scripts.TestMap.DinoScript;
-import Scripts.TestMap.LostBallScript;
 //import Scripts.TestMap.TeleportScript;
 import Scripts.TestMap.TreeScript;
 import Scripts.TestMap.WalrusPurpFishScript;
@@ -190,8 +186,8 @@ public class TestMap extends Map {
 
         // getMapTile(32, 25).setInteractScript(new TeleportScript(2, 2));
 
-        getMapTile(100, 59).setInteractScript(new ChangeMapScript());
+        getMapTile(100, 59).setInteractScript(new ChangeMapScript(1));
 
-        getMapTile(122, 40).setInteractScript(new ChangeToIceRinkScript());
+        getMapTile(122, 40).setInteractScript(new ChangeMapScript(2));
     }
 }

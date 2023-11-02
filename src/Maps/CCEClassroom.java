@@ -8,11 +8,7 @@ import NPCs.NPCBoy3;
 import NPCs.ProfessorJaiswal;
 import Scripts.NPCDialogue.NPCBoy3Script;
 import Scripts.Quests.JaiswalDrawQuestCCE;
-import Scripts.TestMap.WalrusScript;
-import Scripts.SimpleTextScript;
 import Scripts.CCEClassroom.ChangeMapScript;
-import Scripts.CCEClassroom.ChangeToDrawQuestScript;
-import Scripts.ChangeToTestMapScript.ChangeToTestMapScript;
 import Tilesets.CommonTileset;
 
 public class CCEClassroom extends Map {
@@ -21,12 +17,6 @@ public class CCEClassroom extends Map {
         this.playerStartPosition = getMapTile(1, 4).getLocation();
         this.mapInt = 1;
         this.idSwitch = 1;
-    }
-
-    public void loadScripts() {
-        getMapTile(1, 2).setInteractScript(new ChangeToTestMapScript());
-
-        getMapTile(15, 2).setInteractScript(new ChangeToDrawQuestScript());
     }
 
     // loads NPC's into the CCE classroom
@@ -44,5 +34,11 @@ public class CCEClassroom extends Map {
         npcs.add(drJ);
 
         return npcs;
+    }
+
+    public void loadScripts() {
+        getMapTile(1, 2).setInteractScript(new ChangeMapScript(1));
+
+        getMapTile(15, 2).setInteractScript(new ChangeMapScript(3));
     }
 }
