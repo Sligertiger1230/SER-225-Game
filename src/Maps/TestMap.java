@@ -10,7 +10,6 @@ import NPCs.Dinosaur;
 import NPCs.Walrus;
 import NPCs.WalrusFish;
 import NPCs.WalrusPurpFish;
-import Players.Cat;
 import NPCs.JavaJohn;
 import NPCs.JavaJohnGlasses;
 import NPCs.NPCBoy1;

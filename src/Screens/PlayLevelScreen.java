@@ -22,6 +22,7 @@ public class PlayLevelScreen extends Screen {
     protected int triggerSize;
     protected PlayLevelScreenState playLevelScreenState;
     protected WinScreen winScreen;
+    protected AsteroidScreen asteroidScreen;
     protected FlagManager flagManager;
     protected QuestMenu questMenu;
     protected ArrayList<QuestTrigger> triggers;
@@ -119,6 +120,8 @@ public class PlayLevelScreen extends Screen {
         }
 
         winScreen = new WinScreen(this);
+        asteroidScreen = new AsteroidScreen(this);
+        playLevelScreenState = PlayLevelScreenState.ASTEROID;
     }
 
     public void update() {
@@ -169,6 +172,9 @@ public class PlayLevelScreen extends Screen {
                 break;
             case LEVEL_COMPLETED:
                 winScreen.draw(graphicsHandler);
+                break;
+            case ASTEROID:
+                asteroidScreen.draw(graphicsHandler);
                 break;
         }
     }
@@ -276,6 +282,6 @@ public class PlayLevelScreen extends Screen {
 
     // This enum represents the different states this screen can be in
     private enum PlayLevelScreenState {
-        RUNNING, LEVEL_COMPLETED
+        RUNNING, LEVEL_COMPLETED, ASTEROID
     }
 }
