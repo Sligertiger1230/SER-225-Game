@@ -6,6 +6,7 @@ import Maps.DrawQuest;
 import Maps.IceRink;
 import Maps.IceStarter;
 import Maps.TestMap;
+import Maps.OrientationRoom;
 import Maps.TitleScreenMap;
 
 import java.util.ArrayList;
@@ -18,7 +19,7 @@ public class EditorMaps {
             add("CCEClassroom");
             add("DrawQuest");
             add("IceRink");
-            add("IceStarter");
+            add("OrientationRoom");
         }};
     }
 
@@ -34,8 +35,8 @@ public class EditorMaps {
                 return new DrawQuest();
             case "IceRink":
                 return new IceRink();
-            case "IceStarter":
-                return new IceStarter();
+            case "OrientationRoom":
+                return new OrientationRoom();
             default:
                 throw new RuntimeException("Unrecognized map name");
         }
