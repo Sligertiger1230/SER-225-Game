@@ -2050,6 +2050,91 @@ public class CommonTileset extends Tileset {
 
                 mapTiles.add(yellowColorTile);
 
+                 // burt kahn floor
+                Frame bkFloorFrame = new FrameBuilder(getSubImage(0, 15))
+                                .withScale(tileScale)
+                                .build();
+
+                MapTileBuilder bkFloorTile = new MapTileBuilder(bkFloorFrame);
+
+                mapTiles.add(bkFloorTile);
+
+                 // burt kahn floor corner top right
+                Frame bkFloorCornerTopRightFrame = new FrameBuilder(getSubImage(0, 17))
+                                .withScale(tileScale)
+                                .build();
+
+                MapTileBuilder bkFloorCornerTopRightTile = new MapTileBuilder(bkFloorCornerTopRightFrame);
+
+                mapTiles.add(bkFloorCornerTopRightTile);
+
+                 // burt kahn floor corner top left
+                Frame bkFloorCornerTopLeftFrame = new FrameBuilder(getSubImage(4, 19))
+                                .withScale(tileScale)
+                                .build();
+
+                MapTileBuilder bkFloorCornerTopLeftTile = new MapTileBuilder(bkFloorCornerTopLeftFrame);
+
+                mapTiles.add(bkFloorCornerTopLeftTile);
+
+                 // burt kahn floor corner bottom left
+                Frame bkFloorCornerBottomLeftFrame = new FrameBuilder(getSubImage(4, 17))
+                                .withScale(tileScale)
+                                .build();
+
+                MapTileBuilder bkFloorCornerBottomLeftTile = new MapTileBuilder(bkFloorCornerBottomLeftFrame);
+
+                mapTiles.add(bkFloorCornerBottomLeftTile);
+
+                 // burt kahn floor corner bottom right
+                Frame bkFloorCornerBottomRightFrame = new FrameBuilder(getSubImage(4, 18))
+                                .withScale(tileScale)
+                                .build();
+
+                MapTileBuilder bkFloorCornerBottomRightTile = new MapTileBuilder(bkFloorCornerBottomRightFrame);
+
+                mapTiles.add(bkFloorCornerBottomRightTile);
+
+                 // burt kahn floor left side 
+                Frame bkFloorLeftFrame = new FrameBuilder(getSubImage(0, 19))
+                                .withScale(tileScale)
+                                .build();
+
+                MapTileBuilder bkFloorLeftTile = new MapTileBuilder(bkFloorLeftFrame);
+
+                mapTiles.add(bkFloorLeftTile);
+
+                 // burt kahn floor right side 
+                Frame bkFloorRightFrame = new FrameBuilder(getSubImage(0, 18))
+                                .withScale(tileScale)
+                                .build();
+
+                MapTileBuilder bkFloorRightTile = new MapTileBuilder(bkFloorRightFrame);
+
+                mapTiles.add(bkFloorRightTile);
+
+                 // burt kahn floor stripe  
+                Frame bkFloorStripeFrame = new FrameBuilder(getSubImage(3, 17))
+                                .withScale(tileScale)
+                                .build();
+
+                MapTileBuilder bkFloorStripeTile = new MapTileBuilder(bkFloorStripeFrame);
+
+                mapTiles.add(bkFloorStripeTile);
+
+                 // burt kahn floor stripe white 
+                Frame bkFloorStripeWhiteFrame = new FrameBuilder(getSubImage(3, 18))
+                                .withScale(tileScale)
+                                .build();
+
+                MapTileBuilder bkFloorStripeWhiteTile = new MapTileBuilder(bkFloorStripeWhiteFrame);
+
+                mapTiles.add(bkFloorStripeWhiteTile);
+
+
+
+
+
                 // tree trunk with full hole
                 // Frame treeTrunkWithFullHoleFrame = new FrameBuilder(getSubImage(2, 2))
                 // .withScale(tileScale)
