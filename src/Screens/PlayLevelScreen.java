@@ -199,16 +199,12 @@ public class PlayLevelScreen extends Screen {
                 newMap.setFlagManager(flagManager);
                 newMap.setNPCs();
                 newMap.setQuestMenu(questMenu);
-                // not sure why the player location isnt getting properly set.
-                // player.setLocation(10, 10);
                 return newMap;
             case 3:
                 newMap = new DrawQuest();
                 newMap.setFlagManager(flagManager);
                 newMap.setNPCs();
                 newMap.setQuestMenu(questMenu);
-                // not sure why the player location isnt getting properly set.
-                // player.setLocation(10, 10);
                 musicPlayer.setFile(17);
                 musicPlayer.loop();
                 return newMap;

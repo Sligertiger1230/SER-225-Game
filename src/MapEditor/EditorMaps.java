@@ -4,6 +4,7 @@ import Level.Map;
 import Maps.CCEClassroom;
 import Maps.DrawQuest;
 import Maps.IceRink;
+import Maps.IceStarter;
 import Maps.TestMap;
 import Maps.TitleScreenMap;
 
@@ -17,6 +18,7 @@ public class EditorMaps {
             add("CCEClassroom");
             add("DrawQuest");
             add("IceRink");
+            add("IceStarter");
         }};
     }
 
@@ -32,6 +34,8 @@ public class EditorMaps {
                 return new DrawQuest();
             case "IceRink":
                 return new IceRink();
+            case "IceStarter":
+                return new IceStarter();
             default:
                 throw new RuntimeException("Unrecognized map name");
         }
