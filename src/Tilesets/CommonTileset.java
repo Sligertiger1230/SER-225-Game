@@ -2123,13 +2123,158 @@ public class CommonTileset extends Tileset {
                 mapTiles.add(bkFloorStripeTile);
 
                  // burt kahn floor stripe white 
-                Frame bkFloorStripeWhiteFrame = new FrameBuilder(getSubImage(3, 18))
+                Frame bkFloorStripeWhiteFrame = new FrameBuilder(getSubImage(2, 18))
                                 .withScale(tileScale)
                                 .build();
 
                 MapTileBuilder bkFloorStripeWhiteTile = new MapTileBuilder(bkFloorStripeWhiteFrame);
 
                 mapTiles.add(bkFloorStripeWhiteTile);
+
+                 // burt kahn floor stripe white 
+                Frame bkFloorStripeBlueMidFrame = new FrameBuilder(getSubImage(3, 18))
+                                .withScale(tileScale)
+                                .build();
+
+                MapTileBuilder bkFloorStripeBlueMidTile = new MapTileBuilder(bkFloorStripeBlueMidFrame);
+
+                mapTiles.add(bkFloorStripeBlueMidTile);
+
+                  // burt kahn floor stripe bottom with white line
+                Frame bkFloorStripeWhiteBottomFrame = new FrameBuilder(getSubImage(3, 19))
+                                .withScale(tileScale)
+                                .build();
+
+                MapTileBuilder bkFloorStripeWhiteBottomTile = new MapTileBuilder(bkFloorStripeWhiteBottomFrame);
+
+                mapTiles.add(bkFloorStripeWhiteBottomTile);
+
+                 // bk door left top
+                Frame bkDoorLeftTopFrame = new FrameBuilder(getSubImage(10, 18))
+                                .withScale(tileScale)
+                                .build();
+
+                MapTileBuilder bkDoorLeftTopTile = new MapTileBuilder(bkDoorLeftTopFrame)
+                                .withTopLayer(bkDoorLeftTopFrame)
+                                .withTileType(TileType.NOT_PASSABLE);
+
+                mapTiles.add(bkDoorLeftTopTile);
+
+                  // bk door left bottom
+                Frame bkDoorLeftBottomFrame = new FrameBuilder(getSubImage(11, 18))
+                                .withScale(tileScale)
+                                .build();
+
+                MapTileBuilder bkDoorLeftBottomTile = new MapTileBuilder(bkDoorLeftBottomFrame)
+                                .withTopLayer(bkDoorLeftBottomFrame)
+                                .withTileType(TileType.NOT_PASSABLE);
+
+                mapTiles.add(bkDoorLeftBottomTile);
+
+                  // bk door right top
+                Frame bkDoorRightTopFrame = new FrameBuilder(getSubImage(10, 19))
+                                .withScale(tileScale)
+                                .build();
+
+                MapTileBuilder bkDoorRightTopTile = new MapTileBuilder(bkDoorRightTopFrame)
+                                .withTopLayer(bkDoorRightTopFrame)
+                                .withTileType(TileType.NOT_PASSABLE);
+
+                mapTiles.add(bkDoorRightTopTile);
+
+                   // bk door right bottom
+                Frame bkDoorRightBottomFrame = new FrameBuilder(getSubImage(11, 19))
+                                .withScale(tileScale)
+                                .build();
+
+                MapTileBuilder bkDoorRightBottomTile = new MapTileBuilder(bkDoorRightBottomFrame)
+                                .withTopLayer(bkDoorRightBottomFrame)
+                                .withTileType(TileType.NOT_PASSABLE);
+
+                mapTiles.add(bkDoorRightBottomTile);
+
+                    // bk wall
+                Frame bkWallFrame = new FrameBuilder(getSubImage(11, 17))
+                                .withScale(tileScale)
+                                .build();
+
+                MapTileBuilder bkWallTile = new MapTileBuilder(bkWallFrame)
+                                .withTopLayer(bkWallFrame)
+                                .withTileType(TileType.NOT_PASSABLE);
+
+                mapTiles.add(bkWallTile);
+
+                    // bk curtain top
+                Frame bkCurtainTop1Frame = new FrameBuilder(getSubImage(12, 19))
+                                .withScale(tileScale)
+                                .build();
+
+                MapTileBuilder bkCurtainTop1Tile = new MapTileBuilder(bkCurtainTop1Frame)
+                                .withTopLayer(bkCurtainTop1Frame)
+                                .withTileType(TileType.NOT_PASSABLE);
+
+                mapTiles.add(bkCurtainTop1Tile);
+
+                 // bk curtain top
+                Frame bkCurtainTop2Frame = new FrameBuilder(getSubImage(12, 18))
+                                .withScale(tileScale)
+                                .build();
+
+                MapTileBuilder bkCurtainTop2Tile = new MapTileBuilder(bkCurtainTop2Frame)
+                                .withTopLayer(bkCurtainTop2Frame)
+                                .withTileType(TileType.NOT_PASSABLE);
+
+                mapTiles.add(bkCurtainTop2Tile);
+
+                   // bk curtain top
+                Frame bkCurtainTop3Frame = new FrameBuilder(getSubImage(12, 17))
+                                .withScale(tileScale)
+                                .build();
+
+                MapTileBuilder bkCurtainTop3Tile = new MapTileBuilder(bkCurtainTop3Frame)
+                                .withTopLayer(bkCurtainTop3Frame)
+                                .withTileType(TileType.NOT_PASSABLE);
+
+                mapTiles.add(bkCurtainTop3Tile);
+
+                     // bk curtain bottom
+                Frame bkCurtainBottom1Frame = new FrameBuilder(getSubImage(13, 17))
+                                .withScale(tileScale)
+                                .build();
+
+                MapTileBuilder bkCurtainBottom1Tile = new MapTileBuilder(bkCurtainBottom1Frame)
+                                .withTopLayer(bkCurtainBottom1Frame)
+                                .withTileType(TileType.NOT_PASSABLE);
+
+                mapTiles.add(bkCurtainBottom1Tile);
+
+                      // bk curtain bottom
+                Frame bkCurtainBottom2Frame = new FrameBuilder(getSubImage(13, 18))
+                                .withScale(tileScale)
+                                .build();
+
+                MapTileBuilder bkCurtainBottom2Tile = new MapTileBuilder(bkCurtainBottom2Frame)
+                                .withTopLayer(bkCurtainBottom2Frame)
+                                .withTileType(TileType.NOT_PASSABLE);
+
+                mapTiles.add(bkCurtainBottom2Tile);
+
+                        // bk curtain bottom
+                Frame bkCurtainBottom3Frame = new FrameBuilder(getSubImage(13, 19))
+                                .withScale(tileScale)
+                                .build();
+
+                MapTileBuilder bkCurtainBottom3Tile = new MapTileBuilder(bkCurtainBottom3Frame)
+                                .withTopLayer(bkCurtainBottom3Frame)
+                                .withTileType(TileType.NOT_PASSABLE);
+
+                mapTiles.add(bkCurtainBottom3Tile);
+
+
+
+
+
+
 
 
 
