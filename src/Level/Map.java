@@ -5,6 +5,7 @@ import Engine.GraphicsHandler;
 import Engine.ImageLoader;
 import Engine.Key;
 import Engine.Keyboard;
+import Engine.Screen;
 import Engine.ScreenManager;
 import GameObject.Sprite;
 import Utils.Direction;
@@ -107,6 +108,11 @@ public abstract class Map {
         this.updatedTriggers = new ArrayList<QuestTrigger>();
     }
 
+    public Map(String mapFileName){
+        this.mapFileName = mapFileName;
+        
+    }
+
     // sets up map by reading in the map file to create the tile map
     // loads in enemies, enhanced map tiles, and npcs
     // and instantiates a Camera
@@ -141,6 +147,7 @@ public abstract class Map {
             npc.setMap(this);
         }
     }
+
 
     // reads in a map file to create the map's tilemap
     private void loadMapFile() {

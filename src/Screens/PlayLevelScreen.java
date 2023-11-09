@@ -157,6 +157,9 @@ public class PlayLevelScreen extends Screen {
                     this.player.setLocation(playerStartPosition.x, playerStartPosition.y);
                 }
                 break;
+            case ASTEROID:
+                asteroidScreen.update();
+                break;
             // if level has been completed, bring up level cleared screen
             case LEVEL_COMPLETED:
                 winScreen.update();
@@ -168,6 +171,7 @@ public class PlayLevelScreen extends Screen {
         // based on screen state, draw appropriate graphics
         switch (playLevelScreenState) {
             case RUNNING:
+                map.draw(player, graphicsHandler);
                 map.draw(player, graphicsHandler);
                 break;
             case LEVEL_COMPLETED:
