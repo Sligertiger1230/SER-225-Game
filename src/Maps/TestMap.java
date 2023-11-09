@@ -2,6 +2,7 @@ package Maps;
 
 import EnhancedMapTiles.PushableRock;
 import Level.EnhancedMapTile;
+import Level.FlagManager;
 import Level.Map;
 import Level.NPC;
 // import Level.SoundManager;
@@ -48,8 +49,8 @@ public class TestMap extends Map {
     public TestMap() {
         super("test_map.txt", new CommonTileset());
         this.playerStartPosition = getMapTile(17, 20).getLocation();
-        this.mapInt = 1;
-        this.idSwitch = 1;
+        this.mapInt = 0;
+        this.idSwitch = 0;
     }
 
     @Override
@@ -113,7 +114,7 @@ public class TestMap extends Map {
             } else if (getFlagManager().isFlagSet("purpleFish")) {
                 walrusPurpFish.setIsHidden(false);
             } 
-        } 
+        }
 
         npcs.add(walrusPurpFish);
         npcs.add(walrusFish);
@@ -182,8 +183,8 @@ public class TestMap extends Map {
 
         // getMapTile(32, 25).setInteractScript(new TeleportScript(2, 2));
 
-        getMapTile(100, 59).setInteractScript(new ChangeMapScript(2));
+        getMapTile(100, 59).setInteractScript(new ChangeMapScript(1));
 
-        getMapTile(122, 40).setInteractScript(new ChangeMapScript(3));
+        getMapTile(122, 40).setInteractScript(new ChangeMapScript(2));
     }
 }

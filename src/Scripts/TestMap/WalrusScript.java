@@ -103,6 +103,8 @@ public class WalrusScript extends Script<NPC> {
         }
         if (isFlagSet("hasPickedUpFish")) {
                 getNPC(0).setIsHidden(true);
+                getNPC(5).setIsHidden(true);
+                getNPC(6).setIsHidden(true);
             }
 
         // set flag so that if walrus is talked to again after the first time, what he
