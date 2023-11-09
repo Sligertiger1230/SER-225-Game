@@ -8,6 +8,7 @@ import Game.ScreenCoordinator;
 import Level.*;
 import Maps.CCEClassroom;
 import Maps.DrawQuest;
+import Maps.OrientationRoom;
 import Maps.IceRink;
 import Maps.TestMap;
 import Players.Cat;
@@ -40,6 +41,9 @@ public class PlayLevelScreen extends Screen {
 
         // setup state
         flagManager = new FlagManager();
+
+        // judy flag
+        flagManager.addFlag("hasStartedGame", false);
 
         // Walrus Fish quest
         flagManager.addFlag("redFish", false);
@@ -179,6 +183,14 @@ public class PlayLevelScreen extends Screen {
 
         switch (mapId) {
             case 0:
+                newMap = new OrientationRoom();
+                newMap.setFlagManager(flagManager);
+                newMap.setNPCs();
+                newMap.setQuestMenu(questMenu);
+                musicPlayer.setFile(0);
+                musicPlayer.loop();
+                return newMap;
+             case 1:
                 newMap = new TestMap();
                 newMap.setFlagManager(flagManager);
                 newMap.setNPCs();
@@ -186,7 +198,7 @@ public class PlayLevelScreen extends Screen {
                 musicPlayer.setFile(0);
                 musicPlayer.loop();
                 return newMap;
-            case 1:
+            case 2:
                 newMap = new CCEClassroom();
                 newMap.setFlagManager(flagManager);
                 newMap.setNPCs();
@@ -194,7 +206,7 @@ public class PlayLevelScreen extends Screen {
                 musicPlayer.setFile(18);
                 musicPlayer.loop();
                 return newMap;
-            case 2:
+            case 3:
                 newMap = new IceRink();
                 newMap.setFlagManager(flagManager);
                 newMap.setNPCs();
@@ -202,7 +214,7 @@ public class PlayLevelScreen extends Screen {
                 // not sure why the player location isnt getting properly set.
                 // player.setLocation(10, 10);
                 return newMap;
-            case 3:
+            case 4:
                 newMap = new DrawQuest();
                 newMap.setFlagManager(flagManager);
                 newMap.setNPCs();

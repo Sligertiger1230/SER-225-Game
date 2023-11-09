@@ -13,12 +13,12 @@ import java.util.ArrayList;
 public class EditorMaps {
     public static ArrayList<String> getMapNames() {
         return new ArrayList<String>() {{
+            add("OrientationRoom");
             add("TestMap");
             add("TitleScreen");
             add("CCEClassroom");
             add("DrawQuest");
             add("IceRink");
-            add("OrientationRoom");
         }};
     }
 
