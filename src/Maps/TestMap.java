@@ -27,6 +27,8 @@ import Scripts.NPCDialogue.NPCGirl1Script;
 import Scripts.NPCDialogue.NPCSwimmerScript;
 import NPCs.PubSafetyDect;
 import Scripts.Quests.*;
+import Scripts.Quests.NathanQuest.NathanBicycleScript;
+import Scripts.Quests.NathanQuest.NathanScript;
 import Scripts.TestMap.DinoScript;
 //import Scripts.TestMap.TeleportScript;
 import Scripts.TestMap.TreeScript;
@@ -116,7 +118,7 @@ public class TestMap extends Map {
         npcs.add(walrusFish);
 
         // adds Nathan's bike
-        NathanBicycle nathanBike = new NathanBicycle(7, getMapTile(5, 33).getLocation());
+        NathanBicycle nathanBike = new NathanBicycle(7, getMapTile(4, 32).getLocation());
         nathanBike.setInteractScript(new NathanBicycleScript());
         npcs.add(nathanBike);
 
@@ -131,7 +133,7 @@ public class TestMap extends Map {
         npcs.add(npcBoy1);
 
         // adds an npc girl (blonde with green shirt)
-        NPCGirl1 npcGirl1 = new NPCGirl1(10, getMapTile(52, 32).getLocation());
+        NPCGirl1 npcGirl1 = new NPCGirl1(10, getMapTile(52, 31).getLocation());
         npcGirl1.setInteractScript(new NPCGirl1Script());
         npcs.add(npcGirl1);
 
@@ -173,12 +175,6 @@ public class TestMap extends Map {
 
     @Override
     public void loadScripts() {
-        getMapTile(21, 19).setInteractScript(new SimpleTextScript("Cat's house"));
-
-        getMapTile(7, 26).setInteractScript(new SimpleTextScript("Walrus's house"));
-
-        getMapTile(20, 4).setInteractScript(new SimpleTextScript("Dino's house"));
-
         getMapTile(2, 6).setInteractScript(new TreeScript());
 
         // getMapTile(1, 1).setInteractScript(new TeleportScript(32, 23));

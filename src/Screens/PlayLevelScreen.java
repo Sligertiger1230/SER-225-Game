@@ -8,6 +8,7 @@ import Game.ScreenCoordinator;
 import Level.*;
 import Maps.CCEClassroom;
 import Maps.DrawQuest;
+import Maps.OrientationRoom;
 import Maps.IceRink;
 import Maps.TestMap;
 import Players.Cat;
@@ -42,6 +43,9 @@ public class PlayLevelScreen extends Screen {
         // setup state
         flagManager = new FlagManager();
 
+        // judy flag
+        flagManager.addFlag("hasStartedGame", false);
+
         // Walrus Fish quest
         flagManager.addFlag("redFish", false);
         flagManager.addFlag("purpleFish", false);
@@ -64,6 +68,9 @@ public class PlayLevelScreen extends Screen {
         // Nathan quest flags
         flagManager.addFlag("hasTalkedToNathan", false);
         flagManager.addFlag("nathanRunning", false);
+        flagManager.addFlag("nathanFinishRunning", false);
+        flagManager.addFlag("nathanReturn", false);
+        flagManager.addFlag("winRace", false);
 
         // base game flags
         flagManager.addFlag("hasLostBall", false);
@@ -76,7 +83,7 @@ public class PlayLevelScreen extends Screen {
         flagManager.addFlag("hasTalkedToNPCGirl1", false);
 
         // define/setup map
-        this.map = loadMap(0);
+        this.map = loadMap(4);
         this.map.setQuestMenu(questMenu);
 
         // setup player
@@ -188,7 +195,7 @@ public class PlayLevelScreen extends Screen {
         musicPlayer.stop();
 
         switch (mapId) {
-            case 0:
+             case 0:
                 newMap = new TestMap();
                 newMap.setFlagManager(flagManager);
                 newMap.setNPCs();
@@ -209,19 +216,24 @@ public class PlayLevelScreen extends Screen {
                 newMap.setFlagManager(flagManager);
                 newMap.setNPCs();
                 newMap.setQuestMenu(questMenu);
-                // not sure why the player location isnt getting properly set.
-                // player.setLocation(10, 10);
                 return newMap;
             case 3:
                 newMap = new DrawQuest();
                 newMap.setFlagManager(flagManager);
                 newMap.setNPCs();
                 newMap.setQuestMenu(questMenu);
-                // not sure why the player location isnt getting properly set.
-                // player.setLocation(10, 10);
                 musicPlayer.setFile(17);
                 musicPlayer.loop();
                 return newMap;
+            case 4:
+                newMap = new OrientationRoom();
+                newMap.setFlagManager(flagManager);
+                newMap.setNPCs();
+                newMap.setQuestMenu(questMenu);
+                musicPlayer.setFile(0);
+                musicPlayer.loop();
+                return newMap;
+            
 
             default:
                 return null;

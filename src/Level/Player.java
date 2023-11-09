@@ -24,6 +24,7 @@ public abstract class Player extends GameObject {
     protected Direction currentWalkingYDirection;
     protected Direction lastWalkingXDirection;
     protected Direction lastWalkingYDirection;
+    private Key toggleBike = Key.E;
 
     // values used to handle player movement
     protected float moveAmountX, moveAmountY;
@@ -50,6 +51,8 @@ public abstract class Player extends GameObject {
     private ScheduledExecutorService soundExecutor;
     private boolean isPlayingSound;
     private Sound sounds;
+
+    public static Boolean onIce = false;
 
     public Player(SpriteSheet spriteSheet, float x, float y, String startingAnimationName) {
         super(spriteSheet, x, y, startingAnimationName);
@@ -131,7 +134,7 @@ public abstract class Player extends GameObject {
         // if walk left key is pressed, move player to the left
         if (Keyboard.isKeyDown(MOVE_LEFT_KEY)) {
             if (Keyboard.isKeyDown(SPRINT_KEY)) {
-                moveAmountX -= walkSpeed * 8;
+                moveAmountX -= walkSpeed * 4;
             } else {
                 moveAmountX -= walkSpeed;
             }
@@ -144,7 +147,7 @@ public abstract class Player extends GameObject {
         else if (Keyboard.isKeyDown(MOVE_RIGHT_KEY)) {
             // if shift is held down player will sprint
             if (Keyboard.isKeyDown(SPRINT_KEY)) {
-                moveAmountX += walkSpeed * 8;
+                moveAmountX += walkSpeed * 4;
             } else {
                 moveAmountX += walkSpeed;
             }
@@ -158,7 +161,7 @@ public abstract class Player extends GameObject {
         if (Keyboard.isKeyDown(MOVE_UP_KEY)) {
             // if shift is held down player will sprint
             if (Keyboard.isKeyDown(SPRINT_KEY)) {
-                moveAmountY -= walkSpeed * 8;
+                moveAmountY -= walkSpeed * 4;
             } else {
                 moveAmountY -= walkSpeed;
             }
@@ -167,7 +170,7 @@ public abstract class Player extends GameObject {
         } else if (Keyboard.isKeyDown(MOVE_DOWN_KEY)) {
             // if shift is held down player will sprint
             if (Keyboard.isKeyDown(SPRINT_KEY)) {
-                moveAmountY += walkSpeed * 8;
+                moveAmountY += walkSpeed * 4;
             } else {
                 moveAmountY += walkSpeed;
             }
@@ -192,6 +195,7 @@ public abstract class Player extends GameObject {
             playerState = PlayerState.STANDING;
         }
     }
+
 
     // player INTERACTING state logic -- intentionally does nothing so player is
     // locked in place while a script is running
@@ -222,10 +226,23 @@ public abstract class Player extends GameObject {
 
     @Override
     public void onEndCollisionCheckX(boolean hasCollided, Direction direction, MapEntity entityCollidedWith) {
+        if(onIce && walkSpeed == 0){
+            playerState = playerState.STANDING;
+        }else if(onIce){
+            setPlayerState(PlayerState.INTERACTING);
+            setCurrentAnimationName(getFacingDirection() == Direction.RIGHT ? "STAND_RIGHT" : "STAND_LEFT");
+        }
     }
 
     @Override
     public void onEndCollisionCheckY(boolean hasCollided, Direction direction, MapEntity entityCollidedWith) {
+        if(onIce && walkSpeed == 0){
+            playerState = playerState.STANDING;
+
+        }else if(onIce){
+            setPlayerState(PlayerState.INTERACTING);
+            setCurrentAnimationName(getFacingDirection() == Direction.RIGHT ? "STAND_RIGHT" : "STAND_LEFT");
+        }
     }
 
     // other entities can call this method to hurt the player
@@ -276,6 +293,7 @@ public abstract class Player extends GameObject {
     public Direction getLastWalkingXDirection() {
         return lastWalkingXDirection;
     }
+    
 
     public Direction getLastWalkingYDirection() {
         return lastWalkingYDirection;
@@ -314,12 +332,11 @@ public abstract class Player extends GameObject {
         }
     }
 
-    /*
-     * public void printPlayerLocation() {
-     * int xCoordinate = (int) getX() / 48;
-     * int yCoordinate = (int) getY() / 48;
-     * System.out.println("Player Location: X = " + xCoordinate + ", Y = " +
-     * yCoordinate);
-     * }
-     */
+    public void printPlayerLocation() {
+    int xCoordinate = (int) getX() / 48;
+    int yCoordinate = (int) getY() / 48;
+    System.out.println("Player Location: X = " + xCoordinate + ", Y = " +
+    yCoordinate);
+    }
+    
 }

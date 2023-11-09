@@ -1,4 +1,4 @@
-package Scripts.Quests;
+package Scripts.Quests.NathanQuest;
 
 import Level.Script;
 import Level.ScriptState;
