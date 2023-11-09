@@ -52,6 +52,8 @@ public abstract class Player extends GameObject {
     private boolean isPlayingSound;
     private Sound sounds;
 
+    public static Boolean onIce = false;
+
     public Player(SpriteSheet spriteSheet, float x, float y, String startingAnimationName) {
         super(spriteSheet, x, y, startingAnimationName);
         facingDirection = Direction.RIGHT;
@@ -195,6 +197,7 @@ public abstract class Player extends GameObject {
         }
     }
 
+
     // player INTERACTING state logic -- intentionally does nothing so player is
     // locked in place while a script is running
     protected void playerInteracting() {
@@ -224,10 +227,23 @@ public abstract class Player extends GameObject {
 
     @Override
     public void onEndCollisionCheckX(boolean hasCollided, Direction direction, MapEntity entityCollidedWith) {
+        if(onIce && walkSpeed == 0){
+            playerState = playerState.STANDING;
+        }else if(onIce){
+            setPlayerState(PlayerState.INTERACTING);
+            setCurrentAnimationName(getFacingDirection() == Direction.RIGHT ? "STAND_RIGHT" : "STAND_LEFT");
+        }
     }
 
     @Override
     public void onEndCollisionCheckY(boolean hasCollided, Direction direction, MapEntity entityCollidedWith) {
+        if(onIce && walkSpeed == 0){
+            playerState = playerState.STANDING;
+
+        }else if(onIce){
+            setPlayerState(PlayerState.INTERACTING);
+            setCurrentAnimationName(getFacingDirection() == Direction.RIGHT ? "STAND_RIGHT" : "STAND_LEFT");
+        }
     }
 
     // other entities can call this method to hurt the player
@@ -278,6 +294,7 @@ public abstract class Player extends GameObject {
     public Direction getLastWalkingXDirection() {
         return lastWalkingXDirection;
     }
+    
 
     public Direction getLastWalkingYDirection() {
         return lastWalkingYDirection;
@@ -316,12 +333,11 @@ public abstract class Player extends GameObject {
         }
     }
 
-    /*
-     * public void printPlayerLocation() {
-     * int xCoordinate = (int) getX() / 48;
-     * int yCoordinate = (int) getY() / 48;
-     * System.out.println("Player Location: X = " + xCoordinate + ", Y = " +
-     * yCoordinate);
-     * }
-     */
+    public void printPlayerLocation() {
+    int xCoordinate = (int) getX() / 48;
+    int yCoordinate = (int) getY() / 48;
+    System.out.println("Player Location: X = " + xCoordinate + ", Y = " +
+    yCoordinate);
+    }
+    
 }

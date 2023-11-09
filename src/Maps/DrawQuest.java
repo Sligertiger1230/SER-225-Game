@@ -22,7 +22,9 @@ public class DrawQuest extends Map {
 
     public DrawQuest() {
         super("DrawQuest.txt", new CommonTileset());
-        this.playerStartPosition = new Point(1, 11);
+        this.playerStartPosition = new Point(2, 2);
+        this.idSwitch = 3;  
+        this.mapInt = 3;
     }
 
     @Override
@@ -52,6 +54,6 @@ public class DrawQuest extends Map {
 
     @Override
     public void loadScripts() {
-        getMapTile(21, 22).setInteractScript(new ChangeMapScript());
+        getMapTile(21, 22).setInteractScript(new ChangeMapScript(1));
     }
 }

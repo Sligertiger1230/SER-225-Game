@@ -13,9 +13,10 @@ import Game.ScreenCoordinator;
 
 
 public class ChangeMapScript extends Script {
+    private int idSwitch;
 
-
-    public ChangeMapScript() {
+    public ChangeMapScript(int idSwitch) {
+        this.idSwitch = idSwitch;
     }
 
 
@@ -31,7 +32,7 @@ public class ChangeMapScript extends Script {
 
     @Override
     protected ScriptState execute() {
-        map.setIdSwitch(1);
+        map.setIdSwitch(idSwitch);
         return ScriptState.COMPLETED;
     }
 }
