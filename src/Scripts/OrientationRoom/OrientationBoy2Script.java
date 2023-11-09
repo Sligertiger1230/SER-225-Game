@@ -4,7 +4,7 @@ import Level.NPC;
 import Level.Script;
 import Level.ScriptState;
 
-public class IrishKidScript extends Script<NPC> {
+public class OrientationBoy2Script extends Script<NPC> {
 
     @Override
     protected void setup() {
@@ -12,12 +12,10 @@ public class IrishKidScript extends Script<NPC> {
         showTextbox();
 
         //add text to textbox
-        addTextToTextboxQueue( "I'm an international student from Ireland.");
-        addTextToTextboxQueue( "I heard all these good things about America, and I\n really wanted to come.");
-        addTextToTextboxQueue( "Connecticut is... interesting so far.");
-        addTextToTextboxQueue( "I hope the food here is good at least.");
-
-
+        addTextToTextboxQueue( "Hey bro.");
+        addTextToTextboxQueue( "Wanna go to toads?");
+        addTextToTextboxQueue( "Me and my orientation group are going there\n this weekend.");
+        addTextToTextboxQueue( "It's gonna be fire.");
     }
 
     @Override
