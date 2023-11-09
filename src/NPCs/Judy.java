@@ -24,7 +24,7 @@ public class Judy extends NPC {
                 put("STAND_LEFT", new Frame[] {
                         new FrameBuilder(spriteSheet.getSprite(0, 0))
                                 .withScale(3)
-                                .withBounds(0, 0, 16, 20)
+                                .withBounds(0, 0, 17, 20)
                                 .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
                                 .build()
                 });
