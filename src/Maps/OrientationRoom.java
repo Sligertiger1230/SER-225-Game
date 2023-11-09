@@ -6,8 +6,12 @@ import Level.Map;
 import Level.NPC;
 import Level.Trigger;
 import NPCs.Judy;
+import NPCs.IrishKid;
+import NPCs.EmoBoy;
 import Scripts.CCEClassroom.ChangeMapScript;
+import Scripts.OrientationRoom.EmoBoyScript;
 import Scripts.OrientationRoom.JudyScript;
+import Scripts.OrientationRoom.IrishKidScript;
 import Scripts.TestMap.LostBallScript;
 import Tilesets.CommonTileset;
 import Utils.Point;
@@ -28,6 +32,14 @@ public class OrientationRoom extends Map{
         Judy judy = new Judy(0, getMapTile(16, 4).getLocation().subtractY(40));
         judy.setInteractScript(new JudyScript());
         npcs.add(judy);
+
+        EmoBoy emoboy = new EmoBoy(0, getMapTile(5, 9).getLocation().subtractY(40));
+        emoboy.setInteractScript(new EmoBoyScript());
+        npcs.add(emoboy);
+
+        IrishKid irishkid = new IrishKid(0, getMapTile(10, 8).getLocation().subtractY(40));
+        irishkid.setInteractScript(new IrishKidScript());
+        npcs.add(irishkid);
 
         return npcs;
 
