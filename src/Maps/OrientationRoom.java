@@ -16,8 +16,8 @@ public class OrientationRoom extends Map{
         super("OrientationRoom.txt", new CommonTileset());
         this.playerStartPosition = getMapTile(15, 10).getLocation(); 
 
-        this.mapInt = 2;
-        this.idSwitch = 2;
+        this.mapInt = 0;
+        this.idSwitch = 0;
     }
     
     @Override

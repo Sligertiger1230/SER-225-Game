@@ -39,7 +39,7 @@ public class Slide extends Script {
 
         if(player.getLastWalkingXDirection() == Direction.RIGHT  ){
             float firstX = player.getX();
-            player.moveXHandleCollision(2);
+            player.moveXHandleCollision(15);
             float finalX = player.getX();
             if(firstX == finalX){
                 unlockPlayer();
@@ -50,7 +50,7 @@ public class Slide extends Script {
         }
         else if(player.getLastWalkingYDirection() == Direction.UP){
             float firstY = player.getY();
-            player.moveYHandleCollision(-2);
+            player.moveYHandleCollision(-15);
             float finalY = player.getY();
             if(firstY == finalY){
                 unlockPlayer();
@@ -61,7 +61,7 @@ public class Slide extends Script {
         }
         else if(player.getLastWalkingXDirection() == Direction.LEFT){
             float firstX = player.getX();
-            player.moveXHandleCollision(-2);
+            player.moveXHandleCollision(-15);
             float finalX = player.getX();
             if(firstX == finalX){
                 unlockPlayer();
@@ -72,7 +72,7 @@ public class Slide extends Script {
         }
         else if(player.getLastWalkingYDirection() == Direction.DOWN){
             float firstY = player.getY();
-            player.moveYHandleCollision(2);
+            player.moveYHandleCollision(15);
             float finalY = player.getY();
             if(firstY == finalY){
                 unlockPlayer();

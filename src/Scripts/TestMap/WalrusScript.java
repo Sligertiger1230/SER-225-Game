@@ -73,15 +73,17 @@ public class WalrusScript extends Script<NPC> {
                 addTextToTextboxQueue("Dinner?? \n Why would I eat a Fish?");
                 addTextToTextboxQueue("I'm a vegitarian");
                 nextStep("Help walrus Get a fish");
-                addTextToTextboxQueue("Make sure the textbox works again", selections2, answers2);
                 addTextToTextboxQueue("Goodbye my Friend \n I must go Catch More Fish");
+                getNPC(5).setIsHidden(true);
+                getNPC(6).setIsHidden(true);
             } else if (isFlagSet("purpleFish")) {
                 addTextToTextboxQueue("Great, you found her.");
                 addTextToTextboxQueue("Dinner?? \n Why would I eat a Fish?");
                 addTextToTextboxQueue("I'm a vegitarian");
                 nextStep("Help walrus Get a fish");
-                addTextToTextboxQueue("Make sure the textbox works again", selections3, answers3);
                 addTextToTextboxQueue("Goodbye my Friend \n I must go Catch More Fish");
+                getNPC(5).setIsHidden(true);
+                getNPC(6).setIsHidden(true);
             }
         }
     }

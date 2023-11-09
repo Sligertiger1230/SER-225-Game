@@ -48,8 +48,8 @@ public class TestMap extends Map {
     public TestMap() {
         super("test_map.txt", new CommonTileset());
         this.playerStartPosition = getMapTile(17, 20).getLocation();
-        this.mapInt = 0;
-        this.idSwitch = 0;
+        this.mapInt = 1;
+        this.idSwitch = 1;
     }
 
     @Override
@@ -182,8 +182,8 @@ public class TestMap extends Map {
 
         // getMapTile(32, 25).setInteractScript(new TeleportScript(2, 2));
 
-        getMapTile(100, 59).setInteractScript(new ChangeMapScript(1));
+        getMapTile(100, 59).setInteractScript(new ChangeMapScript(2));
 
-        getMapTile(122, 40).setInteractScript(new ChangeMapScript(2));
+        getMapTile(122, 40).setInteractScript(new ChangeMapScript(3));
     }
 }
