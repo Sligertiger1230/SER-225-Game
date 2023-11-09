@@ -66,7 +66,7 @@ public class Portrait extends Screen {
         image = ImageLoader.load(imageName);
         spriteHeight = image.getHeight();
         spriteWidth = image.getWidth();
-        this.scale = scale;
+        this.scale = 1;        
         this.rightSide = rightSide;
     }
 
