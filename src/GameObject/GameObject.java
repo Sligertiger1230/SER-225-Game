@@ -96,8 +96,7 @@ public class GameObject extends AnimatedSprite {
 	// will stop object from moving based on map collision logic (such as if it hits a solid tile)
 	public float moveXHandleCollision(float dx) {
 		if (map != null) {
-			handleCollisionX(dx);
-			return 1.0f;
+			return handleCollisionX(dx);
 		} else {
 			super.moveX(dx);
 			return dx;

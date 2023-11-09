@@ -11,14 +11,10 @@ public class SlipperyIce extends Script {
         lockPlayer();
         showTextbox();
         Player.onIce = true;
-        if(isFlagSet("IsOnIce")){
-            System.out.println("pop");
-        }else{
         player.setLocation(420,690);
         addTextToTextboxQueue("Wow this ice sure is slippery");
         addTextToTextboxQueue("I'm not sure if I will be able to stop on it");
-        }
-        player.printPlayerLocation();
+        
     }
 
     @Override

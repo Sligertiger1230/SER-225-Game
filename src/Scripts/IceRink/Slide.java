@@ -39,7 +39,10 @@ public class Slide extends Script {
 
         if(player.getLastWalkingXDirection() == Direction.RIGHT  ){
             float firstX = player.getX();
-            player.moveXHandleCollision(2);
+            //3 times becaue you want it to be 3x the inital speed changing the dx value deosnt do anything
+            player.moveXHandleCollision(1);
+            player.moveXHandleCollision(1);
+            player.moveXHandleCollision(1);
             float finalX = player.getX();
             if(firstX == finalX){
                 unlockPlayer();
@@ -50,7 +53,9 @@ public class Slide extends Script {
         }
         else if(player.getLastWalkingYDirection() == Direction.UP){
             float firstY = player.getY();
-            player.moveYHandleCollision(-2);
+            player.moveYHandleCollision(-1);
+            player.moveYHandleCollision(-1);
+            player.moveYHandleCollision(-1);
             float finalY = player.getY();
             if(firstY == finalY){
                 unlockPlayer();
@@ -61,7 +66,9 @@ public class Slide extends Script {
         }
         else if(player.getLastWalkingXDirection() == Direction.LEFT){
             float firstX = player.getX();
-            player.moveXHandleCollision(-2);
+            player.moveXHandleCollision(-1);
+            player.moveXHandleCollision(-1);
+            player.moveXHandleCollision(-1);
             float finalX = player.getX();
             if(firstX == finalX){
                 unlockPlayer();
@@ -72,7 +79,9 @@ public class Slide extends Script {
         }
         else if(player.getLastWalkingYDirection() == Direction.DOWN){
             float firstY = player.getY();
-            player.moveYHandleCollision(2);
+            player.moveYHandleCollision(1);
+            player.moveYHandleCollision(1);
+            player.moveYHandleCollision(1);
             float finalY = player.getY();
             if(firstY == finalY){
                 unlockPlayer();

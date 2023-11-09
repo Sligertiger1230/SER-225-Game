@@ -9,7 +9,7 @@ public class JudyScript extends Script<NPC> {
     @Override
     protected void setup() {
         lockPlayer();
-        showPortrait("Judy.png");
+        showPortrait("Judy.png", 4);
         showTextbox();
 
         if (!isFlagSet("hasStartedGame")) {

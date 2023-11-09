@@ -195,7 +195,7 @@ public class PlayLevelScreen extends Screen {
         musicPlayer.stop();
 
         switch (mapId) {
-             case 0:
+            case 0:
                 newMap = new TestMap();
                 newMap.setFlagManager(flagManager);
                 newMap.setNPCs();
@@ -216,6 +216,8 @@ public class PlayLevelScreen extends Screen {
                 newMap.setFlagManager(flagManager);
                 newMap.setNPCs();
                 newMap.setQuestMenu(questMenu);
+                musicPlayer.setFile(19);
+                musicPlayer.loop();
                 return newMap;
             case 3:
                 newMap = new DrawQuest();
@@ -230,9 +232,10 @@ public class PlayLevelScreen extends Screen {
                 newMap.setFlagManager(flagManager);
                 newMap.setNPCs();
                 newMap.setQuestMenu(questMenu);
-                musicPlayer.setFile(0);
+                musicPlayer.setFile(20);
                 musicPlayer.loop();
                 return newMap;
+
             default:
                 return null;
         }
