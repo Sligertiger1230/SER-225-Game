@@ -14,7 +14,8 @@ import java.awt.*;
  */
 public class GamePanel extends JPanel {
 	// loads Screens on to the JPanel
-	// each screen has its own update and draw methods defined to handle a "section" of the game.
+	// each screen has its own update and draw methods defined to handle a "section"
+	// of the game.
 	private ScreenManager screenManager;
 
 	// used to draw graphics to the panel
@@ -23,7 +24,7 @@ public class GamePanel extends JPanel {
 	private boolean isGamePaused = false;
 	private SpriteFont pauseLabel;
 	private KeyLocker keyLocker = new KeyLocker();
-	private final Key pauseKey = Key.P;
+	private final Key pauseKey = Key.ESC;
 	private Thread gameLoopProcess;
 
 	private Key showFPSKey = Key.G;
@@ -43,7 +44,7 @@ public class GamePanel extends JPanel {
 
 		screenManager = new ScreenManager();
 
-		pauseLabel = new SpriteFont("PAUSE", 365, 280, "Comic Sans", 24, Color.white);
+		pauseLabel = new SpriteFont("OPTIONS", 365, CENTER_ALIGNMENT, "Comic Sans", 24, Color.white);
 		pauseLabel.setOutlineColor(Color.black);
 		pauseLabel.setOutlineThickness(2.0f);
 
@@ -51,14 +52,16 @@ public class GamePanel extends JPanel {
 
 		currentFPS = Config.TARGET_FPS;
 
-		// this game loop code will run in a separate thread from the rest of the program
+		// this game loop code will run in a separate thread from the rest of the
+		// program
 		// will continually update the game's logic and repaint the game's graphics
 		GameLoop gameLoop = new GameLoop(this);
 		gameLoopProcess = new Thread(gameLoop.getGameLoopProcess());
 	}
 
 	// this is called later after instantiation, and will initialize screenManager
-	// this had to be done outside of the constructor because it needed to know the JPanel's width and height, which aren't available in the constructor
+	// this had to be done outside of the constructor because it needed to know the
+	// JPanel's width and height, which aren't available in the constructor
 	public void setupGame() {
 		setBackground(Colors.CORNFLOWER_BLUE);
 		screenManager.initialize(new Rectangle(getX(), getY(), getWidth(), getHeight()));
@@ -115,8 +118,9 @@ public class GamePanel extends JPanel {
 
 		// if game is paused, draw pause gfx over Screen gfx
 		if (isGamePaused) {
+			graphicsHandler.drawFilledRectangle(0, 0, ScreenManager.getScreenWidth(), ScreenManager.getScreenHeight(),
+					new Color(0, 0, 0, 255));
 			pauseLabel.draw(graphicsHandler);
-			graphicsHandler.drawFilledRectangle(0, 0, ScreenManager.getScreenWidth(), ScreenManager.getScreenHeight(), new Color(0, 0, 0, 100));
 		}
 
 		if (showFPS) {
@@ -128,7 +132,8 @@ public class GamePanel extends JPanel {
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		// every repaint call will schedule this method to be called
-		// when called, it will setup the graphics handler and then call this class's draw method
+		// when called, it will setup the graphics handler and then call this class's
+		// draw method
 		graphicsHandler.setGraphics((Graphics2D) g);
 		draw();
 	}

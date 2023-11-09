@@ -4,6 +4,7 @@ import Engine.*;
 import Game.GameState;
 import Game.ScreenCoordinator;
 import Level.Map;
+import Level.Sound;
 import Maps.TitleScreenMap;
 import SpriteFont.SpriteFont;
 
@@ -16,10 +17,18 @@ public class CreditsScreen extends Screen {
     protected KeyLocker keyLocker = new KeyLocker();
     protected SpriteFont creditsLabel;
     protected SpriteFont createdByLabel;
+    protected SpriteFont createdByLabel2;
+    protected SpriteFont createdByLabel3;
+    protected SpriteFont createdByLabel4;
+    protected SpriteFont createdByLabel5;
+    protected SpriteFont createdByLabel6;
     protected SpriteFont returnInstructionsLabel;
+
+    protected Sound cursorSound;
 
     public CreditsScreen(ScreenCoordinator screenCoordinator) {
         this.screenCoordinator = screenCoordinator;
+        cursorSound = new Sound();
     }
 
     @Override
@@ -28,8 +37,14 @@ public class CreditsScreen extends Screen {
         background = new TitleScreenMap();
         background.setAdjustCamera(false);
         creditsLabel = new SpriteFont("Credits", 15, 7, "Times New Roman", 30, Color.white);
-        createdByLabel = new SpriteFont("Created by Alex Thimineur", 130, 121, "Times New Roman", 20, Color.white);
-        returnInstructionsLabel = new SpriteFont("Press Space to return to the menu", 20, 532, "Times New Roman", 30, Color.white);
+        createdByLabel = new SpriteFont("Created by:", 130, 121, "Times New Roman", 20, Color.white);
+        createdByLabel2 = new SpriteFont("Julia Bock", 130, 151, "Times New Roman", 20, Color.white);
+        createdByLabel3 = new SpriteFont("Brooks Jackson", 130, 181, "Times New Roman", 20, Color.white);
+        createdByLabel4 = new SpriteFont("Hayden Lacy", 130, 211, "Times New Roman", 20, Color.white);
+        createdByLabel5 = new SpriteFont("Connor Ryan", 130, 241, "Times New Roman", 20, Color.white);
+        createdByLabel6 = new SpriteFont("Ryan Sliger", 130, 271, "Times New Roman", 20, Color.white);
+        returnInstructionsLabel = new SpriteFont("Press Space to return to the menu", 20, 532, "Times New Roman", 30,
+                Color.white);
         keyLocker.lockKey(Key.SPACE);
     }
 
@@ -42,6 +57,8 @@ public class CreditsScreen extends Screen {
 
         // if space is pressed, go back to main menu
         if (!keyLocker.isKeyLocked(Key.SPACE) && Keyboard.isKeyDown(Key.SPACE)) {
+            cursorSound.setFile(21);
+            cursorSound.play();
             screenCoordinator.setGameState(GameState.MENU);
         }
     }
@@ -50,6 +67,11 @@ public class CreditsScreen extends Screen {
         background.draw(graphicsHandler);
         creditsLabel.draw(graphicsHandler);
         createdByLabel.draw(graphicsHandler);
+        createdByLabel2.draw(graphicsHandler);
+        createdByLabel3.draw(graphicsHandler);
+        createdByLabel4.draw(graphicsHandler);
+        createdByLabel5.draw(graphicsHandler);
+        createdByLabel6.draw(graphicsHandler);
         returnInstructionsLabel.draw(graphicsHandler);
     }
 }
