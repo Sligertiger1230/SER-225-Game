@@ -1,7 +1,6 @@
 package Asteroid;
 
 import GameObject.Frame;
-import GameObject.GameObject;
 import GameObject.ImageEffect;
 import GameObject.SpriteSheet;
 
@@ -10,28 +9,69 @@ import java.util.HashMap;
 import Builders.FrameBuilder;
 import Engine.ImageLoader;
 
-public class Enemy extends Ship{
+public class Enemy extends Ship {
     static SpriteSheet enemy = new SpriteSheet(ImageLoader.load("enemy.png"), 13, 13);
-    static String startingAnim = "STAND_DOWN";
     protected PlayerShip playerShip;
+    protected Asteroid aster;
     protected boolean shot;
-    
 
-    public Enemy(float x, float y, PlayerShip playerShip, Asteroid aster) {
-        super(x, y, enemy, startingAnim, aster);
+    public Enemy(float x, float y, String startingAnim, PlayerShip playerShip, Asteroid aster) {
+        super(x, y, enemy, startingAnim, aster, 1);
         this.playerShip = playerShip;
+        this.aster = aster;
+    }
+
+    @Override
+    public void update(){
+        super.update();
+
+        moveAmountX = 0;
+        moveAmountY = 0;
+    }
+
+    @Override
+    boolean checkCollision() {
+        for (Bullet bullet : aster.getPlayerBullets()) {
+            if (isCollidingY(bullet) && isCollidingX(bullet)) {
+                bullet.setHit(true);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
+    void handleHit() {
+        health--;
+        if (health == 0){
+            aster.collectEnemy(this);
+        }
     }
 
     @Override
     void handleShipShooting() {
-        if (x > playerShip.getX() - 10 && x < playerShip.getX() + 10){
-            if (!shot){
-                fire();
-                shot = true;
-            }
-        }
-        else {
-            shot = false;
+        switch (aimingDirection) {
+            case RIGHT:
+            case LEFT:
+                if (y > playerShip.getY() - 5 && y < playerShip.getY() + 5) {
+                    if (!shot){
+                        fire();
+                        shot = true;
+                    }
+                } else {
+                    shot = false;
+                }
+                break;
+            case UP:
+            case DOWN:
+                if (x > playerShip.getX() - 5 && x < playerShip.getX() + 5) {
+                    if (!shot) {
+                        fire();
+                        shot = true;
+                    }
+                } else {
+                    shot = false;
+                }
         }
     }
 
@@ -77,5 +117,4 @@ public class Enemy extends Ship{
         };
     }
 
-    
 }

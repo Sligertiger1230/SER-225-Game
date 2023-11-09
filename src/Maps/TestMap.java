@@ -10,6 +10,7 @@ import NPCs.Dinosaur;
 import NPCs.Walrus;
 import NPCs.WalrusFish;
 import NPCs.WalrusPurpFish;
+import NPCs.Webby;
 import NPCs.JavaJohn;
 import NPCs.JavaJohnGlasses;
 import NPCs.NPCBoy1;
@@ -153,6 +154,10 @@ public class TestMap extends Map {
             pubSDectLooker.setIsHidden(true);
         }
         npcs.add(pubSDectLooker);
+
+        Webby webby = new Webby(14, getMapTile(20, 4).getLocation());
+        webby.setInteractScript(new WebbyScript());
+        npcs.add(webby);
 
         return npcs;
 

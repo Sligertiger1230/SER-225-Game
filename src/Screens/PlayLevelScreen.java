@@ -21,7 +21,7 @@ public class PlayLevelScreen extends Screen {
     protected Map map;
     protected Player player;
     protected int triggerSize;
-    protected PlayLevelScreenState playLevelScreenState;
+    protected static PlayLevelScreenState playLevelScreenState;
     protected WinScreen winScreen;
     protected AsteroidScreen asteroidScreen;
     protected FlagManager flagManager;
@@ -128,7 +128,7 @@ public class PlayLevelScreen extends Screen {
 
         winScreen = new WinScreen(this);
         asteroidScreen = new AsteroidScreen(this);
-        playLevelScreenState = PlayLevelScreenState.ASTEROID;
+        playLevelScreenState = PlayLevelScreenState.RUNNING;
     }
 
     public void update() {
@@ -233,8 +233,6 @@ public class PlayLevelScreen extends Screen {
                 musicPlayer.setFile(0);
                 musicPlayer.loop();
                 return newMap;
-            
-
             default:
                 return null;
         }
@@ -294,6 +292,14 @@ public class PlayLevelScreen extends Screen {
 
     public void goBackToMenu() {
         screenCoordinator.setGameState(GameState.MENU);
+    }
+
+    public static void returnFromAsteroid(){
+        playLevelScreenState = PlayLevelScreenState.ASTEROID;
+    }
+
+    public static void startAsteroid(){
+        playLevelScreenState = PlayLevelScreenState.ASTEROID;
     }
 
     // This enum represents the different states this screen can be in
