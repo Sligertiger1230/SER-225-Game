@@ -31,6 +31,8 @@ import Scripts.SimpleTextScript;
 import Scripts.CCEClassroom.ChangeMapScript;
 import Scripts.CCEClassroom.ChangeToIceRinkScript;
 import Scripts.Quests.*;
+import Scripts.Quests.NathanQuest.NathanBicycleScript;
+import Scripts.Quests.NathanQuest.NathanScript;
 import Scripts.TestMap.DinoScript;
 import Scripts.TestMap.LostBallScript;
 //import Scripts.TestMap.TeleportScript;
@@ -121,7 +123,7 @@ public class TestMap extends Map {
         npcs.add(walrusFish);
 
         // adds Nathan's bike
-        NathanBicycle nathanBike = new NathanBicycle(7, getMapTile(5, 33).getLocation());
+        NathanBicycle nathanBike = new NathanBicycle(7, getMapTile(4, 32).getLocation());
         nathanBike.setInteractScript(new NathanBicycleScript());
         npcs.add(nathanBike);
 
@@ -136,7 +138,7 @@ public class TestMap extends Map {
         npcs.add(npcBoy1);
 
         // adds an npc girl (blonde with green shirt)
-        NPCGirl1 npcGirl1 = new NPCGirl1(10, getMapTile(52, 32).getLocation());
+        NPCGirl1 npcGirl1 = new NPCGirl1(10, getMapTile(52, 31).getLocation());
         npcGirl1.setInteractScript(new NPCGirl1Script());
         npcs.add(npcGirl1);
 
