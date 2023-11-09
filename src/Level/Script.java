@@ -20,6 +20,8 @@ import Engine.Keyboard;
 // Each script defines a set of instructions that will be carried out by the game when it is set to active
 // Some examples include interact scripts (such as talking to an NPC) and trigger scripts (scripts that activate when the player walks on them)
 public abstract class Script<T extends MapEntity> {
+    protected Sound sound;
+
     // this is set to true if script is currently being executed
     protected boolean isActive = false;
 
@@ -51,6 +53,10 @@ public abstract class Script<T extends MapEntity> {
     protected ArrayList<QuestTrigger> questTriggers;
 
     protected int frameDelayCounter = 0;
+
+    public Script() {
+        this.sound = new Sound();
+    }
 
     public Map getMap() {
         return map;
@@ -155,6 +161,7 @@ public abstract class Script<T extends MapEntity> {
 
     // textbox is shown on screen
     protected void showTextbox() {
+        playChatter();
         map.getTextbox().setIsActive(true);
     }
 
@@ -164,19 +171,19 @@ public abstract class Script<T extends MapEntity> {
         map.getPortrait1().setPortraitIsActive(true);
     }
 
-    protected void showPortrait(String imageName, int scale){
+    protected void showPortrait(String imageName, int scale) {
         map.getPortrait1().setPortraitImage(imageName, scale);
         map.getPortrait1().setPortraitIsActive(true);
     }
 
-    protected void showConversationPortraits(String imageName1, String imageName2){
+    protected void showConversationPortraits(String imageName1, String imageName2) {
         map.getPortrait1().setPortraitImage(imageName1);
         map.getPortrait1().setPortraitIsActive(true);
         map.getPortrait2().setPortraitImage(imageName2, true);
         map.getPortrait2().setPortraitIsActive(true);
     }
 
-    protected void showConversationPortraits(String imageName1, int scale1, String imageName2, int scale2){
+    protected void showConversationPortraits(String imageName1, int scale1, String imageName2, int scale2) {
         map.getPortrait1().setPortraitImage(imageName1, scale1);
         map.getPortrait1().setPortraitIsActive(true);
         map.getPortrait2().setPortraitImage(imageName2, scale2, true);
@@ -197,13 +204,14 @@ public abstract class Script<T extends MapEntity> {
     // returns the value of the last choice made from a selectable textbox
     protected int getChoice() {
         return map.getTextbox().getChoice();
-        }
-    
-        // sets the value of the last choice made from a selectable textbox
-        protected void setChoice(int choice) {
+    }
+
+    // sets the value of the last choice made from a selectable textbox
+    protected void setChoice(int choice) {
         map.getTextbox().setChoice(choice);
-        }
-        protected void choiceAddTextToTextboxQueue(String text, String text2) {
+    }
+
+    protected void choiceAddTextToTextboxQueue(String text, String text2) {
         if (Keyboard.isKeyDown(Choice1_KEY)) {
             addTextToTextboxQueue(text);
         } else if (Keyboard.isKeyDown(Choice2_KEY)) {
@@ -364,6 +372,11 @@ public abstract class Script<T extends MapEntity> {
     // gets trigger list
     protected ArrayList<QuestTrigger> getQuestTriggers() {
         return questTriggers;
+    }
+
+    public void playChatter() {
+        sound.setFile(22);
+        sound.play();
     }
 
 }

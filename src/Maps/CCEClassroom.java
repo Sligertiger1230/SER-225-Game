@@ -2,6 +2,8 @@ package Maps;
 
 import java.util.ArrayList;
 
+import Engine.GraphicsHandler;
+import Level.MiniMap;
 import Level.Map;
 import Level.NPC;
 import NPCs.NPCBoy3;
@@ -12,11 +14,15 @@ import Scripts.CCEClassroom.ChangeMapScript;
 import Tilesets.CommonTileset;
 
 public class CCEClassroom extends Map {
+    private MiniMap miniMap;
+
     public CCEClassroom() {
         super("CCEClassroom.txt", new CommonTileset());
         this.playerStartPosition = getMapTile(1, 4).getLocation();
         this.mapInt = 1;
         this.idSwitch = 1;
+
+        miniMap = new MiniMap(camera, endBoundY, endBoundX, width, height);
     }
 
     // loads NPC's into the CCE classroom
@@ -40,5 +46,9 @@ public class CCEClassroom extends Map {
         getMapTile(1, 2).setInteractScript(new ChangeMapScript(0));
 
         getMapTile(15, 2).setInteractScript(new ChangeMapScript(3));
+    }
+
+    public void draw(GraphicsHandler graphicsHandler) {
+        miniMap.draw(graphicsHandler);
     }
 }

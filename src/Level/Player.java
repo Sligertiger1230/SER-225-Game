@@ -67,7 +67,6 @@ public abstract class Player extends GameObject {
     }
 
     public void update() {
-
         moveAmountX = 0;
         moveAmountY = 0;
 

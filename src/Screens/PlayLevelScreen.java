@@ -21,8 +21,9 @@ public class PlayLevelScreen extends Screen {
     protected Map map;
     protected Player player;
     protected int triggerSize;
-    protected PlayLevelScreenState playLevelScreenState;
+    protected static PlayLevelScreenState playLevelScreenState;
     protected WinScreen winScreen;
+    protected AsteroidScreen asteroidScreen;
     protected FlagManager flagManager;
     protected QuestMenu questMenu;
     protected ArrayList<QuestTrigger> triggers;
@@ -127,6 +128,8 @@ public class PlayLevelScreen extends Screen {
         }
 
         winScreen = new WinScreen(this);
+        asteroidScreen = new AsteroidScreen(this);
+        playLevelScreenState = PlayLevelScreenState.RUNNING;
     }
 
     public void update() {
@@ -162,6 +165,9 @@ public class PlayLevelScreen extends Screen {
                     this.player.setLocation(playerStartPosition.x, playerStartPosition.y);
                 }
                 break;
+            case ASTEROID:
+                asteroidScreen.update();
+                break;
             // if level has been completed, bring up level cleared screen
             case LEVEL_COMPLETED:
                 winScreen.update();
@@ -174,9 +180,13 @@ public class PlayLevelScreen extends Screen {
         switch (playLevelScreenState) {
             case RUNNING:
                 map.draw(player, graphicsHandler);
+                map.draw(player, graphicsHandler);
                 break;
             case LEVEL_COMPLETED:
                 winScreen.draw(graphicsHandler);
+                break;
+            case ASTEROID:
+                asteroidScreen.draw(graphicsHandler);
                 break;
         }
     }
@@ -186,7 +196,7 @@ public class PlayLevelScreen extends Screen {
         musicPlayer.stop();
 
         switch (mapId) {
-             case 0:
+            case 0:
                 newMap = new TestMap();
                 newMap.setFlagManager(flagManager);
                 newMap.setNPCs();
@@ -207,6 +217,8 @@ public class PlayLevelScreen extends Screen {
                 newMap.setFlagManager(flagManager);
                 newMap.setNPCs();
                 newMap.setQuestMenu(questMenu);
+                musicPlayer.setFile(19);
+                musicPlayer.loop();
                 return newMap;
             case 3:
                 newMap = new DrawQuest();
@@ -221,10 +233,9 @@ public class PlayLevelScreen extends Screen {
                 newMap.setFlagManager(flagManager);
                 newMap.setNPCs();
                 newMap.setQuestMenu(questMenu);
-                musicPlayer.setFile(0);
+                musicPlayer.setFile(20);
                 musicPlayer.loop();
                 return newMap;
-            
 
             default:
                 return null;
@@ -287,8 +298,16 @@ public class PlayLevelScreen extends Screen {
         screenCoordinator.setGameState(GameState.MENU);
     }
 
+    public static void returnFromAsteroid(){
+        playLevelScreenState = PlayLevelScreenState.ASTEROID;
+    }
+
+    public static void startAsteroid(){
+        playLevelScreenState = PlayLevelScreenState.ASTEROID;
+    }
+
     // This enum represents the different states this screen can be in
     private enum PlayLevelScreenState {
-        RUNNING, LEVEL_COMPLETED
+        RUNNING, LEVEL_COMPLETED, ASTEROID
     }
 }

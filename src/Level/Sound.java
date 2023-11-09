@@ -7,13 +7,15 @@ import javax.sound.sampled.Clip;
 
 public class Sound {
     private Clip clip;
-    private final URL soundURL[] = new URL[30];
+    private final URL soundURL[] = new URL[40];
 
     public Sound() {
         // Music
         soundURL[0] = getClass().getResource("/sounds/overworld.wav");
         soundURL[17] = getClass().getResource("/sounds/drawing.wav");
         soundURL[18] = getClass().getResource("/sounds/cce.wav");
+        soundURL[19] = getClass().getResource("/sounds/icerink.wav");
+        soundURL[20] = getClass().getResource("/sounds/intro.wav");
 
         // Grass
         soundURL[1] = getClass().getResource("/sounds/grass1.wav");
@@ -36,6 +38,13 @@ public class Sound {
         soundURL[14] = getClass().getResource("/sounds/carpet2.wav");
         soundURL[15] = getClass().getResource("/sounds/carpet3.wav");
         soundURL[16] = getClass().getResource("/sounds/carpet4.wav");
+
+        // Cursor (for menu and options)
+        soundURL[21] = getClass().getResource("/sounds/cursor.wav");
+
+        // NPC Sounds
+        soundURL[22] = getClass().getResource("/sounds/interact.wav");
+        soundURL[23] = getClass().getResource("/sounds/teleport.wav");
     }
 
     public void setFile(int i) {

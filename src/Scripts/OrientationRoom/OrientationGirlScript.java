@@ -11,13 +11,13 @@ public class OrientationGirlScript extends Script<NPC> {
         lockPlayer();
         showTextbox();
 
-        //add text to textbox
-        addTextToTextboxQueue( "Who are you?");
-        addTextToTextboxQueue( "Why are you talking to me.");
-        addTextToTextboxQueue( "......");
-        addTextToTextboxQueue( "......");
-        addTextToTextboxQueue( "......");
-        addTextToTextboxQueue( "You're kinda ugly.");
+        // add text to textbox
+        addTextToTextboxQueue("Who are you?");
+        addTextToTextboxQueue("Why are you talking to me.");
+        addTextToTextboxQueue("...");
+        addTextToTextboxQueue(".....");
+        addTextToTextboxQueue(".......");
+        addTextToTextboxQueue("You're kinda ugly.");
     }
 
     @Override
