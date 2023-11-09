@@ -38,7 +38,7 @@ public class MenuScreen extends Screen {
         credits = new SpriteFont("CREDITS", 200, 219, "Comic Sans", 30, new Color(49, 207, 240));
         credits.setOutlineColor(Color.black);
         credits.setOutlineThickness(3);
-        controls = new SpriteFont("OPTIONS", 200, 319, "Comic Sans", 30, new Color(49, 207, 240));
+        controls = new SpriteFont("CONTROLS", 200, 319, "Comic Sans", 30, new Color(49, 207, 240));
         controls.setOutlineColor(Color.black);
         controls.setOutlineThickness(3);
         background = new TitleScreenMap();
