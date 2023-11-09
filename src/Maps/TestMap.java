@@ -2,6 +2,7 @@ package Maps;
 
 import EnhancedMapTiles.PushableRock;
 import Level.EnhancedMapTile;
+import Level.FlagManager;
 import Level.Map;
 import Level.NPC;
 // import Level.SoundManager;
@@ -113,7 +114,7 @@ public class TestMap extends Map {
             } else if (getFlagManager().isFlagSet("purpleFish")) {
                 walrusPurpFish.setIsHidden(false);
             } 
-        } 
+        }
 
         npcs.add(walrusPurpFish);
         npcs.add(walrusFish);

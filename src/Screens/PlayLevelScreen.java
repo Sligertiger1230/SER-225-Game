@@ -83,7 +83,7 @@ public class PlayLevelScreen extends Screen {
         flagManager.addFlag("hasTalkedToNPCGirl1", false);
 
         // define/setup map
-        this.map = loadMap(0);
+        this.map = loadMap(4);
         this.map.setQuestMenu(questMenu);
 
         // setup player
@@ -186,15 +186,7 @@ public class PlayLevelScreen extends Screen {
         musicPlayer.stop();
 
         switch (mapId) {
-            case 0:
-                newMap = new OrientationRoom();
-                newMap.setFlagManager(flagManager);
-                newMap.setNPCs();
-                newMap.setQuestMenu(questMenu);
-                musicPlayer.setFile(0);
-                musicPlayer.loop();
-                return newMap;
-             case 1:
+             case 0:
                 newMap = new TestMap();
                 newMap.setFlagManager(flagManager);
                 newMap.setNPCs();
@@ -202,7 +194,7 @@ public class PlayLevelScreen extends Screen {
                 musicPlayer.setFile(0);
                 musicPlayer.loop();
                 return newMap;
-            case 2:
+            case 1:
                 newMap = new CCEClassroom();
                 newMap.setFlagManager(flagManager);
                 newMap.setNPCs();
@@ -210,13 +202,13 @@ public class PlayLevelScreen extends Screen {
                 musicPlayer.setFile(18);
                 musicPlayer.loop();
                 return newMap;
-            case 3:
+            case 2:
                 newMap = new IceRink();
                 newMap.setFlagManager(flagManager);
                 newMap.setNPCs();
                 newMap.setQuestMenu(questMenu);
                 return newMap;
-            case 4:
+            case 3:
                 newMap = new DrawQuest();
                 newMap.setFlagManager(flagManager);
                 newMap.setNPCs();
@@ -224,6 +216,15 @@ public class PlayLevelScreen extends Screen {
                 musicPlayer.setFile(17);
                 musicPlayer.loop();
                 return newMap;
+            case 4:
+                newMap = new OrientationRoom();
+                newMap.setFlagManager(flagManager);
+                newMap.setNPCs();
+                newMap.setQuestMenu(questMenu);
+                musicPlayer.setFile(0);
+                musicPlayer.loop();
+                return newMap;
+            
 
             default:
                 return null;
