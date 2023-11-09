@@ -11,10 +11,10 @@ import GameObject.SpriteSheet;
 import Level.NPC;
 import Utils.Point;
 
-public class Judy extends NPC {
+public class EmoBoy extends NPC {
 
-    public Judy(int id, Point location) {
-        super(id, location.x, location.y, new SpriteSheet(ImageLoader.load("npcJudy.png"), 16, 20), "STAND_LEFT");
+    public EmoBoy(int id, Point location) {
+        super(id, location.x, location.y, new SpriteSheet(ImageLoader.load("EmoKid.png"), 16, 20), "STAND_LEFT");
     }
 
     @Override

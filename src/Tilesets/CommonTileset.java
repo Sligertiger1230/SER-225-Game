@@ -167,7 +167,7 @@ public class CommonTileset extends Tileset {
                                 .withScale(tileScale)
                                 .build();
 
-                MapTileBuilder waterAlgaeTile = new MapTileBuilder(grassFrame)
+                MapTileBuilder waterAlgaeTile = new MapTileBuilder(waterFrame)
                                 .withTopLayer(waterAlgaeFrame)
                                 .withTileType(TileType.NOT_PASSABLE);
 
@@ -178,7 +178,7 @@ public class CommonTileset extends Tileset {
                                 .withScale(tileScale)
                                 .build();
 
-                MapTileBuilder waterDucksTile = new MapTileBuilder(grassFrame)
+                MapTileBuilder waterDucksTile = new MapTileBuilder(waterFrame)
                                 .withTopLayer(waterDucksFrame)
                                 .withTileType(TileType.NOT_PASSABLE);
 
@@ -265,7 +265,7 @@ public class CommonTileset extends Tileset {
                                 .build();
 
                 MapTileBuilder trashCanTile = new MapTileBuilder(grassFrame)
-                                .withTopLayer(trashCanFrame)
+                                 .withTopLayer(trashCanFrame)
                                 .withTileType(TileType.NOT_PASSABLE);
 
                 mapTiles.add(trashCanTile);
@@ -276,7 +276,7 @@ public class CommonTileset extends Tileset {
                                 .build();
 
                 MapTileBuilder firePitTile = new MapTileBuilder(grassFrame)
-                                .withTopLayer(firePitFrame)
+                                 .withTopLayer(firePitFrame)
                                 .withTileType(TileType.NOT_PASSABLE);
 
                 mapTiles.add(firePitTile);
@@ -370,8 +370,7 @@ public class CommonTileset extends Tileset {
                                 .withScale(tileScale)
                                 .build();
 
-                MapTileBuilder brickWallTile = new MapTileBuilder(grassFrame)
-                                .withTopLayer(brickWallFrame)
+                MapTileBuilder brickWallTile = new MapTileBuilder(brickWallFrame)
                                 .withTileType(TileType.NOT_PASSABLE);
 
                 mapTiles.add(brickWallTile);
@@ -381,8 +380,7 @@ public class CommonTileset extends Tileset {
                                 .withScale(tileScale)
                                 .build();
 
-                MapTileBuilder brickWallWithLightTile = new MapTileBuilder(brickWallFrame)
-                                .withTopLayer(brickWallWithLightFrame)
+                MapTileBuilder brickWallWithLightTile = new MapTileBuilder(brickWallWithLightFrame)
                                 .withTileType(TileType.NOT_PASSABLE);
 
                 mapTiles.add(brickWallWithLightTile);
@@ -393,7 +391,6 @@ public class CommonTileset extends Tileset {
                                 .build();
 
                 MapTileBuilder glassPanesBaseTile = new MapTileBuilder(glassPanesBaseFrame)
-                                .withTopLayer(glassPanesBaseFrame)
                                 .withTileType(TileType.NOT_PASSABLE);
 
                 mapTiles.add(glassPanesBaseTile);
@@ -403,8 +400,7 @@ public class CommonTileset extends Tileset {
                                 .withScale(tileScale)
                                 .build();
 
-                MapTileBuilder glassPanesTopTile = new MapTileBuilder(brickWallFrame)
-                                .withTopLayer(glassPanesTopFrame)
+                MapTileBuilder glassPanesTopTile = new MapTileBuilder(glassPanesTopFrame)
                                 .withTileType(TileType.NOT_PASSABLE);
 
                 mapTiles.add(glassPanesTopTile);
@@ -450,7 +446,6 @@ public class CommonTileset extends Tileset {
                                 .build();
 
                 MapTileBuilder glassPanesFourTile = new MapTileBuilder(brickWallFrame)
-                                .withTopLayer(glassPanesFourFrame)
                                 .withTileType(TileType.NOT_PASSABLE);
 
                 mapTiles.add(glassPanesFourTile);
@@ -648,8 +643,7 @@ public class CommonTileset extends Tileset {
                                 .withScale(tileScale)
                                 .build();
 
-                MapTileBuilder brickWallDarkTile = new MapTileBuilder(grassFrame)
-                                .withTopLayer(brickWallDarkFrame)
+                MapTileBuilder brickWallDarkTile = new MapTileBuilder(brickWallDarkFrame)
                                 .withTileType(TileType.NOT_PASSABLE);
 
                 mapTiles.add(brickWallDarkTile);
@@ -659,8 +653,7 @@ public class CommonTileset extends Tileset {
                                 .withScale(tileScale)
                                 .build();
 
-                MapTileBuilder brickWallBorderTile = new MapTileBuilder(horizontalBrickFrame)
-                                .withTopLayer(brickWallBorderFrame)
+                MapTileBuilder brickWallBorderTile = new MapTileBuilder(brickWallBorderFrame)
                                 .withTileType(TileType.NOT_PASSABLE);
 
                 mapTiles.add(brickWallBorderTile);
@@ -670,8 +663,7 @@ public class CommonTileset extends Tileset {
                                 .withScale(tileScale)
                                 .build();
 
-                MapTileBuilder brickWallLightTile = new MapTileBuilder(grassFrame)
-                                .withTopLayer(brickWallLightFrame)
+                MapTileBuilder brickWallLightTile = new MapTileBuilder(brickWallLightFrame)
                                 .withTileType(TileType.NOT_PASSABLE);
 
                 mapTiles.add(brickWallLightTile);
@@ -684,7 +676,7 @@ public class CommonTileset extends Tileset {
 
                 MapTileBuilder flagPoleBaseTile = new MapTileBuilder(grassFrame)
                                 .withTopLayer(flagPoleBaseFrame)
-                                .withTileType(TileType.PASSABLE);
+                                .withTileType(TileType.NOT_PASSABLE);
 
                 mapTiles.add(flagPoleBaseTile);
 
@@ -752,8 +744,7 @@ public class CommonTileset extends Tileset {
                                 .withScale(tileScale)
                                 .build();
 
-                MapTileBuilder studentCenterDoorTile = new MapTileBuilder(brickWallFrame)
-                                .withTopLayer(studentCenterDoorFrame)
+                MapTileBuilder studentCenterDoorTile = new MapTileBuilder(studentCenterDoorFrame)
                                 .withTileType(TileType.NOT_PASSABLE);
 
                 mapTiles.add(studentCenterDoorTile);
@@ -764,7 +755,6 @@ public class CommonTileset extends Tileset {
                                 .build();
 
                 MapTileBuilder whiteboardBottomTile = new MapTileBuilder(whiteboardBottomFrame)
-                                .withTopLayer(whiteboardBottomFrame)
                                 .withTileType(TileType.NOT_PASSABLE);
 
                 mapTiles.add(whiteboardBottomTile);
@@ -775,7 +765,6 @@ public class CommonTileset extends Tileset {
                                 .build();
 
                 MapTileBuilder whiteboardBottomRedTile = new MapTileBuilder(whiteboardBottomRedFrame)
-                                .withTopLayer(whiteboardBottomRedFrame)
                                 .withTileType(TileType.NOT_PASSABLE);
 
                 mapTiles.add(whiteboardBottomRedTile);
@@ -786,7 +775,6 @@ public class CommonTileset extends Tileset {
                                 .build();
 
                 MapTileBuilder whiteboardBottomBlueTile = new MapTileBuilder(whiteboardBottomBlueFrame)
-                                .withTopLayer(whiteboardBottomBlueFrame)
                                 .withTileType(TileType.NOT_PASSABLE);
 
                 mapTiles.add(whiteboardBottomBlueTile);
@@ -797,7 +785,6 @@ public class CommonTileset extends Tileset {
                                 .build();
 
                 MapTileBuilder whiteboardTopTile = new MapTileBuilder(whiteboardTopFrame)
-                                .withTopLayer(whiteboardTopFrame)
                                 .withTileType(TileType.NOT_PASSABLE);
 
                 mapTiles.add(whiteboardTopTile);
@@ -808,7 +795,6 @@ public class CommonTileset extends Tileset {
                                 .build();
 
                 MapTileBuilder cceDoorBottomTile = new MapTileBuilder(cceDoorBottomFrame)
-                                .withTopLayer(cceDoorBottomFrame)
                                 .withTileType(TileType.NOT_PASSABLE);
 
                 mapTiles.add(cceDoorBottomTile);
@@ -819,7 +805,6 @@ public class CommonTileset extends Tileset {
                                 .build();
 
                 MapTileBuilder cceDoorLeftTopTile = new MapTileBuilder(cceDoorLeftTopFrame)
-                                .withTopLayer(cceDoorLeftTopFrame)
                                 .withTileType(TileType.NOT_PASSABLE);
 
                 mapTiles.add(cceDoorLeftTopTile);
@@ -830,7 +815,6 @@ public class CommonTileset extends Tileset {
                                 .build();
 
                 MapTileBuilder cceDoorRightTopTile = new MapTileBuilder(cceDoorRightTopFrame)
-                                .withTopLayer(cceDoorRightTopFrame)
                                 .withTileType(TileType.NOT_PASSABLE);
 
                 mapTiles.add(cceDoorRightTopTile);
@@ -841,7 +825,6 @@ public class CommonTileset extends Tileset {
                                 .build();
 
                 MapTileBuilder cceWallTile = new MapTileBuilder(cceWallFrame)
-                                .withTopLayer(cceWallFrame)
                                 .withTileType(TileType.NOT_PASSABLE);
 
                 mapTiles.add(cceWallTile);
@@ -1001,7 +984,7 @@ public class CommonTileset extends Tileset {
                                 .build();
 
                 MapTileBuilder studentCenterTableFrontRightTile = new MapTileBuilder(horizontalBrickFrame)
-                                .withTopLayer(studentCenterTableFrontRightFrame)
+                                 .withTopLayer(studentCenterTableFrontRightFrame)
                                 .withTileType(TileType.NOT_PASSABLE);
 
                 mapTiles.add(studentCenterTableFrontRightTile);
@@ -1099,7 +1082,7 @@ public class CommonTileset extends Tileset {
                                 .withScale(tileScale)
                                 .build();
 
-                MapTileBuilder bushWhiteTile = new MapTileBuilder(grassFrame)
+                MapTileBuilder bushWhiteTile = new MapTileBuilder(grassFrame)                             
                                 .withTopLayer(bushWhiteFrame)
                                 .withTileType(TileType.NOT_PASSABLE);
 
@@ -1122,7 +1105,6 @@ public class CommonTileset extends Tileset {
                                 .build();
 
                 MapTileBuilder arcRightBottomTile = new MapTileBuilder(brickWallFrame)
-                                .withTopLayer(arcRightBottomFrame)
                                 .withTileType(TileType.NOT_PASSABLE);
 
                 mapTiles.add(arcRightBottomTile);
@@ -1133,7 +1115,6 @@ public class CommonTileset extends Tileset {
                                 .build();
 
                 MapTileBuilder arcLeftBottomTile = new MapTileBuilder(brickWallFrame)
-                                .withTopLayer(arcLeftBottomFrame)
                                 .withTileType(TileType.NOT_PASSABLE);
 
                 mapTiles.add(arcLeftBottomTile);
@@ -1155,7 +1136,7 @@ public class CommonTileset extends Tileset {
                                 .build();
 
                 MapTileBuilder greenTrashTile = new MapTileBuilder(arcRightBottomFrame)
-                                .withTopLayer(greenTrashFrame)
+                                 .withTopLayer(greenTrashFrame)
                                 .withTileType(TileType.NOT_PASSABLE);
 
                 mapTiles.add(greenTrashTile);
@@ -1254,6 +1235,7 @@ public class CommonTileset extends Tileset {
 
                 // cce chair side right
                 Frame cceChairRightSideFrame = new FrameBuilder(getSubImage(3, 9))
+                
                                 .withScale(tileScale)
                                 .build();
 
@@ -1323,8 +1305,7 @@ public class CommonTileset extends Tileset {
                                 .withScale(tileScale)
                                 .build();
 
-                MapTileBuilder whiteboardBottomMarksOneTile = new MapTileBuilder(whiteboardBottomFrame)
-                                .withTopLayer(whiteboardBottomMarksOneFrame)
+                MapTileBuilder whiteboardBottomMarksOneTile = new MapTileBuilder(whiteboardBottomMarksOneFrame)
                                 .withTileType(TileType.NOT_PASSABLE);
 
                 mapTiles.add(whiteboardBottomMarksOneTile);
@@ -1334,8 +1315,7 @@ public class CommonTileset extends Tileset {
                                 .withScale(tileScale)
                                 .build();
 
-                MapTileBuilder whiteboardBottomMarksTwoTile = new MapTileBuilder(whiteboardBottomFrame)
-                                .withTopLayer(whiteboardBottomMarksTwoFrame)
+                MapTileBuilder whiteboardBottomMarksTwoTile = new MapTileBuilder(whiteboardBottomMarksTwoFrame)
                                 .withTileType(TileType.NOT_PASSABLE);
 
                 mapTiles.add(whiteboardBottomMarksTwoTile);
@@ -1345,8 +1325,7 @@ public class CommonTileset extends Tileset {
                                 .withScale(tileScale)
                                 .build();
 
-                MapTileBuilder whiteboardTopMarksOneTile = new MapTileBuilder(whiteboardBottomFrame)
-                                .withTopLayer(whiteboardTopMarksOneFrame)
+                MapTileBuilder whiteboardTopMarksOneTile = new MapTileBuilder(whiteboardTopMarksOneFrame)
                                 .withTileType(TileType.NOT_PASSABLE);
 
                 mapTiles.add(whiteboardTopMarksOneTile);
@@ -1356,8 +1335,7 @@ public class CommonTileset extends Tileset {
                                 .withScale(tileScale)
                                 .build();
 
-                MapTileBuilder whiteboardTopMarksTwoTile = new MapTileBuilder(whiteboardBottomFrame)
-                                .withTopLayer(whiteboardTopMarksTwoFrame)
+                MapTileBuilder whiteboardTopMarksTwoTile = new MapTileBuilder(whiteboardTopMarksTwoFrame)
                                 .withTileType(TileType.NOT_PASSABLE);
 
                 mapTiles.add(whiteboardTopMarksTwoTile);
@@ -1367,7 +1345,6 @@ public class CommonTileset extends Tileset {
                                 .withScale(tileScale)
                                 .build();
                 MapTileBuilder scDarkPanelTile = new MapTileBuilder(scDarkPanelFrame)
-                                .withTopLayer(scDarkPanelFrame)
                                 .withTileType(TileType.NOT_PASSABLE);
                 mapTiles.add(scDarkPanelTile);
 
@@ -1379,12 +1356,6 @@ public class CommonTileset extends Tileset {
                                 .withTopLayer(scDarkPanelSideLeftFrame)
                                 .withTileType(TileType.NOT_PASSABLE);
                 mapTiles.add(scDarkPanelSideLeftTile);
-
-                // Student center dark panel side right
-                Frame scDarkPanelSideRightFrame = new FrameBuilder(getSubImage(10, 11))
-                                .withScale(tileScale)
-                                .build();
-                MapTileBuilder scDarkPanelSideRightTile = new MapTileBuilder(scDarkPanelSideRightFrame);
 
                 // quad white thing
                 Frame quadWhiteBumpFrame = new FrameBuilder(getSubImage(14, 5))
@@ -1682,7 +1653,7 @@ public class CommonTileset extends Tileset {
                                 .build();
 
                 MapTileBuilder shuttleBottomLeftTile = new MapTileBuilder(concreteFrame)
-                                .withTopLayer(shuttleBottomLeftFrame)
+                                 .withTopLayer(shuttleBottomLeftFrame)
                                 .withTileType(TileType.NOT_PASSABLE);
 
                 mapTiles.add(shuttleBottomLeftTile);
@@ -2155,7 +2126,6 @@ public class CommonTileset extends Tileset {
                                 .build();
 
                 MapTileBuilder bkDoorLeftTopTile = new MapTileBuilder(bkDoorLeftTopFrame)
-                                .withTopLayer(bkDoorLeftTopFrame)
                                 .withTileType(TileType.NOT_PASSABLE);
 
                 mapTiles.add(bkDoorLeftTopTile);
@@ -2166,7 +2136,6 @@ public class CommonTileset extends Tileset {
                                 .build();
 
                 MapTileBuilder bkDoorLeftBottomTile = new MapTileBuilder(bkDoorLeftBottomFrame)
-                                .withTopLayer(bkDoorLeftBottomFrame)
                                 .withTileType(TileType.NOT_PASSABLE);
 
                 mapTiles.add(bkDoorLeftBottomTile);
@@ -2177,7 +2146,6 @@ public class CommonTileset extends Tileset {
                                 .build();
 
                 MapTileBuilder bkDoorRightTopTile = new MapTileBuilder(bkDoorRightTopFrame)
-                                .withTopLayer(bkDoorRightTopFrame)
                                 .withTileType(TileType.NOT_PASSABLE);
 
                 mapTiles.add(bkDoorRightTopTile);
@@ -2188,7 +2156,6 @@ public class CommonTileset extends Tileset {
                                 .build();
 
                 MapTileBuilder bkDoorRightBottomTile = new MapTileBuilder(bkDoorRightBottomFrame)
-                                .withTopLayer(bkDoorRightBottomFrame)
                                 .withTileType(TileType.NOT_PASSABLE);
 
                 mapTiles.add(bkDoorRightBottomTile);
@@ -2199,7 +2166,6 @@ public class CommonTileset extends Tileset {
                                 .build();
 
                 MapTileBuilder bkWallTile = new MapTileBuilder(bkWallFrame)
-                                .withTopLayer(bkWallFrame)
                                 .withTileType(TileType.NOT_PASSABLE);
 
                 mapTiles.add(bkWallTile);
@@ -2210,7 +2176,6 @@ public class CommonTileset extends Tileset {
                                 .build();
 
                 MapTileBuilder bkCurtainTop1Tile = new MapTileBuilder(bkCurtainTop1Frame)
-                                .withTopLayer(bkCurtainTop1Frame)
                                 .withTileType(TileType.NOT_PASSABLE);
 
                 mapTiles.add(bkCurtainTop1Tile);
@@ -2221,7 +2186,6 @@ public class CommonTileset extends Tileset {
                                 .build();
 
                 MapTileBuilder bkCurtainTop2Tile = new MapTileBuilder(bkCurtainTop2Frame)
-                                .withTopLayer(bkCurtainTop2Frame)
                                 .withTileType(TileType.NOT_PASSABLE);
 
                 mapTiles.add(bkCurtainTop2Tile);
@@ -2232,7 +2196,6 @@ public class CommonTileset extends Tileset {
                                 .build();
 
                 MapTileBuilder bkCurtainTop3Tile = new MapTileBuilder(bkCurtainTop3Frame)
-                                .withTopLayer(bkCurtainTop3Frame)
                                 .withTileType(TileType.NOT_PASSABLE);
 
                 mapTiles.add(bkCurtainTop3Tile);
@@ -2243,7 +2206,6 @@ public class CommonTileset extends Tileset {
                                 .build();
 
                 MapTileBuilder bkCurtainBottom1Tile = new MapTileBuilder(bkCurtainBottom1Frame)
-                                .withTopLayer(bkCurtainBottom1Frame)
                                 .withTileType(TileType.NOT_PASSABLE);
 
                 mapTiles.add(bkCurtainBottom1Tile);
@@ -2254,7 +2216,6 @@ public class CommonTileset extends Tileset {
                                 .build();
 
                 MapTileBuilder bkCurtainBottom2Tile = new MapTileBuilder(bkCurtainBottom2Frame)
-                                .withTopLayer(bkCurtainBottom2Frame)
                                 .withTileType(TileType.NOT_PASSABLE);
 
                 mapTiles.add(bkCurtainBottom2Tile);
@@ -2265,10 +2226,375 @@ public class CommonTileset extends Tileset {
                                 .build();
 
                 MapTileBuilder bkCurtainBottom3Tile = new MapTileBuilder(bkCurtainBottom3Frame)
-                                .withTopLayer(bkCurtainBottom3Frame)
                                 .withTileType(TileType.NOT_PASSABLE);
 
                 mapTiles.add(bkCurtainBottom3Tile);
+
+                Frame bkStageEdgeFrame = new FrameBuilder(getSubImage(15, 18))
+                                .withScale(tileScale)
+                                .build();
+                MapTileBuilder bkStageEdgeTile = new MapTileBuilder(bkStageEdgeFrame)
+                                .withTileType(TileType.NOT_PASSABLE);
+
+                mapTiles.add(bkStageEdgeTile);
+
+                 Frame bkStageBottomCornerFrame = new FrameBuilder(getSubImage(15, 17))
+                                .withScale(tileScale)
+                                .build();
+                MapTileBuilder bkStageBottomCornerTile = new MapTileBuilder(bkStageBottomCornerFrame)
+                                .withTileType(TileType.NOT_PASSABLE);
+
+                mapTiles.add(bkStageBottomCornerTile);
+
+                  Frame bkStageBottomCornerLeftTopFrame = new FrameBuilder(getSubImage(14, 17))
+                                .withScale(tileScale)
+                                .build();
+                MapTileBuilder bkStageBottomCornerLeftTopTile = new MapTileBuilder(bkStageBottomCornerLeftTopFrame)
+                                .withTileType(TileType.NOT_PASSABLE);
+
+                mapTiles.add(bkStageBottomCornerLeftTopTile);
+
+                   Frame bkStageBottomCornerRightTopFrame = new FrameBuilder(getSubImage(14, 19))
+                                .withScale(tileScale)
+                                .build();
+                MapTileBuilder bkStageBottomCornerRightTopTile = new MapTileBuilder(bkStageBottomCornerRightTopFrame)
+                                .withTileType(TileType.NOT_PASSABLE);
+
+                mapTiles.add(bkStageBottomCornerRightTopTile);
+
+                Frame bkStageMidFrame = new FrameBuilder(getSubImage(14, 18))
+                                .withScale(tileScale)
+                                .build();
+                MapTileBuilder bkStageMidTile = new MapTileBuilder(bkStageMidFrame)
+                                .withTileType(TileType.NOT_PASSABLE);
+
+                mapTiles.add(bkStageMidTile);
+
+                 Frame bkStageBottomRightFrame = new FrameBuilder(getSubImage(15, 19))
+                                .withScale(tileScale)
+                                .build();
+                MapTileBuilder bkStageBottomRightTile = new MapTileBuilder(bkStageBottomRightFrame)
+                                .withTileType(TileType.NOT_PASSABLE);
+
+                mapTiles.add(bkStageBottomRightTile);
+
+                // burt kahn floor qu  
+                Frame bkFloorQU1RightFrame = new FrameBuilder(getSubImage(8, 19))
+                                .withScale(tileScale)
+                                .build();
+
+                MapTileBuilder bkFloorQU1RightTile = new MapTileBuilder(bkFloorQU1RightFrame);
+
+                mapTiles.add(bkFloorQU1RightTile);
+
+                // burt kahn floor qu  
+                Frame bkFloorQU2RightFrame = new FrameBuilder(getSubImage(9, 19))
+                                .withScale(tileScale)
+                                .build();
+
+                MapTileBuilder bkFloorQU2RightTile = new MapTileBuilder(bkFloorQU2RightFrame);
+
+                mapTiles.add(bkFloorQU2RightTile);
+
+                // burt kahn floor qu  
+                Frame bkFloorQU3RightFrame = new FrameBuilder(getSubImage(8, 18))
+                                .withScale(tileScale)
+                                .build();
+
+                MapTileBuilder bkFloorQU3RightTile = new MapTileBuilder(bkFloorQU3RightFrame);
+
+                mapTiles.add(bkFloorQU3RightTile);
+
+                 // burt kahn floor qu  
+                Frame bkFloorQU4RightFrame = new FrameBuilder(getSubImage(9, 18))
+                                .withScale(tileScale)
+                                .build();
+
+                MapTileBuilder bkFloorQU4RightTile = new MapTileBuilder(bkFloorQU4RightFrame);
+
+                mapTiles.add(bkFloorQU4RightTile);
+
+                 // burt kahn floor qu  
+                Frame bkFloorQU5RightFrame = new FrameBuilder(getSubImage(9, 17))
+                                .withScale(tileScale)
+                                .build();
+
+                MapTileBuilder bkFloorQU5RightTile = new MapTileBuilder(bkFloorQU5RightFrame);
+
+                mapTiles.add(bkFloorQU5RightTile);
+
+                  // burt kahn floor qu  
+                Frame bkFloorQU6RightFrame = new FrameBuilder(getSubImage(8, 17))
+                                .withScale(tileScale)
+                                .build();
+
+                MapTileBuilder bkFloorQU6RightTile = new MapTileBuilder(bkFloorQU6RightFrame);
+
+                mapTiles.add(bkFloorQU6RightTile);
+
+                  // burt kahn floor qu  
+                Frame bkFloorQU7RightFrame = new FrameBuilder(getSubImage(5, 12))
+                                .withScale(tileScale)
+                                .build();
+
+                MapTileBuilder bkFloorQU7RightTile = new MapTileBuilder(bkFloorQU7RightFrame);
+
+                mapTiles.add(bkFloorQU7RightTile);
+
+                  // burt kahn floor qu  
+                Frame bkFloorQU8RightFrame = new FrameBuilder(getSubImage(6, 12))
+                                .withScale(tileScale)
+                                .build();
+
+                MapTileBuilder bkFloorQU8RightTile = new MapTileBuilder(bkFloorQU8RightFrame);
+
+                mapTiles.add(bkFloorQU8RightTile);
+
+                  // burt kahn floor   
+                Frame bkFloorTopYellowFrame = new FrameBuilder(getSubImage(0, 11))
+                                .withScale(tileScale)
+                                .build();
+
+                MapTileBuilder bkFloorTopYellowTile = new MapTileBuilder(bkFloorTopYellowFrame);
+
+                mapTiles.add(bkFloorTopYellowTile);
+
+                  // burt kahn floor with white stripe   
+                Frame bkFloorWhiteStripeFrame = new FrameBuilder(getSubImage(2, 19))
+                                .withScale(tileScale)
+                                .build();
+
+                MapTileBuilder bkFloorWhiteStripeTile = new MapTileBuilder(bkFloorWhiteStripeFrame);
+
+                mapTiles.add(bkFloorWhiteStripeTile);
+
+                  // burt kahn floor with white stripe   
+                Frame bkFloorTopYellowStripeFrame = new FrameBuilder(getSubImage(1, 18))
+                                .withScale(tileScale)
+                                .build();
+
+                MapTileBuilder bkFloorTopYellowStripeTile = new MapTileBuilder(bkFloorTopYellowStripeFrame);
+
+                mapTiles.add(bkFloorTopYellowStripeTile);
+
+                 // burt kahn floor with white stripe   
+                Frame bkFloorWhiteStripe2Frame = new FrameBuilder(getSubImage(2, 18))
+                                .withScale(tileScale)
+                                .build();
+
+                MapTileBuilder bkFloorWhiteStripe2Tile = new MapTileBuilder(bkFloorWhiteStripe2Frame);
+
+                mapTiles.add(bkFloorWhiteStripe2Tile);
+
+                  // burt kahn floor with white stripe   
+                Frame bkFloorWhiteStripe3Frame = new FrameBuilder(getSubImage(1, 19))
+                                .withScale(tileScale)
+                                .build();
+
+                MapTileBuilder bkFloorWhiteStripe3Tile = new MapTileBuilder(bkFloorWhiteStripe3Frame);
+
+                mapTiles.add(bkFloorWhiteStripe3Tile);
+
+                  // burt kahn floor with white stripe   
+                Frame bkFloorWhiteStripe4Frame = new FrameBuilder(getSubImage(2, 17))
+                                .withScale(tileScale)
+                                .build();
+
+                MapTileBuilder bkFloorWhiteStripe4Tile = new MapTileBuilder(bkFloorWhiteStripe4Frame);
+
+                mapTiles.add(bkFloorWhiteStripe4Tile);
+
+                  // burt kahn floor with white stripe   
+                Frame bkFloorBottomYellowFrame = new FrameBuilder(getSubImage(1, 17))
+                                .withScale(tileScale)
+                                .build();
+
+                MapTileBuilder bkFloorBottomYellowTile = new MapTileBuilder(bkFloorBottomYellowFrame);
+
+                mapTiles.add(bkFloorBottomYellowTile);
+
+                  //bobcat logo floor
+                Frame bobcatFloor1Frame = new FrameBuilder(getSubImage(5, 19))
+                                .withScale(tileScale)
+                                .build();
+
+                MapTileBuilder bobcatFloor1Tile = new MapTileBuilder(bobcatFloor1Frame);
+
+                mapTiles.add(bobcatFloor1Tile);
+
+                  //bobcat logo floor
+                Frame bobcatFloor2Frame = new FrameBuilder(getSubImage(5, 18))
+                                .withScale(tileScale)
+                                .build();
+
+                MapTileBuilder bobcatFloor2Tile = new MapTileBuilder(bobcatFloor2Frame);
+
+                mapTiles.add(bobcatFloor2Tile);
+
+                  //bobcat logo floor
+                Frame bobcatFloor3Frame = new FrameBuilder(getSubImage(5, 17))
+                                .withScale(tileScale)
+                                .build();
+
+                MapTileBuilder bobcatFloor3Tile = new MapTileBuilder(bobcatFloor3Frame);
+
+                mapTiles.add(bobcatFloor3Tile);
+
+                  //bobcat logo floor
+                Frame bobcatFloor4Frame = new FrameBuilder(getSubImage(6, 17))
+                                .withScale(tileScale)
+                                .build();
+
+                MapTileBuilder bobcatFloor4Tile = new MapTileBuilder(bobcatFloor4Frame);
+
+                mapTiles.add(bobcatFloor4Tile);
+
+                  //bobcat logo floor
+                Frame bobcatFloor5Frame = new FrameBuilder(getSubImage(6, 18))
+                                .withScale(tileScale)
+                                .build();
+
+                MapTileBuilder bobcatFloor5Tile = new MapTileBuilder(bobcatFloor5Frame);
+
+                mapTiles.add(bobcatFloor5Tile);
+
+                  //bobcat logo floor
+                Frame bobcatFloor6Frame = new FrameBuilder(getSubImage(6, 19))
+                                .withScale(tileScale)
+                                .build();
+
+                MapTileBuilder bobcatFloor6Tile = new MapTileBuilder(bobcatFloor6Frame);
+
+                mapTiles.add(bobcatFloor6Tile);
+
+                  //bobcat logo floor
+                Frame bobcatFloor7Frame = new FrameBuilder(getSubImage(7, 18))
+                                .withScale(tileScale)
+                                .build();
+
+                MapTileBuilder bobcatFloor7Tile = new MapTileBuilder(bobcatFloor7Frame);
+
+                mapTiles.add(bobcatFloor7Tile);
+
+                    //bobcat logo floor
+                Frame bobcatFloor8Frame = new FrameBuilder(getSubImage(7, 17))
+                                .withScale(tileScale)
+                                .build();
+
+                MapTileBuilder bobcatFloor8Tile = new MapTileBuilder(bobcatFloor8Frame);
+
+                mapTiles.add(bobcatFloor8Tile);
+
+                    //bobcat logo floor
+                Frame bobcatFloor9Frame = new FrameBuilder(getSubImage(7, 19))
+                                .withScale(tileScale)
+                                .build();
+
+                MapTileBuilder bobcatFloor9Tile = new MapTileBuilder(bobcatFloor9Frame);
+
+                mapTiles.add(bobcatFloor9Tile);
+
+                 // bk floor chair
+                Frame orientationChairFrame = new FrameBuilder(getSubImage(10, 17))
+                                .withScale(tileScale)
+                                .withBounds(0, 6, 16, 4)
+                                .build();
+
+                MapTileBuilder orientationChairTile = new MapTileBuilder(bkFloorFrame)
+                                .withTopLayer(orientationChairFrame)
+                                .withTileType(TileType.NOT_PASSABLE);
+
+                mapTiles.add(orientationChairTile);
+
+                 // bk floor chair
+                Frame orientationChair2Frame = new FrameBuilder(getSubImage(10, 17))
+                                .withScale(tileScale)
+                                .withBounds(0, 6, 16, 4)
+                                .build();
+
+                MapTileBuilder orientationChair2Tile = new MapTileBuilder(bobcatFloor9Frame)
+                                .withTopLayer(orientationChair2Frame)
+                                .withTileType(TileType.NOT_PASSABLE);
+
+                mapTiles.add(orientationChair2Tile);
+
+                  // bk floor chair
+                Frame orientationChair3Frame = new FrameBuilder(getSubImage(10, 17))
+                                .withScale(tileScale)
+                                .withBounds(0, 6, 16, 4)
+                                .build();
+
+                MapTileBuilder orientationChair3Tile = new MapTileBuilder(bobcatFloor6Frame)
+                                .withTopLayer(orientationChair3Frame)
+                                .withTileType(TileType.NOT_PASSABLE);
+
+                mapTiles.add(orientationChair3Tile);
+
+                  // bk floor chair
+                Frame orientationChair4Frame = new FrameBuilder(getSubImage(10, 17))
+                                .withScale(tileScale)
+                                .withBounds(0, 6, 16, 4)
+                                .build();
+
+                MapTileBuilder orientationChair4Tile = new MapTileBuilder(bobcatFloor1Frame)
+                                .withTopLayer(orientationChair4Frame)
+                                .withTileType(TileType.NOT_PASSABLE);
+
+                mapTiles.add(orientationChair4Tile);
+
+                  // bk floor chair
+                Frame orientationChair5Frame = new FrameBuilder(getSubImage(10, 17))
+                                .withScale(tileScale)
+                                .withBounds(0, 6, 16, 4)
+                                .build();
+
+                MapTileBuilder orientationChair5Tile = new MapTileBuilder(bobcatFloor6Frame)
+                                .withTopLayer(orientationChair5Frame)
+                                .withTileType(TileType.NOT_PASSABLE);
+
+                mapTiles.add(orientationChair5Tile);
+
+                 // bk floor chair
+                Frame orientationChair6Frame = new FrameBuilder(getSubImage(10, 17))
+                                .withScale(tileScale)
+                                .withBounds(0, 6, 16, 4)
+                                .build();
+
+                MapTileBuilder orientationChair6Tile = new MapTileBuilder(bobcatFloor4Frame)
+                                .withTopLayer(orientationChair6Frame)
+                                .withTileType(TileType.NOT_PASSABLE);
+
+                mapTiles.add(orientationChair6Tile);
+
+                 // bk floor chair
+                Frame orientationChair7Frame = new FrameBuilder(getSubImage(10, 17))
+                                .withScale(tileScale)
+                                .withBounds(0, 6, 16, 4)
+                                .build();
+
+                MapTileBuilder orientationChair7Tile = new MapTileBuilder(bobcatFloor3Frame)
+                                .withTopLayer(orientationChair7Frame)
+                                .withTileType(TileType.NOT_PASSABLE);
+
+                mapTiles.add(orientationChair7Tile);
+
+                  // bk floor chair
+                Frame orientationChair8Frame = new FrameBuilder(getSubImage(10, 17))
+                                .withScale(tileScale)
+                                .withBounds(0, 6, 16, 4)
+                                .build();
+
+                MapTileBuilder orientationChair8Tile = new MapTileBuilder(bobcatFloor8Frame)
+                                .withTopLayer(orientationChair8Frame)
+                                .withTileType(TileType.NOT_PASSABLE);
+
+                mapTiles.add(orientationChair8Tile);
+
+
+
+
+
+
 
 
 
