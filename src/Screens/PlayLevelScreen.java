@@ -67,9 +67,10 @@ public class PlayLevelScreen extends Screen {
         // Nathan quest flags
         flagManager.addFlag("hasTalkedToNathan", false);
         flagManager.addFlag("nathanRunning", false);
-        flagManager.addFlag("nathanFinishRunning", false);
         flagManager.addFlag("nathanReturn", false);
         flagManager.addFlag("winRace", false);
+        flagManager.addFlag("nathanActivelyRunning", false);
+        flagManager.addFlag("bikeActive", false);
 
         // base game flags
         flagManager.addFlag("hasLostBall", false);

@@ -87,6 +87,22 @@ public class Cat extends Player {
                             .withBounds(6, 12, 12, 7)
                             .build()
             });
+
+            //biking animation
+            put("WALK_UP", new Frame[] {
+                    new FrameBuilder(spriteSheet.getSprite(0, 1), 14)
+                            .withScale(3)
+                            .withBounds(6, 12, 12, 7)
+                            .build(),
+                    new FrameBuilder(spriteSheet.getSprite(0, 2), 14)
+                            .withScale(3)
+                            .withBounds(6, 12, 12, 7)
+                            .build(),
+                    new FrameBuilder(spriteSheet.getSprite(0, 3), 14)
+                            .withScale(3)
+                            .withBounds(6, 12, 12, 7)
+                            .build(),
+            });
         }};
     }
 }

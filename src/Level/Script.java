@@ -106,9 +106,11 @@ public abstract class Script<T extends MapEntity> {
 
     // call setup logic once on script start
     protected void start() {
-        if (start) {
-            setup();
-            start = false;
+        if (!isFlagSet("nathanActivelyRunning")){
+            if (start) {
+                setup();
+                start = false;
+            }
         }
     }
 

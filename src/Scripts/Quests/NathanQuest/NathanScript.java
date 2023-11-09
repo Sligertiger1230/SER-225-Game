@@ -41,6 +41,12 @@ public class NathanScript extends Script<NPC> {
                         addTextToTextboxQueue("I doubt this is going to go well for you.");
                     }
                     else {
+                        //creates nathan quest in quest menu
+                        createStepList();
+                        addStep("Race the shoeless boy");
+                        createTriggerList();
+                        addQuest("Win the race");
+
                         addTextToTextboxQueue("I'm literally the fastest on campus,\nlike there's literally no one quicker.");
                         addTextToTextboxQueue("I don't wear shoes, and it makes me faster.\nWhy are you looking at me like that?");
                         addTextToTextboxQueue("You literally think you can beat me? Like\nI'd like to see you try.");
@@ -61,14 +67,16 @@ public class NathanScript extends Script<NPC> {
             }
         }
         else {
-            addTextToTextboxQueue("Fine, I guess you win.");
+            addTextToTextboxQueue("NOT FAIR, NOT FAIR!!!");
             addTextToTextboxQueue("This is literally like so stupid.\nI'm like the fastest.");
+            addTextToTextboxQueue("Fine, I guess you win.");
+            addTextToTextboxQueue("I'm leaving here and never coming back.");
         }
     }
 
     @Override
     protected void cleanup() {
-        // //removes text and lets player walk 
+        //removes text and lets player walk 
         unlockPlayer();
         hideTextbox();
         hidePortrait();
@@ -88,6 +96,7 @@ public class NathanScript extends Script<NPC> {
         //after nathan finishes running, it sets him to return next time you speak to him
         else if (isFlagSet("nathanRunning")){
             if (win){
+                nextStep("Win the race");
                 setFlag("winRace");
             }
             else {
@@ -96,7 +105,7 @@ public class NathanScript extends Script<NPC> {
             unsetFlag("nathanRunning");
         }
     }
-
+    
     @Override
     public ScriptState execute() {
         if (isFlagSet("winRace")){
@@ -130,6 +139,7 @@ public class NathanScript extends Script<NPC> {
                 amountMoved = 0;
                 getNPC(8).setLocation(288, 1584);
                 unsetFlag("nathanReturn");
+                start = false;
                 end();
             }
             else {
@@ -144,21 +154,21 @@ public class NathanScript extends Script<NPC> {
             if (!isTextboxQueueEmpty()) {
                 return ScriptState.RUNNING;
             }
-
-            
-            else if (sequence == 0) {
+            else {
+                //removes text and lets player walk 
+                unlockPlayer();
+                hideTextbox();
+                hidePortrait();
+            }
+            setFlag("nathanActivelyRunning");
+            if (sequence == 0) {
                 entity.walk(Direction.RIGHT, 4);
                 amountMoved += 4;
                 if (amountMoved >= 4464) {
                     sequence++;
                     amountMoved = 0;
                 }
-                //if at any point before nathan finishes running and you make it to this point
-                //win will be set as true
-                // if (player.getX() >= 4500 && player.getY() >= 2300) {
-                //     win = true;
-                //     setFlag("winRace");
-                // }
+
                 return ScriptState.RUNNING;
             }
             else {
@@ -173,15 +183,10 @@ public class NathanScript extends Script<NPC> {
                         win = true;
                         setFlag("winRace");
                     }
+                    unsetFlag("nathanActivelyRunning");
                     end();
                 }
                 else {
-                    //if at any point before nathan finishes running and you make it to this point
-                    //win will be set as true
-                    // if (player.getX() >= 4500 && player.getY() >= 2300) {
-                    //     win = true;
-                    //     setFlag("winRace");
-                    // }
                     return ScriptState.RUNNING;
                 }
             }
