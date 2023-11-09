@@ -6,6 +6,7 @@ import Level.Map;
 import Level.NPC;
 import Level.Trigger;
 import NPCs.Judy;
+import Scripts.CCEClassroom.ChangeMapScript;
 import Scripts.OrientationRoom.JudyScript;
 import Tilesets.CommonTileset;
 import Utils.Point;
@@ -30,5 +31,16 @@ public class OrientationRoom extends Map{
         return npcs;
 
     }
+     public void loadScripts() {
+        getMapTile(1, 2).setInteractScript(new ChangeMapScript(1));
+
+        getMapTile(2, 2).setInteractScript(new ChangeMapScript(1));
+
+        getMapTile(3, 2).setInteractScript(new ChangeMapScript(1));
+
+        getMapTile(4, 2).setInteractScript(new ChangeMapScript(1));
+
+
+     }
     
 }
