@@ -37,8 +37,8 @@ public class CCEClassroom extends Map {
     }
 
     public void loadScripts() {
-        getMapTile(1, 2).setInteractScript(new ChangeMapScript(0));
+        getMapTile(1, 2).setInteractScript(new ChangeMapScript(1));
 
-        getMapTile(15, 2).setInteractScript(new ChangeMapScript(3));
+        getMapTile(15, 2).setInteractScript(new ChangeMapScript(4));
     }
 }
