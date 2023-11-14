@@ -299,7 +299,7 @@ public class PlayLevelScreen extends Screen {
     }
 
     public static void returnFromAsteroid(){
-        playLevelScreenState = PlayLevelScreenState.ASTEROID;
+        playLevelScreenState = PlayLevelScreenState.RUNNING;
     }
 
     public static void startAsteroid(){

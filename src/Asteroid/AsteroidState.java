@@ -4,5 +4,6 @@ public enum AsteroidState {
     START,
     RUNNING,
     DEAD,
-    WIN
+    WIN,
+    EXIT
 }

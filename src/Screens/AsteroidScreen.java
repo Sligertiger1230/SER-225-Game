@@ -52,6 +52,9 @@ public class AsteroidScreen extends Screen {
                 if (Keyboard.isKeyDown(startGame)) {
                     asteroidState = AsteroidState.RUNNING;
                 }
+                if (Keyboard.isKeyDown(exitGame)) {
+                    PlayLevelScreen.returnFromAsteroid();
+                }
                 break;
             case RUNNING:
                 aster.update();
