@@ -57,9 +57,6 @@ public class TestMap extends Map {
     public ArrayList<EnhancedMapTile> loadEnhancedMapTiles() {
         ArrayList<EnhancedMapTile> enhancedMapTiles = new ArrayList<>();
 
-        PushableRock pushableRock = new PushableRock(getMapTile(2, 7).getLocation());
-        enhancedMapTiles.add(pushableRock);
-
         return enhancedMapTiles;
     }
 
@@ -70,11 +67,6 @@ public class TestMap extends Map {
         Walrus walrus = new Walrus(0, getMapTile(67, 12).getLocation().subtractY(40));
         walrus.setInteractScript(new WalrusScript());
         npcs.add(walrus);
-
-        Dinosaur dinosaur = new Dinosaur(1, getMapTile(13, 4).getLocation());
-        dinosaur.setExistenceFlag("hasTalkedToDinosaur");
-        dinosaur.setInteractScript(new DinoScript());
-        npcs.add(dinosaur);
 
         if (!getFlagManager().isFlagSet("isJavaJohnFloating")) {
             JavaJohn javaJohn = new JavaJohn(2, getMapTile(37, 7).getLocation());

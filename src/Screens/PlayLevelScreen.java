@@ -186,6 +186,7 @@ public class PlayLevelScreen extends Screen {
                 winScreen.draw(graphicsHandler);
                 break;
             case ASTEROID:
+                musicPlayer.stop();
                 asteroidScreen.draw(graphicsHandler);
                 break;
         }
@@ -298,11 +299,11 @@ public class PlayLevelScreen extends Screen {
         screenCoordinator.setGameState(GameState.MENU);
     }
 
-    public static void returnFromAsteroid(){
+    public static void returnFromAsteroid() {
         playLevelScreenState = PlayLevelScreenState.ASTEROID;
     }
 
-    public static void startAsteroid(){
+    public static void startAsteroid() {
         playLevelScreenState = PlayLevelScreenState.ASTEROID;
     }
 

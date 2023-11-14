@@ -13,8 +13,6 @@ public class MapTile extends MapEntity {
     // this determines a tile's properties, like if it's passable or not
     protected TileType tileType;
 
-    protected SoundType soundType;
-
     // bottom layer of tile
     protected GameObject bottomLayer;
 
@@ -23,14 +21,12 @@ public class MapTile extends MapEntity {
 
     private int tileIndex;
 
-    public MapTile(float x, float y, GameObject bottomLayer, GameObject topLayer, TileType tileType,
-            SoundType soundType, int tileIndex) {
+    public MapTile(float x, float y, GameObject bottomLayer, GameObject topLayer, TileType tileType, int tileIndex) {
         super(x, y);
         this.bottomLayer = bottomLayer;
         this.topLayer = topLayer;
         this.tileType = tileType;
         this.tileIndex = tileIndex;
-        this.soundType = soundType;
     }
 
     public MapTile(float x, float y, GameObject bottomLayer, GameObject topLayer, TileType tileType) {
