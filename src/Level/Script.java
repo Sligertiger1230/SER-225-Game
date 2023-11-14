@@ -112,7 +112,7 @@ public abstract class Script<T extends MapEntity> {
 
     // call setup logic once on script start
     protected void start() {
-        if (!isFlagSet("nathanActivelyRunning")){
+        if (!isFlagSet("nathanActivelyRunning")) {
             if (start) {
                 setup();
                 start = false;
@@ -161,7 +161,6 @@ public abstract class Script<T extends MapEntity> {
 
     // textbox is shown on screen
     protected void showTextbox() {
-        playChatter();
         map.getTextbox().setIsActive(true);
     }
 
@@ -193,6 +192,7 @@ public abstract class Script<T extends MapEntity> {
     // adds text to be shown in textbox
     protected void addTextToTextboxQueue(String text) {
         map.getTextbox().addText(text);
+        playChatter();
     }
 
     // adds text to be shown in textbox with the option for selectable text

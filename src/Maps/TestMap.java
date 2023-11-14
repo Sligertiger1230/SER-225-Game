@@ -57,9 +57,6 @@ public class TestMap extends Map {
     public ArrayList<EnhancedMapTile> loadEnhancedMapTiles() {
         ArrayList<EnhancedMapTile> enhancedMapTiles = new ArrayList<>();
 
-        PushableRock pushableRock = new PushableRock(getMapTile(2, 7).getLocation());
-        enhancedMapTiles.add(pushableRock);
-
         return enhancedMapTiles;
     }
 
@@ -70,11 +67,6 @@ public class TestMap extends Map {
         Walrus walrus = new Walrus(0, getMapTile(67, 12).getLocation().subtractY(40));
         walrus.setInteractScript(new WalrusScript());
         npcs.add(walrus);
-
-        Dinosaur dinosaur = new Dinosaur(1, getMapTile(13, 4).getLocation());
-        dinosaur.setExistenceFlag("hasTalkedToDinosaur");
-        dinosaur.setInteractScript(new DinoScript());
-        npcs.add(dinosaur);
 
         if (!getFlagManager().isFlagSet("isJavaJohnFloating")) {
             JavaJohn javaJohn = new JavaJohn(2, getMapTile(37, 7).getLocation());
@@ -99,13 +91,13 @@ public class TestMap extends Map {
             pubSafetyDect.setIsHidden(true);
         }
         npcs.add(pubSafetyDect);
-        
+
         WalrusFish walrusFish = new WalrusFish(5, getMapTile(5, 32).getLocation());
         walrusFish.setInteractScript(new WalrusRedFishScript());
 
         WalrusPurpFish walrusPurpFish = new WalrusPurpFish(6, getMapTile(4, 30).getLocation());
         walrusPurpFish.setInteractScript(new WalrusPurpFishScript());
-        
+
         walrusFish.setIsHidden(true);
         walrusPurpFish.setIsHidden(true);
         if (!getFlagManager().isFlagSet("hasPickedUpFish")) {
@@ -113,7 +105,7 @@ public class TestMap extends Map {
                 walrusFish.setIsHidden(false);
             } else if (getFlagManager().isFlagSet("purpleFish")) {
                 walrusPurpFish.setIsHidden(false);
-            } 
+            }
         }
 
         npcs.add(walrusPurpFish);
@@ -156,10 +148,6 @@ public class TestMap extends Map {
         }
         npcs.add(pubSDectLooker);
 
-        Webby webby = new Webby(14, getMapTile(20, 4).getLocation());
-        webby.setInteractScript(new WebbyScript());
-        npcs.add(webby);
-
         return npcs;
 
     }
@@ -172,10 +160,16 @@ public class TestMap extends Map {
         triggers.add(new Trigger(1776, 2304, 10, 196, new PubSafetyDectScript(), "hasEncounteredPubSafetyDect"));
 
         // base game triggers
-        //This is the code to display a textbox once a user moves in the test map for the first time 
-        /*triggers.add(new Trigger(790, 1030, 100, 10, new LostBallScript(), "hasLostBall"));
-        triggers.add(new Trigger(790, 960, 10, 80, new LostBallScript(), "hasLostBall"));
-        triggers.add(new Trigger(890, 960, 10, 80, new LostBallScript(), "hasLostBall"));*/
+        // This is the code to display a textbox once a user moves in the test map for
+        // the first time
+        /*
+         * triggers.add(new Trigger(790, 1030, 100, 10, new LostBallScript(),
+         * "hasLostBall"));
+         * triggers.add(new Trigger(790, 960, 10, 80, new LostBallScript(),
+         * "hasLostBall"));
+         * triggers.add(new Trigger(890, 960, 10, 80, new LostBallScript(),
+         * "hasLostBall"));
+         */
         return triggers;
     }
 

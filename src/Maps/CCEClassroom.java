@@ -8,8 +8,10 @@ import Level.Map;
 import Level.NPC;
 import NPCs.NPCBoy3;
 import NPCs.ProfessorJaiswal;
+import NPCs.Webby;
 import Scripts.NPCDialogue.NPCBoy3Script;
 import Scripts.Quests.JaiswalDrawQuestCCE;
+import Scripts.Quests.WebbyScript;
 import Scripts.CCEClassroom.ChangeMapScript;
 import Tilesets.CommonTileset;
 
@@ -38,6 +40,10 @@ public class CCEClassroom extends Map {
         ProfessorJaiswal drJ = new ProfessorJaiswal(0, getMapTile(8, 3).getLocation());
         drJ.setInteractScript(new JaiswalDrawQuestCCE());
         npcs.add(drJ);
+
+        Webby webby = new Webby(1, getMapTile(8, 13).getLocation());
+        webby.setInteractScript(new WebbyScript());
+        npcs.add(webby);
 
         return npcs;
     }
