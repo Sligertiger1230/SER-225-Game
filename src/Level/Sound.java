@@ -59,7 +59,7 @@ public class Sound {
     }
 
     public void play() {
-        clip.start();
+        //clip.start();
     }
 
     public void loop() {

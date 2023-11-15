@@ -91,7 +91,6 @@ public abstract class Map {
 
     // map's quest menu
     protected QuestMenu questMenu;
-
     private int currentChoice;
 
     public Map(String mapFileName, Tileset tileset) {
@@ -106,11 +105,12 @@ public abstract class Map {
         this.yMidPoint = (ScreenManager.getScreenHeight() / 2);
         this.playerStartPosition = new Point(0, 0);
         this.updatedTriggers = new ArrayList<QuestTrigger>();
+        this.newTriggers = new ArrayList<QuestTrigger>();
     }
 
-    public Map(String mapFileName){
+    public Map(String mapFileName) {
         this.mapFileName = mapFileName;
-        
+
     }
 
     // sets up map by reading in the map file to create the tile map
@@ -147,7 +147,6 @@ public abstract class Map {
             npc.setMap(this);
         }
     }
-
 
     // reads in a map file to create the map's tilemap
     private void loadMapFile() {
@@ -261,7 +260,7 @@ public abstract class Map {
         // 0 for main map, 1 for cce, 2 for Ice rink
         this.idSwitch = idSwitch;
     }
-    
+
     public void setCurrentChoice(int currentChoice) {
         // 0 for main map, 1 for cce, 2 for Ice rink
         this.currentChoice = currentChoice;
@@ -357,27 +356,6 @@ public abstract class Map {
 
     protected ArrayList<Trigger> loadTriggers() {
         return new ArrayList<>();
-    }
-
-    // updates the triggers
-    public ArrayList<QuestTrigger> figgers() {
-        ArrayList<QuestTrigger> newTriggers = new ArrayList<QuestTrigger>();
-
-        // searches each quest menu quest with index
-        for (int index = 0; index < getQuestMenu().getQuests().size(); index++) {
-            // if a quest in quest menu is still a new quest
-            if (getQuestMenu().isNewQuestStatus(index)) {
-                // go through each trigger in the quest
-                for (int triggerIndex = 0; triggerIndex < getQuestMenu().getTriggerList(index)
-                        .size(); triggerIndex++) {
-                    // adds the trigger to newTriggers
-                    newTriggers.add(getQuestMenu().getTriggerList(index).get(triggerIndex));
-                }
-                // sets the quest just added to false
-                getQuestMenu().setNewQuestStatus(index, false);
-            }
-        }
-        return newTriggers;
     }
 
     public ArrayList<QuestTrigger> getUpdatedTriggers() {
@@ -579,27 +557,6 @@ public abstract class Map {
         return false;
     }
 
-    // updates the triggers
-    public ArrayList<QuestTrigger> updateTriggers() {
-        ArrayList<QuestTrigger> newTriggers = new ArrayList<>();
-
-        // searches each quest menu quest with index
-        for (int index = 0; index < getQuestMenu().getQuests().size(); index++) {
-            // if a quest in quest menu is still a new quest
-            if (getQuestMenu().isNewQuestStatus(index)) {
-                // go through each trigger in the quest
-                for (int triggerIndex = 0; triggerIndex < getQuestMenu().getTriggerList(index)
-                        .size(); triggerIndex++) {
-                    // adds the trigger to newTriggers
-                    newTriggers.add(getQuestMenu().getTriggerList(index).get(triggerIndex));
-                }
-                // sets the quest just added to false
-                getQuestMenu().setNewQuestStatus(index, false);
-            }
-        }
-        return newTriggers;
-    }
-
     public void update(Player player) {
         if (adjustCamera) {
             adjustMovementY(player);
@@ -614,21 +571,19 @@ public abstract class Map {
             // updates quest info
             questMenu.update();
 
-            newTriggers = updateTriggers();
-
-            // if some new triggers were actually added, then run
-            if (newTriggers != null) {
+            if (!newTriggers.isEmpty()) {
                 // runs a for loop going through every trigger in updatedTriggers
                 for (QuestTrigger trigger : newTriggers) {
                     // adds it's flag to flag manager
-                    //flagManager.addFlag((trigger.getTrigger().getExistenceFlag()), false);
+                    // flagManager.addFlag((trigger.getTrigger().getExistenceFlag()), false);
                     // adds it to map arrayList for triggers
-                    if (trigger.getMapInt() == mapInt){
+                    if (trigger.getMapInt() == mapInt) {
                         trigger.getTrigger().setMap(this);
                         triggers.add(trigger.getTrigger());
                     }
                     updatedTriggers.add(trigger);
                 }
+                newTriggers.clear();
             }
         }
 
@@ -713,7 +668,7 @@ public abstract class Map {
         if (portrait1.isPortraitActive()) {
             portrait1.draw(graphicsHandler);
         }
-        if (portrait2.isPortraitActive()){
+        if (portrait2.isPortraitActive()) {
             portrait2.draw(graphicsHandler);
         }
         if (textbox.isActive()) {
@@ -747,6 +702,10 @@ public abstract class Map {
     // adds quest
     public void addQuest(Quest newQuest) {
         questMenu.addQuest(newQuest);
+        for (int index = 0; index < newQuest.getTriggerList().size(); index++) {
+            newTriggers.add(newQuest.getTriggerList().get(index));
+        }
+        questMenu.setNewQuestStatus(true);
     }
 
     // fetches portrait 1
@@ -754,7 +713,7 @@ public abstract class Map {
         return portrait1;
     }
 
-     // fetches portrait 2
+    // fetches portrait 2
     public Portrait getPortrait2() {
         return portrait2;
     }

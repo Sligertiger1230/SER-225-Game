@@ -37,7 +37,7 @@ public class PlayLevelScreen extends Screen {
 
     public void initialize() {
         questMenu = new QuestMenu();
-
+        
         triggers = new ArrayList<QuestTrigger>();
 
         // setup state
@@ -86,6 +86,7 @@ public class PlayLevelScreen extends Screen {
         // define/setup map
         this.map = loadMap(4);
         this.map.setQuestMenu(questMenu);
+
 
         // setup player
         this.player = new Cat(map.getPlayerStartPosition().x, map.getPlayerStartPosition().y);

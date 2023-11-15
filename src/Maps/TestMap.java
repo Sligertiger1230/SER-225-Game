@@ -78,7 +78,7 @@ public class TestMap extends Map {
 
         JavaJohnGlasses javaJohnGlasses = new JavaJohnGlasses(3, getMapTile(97, 39).getLocation());
         javaJohnGlasses.setInteractScript(new JavaJohnGlassesScript());
-        if (getFlagManager().isFlagSet("hasTalkedToJavaJohn")) {
+        if (getFlagManager().isFlagSet("hasTalkedToJavaJohn") && !getFlagManager().isFlagSet("hasPickedUpGlasses")) {
             javaJohnGlasses.setIsHidden(false);
         } else {
             javaJohnGlasses.setIsHidden(true);
