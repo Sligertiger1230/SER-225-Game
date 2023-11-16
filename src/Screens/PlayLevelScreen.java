@@ -23,7 +23,7 @@ public class PlayLevelScreen extends Screen {
     protected int triggerSize;
     protected static PlayLevelScreenState playLevelScreenState;
     protected WinScreen winScreen;
-    protected AsteroidScreen asteroidScreen;
+    protected static AsteroidScreen asteroidScreen;
     protected FlagManager flagManager;
     protected QuestMenu questMenu;
     protected ArrayList<QuestTrigger> triggers;
@@ -129,7 +129,6 @@ public class PlayLevelScreen extends Screen {
         }
 
         winScreen = new WinScreen(this);
-        asteroidScreen = new AsteroidScreen(this);
         playLevelScreenState = PlayLevelScreenState.RUNNING;
     }
 
@@ -181,7 +180,6 @@ public class PlayLevelScreen extends Screen {
         switch (playLevelScreenState) {
             case RUNNING:
                 map.draw(player, graphicsHandler);
-                map.draw(player, graphicsHandler);
                 break;
             case LEVEL_COMPLETED:
                 winScreen.draw(graphicsHandler);
@@ -207,7 +205,7 @@ public class PlayLevelScreen extends Screen {
                 musicPlayer.loop();
                 return newMap;
             case 1:
-                newMap = new CCEClassroom();
+                newMap = new CCEClassroom(this);
                 newMap.setFlagManager(flagManager);
                 newMap.setNPCs();
                 newMap.setQuestMenu(questMenu);
@@ -304,7 +302,8 @@ public class PlayLevelScreen extends Screen {
         playLevelScreenState = PlayLevelScreenState.RUNNING;
     }
 
-    public static void startAsteroid() {
+    public void startAsteroid() {
+        asteroidScreen = new AsteroidScreen(this);
         playLevelScreenState = PlayLevelScreenState.ASTEROID;
     }
 
