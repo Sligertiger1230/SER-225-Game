@@ -2,15 +2,9 @@ package Level;
 
 import Engine.Config;
 import Engine.GraphicsHandler;
-import Engine.ImageLoader;
-import Engine.Key;
-import Engine.Keyboard;
-import Engine.Screen;
 import Engine.ScreenManager;
-import GameObject.Sprite;
 import Utils.Direction;
 import Utils.Point;
-import Maps.TestMap;
 
 import java.io.File;
 import java.io.FileNotFoundException;

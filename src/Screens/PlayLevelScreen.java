@@ -21,7 +21,7 @@ public class PlayLevelScreen extends Screen {
     protected Map map;
     protected Player player;
     protected int triggerSize;
-    protected static PlayLevelScreenState playLevelScreenState;
+    protected PlayLevelScreenState playLevelScreenState;
     protected WinScreen winScreen;
     protected static AsteroidScreen asteroidScreen;
     protected FlagManager flagManager;
@@ -298,8 +298,9 @@ public class PlayLevelScreen extends Screen {
         screenCoordinator.setGameState(GameState.MENU);
     }
 
-    public static void returnFromAsteroid(){
+    public void returnFromAsteroid(){
         playLevelScreenState = PlayLevelScreenState.RUNNING;
+        asteroidScreen = null;
     }
 
     public void startAsteroid() {

@@ -38,6 +38,7 @@ public class WebbyScript extends Script<NPC>{
         }
         if (screen != null)
             screen.startAsteroid();
+        end();
         return ScriptState.COMPLETED;
     }
     

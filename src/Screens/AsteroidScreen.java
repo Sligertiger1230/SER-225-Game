@@ -59,21 +59,27 @@ public class AsteroidScreen extends Screen {
                     sound.loop();
                 }
                 if (Keyboard.isKeyDown(exitGame)) {
-                    PlayLevelScreen.returnFromAsteroid();
+                    playLevelScreen.returnFromAsteroid();
                 }
                 break;
             case RUNNING:
                 aster.update();
+                if (Keyboard.isKeyDown(exitGame)) {
+                    playLevelScreen.returnFromAsteroid();
+                }
                 break;
             case DEAD:
                 if (Keyboard.isKeyDown(restartGame)) {
                     asteroidState = AsteroidState.RUNNING;
                     aster = new Asteroid(this);
                 }
+                if (Keyboard.isKeyDown(exitGame)) {
+                    playLevelScreen.returnFromAsteroid();
+                }
                 break;
             case WIN:
                 if (Keyboard.isKeyDown(exitGame)) {
-                    PlayLevelScreen.returnFromAsteroid();
+                    playLevelScreen.returnFromAsteroid();
                 }
                 break;
         }

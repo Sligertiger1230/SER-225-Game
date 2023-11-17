@@ -156,8 +156,9 @@ public class TestMap extends Map {
     public ArrayList<Trigger> loadTriggers() {
         ArrayList<Trigger> triggers = new ArrayList<>();
 
-        triggers.add(new Trigger(2256, 1968, 196, 10, new PubSafetyDectScript(), "hasEncounteredPubSafetyDect"));
+        triggers.add(new Trigger(2256, 1968, 172, 10, new PubSafetyDectScript(), "hasEncounteredPubSafetyDect"));
         triggers.add(new Trigger(1776, 2304, 10, 196, new PubSafetyDectScript(), "hasEncounteredPubSafetyDect"));
+        triggers.add(new Trigger(2736, 2304, 10, 196, new PubSafetyDectScript(), "hasEncounteredPubSafetyDect"));
 
         // base game triggers
         // This is the code to display a textbox once a user moves in the test map for
@@ -170,6 +171,7 @@ public class TestMap extends Map {
          * triggers.add(new Trigger(890, 960, 10, 80, new LostBallScript(),
          * "hasLostBall"));
          */
+        
         return triggers;
     }
 

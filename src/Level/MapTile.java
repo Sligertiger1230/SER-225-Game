@@ -6,8 +6,6 @@ import GameObject.IntersectableRectangle;
 import GameObject.SpriteSheet;
 import Utils.Point;
 
-import java.awt.*;
-
 // Represents a map tile in a Map's tile map
 public class MapTile extends MapEntity {
     // this determines a tile's properties, like if it's passable or not

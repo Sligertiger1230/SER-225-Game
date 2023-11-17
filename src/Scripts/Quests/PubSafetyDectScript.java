@@ -10,6 +10,7 @@ public class PubSafetyDectScript extends Script<NPC> {
     protected int amountToMove;
     protected boolean encounteredAbove = false;
     protected boolean encounteredLeft = false;
+    protected boolean encounteredRight = false;
     protected boolean walkingAway = false;
 
     @Override
@@ -17,12 +18,15 @@ public class PubSafetyDectScript extends Script<NPC> {
         lockPlayer();
 
         if (!isFlagSet("hasEncounteredPubSafetyDect")) {
-            if (player.getX() < 1872 || player.getY() < 2100) {
-                if (player.getX() > player.getY()) {
+            if (player.getX() < 1872 || player.getX() > 2688 || player.getY() < 2100) {
+                if (player.getX() > player.getY() && player.getX() < 2500) {
                     getNPC(4).setLocation(player.getX(), player.getY() + 240);
                     encounteredAbove = true;
+                } else if (player.getX() > 2500) {
+                    getNPC(4).setLocation(player.getX() - 450, player.getY());
+                    encounteredRight = true;
                 } else if (player.getX() < player.getY()) {
-                    getNPC(4).setLocation(player.getX() + 336, player.getY());
+                    getNPC(4).setLocation(player.getX() + 450, player.getY());
                     encounteredLeft = true;
                 }
                 addTextToTextboxQueue(
@@ -93,7 +97,7 @@ public class PubSafetyDectScript extends Script<NPC> {
     protected ScriptState execute() {
         start();
         if (!isFlagSet("hasEncounteredPubSafetyDec")) {
-            if (player.getX() < 1872 || player.getY() < 2100) {
+            if (player.getX() < 1872 || player.getY() < 2100 || player.getX() > 2688) {
                 start();
                 if (encounteredAbove) {
                     getNPC(4).walk(Direction.UP, 2);
@@ -106,10 +110,18 @@ public class PubSafetyDectScript extends Script<NPC> {
                 } else if (encounteredLeft) {
                     getNPC(4).walk(Direction.LEFT, 2);
                     amountMoved += 2;
-                    if (amountMoved != 288) {
+                    if (amountMoved != 402) {
                         return ScriptState.RUNNING;
                     } else {
                         encounteredLeft = false;
+                    }
+                } else if (encounteredRight) {
+                    getNPC(4).walk(Direction.RIGHT, 2);
+                    amountMoved+=2;
+                    if (amountMoved <= 402) {
+                        return ScriptState.RUNNING;
+                    } else {
+                        encounteredRight = false;
                     }
                 }
                 if (!walkingAway) {
@@ -123,9 +135,12 @@ public class PubSafetyDectScript extends Script<NPC> {
                 }
                 hideTextbox();
                 hidePortrait();
-                if (player.getX() > player.getY()) {
+                if (player.getX() > player.getY() && player.getX() < 2500) {
                     getNPC(4).walk(Direction.DOWN, 2);
                     amountToMove = 240;
+                } else  if (player.getX() > 2500) {
+                    getNPC(4).walk(Direction.LEFT, 2);
+                    amountToMove = 402;
                 } else {
                     getNPC(4).walk(Direction.RIGHT, 2);
                     amountToMove = 336;
