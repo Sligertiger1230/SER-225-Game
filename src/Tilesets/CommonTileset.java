@@ -62,7 +62,7 @@ public class CommonTileset extends Tileset {
                                 .withScale(tileScale)
                                 .build();
 
-                MapTileBuilder treeTrunkBaseTile = new MapTileBuilder(grassFrame)
+                MapTileBuilder treeTrunkBaseTile = new MapTileBuilder(treeTrunkBaseFrame)
                                 .withTopLayer(treeTrunkBaseFrame)
                                 .withTileType(TileType.NOT_PASSABLE);
 
