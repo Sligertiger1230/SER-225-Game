@@ -10,9 +10,11 @@ This game has fairly straight forward controls:
 - Down Arrow - Move downwards
 - Left Arrow - Move left
 - Right Arrow - Move right
-- Space Bar - Interact
+- Space Bar - Interact with NPCs, Teleport signs, and objects
 - Q - Pull up quest menu
 - Shift - Sprint
+- Esc - Options Menu
+- Hold E - Interact with Bike
 
 ## How to run this project?
 
