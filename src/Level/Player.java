@@ -95,10 +95,6 @@ public abstract class Player extends GameObject {
         // printPlayerLocation();
     }
 
-    // public void setBikeActive(){
-    //     isBikeActive = true;
-    // }
-
     // based on player's current state, call appropriate player state handling
     // method
     protected void handlePlayerState() {
@@ -185,6 +181,7 @@ public abstract class Player extends GameObject {
             } else {
                 moveAmountY -= walkSpeed;
             }
+            facingDirection = Direction.UP;
             currentWalkingYDirection = Direction.UP;
             lastWalkingYDirection = Direction.UP;
         } else if (Keyboard.isKeyDown(MOVE_DOWN_KEY)) {
@@ -194,6 +191,7 @@ public abstract class Player extends GameObject {
             } else {
                 moveAmountY += walkSpeed;
             }
+            facingDirection = Direction.DOWN;
             currentWalkingYDirection = Direction.DOWN;
             lastWalkingYDirection = Direction.DOWN;
         } else {
@@ -283,10 +281,34 @@ public abstract class Player extends GameObject {
     protected void handlePlayerAnimation() {
         if (playerState == PlayerState.STANDING) {
             // sets animation to a STAND animation based on which way player is facing
-            this.currentAnimationName = facingDirection == Direction.RIGHT ? "STAND_RIGHT" : "STAND_LEFT";
+            //this.currentAnimationName = facingDirection == Direction.RIGHT ? "STAND_UP" : "STAND_DOWN";
+            if (facingDirection == Direction.RIGHT){
+                this.currentAnimationName = "STAND_RIGHT";
+            }
+            else if (facingDirection == Direction.LEFT){
+                this.currentAnimationName = "STAND_LEFT";
+            }
+            else if (facingDirection == Direction.UP){
+                this.currentAnimationName = "STAND_UP";
+            }
+            else if (facingDirection == Direction.DOWN){
+                this.currentAnimationName = "STAND_DOWN";
+            }
         } else if (playerState == PlayerState.WALKING) {
             // sets animation to a WALK animation based on which way player is facing
-            this.currentAnimationName = facingDirection == Direction.RIGHT ? "WALK_RIGHT" : "WALK_LEFT";
+            //this.currentAnimationName = facingDirection == Direction.RIGHT ? "WALK_RIGHT" : "WALK_LEFT";
+            if (facingDirection == Direction.RIGHT){
+                this.currentAnimationName = "WALK_RIGHT";
+            }
+            else if (facingDirection == Direction.LEFT){
+                this.currentAnimationName = "WALK_LEFT";
+            }
+            else if (facingDirection == Direction.UP){
+                this.currentAnimationName = "WALK_UP";
+            }
+            else {
+                this.currentAnimationName = "WALK_DOWN";
+            }
         } else if (playerState == PlayerState.INTERACTING) {
             // sets animation to STAND when player is interacting
             // player can be told to stand or walk during Script by using the "stand" and

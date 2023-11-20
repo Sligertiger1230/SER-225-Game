@@ -57,4 +57,8 @@ public class FrameBuilder {
     public Frame build() {
         return new Frame(image, imageEffect, scale, bounds, delay);
     }
+
+    public void setDelay(int delay){
+        this.delay = delay;
+    }
 }
