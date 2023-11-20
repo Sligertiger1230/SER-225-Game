@@ -8,16 +8,30 @@ import Level.Map;
 import Level.NPC;
 import NPCs.NPCBoy3;
 import NPCs.ProfessorJaiswal;
+import NPCs.Webby;
+import Screens.PlayLevelScreen;
 import Scripts.NPCDialogue.NPCBoy3Script;
 import Scripts.Quests.JaiswalDrawQuestCCE;
+import Scripts.Quests.WebbyScript;
 import Scripts.CCEClassroom.ChangeMapScript;
 import Tilesets.CommonTileset;
 
 public class CCEClassroom extends Map {
     private MiniMap miniMap;
+    private PlayLevelScreen screen;
 
     public CCEClassroom() {
         super("CCEClassroom.txt", new CommonTileset());
+        this.playerStartPosition = getMapTile(1, 4).getLocation();
+        this.mapInt = 1;
+        this.idSwitch = 1;
+
+        miniMap = new MiniMap(camera, endBoundY, endBoundX, width, height);
+    }
+    
+    public CCEClassroom(PlayLevelScreen screen) {
+        super("CCEClassroom.txt", new CommonTileset());
+        this.screen = screen;
         this.playerStartPosition = getMapTile(1, 4).getLocation();
         this.mapInt = 1;
         this.idSwitch = 1;
@@ -38,6 +52,14 @@ public class CCEClassroom extends Map {
         ProfessorJaiswal drJ = new ProfessorJaiswal(0, getMapTile(8, 3).getLocation());
         drJ.setInteractScript(new JaiswalDrawQuestCCE());
         npcs.add(drJ);
+
+        Webby webby = new Webby(1, getMapTile(8, 13).getLocation());
+        if (screen != null) {
+            webby.setInteractScript(new WebbyScript(screen));
+        } else {
+            webby.setInteractScript(new WebbyScript());
+        }
+        npcs.add(webby);
 
         return npcs;
     }

@@ -1,6 +1,5 @@
 package Asteroid;
 
-import java.util.ArrayList;
 import Engine.GraphicsHandler;
 import Engine.Key;
 import GameObject.GameObject;

@@ -8,24 +8,26 @@ public class Quest {
     private boolean questCompletionStatus, newQuestStatus;
     private ArrayList<String> stepList;
     private ArrayList<QuestTrigger> triggerList;
+    private QuestMenu questMenu;
 
     // constructor for new uncompleted quest
-    public Quest(String questName, ArrayList<String> stepList, ArrayList<QuestTrigger> triggerList) {
+    public Quest(String questName, ArrayList<String> stepList, ArrayList<QuestTrigger> triggerList, QuestMenu questMenu) {
         this.questName = questName;
         this.questCompletionStatus = false;
         this.newQuestStatus = true;
         this.currStep = 0;
         this.stepList = stepList;
         this.triggerList = triggerList;
-
+        this.questMenu = questMenu;
     }
 
     // sets most recent status
     public void nextStep() {
         if (!isLastStep())
             currStep++;
-        else
+        else {
             questCompletionStatus = true;
+        }
     }
 
     // checks if the current step is the last step in the quest

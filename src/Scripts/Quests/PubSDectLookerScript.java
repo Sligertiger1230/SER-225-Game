@@ -6,7 +6,6 @@ import Level.ScriptState;
 import Utils.Direction;
 import Engine.Key;
 import Engine.KeyLocker;
-import Engine.Keyboard;
 
 public class PubSDectLookerScript extends Script<NPC> {
     protected boolean myseteriouStranger = true;
@@ -37,8 +36,10 @@ public class PubSDectLookerScript extends Script<NPC> {
             amountMoved = 0;
             amountMovedLooker = 0;
             amountMovedLookerRight = 0;
-            if (Math.round(entity.getBoundsY2()) - (entity.getBounds().getHeight() / 2) < Math
-                    .round(player.getBoundsY1())
+            //if player is below the npc
+            if ((Math.round(entity.getBoundsY2()) - (entity.getBounds().getHeight() / 2) < Math
+                    .round(player.getBoundsY1()) 
+                    || Math.round(entity.getBoundsY1()) + entity.getBounds().getHeight()/2 > Math.round(player.getBoundsY1()))
                     && Math.round(player.getBoundsX1()) + (player.getBounds().getWidth() / 2) > Math
                             .round(entity.getBoundsX1())
                     && Math.round(player.getBoundsX1()) + (player.getBounds().getWidth() / 2) < Math
@@ -171,7 +172,7 @@ public class PubSDectLookerScript extends Script<NPC> {
         return ScriptState.COMPLETED;
     }
 
-    public void outfitRevealSequence() {
+    public void  outfitRevealSequence() {
         if (direction.equals("bottom")) {
             entity.stand(Direction.RIGHT);
         } else if (direction.equals("right")) {

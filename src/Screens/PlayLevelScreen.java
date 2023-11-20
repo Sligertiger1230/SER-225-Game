@@ -21,9 +21,9 @@ public class PlayLevelScreen extends Screen {
     protected Map map;
     protected Player player;
     protected int triggerSize;
-    protected static PlayLevelScreenState playLevelScreenState;
+    protected PlayLevelScreenState playLevelScreenState;
     protected WinScreen winScreen;
-    protected AsteroidScreen asteroidScreen;
+    protected static AsteroidScreen asteroidScreen;
     protected FlagManager flagManager;
     protected QuestMenu questMenu;
     protected ArrayList<QuestTrigger> triggers;
@@ -37,7 +37,7 @@ public class PlayLevelScreen extends Screen {
 
     public void initialize() {
         questMenu = new QuestMenu();
-
+        
         triggers = new ArrayList<QuestTrigger>();
 
         // setup state
@@ -87,6 +87,7 @@ public class PlayLevelScreen extends Screen {
         this.map = loadMap(4);
         this.map.setQuestMenu(questMenu);
 
+
         // setup player
         this.player = new Cat(map.getPlayerStartPosition().x, map.getPlayerStartPosition().y);
         this.player.setMap(map);
@@ -128,7 +129,6 @@ public class PlayLevelScreen extends Screen {
         }
 
         winScreen = new WinScreen(this);
-        asteroidScreen = new AsteroidScreen(this);
         playLevelScreenState = PlayLevelScreenState.RUNNING;
     }
 
@@ -180,12 +180,12 @@ public class PlayLevelScreen extends Screen {
         switch (playLevelScreenState) {
             case RUNNING:
                 map.draw(player, graphicsHandler);
-                map.draw(player, graphicsHandler);
                 break;
             case LEVEL_COMPLETED:
                 winScreen.draw(graphicsHandler);
                 break;
             case ASTEROID:
+                musicPlayer.stop();
                 asteroidScreen.draw(graphicsHandler);
                 break;
         }
@@ -205,7 +205,7 @@ public class PlayLevelScreen extends Screen {
                 musicPlayer.loop();
                 return newMap;
             case 1:
-                newMap = new CCEClassroom();
+                newMap = new CCEClassroom(this);
                 newMap.setFlagManager(flagManager);
                 newMap.setNPCs();
                 newMap.setQuestMenu(questMenu);
@@ -298,11 +298,13 @@ public class PlayLevelScreen extends Screen {
         screenCoordinator.setGameState(GameState.MENU);
     }
 
-    public static void returnFromAsteroid(){
-        playLevelScreenState = PlayLevelScreenState.ASTEROID;
+    public void returnFromAsteroid(){
+        playLevelScreenState = PlayLevelScreenState.RUNNING;
+        asteroidScreen = null;
     }
 
-    public static void startAsteroid(){
+    public void startAsteroid() {
+        asteroidScreen = new AsteroidScreen(this);
         playLevelScreenState = PlayLevelScreenState.ASTEROID;
     }
 

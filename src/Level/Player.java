@@ -313,7 +313,18 @@ public abstract class Player extends GameObject {
             // sets animation to STAND when player is interacting
             // player can be told to stand or walk during Script by using the "stand" and
             // "walk" methods
-            this.currentAnimationName = facingDirection == Direction.RIGHT ? "STAND_RIGHT" : "STAND_LEFT";
+            if (facingDirection == Direction.RIGHT){
+                this.currentAnimationName = "STAND_RIGHT";
+            }
+            else if (facingDirection == Direction.LEFT){
+                this.currentAnimationName = "STAND_LEFT";
+            }
+            else if (facingDirection == Direction.UP){
+                this.currentAnimationName = "STAND_UP";
+            }
+            else if (facingDirection == Direction.DOWN){
+                this.currentAnimationName = "STAND_DOWN";
+            }
         } else if (playerState == PlayerState.BIKING){
             // sets animation to a BIKE animation based on which way player is facing
             this.currentAnimationName = facingDirection == Direction.RIGHT ? "WALK_UP" : "WALK_UP";

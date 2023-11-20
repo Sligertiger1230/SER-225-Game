@@ -48,7 +48,7 @@ public class TestMap extends Map {
 
     public TestMap() {
         super("test_map.txt", new CommonTileset());
-        this.playerStartPosition = getMapTile(17, 20).getLocation();
+        this.playerStartPosition = getMapTile(1, 5).getLocation();
         this.mapInt = 0;
         this.idSwitch = 0;
     }
@@ -56,9 +56,6 @@ public class TestMap extends Map {
     @Override
     public ArrayList<EnhancedMapTile> loadEnhancedMapTiles() {
         ArrayList<EnhancedMapTile> enhancedMapTiles = new ArrayList<>();
-
-        PushableRock pushableRock = new PushableRock(getMapTile(2, 7).getLocation());
-        enhancedMapTiles.add(pushableRock);
 
         return enhancedMapTiles;
     }
@@ -71,11 +68,6 @@ public class TestMap extends Map {
         walrus.setInteractScript(new WalrusScript());
         npcs.add(walrus);
 
-        Dinosaur dinosaur = new Dinosaur(1, getMapTile(13, 4).getLocation());
-        dinosaur.setExistenceFlag("hasTalkedToDinosaur");
-        dinosaur.setInteractScript(new DinoScript());
-        npcs.add(dinosaur);
-
         if (!getFlagManager().isFlagSet("isJavaJohnFloating")) {
             JavaJohn javaJohn = new JavaJohn(2, getMapTile(37, 7).getLocation());
             javaJohn.setInteractScript(new JavaJohnScript());
@@ -86,7 +78,7 @@ public class TestMap extends Map {
 
         JavaJohnGlasses javaJohnGlasses = new JavaJohnGlasses(3, getMapTile(97, 39).getLocation());
         javaJohnGlasses.setInteractScript(new JavaJohnGlassesScript());
-        if (getFlagManager().isFlagSet("hasTalkedToJavaJohn")) {
+        if (getFlagManager().isFlagSet("hasTalkedToJavaJohn") && !getFlagManager().isFlagSet("hasPickedUpGlasses")) {
             javaJohnGlasses.setIsHidden(false);
         } else {
             javaJohnGlasses.setIsHidden(true);
@@ -99,13 +91,13 @@ public class TestMap extends Map {
             pubSafetyDect.setIsHidden(true);
         }
         npcs.add(pubSafetyDect);
-        
+
         WalrusFish walrusFish = new WalrusFish(5, getMapTile(5, 32).getLocation());
         walrusFish.setInteractScript(new WalrusRedFishScript());
 
         WalrusPurpFish walrusPurpFish = new WalrusPurpFish(6, getMapTile(4, 30).getLocation());
         walrusPurpFish.setInteractScript(new WalrusPurpFishScript());
-        
+
         walrusFish.setIsHidden(true);
         walrusPurpFish.setIsHidden(true);
         if (!getFlagManager().isFlagSet("hasPickedUpFish")) {
@@ -113,7 +105,7 @@ public class TestMap extends Map {
                 walrusFish.setIsHidden(false);
             } else if (getFlagManager().isFlagSet("purpleFish")) {
                 walrusPurpFish.setIsHidden(false);
-            } 
+            }
         }
 
         npcs.add(walrusPurpFish);
@@ -156,10 +148,6 @@ public class TestMap extends Map {
         }
         npcs.add(pubSDectLooker);
 
-        Webby webby = new Webby(14, getMapTile(20, 4).getLocation());
-        webby.setInteractScript(new WebbyScript());
-        npcs.add(webby);
-
         return npcs;
 
     }
@@ -168,14 +156,24 @@ public class TestMap extends Map {
     public ArrayList<Trigger> loadTriggers() {
         ArrayList<Trigger> triggers = new ArrayList<>();
 
-        triggers.add(new Trigger(2256, 1968, 196, 10, new PubSafetyDectScript(), "hasEncounteredPubSafetyDect"));
+        triggers.add(new Trigger(2256, 1968, 172, 10, new PubSafetyDectScript(), "hasEncounteredPubSafetyDect"));
         triggers.add(new Trigger(1776, 2304, 10, 196, new PubSafetyDectScript(), "hasEncounteredPubSafetyDect"));
+        triggers.add(new Trigger(2736, 2304, 10, 196, new PubSafetyDectScript(), "hasEncounteredPubSafetyDect"));
+        triggers.add(new Trigger(0, 144, 16, 192, new ChangeMapScript(4)));
+        triggers.add(new Trigger(4704, 2952, 192, 16, new ChangeMapScript(1)));
 
         // base game triggers
-        //This is the code to display a textbox once a user moves in the test map for the first time 
-        /*triggers.add(new Trigger(790, 1030, 100, 10, new LostBallScript(), "hasLostBall"));
-        triggers.add(new Trigger(790, 960, 10, 80, new LostBallScript(), "hasLostBall"));
-        triggers.add(new Trigger(890, 960, 10, 80, new LostBallScript(), "hasLostBall"));*/
+        // This is the code to display a textbox once a user moves in the test map for
+        // the first time
+        /*
+         * triggers.add(new Trigger(790, 1030, 100, 10, new LostBallScript(),
+         * "hasLostBall"));
+         * triggers.add(new Trigger(790, 960, 10, 80, new LostBallScript(),
+         * "hasLostBall"));
+         * triggers.add(new Trigger(890, 960, 10, 80, new LostBallScript(),
+         * "hasLostBall"));
+         */
+        
         return triggers;
     }
 

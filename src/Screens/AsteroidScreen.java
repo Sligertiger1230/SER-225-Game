@@ -11,6 +11,7 @@ import Engine.Keyboard;
 import Engine.Screen;
 import Engine.ScreenManager;
 import GameObject.Sprite;
+import Level.Sound;
 
 public class AsteroidScreen extends Screen {
     protected Sprite window;
@@ -26,6 +27,8 @@ public class AsteroidScreen extends Screen {
     protected AsteroidState asteroidState;
     PlayLevelScreen playLevelScreen;
 
+    protected Sound sound;
+
     public AsteroidScreen(PlayLevelScreen playLevelScreen) {
         this.playLevelScreen = playLevelScreen;
         initialize();
@@ -39,6 +42,7 @@ public class AsteroidScreen extends Screen {
         winScreen = new Sprite(ImageLoader.load("winScreen.png"));
         this.asteroidState = AsteroidState.START;
         aster = new Asteroid(this);
+        this.sound = new Sound();
     }
 
     @Override
@@ -51,20 +55,31 @@ public class AsteroidScreen extends Screen {
             case START:
                 if (Keyboard.isKeyDown(startGame)) {
                     asteroidState = AsteroidState.RUNNING;
+                    sound.setFile(24);
+                    sound.loop();
+                }
+                if (Keyboard.isKeyDown(exitGame)) {
+                    playLevelScreen.returnFromAsteroid();
                 }
                 break;
             case RUNNING:
                 aster.update();
+                if (Keyboard.isKeyDown(exitGame)) {
+                    playLevelScreen.returnFromAsteroid();
+                }
                 break;
             case DEAD:
-                if (Keyboard.isKeyDown(restartGame)){
+                if (Keyboard.isKeyDown(restartGame)) {
                     asteroidState = AsteroidState.RUNNING;
                     aster = new Asteroid(this);
                 }
+                if (Keyboard.isKeyDown(exitGame)) {
+                    playLevelScreen.returnFromAsteroid();
+                }
                 break;
             case WIN:
-                if (Keyboard.isKeyDown(exitGame)){
-                    PlayLevelScreen.returnFromAsteroid();
+                if (Keyboard.isKeyDown(exitGame)) {
+                    playLevelScreen.returnFromAsteroid();
                 }
                 break;
         }

@@ -6,6 +6,14 @@ import Level.ScriptState;
 import Screens.PlayLevelScreen;
 
 public class WebbyScript extends Script<NPC>{
+    private PlayLevelScreen screen;
+
+    public WebbyScript(){
+    }
+
+    public WebbyScript(PlayLevelScreen screen){
+        this.screen = screen;
+    }
 
     @Override
     protected void setup() {
@@ -28,7 +36,9 @@ public class WebbyScript extends Script<NPC>{
         if (!isTextboxQueueEmpty()){
             return ScriptState.RUNNING;
         }
-        PlayLevelScreen.startAsteroid();
+        if (screen != null)
+            screen.startAsteroid();
+        end();
         return ScriptState.COMPLETED;
     }
     

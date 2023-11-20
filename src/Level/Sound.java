@@ -16,6 +16,7 @@ public class Sound {
         soundURL[18] = getClass().getResource("/sounds/cce.wav");
         soundURL[19] = getClass().getResource("/sounds/icerink.wav");
         soundURL[20] = getClass().getResource("/sounds/intro.wav");
+        soundURL[24] = getClass().getResource("/sounds/asteroids.wav");
 
         // Grass
         soundURL[1] = getClass().getResource("/sounds/grass1.wav");
@@ -58,7 +59,7 @@ public class Sound {
     }
 
     public void play() {
-        clip.start();
+       // clip.start();
     }
 
     public void loop() {

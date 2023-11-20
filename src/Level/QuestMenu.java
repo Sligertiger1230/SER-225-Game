@@ -17,6 +17,8 @@ public class QuestMenu extends Screen {
     // coordinates for sprite
     private final float x = 600;
     private final float y = 5;
+    private float notifX = 800;
+    private float notifY = 0;
     private final int progressY = 330;
     private final int progressX = (int) x + 1;
     private final int width = 180;
@@ -27,18 +29,26 @@ public class QuestMenu extends Screen {
     private SpriteFont progressBar;
     // how sprite is stored
     private Sprite questMenuGraphic;
+    private Sprite questCompleted;
+    private Sprite newQuest;
     private ArrayList<Quest> quests;
     private KeyLocker keyLocker = new KeyLocker();
     private Key toggleMenu = Key.Q;
+    private boolean isNewQuest;
+    private boolean isQuestCompleted;
 
     // default constructor
     public QuestMenu() {
-        this.questMenuGraphic = new Sprite(ImageLoader.load("questBoard.png"), x, y);
+        questMenuGraphic = new Sprite(ImageLoader.load("questBoard.png"), x, y);
+        questCompleted = new Sprite(ImageLoader.load("QuestComplete.png"), notifX, notifY);
+        newQuest = new Sprite(ImageLoader.load("NewQuest.png"), notifX, notifY);
         this.quests = new ArrayList<Quest>(5);
         this.questText = new SpriteFont[5];
         this.questStepText = new SpriteFont[5];
         this.completedQuests = 0;
         this.totalQuests = 0;
+        this.isQuestCompleted = false;
+        this.isNewQuest = false;
     }
 
     // retrieves arraylist of quests
@@ -140,6 +150,19 @@ public class QuestMenu extends Screen {
             if (quests.get(index).isQuestStatus()) {
                 quests.remove(index);
                 completedQuests++;
+                isQuestCompleted = true;
+                isNewQuest = false;
+                resetNotifPos();
+            }
+        }
+        if (isNewQuest) {
+            if (newQuest.getX() >= 590) {
+                newQuest.setX(newQuest.getX() - 5);
+            }
+        }
+        if (isQuestCompleted) {
+            if (questCompleted.getX() >= 590) {
+                questCompleted.setX(questCompleted.getX() - 5);
             }
         }
     }
@@ -152,6 +175,8 @@ public class QuestMenu extends Screen {
         if (Keyboard.isKeyDown(toggleMenu) && !keyLocker.isKeyLocked(toggleMenu)) {
             keyLocker.lockKey(toggleMenu);
             menuActive = !menuActive;
+            isNewQuest = false;
+            isQuestCompleted = false;
         }
         // when user lets go of q key, it unlocks the key so user can press it again
         // when they want it to dissapear
@@ -164,18 +189,19 @@ public class QuestMenu extends Screen {
             // draws sprite of quest menu
             questMenuGraphic.draw(graphicsHandler);
 
-            //the empty part of the progress bar, is grey
+            // the empty part of the progress bar, is grey
             graphicsHandler.drawFilledRectangleWithBorder(progressX, progressY, width, height, Color.GRAY, Color.BLACK,
                     2);
-            //the scaling part of the progress bar
-            //scales to ration of completed to total quests
-            //fills green
+            // the scaling part of the progress bar
+            // scales to ration of completed to total quests
+            // fills green
             graphicsHandler.drawFilledRectangle(progressX + 2, progressY + 2, width * getProgressNum() - 4, height - 4,
                     Color.GREEN);
-            
-            //creates a spritefont showing the percentage of quests done
-            progressBar = new SpriteFont("Progess " + (100 * getProgressNum()) + "%", progressX + 10, progressY + height/2 - 10, "Comic Sans", 10, Color.WHITE);
-            //draws it
+
+            // creates a spritefont showing the percentage of quests done
+            progressBar = new SpriteFont("Progess " + (100 * getProgressNum()) + "%", progressX + 10,
+                    progressY + height / 2 - 10, "Comic Sans", 10, Color.WHITE);
+            // draws it
             progressBar.drawWithParsedNewLines(graphicsHandler, 5);
 
             // handles up to five quests being dispalyed
@@ -194,6 +220,35 @@ public class QuestMenu extends Screen {
                 questStepText[index].drawWithParsedNewLines(graphicsHandler, 5);
 
             }
+        } else if (isNewQuest) {
+            newQuest.draw(graphicsHandler);
+        } else if (isQuestCompleted) {
+            questCompleted.draw(graphicsHandler);
         }
+    }
+
+    public void setQuestCompleteStatus(boolean newStatus) {
+        if (newStatus) {
+            resetNotifPos();
+            isQuestCompleted = newStatus;
+            isNewQuest = !newStatus;
+        } else {
+            isQuestCompleted = newStatus;
+        }
+    }
+
+    public void setNewQuestStatus(boolean newStatus) {
+        if (newStatus) {
+            resetNotifPos();
+            isNewQuest = newStatus;
+            isQuestCompleted = !newStatus;
+        } else {
+            isNewQuest = newStatus;
+        }
+    }
+
+    public void resetNotifPos() {
+        questCompleted.setX(notifX);
+        newQuest.setX(notifX);
     }
 }
