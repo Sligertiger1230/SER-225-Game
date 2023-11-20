@@ -4,7 +4,6 @@ import Level.Map;
 import Maps.CCEClassroom;
 import Maps.DrawQuest;
 import Maps.IceRink;
-import Maps.IceStarter;
 import Maps.TestMap;
 import Maps.OrientationRoom;
 import Maps.TitleScreenMap;
