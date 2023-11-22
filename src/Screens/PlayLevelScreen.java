@@ -23,6 +23,7 @@ public class PlayLevelScreen extends Screen {
     protected int triggerSize;
     protected PlayLevelScreenState playLevelScreenState;
     protected WinScreen winScreen;
+    protected TransitionScreen transitionScreen;
     protected static AsteroidScreen asteroidScreen;
     protected FlagManager flagManager;
     protected QuestMenu questMenu;
@@ -39,6 +40,7 @@ public class PlayLevelScreen extends Screen {
         questMenu = new QuestMenu();
         
         triggers = new ArrayList<QuestTrigger>();
+        
 
         // setup state
         flagManager = new FlagManager();
@@ -130,6 +132,9 @@ public class PlayLevelScreen extends Screen {
 
         winScreen = new WinScreen(this);
         playLevelScreenState = PlayLevelScreenState.RUNNING;
+
+        transitionScreen = new TransitionScreen(this);
+        playLevelScreenState = PlayLevelScreenState.RUNNING;
     }
 
     public void update() {
@@ -156,6 +161,7 @@ public class PlayLevelScreen extends Screen {
                     triggerSize = map.getUpdatedTriggerSize();
                 }
                 if (map.getMapInt() != map.getIdSwitch()) {
+                    this.playLevelScreenState = PlayLevelScreenState.TRANSITION;
                     this.map = loadMap(map.getIdSwitch());
                     this.map.setFlagManager(flagManager);
                     this.map.setQuestMenu(questMenu);
@@ -172,6 +178,10 @@ public class PlayLevelScreen extends Screen {
             case LEVEL_COMPLETED:
                 winScreen.update();
                 break;
+            case TRANSITION:
+                transitionScreen.update();
+                break;
+                
         }
     }
 
@@ -187,6 +197,9 @@ public class PlayLevelScreen extends Screen {
             case ASTEROID:
                 musicPlayer.stop();
                 asteroidScreen.draw(graphicsHandler);
+                break;
+            case TRANSITION:
+                transitionScreen.draw(graphicsHandler);
                 break;
         }
     }
@@ -310,6 +323,6 @@ public class PlayLevelScreen extends Screen {
 
     // This enum represents the different states this screen can be in
     private enum PlayLevelScreenState {
-        RUNNING, LEVEL_COMPLETED, ASTEROID
+        RUNNING, LEVEL_COMPLETED, ASTEROID, TRANSITION
     }
 }

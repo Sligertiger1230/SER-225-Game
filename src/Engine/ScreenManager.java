@@ -10,6 +10,7 @@ import Level.Rectangle;
  */
 public class ScreenManager {
     private Screen currentScreen;
+    private static ScreenManager instance;
     private static Rectangle screenBounds = new Rectangle(0, 0, 0, 0);
 
     public void initialize(Rectangle screenBounds) {
@@ -29,6 +30,20 @@ public class ScreenManager {
 
     public void draw(GraphicsHandler graphicsHandler) {
         currentScreen.draw(graphicsHandler);
+    }
+    public static ScreenManager getInstance() {
+        if (instance == null) {
+            instance = new ScreenManager();
+        }
+        return instance;
+    }
+    public void switchToScreen(Screen newScreen) {
+
+        // Set the new screen as the current screen
+        currentScreen = newScreen;
+
+        // Initialize the new screen
+        currentScreen.initialize();
     }
 
     // gets width of currentScreen -- can be called from anywhere in an application
