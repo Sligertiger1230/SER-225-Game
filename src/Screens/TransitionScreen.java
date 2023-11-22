@@ -18,7 +18,6 @@ public class TransitionScreen extends Screen {
     @Override
     public void initialize() {
         keyLocker.lockKey(Key.SPACE);
-        keyLocker.lockKey(Key.ESC);
     }
 
     private boolean fadeInComplete = false; // Flag to track fade-in completion
@@ -26,16 +25,14 @@ public class TransitionScreen extends Screen {
 
 public void update() {
     // Check for keyboard events before applying the fade effect
+    
     if (Keyboard.isKeyUp(Key.SPACE)) {
         keyLocker.unlockKey(Key.SPACE);
-    }
-    if (Keyboard.isKeyUp(Key.ESC)) {
-        keyLocker.unlockKey(Key.ESC);
     }
 
     // applies fade-in effect
     if (!fadeInComplete) {
-        alpha += 0.05f; // gradually increases alpha for fade-in
+        alpha += 0.07f; // gradually increases alpha for fade-in
 
         if (alpha >= 1.0f) {
             fadeInComplete = true;
@@ -48,6 +45,8 @@ public void update() {
 
         if (alpha <= 0.0f) {
             fadeOutComplete = true; 
+            playLevelScreen.returnFromTransition();
+
         }
     }
 }
@@ -55,6 +54,9 @@ public void update() {
 
     @Override
     public void draw(GraphicsHandler graphicsHandler) {
+        // Draw the current map under the fade effect
+        playLevelScreen.map.draw(playLevelScreen.player, graphicsHandler);
+
         // Apply alpha value to the fade effect
         Color fadeColor = new Color(0, 0, 0, (int) (255 * alpha));
         graphicsHandler.drawFilledRectangle(0, 0, ScreenManager.getScreenWidth(), ScreenManager.getScreenHeight(), fadeColor);

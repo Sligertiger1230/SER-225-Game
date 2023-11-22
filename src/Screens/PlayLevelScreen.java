@@ -316,6 +316,16 @@ public class PlayLevelScreen extends Screen {
         asteroidScreen = null;
     }
 
+    public void returnFromTransition(){
+        playLevelScreenState = PlayLevelScreenState.RUNNING;
+        transitionScreen = null;
+    }
+    public void startTransition() {
+        transitionScreen = new TransitionScreen(this);
+        playLevelScreenState = PlayLevelScreenState.TRANSITION;
+        
+    }
+
     public void startAsteroid() {
         asteroidScreen = new AsteroidScreen(this);
         playLevelScreenState = PlayLevelScreenState.ASTEROID;
