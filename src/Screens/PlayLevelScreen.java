@@ -179,6 +179,10 @@ public class PlayLevelScreen extends Screen {
                 winScreen.update();
                 break;
             case TRANSITION:
+            if (this.transitionScreen == null) {
+                this.transitionScreen = new TransitionScreen(this);
+            }
+            
                 transitionScreen.update();
                 break;
                 
