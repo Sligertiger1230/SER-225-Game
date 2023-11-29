@@ -30,17 +30,18 @@ public class PlayLevelScreen extends Screen {
     protected ArrayList<QuestTrigger> triggers;
 
     private Sound musicPlayer;
+    private Ambience ambiencePlayer;
 
     public PlayLevelScreen(ScreenCoordinator screenCoordinator) {
         this.screenCoordinator = screenCoordinator;
         this.musicPlayer = new Sound();
+        this.ambiencePlayer = new Ambience();
     }
 
     public void initialize() {
         questMenu = new QuestMenu();
-        
+
         triggers = new ArrayList<QuestTrigger>();
-        
 
         // setup state
         flagManager = new FlagManager();
@@ -90,7 +91,6 @@ public class PlayLevelScreen extends Screen {
         // define/setup map
         this.map = loadMap(4);
         this.map.setQuestMenu(questMenu);
-
 
         // setup player
         this.player = new Cat(map.getPlayerStartPosition().x, map.getPlayerStartPosition().y);
@@ -181,13 +181,13 @@ public class PlayLevelScreen extends Screen {
                 winScreen.update();
                 break;
             case TRANSITION:
-            if (this.transitionScreen == null) {
-                this.transitionScreen = new TransitionScreen(this);
-            }
-            
+                if (this.transitionScreen == null) {
+                    this.transitionScreen = new TransitionScreen(this);
+                }
+
                 transitionScreen.update();
                 break;
-                
+
         }
     }
 
@@ -222,6 +222,8 @@ public class PlayLevelScreen extends Screen {
                 newMap.setQuestMenu(questMenu);
                 musicPlayer.setFile(0);
                 musicPlayer.loop();
+                ambiencePlayer.setFile(27);
+                ambiencePlayer.loop();
                 return newMap;
             case 1:
                 newMap = new CCEClassroom(this);
@@ -230,6 +232,8 @@ public class PlayLevelScreen extends Screen {
                 newMap.setQuestMenu(questMenu);
                 musicPlayer.setFile(18);
                 musicPlayer.loop();
+                ambiencePlayer.setFile(28);
+                ambiencePlayer.loop();
                 return newMap;
             case 2:
                 newMap = new IceRink();
@@ -254,6 +258,8 @@ public class PlayLevelScreen extends Screen {
                 newMap.setQuestMenu(questMenu);
                 musicPlayer.setFile(20);
                 musicPlayer.loop();
+                ambiencePlayer.setFile(28);
+                ambiencePlayer.loop();
                 return newMap;
 
             default:
@@ -317,19 +323,20 @@ public class PlayLevelScreen extends Screen {
         screenCoordinator.setGameState(GameState.MENU);
     }
 
-    public void returnFromAsteroid(){
+    public void returnFromAsteroid() {
         playLevelScreenState = PlayLevelScreenState.RUNNING;
         asteroidScreen = null;
     }
 
-    public void returnFromTransition(){
+    public void returnFromTransition() {
         playLevelScreenState = PlayLevelScreenState.RUNNING;
         transitionScreen = null;
     }
+
     public void startTransition() {
         transitionScreen = new TransitionScreen(this);
         playLevelScreenState = PlayLevelScreenState.TRANSITION;
-        
+
     }
 
     public void startAsteroid() {

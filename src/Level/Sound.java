@@ -17,6 +17,7 @@ public class Sound {
         soundURL[19] = getClass().getResource("/sounds/icerink.wav");
         soundURL[20] = getClass().getResource("/sounds/intro.wav");
         soundURL[24] = getClass().getResource("/sounds/asteroids.wav");
+        soundURL[25] = getClass().getResource("/sounds/graduation.wav");
 
         // Grass
         soundURL[1] = getClass().getResource("/sounds/grass1.wav");
@@ -46,6 +47,9 @@ public class Sound {
         // NPC Sounds
         soundURL[22] = getClass().getResource("/sounds/interact.wav");
         soundURL[23] = getClass().getResource("/sounds/teleport.wav");
+
+        // Quest Sounds
+        soundURL[26] = getClass().getResource("/sounds/questAccept.wav");
     }
 
     public void setFile(int i) {
@@ -59,7 +63,7 @@ public class Sound {
     }
 
     public void play() {
-       // clip.start();
+        // clip.start();
     }
 
     public void loop() {
