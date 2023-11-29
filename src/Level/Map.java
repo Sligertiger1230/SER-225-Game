@@ -32,6 +32,7 @@ public abstract class Map {
     protected int width;
     protected int height;
     protected int mapInt;
+    protected int mapTP;
     protected int idSwitch;
 
     // the tileset this map uses for its map tiles
@@ -255,6 +256,12 @@ public abstract class Map {
         this.idSwitch = idSwitch;
     }
 
+    public void setMapTP(int mapTP) {
+        // 0 for main map, 1 for cce, 2 for Ice rink
+        this.mapTP = mapTP;
+    }
+    
+
     public void setCurrentChoice(int currentChoice) {
         // 0 for main map, 1 for cce, 2 for Ice rink
         this.currentChoice = currentChoice;
@@ -262,6 +269,10 @@ public abstract class Map {
 
     public int getIdSwitch() {
         return idSwitch;
+    }
+
+    public int getMapTP(int mapTP) {
+        return mapTP;
     }
 
     public int getCurrentChoice() {

@@ -48,7 +48,7 @@ public class TestMap extends Map {
 
     public TestMap() {
         super("test_map.txt", new CommonTileset());
-        this.playerStartPosition = getMapTile(17, 20).getLocation();
+        this.playerStartPosition = getMapTile(1, 5).getLocation();
         this.mapInt = 0;
         this.idSwitch = 0;
     }
@@ -159,6 +159,8 @@ public class TestMap extends Map {
         triggers.add(new Trigger(2256, 1968, 172, 10, new PubSafetyDectScript(), "hasEncounteredPubSafetyDect"));
         triggers.add(new Trigger(1776, 2304, 10, 196, new PubSafetyDectScript(), "hasEncounteredPubSafetyDect"));
         triggers.add(new Trigger(2736, 2304, 10, 196, new PubSafetyDectScript(), "hasEncounteredPubSafetyDect"));
+        triggers.add(new Trigger(0, 144, 16, 192, new ChangeMapScript(4)));
+        triggers.add(new Trigger(4704, 2952, 192, 16, new ChangeMapScript(1)));
 
         // base game triggers
         // This is the code to display a textbox once a user moves in the test map for
