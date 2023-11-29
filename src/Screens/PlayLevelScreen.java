@@ -46,6 +46,8 @@ public class PlayLevelScreen extends Screen {
         // judy flag
         flagManager.addFlag("hasStartedGame", false);
 
+        flagManager.addFlag("hasFinishedAllQuests");
+
         // Walrus Fish quest
         flagManager.addFlag("redFish", false);
         flagManager.addFlag("purpleFish", false);

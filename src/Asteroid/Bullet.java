@@ -1,8 +1,6 @@
 package Asteroid;
 
 import java.util.HashMap;
-
-import Asteroid.Ship.AimingDirection;
 import Builders.FrameBuilder;
 import Engine.GraphicsHandler;
 import Engine.ImageLoader;
@@ -18,23 +16,24 @@ public class Bullet extends GameObject {
     protected Ship ship;
 
     protected boolean hit;
-    protected float bulletSpeed = 8;
+    protected float bulletSpeed = 7;
     protected int bulletId;
 
     protected float moveAmountX, moveAmountY;
 
     public Bullet(Ship ship, int bulletId, Asteroid aster) {
         super(bullet, (ship.getWidth() / 2) + ship.getX1() - 5, (ship.getHeight() / 2) + ship.getY1() - 5,
-                directionToAnimation(ship.getAimingDirection()));
+                ship.getCurrentAnimationName());
         this.aster = aster;
         this.ship = ship;
         this.hit = false;
         this.bulletId = bulletId;
-        this.currentAnimationName = directionToAnimation(ship.getAimingDirection());
+        this.currentAnimationName = ship.getCurrentAnimationName();
+        //this.currentAnimationName = directionToAnimation(ship.getAimingDirection());
         handleBulletMovement();
     }
 
-    public static String directionToAnimation(AimingDirection aimingDirection){
+    /*public static String directionToAnimation(AimingDirection aimingDirection){
         switch (aimingDirection){
             case UP:
                 return "STAND_UP";
@@ -47,7 +46,7 @@ public class Bullet extends GameObject {
             default:
                 return "STAND_UP";
         }
-    }
+    }*/
 
     public void update() {
         moveX(moveAmountX);
