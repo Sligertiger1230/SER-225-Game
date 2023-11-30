@@ -13,6 +13,7 @@ import NPCs.OrientationBoy2;
 import NPCs.OrientationBoy;
 import NPCs.BobcatGirl;
 import Scripts.CCEClassroom.ChangeMapScript;
+import Scripts.IceRink.JudyChangeMapScript;
 import Scripts.OrientationRoom.EmoBoyScript;
 import Scripts.OrientationRoom.OrientationGirlScript;
 import Scripts.OrientationRoom.OrientationBoyScript;
@@ -20,9 +21,7 @@ import Scripts.OrientationRoom.OrientationBoy2Script;
 import Scripts.OrientationRoom.BobcatGirlScript;
 import Scripts.OrientationRoom.JudyScript;
 import Scripts.OrientationRoom.IrishKidScript;
-import Scripts.TestMap.LostBallScript;
 import Tilesets.CommonTileset;
-import Utils.Point;
 
 public class OrientationRoom extends Map{
     public OrientationRoom() {
@@ -89,7 +88,8 @@ public class OrientationRoom extends Map{
      @Override
     public ArrayList<Trigger> loadTriggers() {
         ArrayList<Trigger> triggers = new ArrayList<>();
-        triggers.add(new Trigger((int)getMapTile(15, 8).getX(), (int)getMapTile(15, 8).getY(), 45, 45, new JudyScript(), "hasStartedGame"));
+
+        triggers.add(new Trigger((int)getMapTile(15, 8).getX(), (int)getMapTile(15, 8).getY(), 45, 45, new JudyChangeMapScript(5),"completedTutorial"));
         return triggers;
     }
     
