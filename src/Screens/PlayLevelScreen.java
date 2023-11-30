@@ -125,6 +125,8 @@ public class PlayLevelScreen extends Screen {
         flagManager.addFlag("Orientation", false);
         flagManager.addFlag("Graduation", false);
 
+        flagManager.addFlag("won", false);
+
         // define/setup map
         this.map = loadMap(4);
         this.map.setQuestMenu(questMenu);
@@ -182,7 +184,14 @@ public class PlayLevelScreen extends Screen {
             // platformer level going
             case RUNNING:
 
+
+
                 player.update();
+
+                if (flagManager.isFlagSet("won")){
+                    playLevelScreenState = PlayLevelScreenState.LEVEL_COMPLETED;
+                }
+
                 map.update(player);
                 if (questMenu.areQuestFinished()){
                     map.addTrigger(player.getX(), player.getY(), 10, 10, new StartGraduationScript(), "completedAllQuests");

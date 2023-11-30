@@ -13,7 +13,6 @@ import NPCs.OrientationBoy;
 import NPCs.OrientationBoy2;
 import NPCs.OrientationGirl;
 import Scripts.GraduationCutscene;
-import Scripts.CCEClassroom.ChangeMapScript;
 import Scripts.OrientationRoom.BobcatGirlScript;
 import Scripts.OrientationRoom.EmoBoyScript;
 import Scripts.OrientationRoom.IrishKidScript;
@@ -25,6 +24,8 @@ import Tilesets.CommonTileset;
 import Utils.Point;
 
 public class Graduation extends Map{
+
+
     public Graduation() {
         super("Graduation.txt", new CommonTileset());
         this.playerStartPosition = getMapTile(2, 3).getLocation(); 
