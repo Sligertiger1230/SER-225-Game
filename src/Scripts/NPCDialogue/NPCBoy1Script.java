@@ -18,6 +18,7 @@ public class NPCBoy1Script extends Script<NPC> {
             addTextToTextboxQueue( "You're the main character, go help him.");
         }
         else {
+            nextStep("test");
             addTextToTextboxQueue( "Okay if you want to stick around I guess\nwe'll be friends now.");
             addTextToTextboxQueue( "We should hang out sometime, I think we could\n maybe even study together.");
             addTextToTextboxQueue( "I'm getting ahead of myself, I don't even know if\nwe have the same classes");

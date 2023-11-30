@@ -41,7 +41,7 @@ public class JavaJohn extends NPC {
                         .build()
                 });
                 put("STAND_DOWN", new Frame[] {
-                    new FrameBuilder(spriteSheet.getSprite(1,0))
+                    new FrameBuilder(spriteSheet.getSprite(0,0))
                     .withScale(3)
                     .withBounds(1, 11, 19, 16)
                     .build()
