@@ -15,6 +15,7 @@ import Maps.IceRink1;
 import Maps.IceRink2;
 import Maps.IceRinkNPC;
 import Maps.TestMap;
+import Maps.TutorialRoom;
 import Players.Cat;
 import Scripts.StartGraduationScript;
 import Utils.Direction;
@@ -53,6 +54,19 @@ public class PlayLevelScreen extends Screen {
 
         // judy flag
         flagManager.addFlag("hasStartedGame", false);
+        flagManager.addFlag("tutorialTime", false);
+
+        // tutorial flags
+        flagManager.addFlag("isInTutorialRoom", false);
+        flagManager.addFlag("isWalkingForward", false);
+        flagManager.addFlag("hasWalkedForward", false);
+        flagManager.addFlag("choosesTutorial", false);
+        flagManager.addFlag("skipsTutorial", false);
+        flagManager.addFlag("returningFromTutorial", false);
+        flagManager.addFlag("hasPressedQ", false);
+        flagManager.addFlag("completedTutorial", false);
+        flagManager.addFlag("isSprinting", false);
+
 
         flagManager.addFlag("hasFinishedAllQuests");
 
@@ -156,8 +170,6 @@ public class PlayLevelScreen extends Screen {
         }
 
         winScreen = new WinScreen(this);
-        playLevelScreenState = PlayLevelScreenState.RUNNING;
-
         transitionScreen = new TransitionScreen(this);
         playLevelScreenState = PlayLevelScreenState.RUNNING;
     }
@@ -301,6 +313,16 @@ public class PlayLevelScreen extends Screen {
                 ambiencePlayer.setFile(28);
                 ambiencePlayer.loop();
                 return newMap;
+            case 5:
+                newMap = new TutorialRoom();
+                newMap.setFlagManager(flagManager);
+                newMap.setNPCs();
+                newMap.setQuestMenu(questMenu);
+                musicPlayer.setFile(20);
+                musicPlayer.loop();
+                ambiencePlayer.setFile(28);
+                ambiencePlayer.loop();
+                return newMap;
             case 7:
                 newMap = new IceRink();
                 newMap.setFlagManager(flagManager);
@@ -333,6 +355,7 @@ public class PlayLevelScreen extends Screen {
                 musicPlayer.setFile(20);
                 musicPlayer.loop();
                 return newMap;
+
             default:
                 return null;
         }
@@ -395,6 +418,10 @@ public class PlayLevelScreen extends Screen {
     }
 
     public void returnFromAsteroid() {
+        playLevelScreenState = PlayLevelScreenState.RUNNING;
+        asteroidScreen = null;
+    }
+    public void returnFromTutorial(){
         playLevelScreenState = PlayLevelScreenState.RUNNING;
         asteroidScreen = null;
     }

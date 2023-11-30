@@ -81,9 +81,6 @@ public class EnemySpawner {
 
         // pick random swing in direction
         swingDir = enemySwing();
-
-        System.out.println("enemyDir: " + enemyDir);
-        System.out.println("swingDir: " + swingDir);
     }
 
     public void spawn() {
@@ -193,9 +190,7 @@ public class EnemySpawner {
     public void update(ArrayList<Enemy> enemyGroup, int waveTic) {
         if (!isFinishedSwinging) {
             swingTic++;
-        }
-        for (Enemy enemy : enemyGroup) {
-            if (!isFinishedSwinging) {
+            for (Enemy enemy : enemyGroup) {
                 switch (enemyDir) {
                     case LEFT:
                     case RIGHT:
@@ -223,7 +218,10 @@ public class EnemySpawner {
                         isFinishedSwinging = false;
                         break;
                 }
-            } else {
+            }
+
+        } else {
+            for (Enemy enemy : enemyGroup) {
                 switch (enemyDir) {
                     case LEFT:
                     case RIGHT:
@@ -245,9 +243,10 @@ public class EnemySpawner {
                         break;
                 }
             }
-
         }
     }
+
+    
 
     public Direction enemySwing() {
         int randSwingIndex = rand.nextInt(2);

@@ -89,6 +89,7 @@ public class PlayerShip extends Ship {
     public void handleHit() {
         invuln = true;
         health--;
+        aster.updateHealth();
         if (health == 0) {
             isPlayerDead = true;
         } else {

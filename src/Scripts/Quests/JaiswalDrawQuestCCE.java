@@ -12,6 +12,9 @@ public class JaiswalDrawQuestCCE extends Script<NPC> {
     private int amountMoved;
     private int sequence = 0;
 
+    String[] selections = { "Sure thing!" };
+    String[] answers = { "Great! Let's get going out the door\non the right." };
+
     @Override
     protected void setup() {
         if (!isFlagSet("jaiswalWalking")) {
@@ -23,8 +26,7 @@ public class JaiswalDrawQuestCCE extends Script<NPC> {
                 addTextToTextboxQueue("My name is Professor Jaiswal, a professor for the\nComputer Science degree.");
                 addTextToTextboxQueue("Recently, I have been looking for some help with one\nof my projects.");
                 addTextToTextboxQueue("I wish to make a cool diagram for a logo.");
-                addTextToTextboxQueue("Do you think you could help me? It won't take too\nlong.");
-                addTextToTextboxQueue("Great! Let's get going out the door\non the right.");
+                addTextToTextboxQueue("Do you think you could help me? It won't take too long.", selections, answers);
             }
         }
     }
@@ -38,10 +40,10 @@ public class JaiswalDrawQuestCCE extends Script<NPC> {
 
         if (!isFlagSet("hasTalkedToJaiswal")) {
             createStepList();
-            addStep("Follow Jaiswal into the quest room");
-            addStep("Push the pieces in");
+            addStep("Follow Jaiswal into the quest room.");
+            addStep("Complete the logo with the\nmissing pieces.");
             createTriggerList();
-            addQuest("Artist in the Making");
+            addQuest("Dr. J's Logo Dilemma");
             setFlag("hasTalkedToJaiswal");
             setFlag("jaiswalWalking");
         }
