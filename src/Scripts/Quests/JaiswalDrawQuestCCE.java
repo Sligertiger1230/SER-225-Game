@@ -65,7 +65,7 @@ public class JaiswalDrawQuestCCE extends Script<NPC> {
             if (sequence == 0) {
                 entity.walk(Direction.RIGHT, 2);
                 amountMoved += 1;
-                if (amountMoved >= 152) {
+                if (amountMoved >= 153) {
                     sequence++;
                     amountMoved = 0;
                 }

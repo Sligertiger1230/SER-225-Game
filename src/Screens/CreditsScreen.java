@@ -3,6 +3,7 @@ package Screens;
 import Engine.*;
 import Game.GameState;
 import Game.ScreenCoordinator;
+import GameObject.Sprite;
 import Level.Map;
 import Level.Sound;
 import Maps.TitleScreenMap;
@@ -26,6 +27,8 @@ public class CreditsScreen extends Screen {
 
     protected Sound cursorSound;
 
+    private Sprite javaJohn;
+
     public CreditsScreen(ScreenCoordinator screenCoordinator) {
         this.screenCoordinator = screenCoordinator;
         cursorSound = new Sound();
@@ -36,6 +39,7 @@ public class CreditsScreen extends Screen {
         // setup graphics on screen (background map, spritefont text)
         background = new TitleScreenMap();
         background.setAdjustCamera(false);
+        javaJohn = new Sprite(ImageLoader.load("JavaJohnPortrait.png"), 400, 200);
         creditsLabel = new SpriteFont("Credits", 15, 7, "Times New Roman", 30, Color.white);
         createdByLabel = new SpriteFont("Created by:", 130, 121, "Times New Roman", 20, Color.white);
         createdByLabel2 = new SpriteFont("Julia Bock", 130, 151, "Times New Roman", 20, Color.white);
@@ -65,6 +69,7 @@ public class CreditsScreen extends Screen {
 
     public void draw(GraphicsHandler graphicsHandler) {
         background.draw(graphicsHandler);
+        graphicsHandler.drawFilledRectangle(0, 0, ScreenManager.getScreenWidth(), ScreenManager.getScreenHeight(), Color.black);
         creditsLabel.draw(graphicsHandler);
         createdByLabel.draw(graphicsHandler);
         createdByLabel2.draw(graphicsHandler);
@@ -72,6 +77,7 @@ public class CreditsScreen extends Screen {
         createdByLabel4.draw(graphicsHandler);
         createdByLabel5.draw(graphicsHandler);
         createdByLabel6.draw(graphicsHandler);
+        javaJohn.draw(graphicsHandler);
         returnInstructionsLabel.draw(graphicsHandler);
     }
 }

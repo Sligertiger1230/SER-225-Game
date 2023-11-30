@@ -73,6 +73,7 @@ public class ControlsScreen extends Screen {
 
     public void draw(GraphicsHandler graphicsHandler) {
         background.draw(graphicsHandler);
+        graphicsHandler.drawFilledRectangle(0, 0, ScreenManager.getScreenWidth(), ScreenManager.getScreenHeight(), Color.black);
         creditsLabel.draw(graphicsHandler);
         escLabel.draw(graphicsHandler);
         upLabel.draw(graphicsHandler);
