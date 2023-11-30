@@ -1,14 +1,16 @@
 package Engine;
 
+import Engine.OptionsMenu;
+
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+
 import javax.swing.*;
 
-/*
- * The JFrame that holds the GamePanel
- * Just does some setup and exposes the gamePanel's screenManager to allow an external class to setup their own content and attach it to this engine.
- */
 public class GameWindow {
-	public JFrame gameWindow;
+	private JFrame gameWindow;
 	private GamePanel gamePanel;
+	private OptionsMenu optionsMenu;
 
 	public GameWindow() {
 		gameWindow = new JFrame("Quinnipiac RPG");
@@ -20,12 +22,39 @@ public class GameWindow {
 		gameWindow.setSize(Config.GAME_WINDOW_WIDTH, Config.GAME_WINDOW_HEIGHT);
 		gameWindow.setLocationRelativeTo(null);
 		gameWindow.setVisible(true);
-		gameWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // it'd be nice if this actually worked more than
-																	// 1/3rd of the time
+		gameWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+		// Instantiate OptionsMenu
+		optionsMenu = new OptionsMenu();
+
+		// Set the menu bar for the JFrame
+		gameWindow.setJMenuBar(optionsMenu);
+
 		gamePanel.setupGame();
+		setupKeyListener();
 	}
 
-	// triggers the game loop to start as defined in the GamePanel class
+	private void setupKeyListener() {
+		// Add key listener for handling Escape key press to toggle options menu
+		// visibility
+		gamePanel.addKeyListener(new KeyListener() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+			}
+
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+					optionsMenu.toggleOptionsMenuVisibility();
+				}
+			}
+
+			@Override
+			public void keyReleased(KeyEvent e) {
+			}
+		});
+	}
+
 	public void startGame() {
 		gamePanel.startGame();
 	}

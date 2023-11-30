@@ -10,8 +10,9 @@ public class Sound {
     private Clip clip;
     private final URL soundURL[] = new URL[40];
     private FloatControl floatControl;
+
     private int volumeScale = 3;
-    private float volume;
+    private float[] volumeValues = { -80f, -20f, -12f, -5f, 1f, 6f };
 
     public Sound() {
         // Music
@@ -84,15 +85,7 @@ public class Sound {
     }
 
     public void checkVolume() {
-        switch (volumeScale) {
-            case 0 -> volume = -80f;
-            case 1 -> volume = -20f;
-            case 2 -> volume = -12f;
-            case 3 -> volume = -5f;
-            case 4 -> volume = 1f;
-            case 5 -> volume = 6f;
-        }
-
+        float volume = volumeValues[volumeScale];
         floatControl.setValue(volume);
     }
 
@@ -100,8 +93,8 @@ public class Sound {
         return volumeScale;
     }
 
-    public Sound setVolumeScale(int volumeScale) {
+    public void setVolumeScale(int volumeScale) {
         this.volumeScale = volumeScale;
-        return this;
+        checkVolume();
     }
 }
