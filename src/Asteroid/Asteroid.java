@@ -1,9 +1,9 @@
 package Asteroid;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.util.ArrayList;
 
-import Asteroid.Ship.AimingDirection;
 import Engine.GraphicsHandler;
 import Screens.AsteroidScreen;
 import SpriteFont.SpriteFont;
@@ -22,6 +22,8 @@ public class Asteroid {
     protected EnemySpawner spawner2;
 
     protected SpriteFont healthIndic;
+    protected SpriteFont waveIndic;
+    protected Font win95;
 
     protected AsteroidScreen screen;
 
@@ -39,6 +41,7 @@ public class Asteroid {
         this.group2 = new ArrayList<Enemy>();
         this.enemyCollection = new ArrayList<Enemy>();
         this.screen = screen;
+        win95 = null;
         gridMap = new boolean[3][3];
         for (int x = 0; x < 3; x++) {
             for (int y = 0; y < 3; y++) {
@@ -49,13 +52,23 @@ public class Asteroid {
     }
 
     public void initialize() {
+        // ClassLoader classLoader = Asteroid.getClassLoader();
+
+        try {
+            win95 = Font.createFont(Font.TRUETYPE_FONT, Asteroid.class.getResourceAsStream("/W95FA.otf"))
+                    .deriveFont(17f);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         playerShip = new PlayerShip(400, 300, this);
-        healthIndic = new SpriteFont("Health: " + playerShip.getHealth(), 600, 80, "Comic Sans", 20, Color.BLACK);
+        healthIndic = new SpriteFont("Health: " + playerShip.getHealth(), 500, 37, win95, Color.BLACK);
+        waveIndic = new SpriteFont("Wave: " + waveCounter, 600, 37, win95, Color.BLACK);
     }
 
     public void update() {
         playerShip.update();
-        healthIndic = new SpriteFont("Health: " + playerShip.getHealth(), 600, 80, "Comic Sans", 20, Color.BLACK);
+
         if (playerShip.getHealth() <= 0) {
             screen.setAsteroidState(AsteroidState.DEAD);
         }
@@ -99,9 +112,10 @@ public class Asteroid {
         waveTic++;
         if (group1.isEmpty() && group2.isEmpty()) {
             waveCounter++;
+            waveIndic = new SpriteFont("Wave: " + waveCounter, 600, 37, win95, Color.BLACK);
             spawner1 = new EnemySpawner(this, gridMap, group1, playerShip);
             spawner2 = new EnemySpawner(this, gridMap, group2, playerShip);
-            
+
             for (int x = 0; x < 3; x++) {
                 for (int y = 0; y < 3; y++) {
                     gridMap[x][y] = false;
@@ -153,7 +167,6 @@ public class Asteroid {
 
     public void draw(GraphicsHandler graphicsHandler) {
         playerShip.draw(graphicsHandler);
-        healthIndic.draw(graphicsHandler);
         if (!enemies.isEmpty()) {
             for (Enemy enemy : enemies) {
                 enemy.draw(graphicsHandler);
@@ -180,6 +193,11 @@ public class Asteroid {
             }
         }
 
+    }
+
+    public void drawText(GraphicsHandler graphicsHandler) {
+        healthIndic.draw(graphicsHandler);
+        waveIndic.draw(graphicsHandler);
     }
 
     public ArrayList<Bullet> getBullets(Ship ship) {
@@ -210,4 +228,7 @@ public class Asteroid {
         return enemies;
     }
 
+    public void updateHealth() {
+        healthIndic = new SpriteFont("Health: " + playerShip.getHealth(), 500, 37, win95, 20, Color.BLACK);
+    }
 }

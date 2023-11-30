@@ -5,9 +5,12 @@ import Utils.Colors;
 
 import javax.swing.*;
 
+import Asteroid.Asteroid;
 import Level.Rectangle;
 
 import java.awt.*;
+import java.io.File;
+import java.io.IOException;
 
 /*
  * This is where the game loop process and render back buffer is setup
@@ -41,6 +44,13 @@ public class GamePanel extends JPanel {
 		this.addKeyListener(Keyboard.getKeyListener());
 
 		graphicsHandler = new GraphicsHandler();
+		try {
+		GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+		ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, GamePanel.class.getResourceAsStream("/W95FA.otf")));
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
 
 		screenManager = new ScreenManager();
 

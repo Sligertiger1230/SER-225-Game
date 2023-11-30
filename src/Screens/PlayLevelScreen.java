@@ -142,8 +142,6 @@ public class PlayLevelScreen extends Screen {
         }
 
         winScreen = new WinScreen(this);
-        playLevelScreenState = PlayLevelScreenState.RUNNING;
-
         transitionScreen = new TransitionScreen(this);
         playLevelScreenState = PlayLevelScreenState.RUNNING;
     }

@@ -99,8 +99,11 @@ public class AsteroidScreen extends Screen {
 
     @Override
     public void draw(GraphicsHandler graphicsHandler) {
-        window.draw(graphicsHandler);
+        graphicsHandler.drawFilledRectangle(0, 0, ScreenManager.getScreenWidth(),
+                        ScreenManager.getScreenHeight(), new Color(0, 0, 0));
         handleGameDraw(graphicsHandler);
+        window.draw(graphicsHandler);
+        aster.drawText(graphicsHandler);
     }
 
     public void handleGameDraw(GraphicsHandler graphicsHandler) {
