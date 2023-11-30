@@ -3,7 +3,6 @@ package Maps;
 import java.util.ArrayList;
 
 import Engine.GraphicsHandler;
-import Level.MiniMap;
 import Level.Map;
 import Level.NPC;
 import NPCs.NPCBoy3;
@@ -18,7 +17,7 @@ import Scripts.CCEClassroom.ChangeMapScriptFromCCE;
 import Tilesets.CommonTileset;
 
 public class CCEClassroom extends Map {
-    private MiniMap miniMap;
+    private Map map;
     private PlayLevelScreen screen;
 
     public CCEClassroom() {
@@ -26,18 +25,14 @@ public class CCEClassroom extends Map {
         this.playerStartPosition = getMapTile(1, 4).getLocation();
         this.mapInt = 1;
         this.idSwitch = 1;
-
-        miniMap = new MiniMap(camera, endBoundY, endBoundX, width, height);
     }
-    
+
     public CCEClassroom(PlayLevelScreen screen) {
         super("CCEClassroom.txt", new CommonTileset());
         this.screen = screen;
         this.playerStartPosition = getMapTile(1, 4).getLocation();
         this.mapInt = 1;
         this.idSwitch = 1;
-
-        miniMap = new MiniMap(camera, endBoundY, endBoundX, width, height);
     }
 
     // loads NPC's into the CCE classroom
@@ -72,6 +67,6 @@ public class CCEClassroom extends Map {
     }
 
     public void draw(GraphicsHandler graphicsHandler) {
-        miniMap.draw(graphicsHandler);
+        map.draw(graphicsHandler);
     }
 }
