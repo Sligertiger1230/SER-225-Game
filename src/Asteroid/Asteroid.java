@@ -3,6 +3,7 @@ package Asteroid;
 import java.awt.Color;
 import java.util.ArrayList;
 
+import Asteroid.Ship.AimingDirection;
 import Engine.GraphicsHandler;
 import Screens.AsteroidScreen;
 import SpriteFont.SpriteFont;
@@ -12,48 +13,64 @@ public class Asteroid {
     protected ArrayList<Bullet> enemyBullets;
     protected ArrayList<Bullet> bulletCollection;
     protected ArrayList<Enemy> enemies;
+    protected ArrayList<Enemy> group1;
+    protected ArrayList<Enemy> group2;
     protected ArrayList<Enemy> enemyCollection;
     protected PlayerShip playerShip;
+
+    protected EnemySpawner spawner1;
+    protected EnemySpawner spawner2;
 
     protected SpriteFont healthIndic;
 
     protected AsteroidScreen screen;
 
+    protected boolean[][] gridMap;
+
     protected int waveCounter = 0;
     protected int waveTic;
-    protected boolean wave1;
-    protected boolean wave2;
-    protected boolean wave3;
 
     public Asteroid(AsteroidScreen screen) {
         this.playerBullets = new ArrayList<Bullet>();
         this.enemyBullets = new ArrayList<Bullet>();
         this.bulletCollection = new ArrayList<Bullet>();
         this.enemies = new ArrayList<Enemy>();
+        this.group1 = new ArrayList<Enemy>();
+        this.group2 = new ArrayList<Enemy>();
         this.enemyCollection = new ArrayList<Enemy>();
         this.screen = screen;
+        gridMap = new boolean[3][3];
+        for (int x = 0; x < 3; x++) {
+            for (int y = 0; y < 3; y++) {
+                gridMap[x][y] = false;
+            }
+        }
         initialize();
     }
 
     public void initialize() {
         playerShip = new PlayerShip(400, 300, this);
         healthIndic = new SpriteFont("Health: " + playerShip.getHealth(), 600, 80, "Comic Sans", 20, Color.BLACK);
-        // enemies.add(new Enemy(400, 200, playerShip, this));
-        wave1 = false;
-        wave2 = false;
-        wave3 = false;
     }
 
     public void update() {
         playerShip.update();
         healthIndic = new SpriteFont("Health: " + playerShip.getHealth(), 600, 80, "Comic Sans", 20, Color.BLACK);
-        System.out.println(playerShip.getHealth());
-        if (playerShip.getHealth() <= 0){
-            System.out.println("player dead");
+        if (playerShip.getHealth() <= 0) {
             screen.setAsteroidState(AsteroidState.DEAD);
         }
         if (!enemies.isEmpty()) {
             for (Enemy enemy : enemies) {
+                enemy.update();
+            }
+        }
+        if (!group1.isEmpty()) {
+            for (Enemy enemy : group1) {
+                enemy.update();
+            }
+        }
+        if (!group2.isEmpty()) {
+            for (Enemy enemy : group2) {
                 enemy.update();
             }
         }
@@ -80,143 +97,25 @@ public class Asteroid {
 
     public void handleWave() {
         waveTic++;
-        if (enemies.isEmpty()) {
+        if (group1.isEmpty() && group2.isEmpty()) {
             waveCounter++;
+            spawner1 = new EnemySpawner(this, gridMap, group1, playerShip);
+            spawner2 = new EnemySpawner(this, gridMap, group2, playerShip);
+            
+            for (int x = 0; x < 3; x++) {
+                for (int y = 0; y < 3; y++) {
+                    gridMap[x][y] = false;
+                }
+                waveTic = 0;
+            }
         }
-        switch (waveCounter) {
-            case 1:
-                wave1();
-                break;
-            case 2:
-                wave2();
-                break;
-            case 3:
-                wave3();
-                break;
-            case 4:
-                wave4();
-                break;
-            case 5:
-                screen.setAsteroidState(AsteroidState.WIN);
-                break;
-        }
+        spawner1.update(group1, waveTic);
+        spawner2.update(group2, waveTic);
     }
 
     // screen dimensions
     // x is 24 - 759
     // y is 111 - 563
-
-    public void wave1() {
-        if (enemies.isEmpty()) {
-            for (int enemyCount = 0; enemyCount < 5; enemyCount++) {
-                enemies.add(new Enemy(50, enemyCount * 86 + 131, "STAND_RIGHT", playerShip, this));
-                enemies.add(new Enemy(709, enemyCount * 86 + 161, "STAND_LEFT", playerShip, this));
-            }
-        }
-        if (waveTic % 100 < 50) {
-            for (Enemy enemy : enemies) {
-                if (enemy.getCurrentAnimationName().equals("STAND_RIGHT")){
-                    enemy.moveY(1);
-                } else {
-                    enemy.moveY(-1);
-                }
-            }
-        } else {
-            for (Enemy enemy : enemies) {
-                if (enemy.getCurrentAnimationName().equals("STAND_RIGHT")){
-                    enemy.moveY(-1);
-                } else {
-                    enemy.moveY(1);
-                }
-            }
-        }
-    }
-
-    public void wave2() {
-        if (enemies.isEmpty()) {
-            for (int enemyCount = 0; enemyCount < 7; enemyCount++) {
-                enemies.add(new Enemy(enemyCount * 102 + 74, 131, "STAND_DOWN", playerShip, this));
-                enemies.add(new Enemy(enemyCount * 102 + 74, 533, "STAND_UP", playerShip, this));
-            }
-        }
-
-            if (waveTic % 100 < 50) {
-                for (Enemy enemy : enemies) {
-                    if (enemy.getCurrentAnimationName().equals("STAND_DOWN")){
-                        enemy.moveX(1);
-                    } else{
-                        enemy.moveX(-1);
-                    }
-                }
-
-            } else {
-                for (Enemy enemy : enemies) {
-                    if (enemy.getCurrentAnimationName().equals("STAND_DOWN")){
-                        enemy.moveX(-1);
-                    } else{
-                        enemy.moveX(1);
-                    }
-                }
-            }
-    }
-
-    public void wave3(){
-        if (enemies.isEmpty()){
-            for (int enemyCount = 0; enemyCount < 7; enemyCount++){
-                enemies.add(new Enemy(enemyCount * 80 + 104, 131, "STAND_DOWN", playerShip, this));
-            }
-            for (int enemyCount = 0; enemyCount < 5; enemyCount++){
-                enemies.add(new Enemy(709, enemyCount * 80 + 160, "STAND_LEFT", playerShip, this));
-            }
-        }
-
-        if (waveTic % 100 < 50){
-            for (Enemy enemy : enemies){
-                if (enemy.getCurrentAnimationName().equals("STAND_DOWN")){
-                    enemy.moveX(1);
-                } else {
-                    enemy.moveY(1);
-                }
-            }
-        } else {
-            for (Enemy enemy : enemies){
-                if (enemy.getCurrentAnimationName().equals("STAND_DOWN")){
-                    enemy.moveX(-1);
-                } else {
-                    enemy.moveY(-1);
-                }
-            }
-        }
-    }
-
-    public void wave4(){
-        if (enemies.isEmpty()){
-            for (int enemyCount = 0; enemyCount < 7; enemyCount++){
-                enemies.add(new Enemy(enemyCount * 80 + 124, 533, "STAND_UP", playerShip, this));
-            }
-            for (int enemyCount = 0; enemyCount < 7; enemyCount++){
-                enemies.add(new Enemy(54, enemyCount * 60 + 121, "STAND_RIGHT", playerShip, this));
-            }
-        }
-
-        if (waveTic % 100 < 50){
-            for (Enemy enemy : enemies){
-                if (enemy.getCurrentAnimationName().equals("STAND_UP")){
-                    enemy.moveX(1);
-                } else {
-                    enemy.moveY(1);
-                }
-            }
-        } else {
-            for (Enemy enemy : enemies){
-                if (enemy.getCurrentAnimationName().equals("STAND_UP")){
-                    enemy.moveX(-1);
-                } else {
-                    enemy.moveY(-1);
-                }
-            }
-        }
-    }
 
     public void bulletDump() {
         for (Bullet bullet : bulletCollection) {
@@ -228,7 +127,12 @@ public class Asteroid {
 
     public void enemyDump() {
         for (Enemy enemy : enemyCollection) {
-            enemies.remove(enemy);
+            if (group1.contains(enemy)) {
+                group1.remove(enemy);
+            } else {
+                group2.remove(enemy);
+            }
+            // enemies.remove(enemy);
         }
         enemyCollection.clear();
     }
@@ -255,6 +159,16 @@ public class Asteroid {
                 enemy.draw(graphicsHandler);
             }
         }
+        if (!group1.isEmpty()) {
+            for (Enemy enemy : group1) {
+                enemy.draw(graphicsHandler);
+            }
+        }
+        if (!group2.isEmpty()) {
+            for (Enemy enemy : group2) {
+                enemy.draw(graphicsHandler);
+            }
+        }
         if (!playerBullets.isEmpty()) {
             for (Bullet bullet : playerBullets) {
                 bullet.draw(graphicsHandler);
@@ -266,7 +180,6 @@ public class Asteroid {
             }
         }
 
-        
     }
 
     public ArrayList<Bullet> getBullets(Ship ship) {

@@ -4,10 +4,14 @@ import java.net.URL;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
+import javax.sound.sampled.FloatControl;
 
 public class Sound {
     private Clip clip;
     private final URL soundURL[] = new URL[40];
+    private FloatControl floatControl;
+    private int volumeScale = 3;
+    private float volume;
 
     public Sound() {
         // Music
@@ -17,6 +21,7 @@ public class Sound {
         soundURL[19] = getClass().getResource("/sounds/icerink.wav");
         soundURL[20] = getClass().getResource("/sounds/intro.wav");
         soundURL[24] = getClass().getResource("/sounds/asteroids.wav");
+        soundURL[25] = getClass().getResource("/sounds/graduation.wav");
 
         // Grass
         soundURL[1] = getClass().getResource("/sounds/grass1.wav");
@@ -46,6 +51,10 @@ public class Sound {
         // NPC Sounds
         soundURL[22] = getClass().getResource("/sounds/interact.wav");
         soundURL[23] = getClass().getResource("/sounds/teleport.wav");
+
+        // Quest Sounds
+        soundURL[26] = getClass().getResource("/sounds/questAccept.wav");
+        soundURL[27] = getClass().getResource("/sounds/questFinished.wav");
     }
 
     public void setFile(int i) {
@@ -53,13 +62,15 @@ public class Sound {
             AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(soundURL[i]);
             clip = AudioSystem.getClip();
             clip.open(audioInputStream);
+            floatControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+            checkVolume();
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
     public void play() {
-       // clip.start();
+        clip.start();
     }
 
     public void loop() {
@@ -70,5 +81,27 @@ public class Sound {
         if (clip != null) {
             clip.stop();
         }
+    }
+
+    public void checkVolume() {
+        switch (volumeScale) {
+            case 0 -> volume = -80f;
+            case 1 -> volume = -20f;
+            case 2 -> volume = -12f;
+            case 3 -> volume = -5f;
+            case 4 -> volume = 1f;
+            case 5 -> volume = 6f;
+        }
+
+        floatControl.setValue(volume);
+    }
+
+    public int getVolumeScale() {
+        return volumeScale;
+    }
+
+    public Sound setVolumeScale(int volumeScale) {
+        this.volumeScale = volumeScale;
+        return this;
     }
 }

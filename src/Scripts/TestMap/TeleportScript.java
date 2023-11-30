@@ -3,7 +3,7 @@ package Scripts.TestMap;
 import Level.Script;
 import Level.ScriptState;
 import Maps.CCEClassroom;
-import Players.Cat;
+import Players.Cat;;
 
 public class TeleportScript extends Script {
 
@@ -16,12 +16,11 @@ public class TeleportScript extends Script {
         this.y = y;
     }
 
-
     @Override
     protected void setup() {
         lockPlayer();
-        showTextbox();
 
+        showTextbox();
     }
 
     @Override
@@ -33,7 +32,7 @@ public class TeleportScript extends Script {
     @Override
     protected ScriptState execute() {
         if (!hasScaled) {
-            //Cat.setMap("CCEClassroom");
+            // Cat.setMap("CCEClassroom");
             x = ((x * 48f) - 15f);
             y = ((y * 48f) - 15f);
             hasScaled = true;

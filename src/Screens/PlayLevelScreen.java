@@ -23,21 +23,24 @@ public class PlayLevelScreen extends Screen {
     protected int triggerSize;
     protected PlayLevelScreenState playLevelScreenState;
     protected WinScreen winScreen;
+    protected TransitionScreen transitionScreen;
     protected static AsteroidScreen asteroidScreen;
     protected FlagManager flagManager;
     protected QuestMenu questMenu;
     protected ArrayList<QuestTrigger> triggers;
 
     private Sound musicPlayer;
+    private Ambience ambiencePlayer;
 
     public PlayLevelScreen(ScreenCoordinator screenCoordinator) {
         this.screenCoordinator = screenCoordinator;
         this.musicPlayer = new Sound();
+        this.ambiencePlayer = new Ambience();
     }
 
     public void initialize() {
         questMenu = new QuestMenu();
-        
+
         triggers = new ArrayList<QuestTrigger>();
 
         // setup state
@@ -45,6 +48,8 @@ public class PlayLevelScreen extends Screen {
 
         // judy flag
         flagManager.addFlag("hasStartedGame", false);
+
+        flagManager.addFlag("hasFinishedAllQuests");
 
         // Walrus Fish quest
         flagManager.addFlag("redFish", false);
@@ -86,7 +91,6 @@ public class PlayLevelScreen extends Screen {
         // define/setup map
         this.map = loadMap(4);
         this.map.setQuestMenu(questMenu);
-
 
         // setup player
         this.player = new Cat(map.getPlayerStartPosition().x, map.getPlayerStartPosition().y);
@@ -130,6 +134,9 @@ public class PlayLevelScreen extends Screen {
 
         winScreen = new WinScreen(this);
         playLevelScreenState = PlayLevelScreenState.RUNNING;
+
+        transitionScreen = new TransitionScreen(this);
+        playLevelScreenState = PlayLevelScreenState.RUNNING;
     }
 
     public void update() {
@@ -156,6 +163,7 @@ public class PlayLevelScreen extends Screen {
                     triggerSize = map.getUpdatedTriggerSize();
                 }
                 if (map.getMapInt() != map.getIdSwitch()) {
+                    this.playLevelScreenState = PlayLevelScreenState.TRANSITION;
                     this.map = loadMap(map.getIdSwitch());
                     this.map.setFlagManager(flagManager);
                     this.map.setQuestMenu(questMenu);
@@ -172,6 +180,14 @@ public class PlayLevelScreen extends Screen {
             case LEVEL_COMPLETED:
                 winScreen.update();
                 break;
+            case TRANSITION:
+                if (this.transitionScreen == null) {
+                    this.transitionScreen = new TransitionScreen(this);
+                }
+
+                transitionScreen.update();
+                break;
+
         }
     }
 
@@ -188,6 +204,9 @@ public class PlayLevelScreen extends Screen {
                 musicPlayer.stop();
                 asteroidScreen.draw(graphicsHandler);
                 break;
+            case TRANSITION:
+                transitionScreen.draw(graphicsHandler);
+                break;
         }
     }
 
@@ -203,6 +222,8 @@ public class PlayLevelScreen extends Screen {
                 newMap.setQuestMenu(questMenu);
                 musicPlayer.setFile(0);
                 musicPlayer.loop();
+                ambiencePlayer.setFile(27);
+                ambiencePlayer.loop();
                 return newMap;
             case 1:
                 newMap = new CCEClassroom(this);
@@ -211,6 +232,8 @@ public class PlayLevelScreen extends Screen {
                 newMap.setQuestMenu(questMenu);
                 musicPlayer.setFile(18);
                 musicPlayer.loop();
+                ambiencePlayer.setFile(28);
+                ambiencePlayer.loop();
                 return newMap;
             case 2:
                 newMap = new IceRink();
@@ -235,6 +258,8 @@ public class PlayLevelScreen extends Screen {
                 newMap.setQuestMenu(questMenu);
                 musicPlayer.setFile(20);
                 musicPlayer.loop();
+                ambiencePlayer.setFile(28);
+                ambiencePlayer.loop();
                 return newMap;
 
             default:
@@ -298,9 +323,20 @@ public class PlayLevelScreen extends Screen {
         screenCoordinator.setGameState(GameState.MENU);
     }
 
-    public void returnFromAsteroid(){
+    public void returnFromAsteroid() {
         playLevelScreenState = PlayLevelScreenState.RUNNING;
         asteroidScreen = null;
+    }
+
+    public void returnFromTransition() {
+        playLevelScreenState = PlayLevelScreenState.RUNNING;
+        transitionScreen = null;
+    }
+
+    public void startTransition() {
+        transitionScreen = new TransitionScreen(this);
+        playLevelScreenState = PlayLevelScreenState.TRANSITION;
+
     }
 
     public void startAsteroid() {
@@ -310,6 +346,6 @@ public class PlayLevelScreen extends Screen {
 
     // This enum represents the different states this screen can be in
     private enum PlayLevelScreenState {
-        RUNNING, LEVEL_COMPLETED, ASTEROID
+        RUNNING, LEVEL_COMPLETED, ASTEROID, TRANSITION
     }
 }

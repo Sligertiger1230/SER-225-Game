@@ -37,6 +37,7 @@ public class JudyScript extends Script<NPC> {
         hidePortrait();
 
         setFlag("hasStartedGame");
+        setFlag("tutorialTime");
     }
 
     @Override
