@@ -213,6 +213,7 @@ public class PlayLevelScreen extends Screen {
     public Map loadMap(int mapId) {
         Map newMap;
         musicPlayer.stop();
+        ambiencePlayer.stop();
 
         switch (mapId) {
             case 0:
