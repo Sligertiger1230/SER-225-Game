@@ -40,7 +40,7 @@ public class JaiswalDrawQuestCCE extends Script<NPC> {
 
         if (!isFlagSet("hasTalkedToJaiswal")) {
             createStepList();
-            addStep("Follow Jaiswal into the quest room.");
+            addStep("Follow Jaiswal into the quest\nroom.");
             addStep("Complete the logo with the\nmissing pieces.");
             createTriggerList();
             addQuest("Dr. J's Logo Dilemma");

@@ -15,6 +15,9 @@ import Utils.Point;
 // This class is for the special rock in the map that can be moved around by the player
 // when the player walks into it, it will be "pushed" forward in the same direction the player was moving in
 public class PushableRedTile extends EnhancedMapTile {
+
+    private boolean questCompleted = false; // Flag to track completion
+
     public PushableRedTile(Point location) {
         super(location.x, location.y, new SpriteSheet(ImageLoader.load("CommonTileset.png"), 16, 16),
                 TileType.NOT_PASSABLE);
@@ -44,6 +47,11 @@ public class PushableRedTile extends EnhancedMapTile {
                     moveYHandleCollision(1);
                 }
             }
+        }
+
+        if (!questCompleted && x >= 323 && x <= 343 && y >= 376 && y <= 396) {
+            System.out.println("Red Complete!");
+            questCompleted = true; // Set the flag to indicate quest completion
         }
 
         // System.out.println("PushableRedTile current location: " + new Point(x, y));
