@@ -46,7 +46,7 @@ public class QuestMenu extends Screen {
         this.questText = new SpriteFont[5];
         this.questStepText = new SpriteFont[5];
         this.completedQuests = 0;
-        this.totalQuests = 0;
+        this.totalQuests = 1;
         this.isQuestCompleted = false;
         this.isNewQuest = false;
     }
@@ -115,8 +115,6 @@ public class QuestMenu extends Screen {
 
         // adds quest
         quests.add(newQuest);
-        // updates total quests
-        totalQuests++;
     }
 
     // removes quest from array list
@@ -250,5 +248,13 @@ public class QuestMenu extends Screen {
     public void resetNotifPos() {
         questCompleted.setX(notifX);
         newQuest.setX(notifX);
+    }
+
+    public boolean areQuestFinished(){
+        if (completedQuests == totalQuests){
+            return true;
+        } else {
+            return false;
+        }
     }
 }

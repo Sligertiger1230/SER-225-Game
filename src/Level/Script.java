@@ -340,7 +340,7 @@ public abstract class Script<T extends MapEntity> {
 
     // adds quest to instantiated questMenu in Map.java
     protected void addQuest(String questName) {
-        map.addQuest(new Quest(questName, stepList, questTriggers, map.getQuestMenu()));
+        map.addQuest(new Quest(questName, stepList, questTriggers));
     }
 
     // creates list to hold steps for quest

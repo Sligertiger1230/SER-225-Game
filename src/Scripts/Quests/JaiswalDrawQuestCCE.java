@@ -37,8 +37,12 @@ public class JaiswalDrawQuestCCE extends Script<NPC> {
         hidePortrait();
 
         if (!isFlagSet("hasTalkedToJaiswal")) {
+            createStepList();
+            addStep("Follow Jaiswal into the quest room");
+            addStep("Push the pieces in");
+            createTriggerList();
+            addQuest("Artist in the Making");
             setFlag("hasTalkedToJaiswal");
-        } else {
             setFlag("jaiswalWalking");
         }
     }
@@ -54,7 +58,8 @@ public class JaiswalDrawQuestCCE extends Script<NPC> {
             }
             // cleanup() function
             end();
-        } else if (isFlagSet("jaiswalWalking")) {
+        }
+        if (isFlagSet("jaiswalWalking")) {
             // player is not locked, but nathan walks
             // sequence determines whether nathan is moving right or down
             if (sequence == 0) {

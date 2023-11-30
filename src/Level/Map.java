@@ -12,7 +12,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
-
 /*
     This class is for defining a map that is used for a specific level
     The map class handles/manages a lot of different things, including:
@@ -711,6 +710,11 @@ public abstract class Map {
             newTriggers.add(newQuest.getTriggerList().get(index));
         }
         questMenu.setNewQuestStatus(true);
+    }
+
+    public void addTrigger(float x, float y, int width, int height, Script interactScript){
+        QuestTrigger questTrigger = new QuestTrigger(new Trigger((int)x, (int)y, width, height, interactScript, "completedAllQuests"), mapInt);
+        newTriggers.add(questTrigger);
     }
 
     // fetches portrait 1

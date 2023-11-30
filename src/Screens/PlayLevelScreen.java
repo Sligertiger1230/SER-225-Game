@@ -12,6 +12,7 @@ import Maps.OrientationRoom;
 import Maps.IceRink;
 import Maps.TestMap;
 import Players.Cat;
+import Scripts.StartGraduationScript;
 import Utils.Direction;
 import Utils.Point;
 
@@ -69,6 +70,12 @@ public class PlayLevelScreen extends Screen {
         flagManager.addFlag("hasEncounteredJavaJohnWalk", false);
         flagManager.addFlag("isJavaJohnFloating", false);
 
+        //jaiswal quest flags
+        flagManager.addFlag("hasTalkedToJaiswal", false);
+        flagManager.addFlag("jaiswalWalking", false);
+        flagManager.addFlag("hasTalkedToJaiswalInPuzzle", false);
+        flagManager.addFlag("jaiswalWalkingInPuzzle", false);
+
         // Nathan quest flags
         flagManager.addFlag("hasTalkedToNathan", false);
         flagManager.addFlag("nathanRunning", false);
@@ -86,6 +93,8 @@ public class PlayLevelScreen extends Screen {
         // NPC flags
         flagManager.addFlag("hasTalkedToNPCBoy1", false);
         flagManager.addFlag("hasTalkedToNPCGirl1", false);
+
+        flagManager.addFlag("completedAllQuests", false);
 
         // define/setup map
         this.map = loadMap(4);
@@ -148,6 +157,9 @@ public class PlayLevelScreen extends Screen {
 
                 player.update();
                 map.update(player);
+                if (questMenu.areQuestFinished()){
+                    map.addTrigger(player.getX(), player.getY(), 10, 10, new StartGraduationScript());
+                }
 
                 // updateTriggers changes size of map triggers size. so check if previous value
                 // stored is the same
