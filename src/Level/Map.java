@@ -713,7 +713,12 @@ public abstract class Map {
     }
 
     public void addTrigger(float x, float y, int width, int height, Script interactScript){
-        QuestTrigger questTrigger = new QuestTrigger(new Trigger((int)x, (int)y, width, height, interactScript, "completedAllQuests"), mapInt);
+        QuestTrigger questTrigger = new QuestTrigger(new Trigger((int)x, (int)y, width, height, interactScript), mapInt);
+        newTriggers.add(questTrigger);
+    }
+
+    public void addTrigger(float x, float y, int width, int height, Script interactScript, String existenceFlag){
+        QuestTrigger questTrigger = new QuestTrigger(new Trigger((int)x, (int)y, width, height, interactScript, existenceFlag), mapInt);
         newTriggers.add(questTrigger);
     }
 

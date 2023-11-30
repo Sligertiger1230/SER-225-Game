@@ -113,7 +113,8 @@ public abstract class Player extends GameObject {
                 playerInteracting();
                 break;
             case EMOTING:
-                playerEmoting();
+                if (keyLocker.isKeyLocked(INTERACT_KEY))
+                    playerEmoting();
                 break;
         }
     }
@@ -410,6 +411,10 @@ public abstract class Player extends GameObject {
         } else if (direction == Direction.DOWN) {
             this.currentAnimationName = "STAND_DOWN";
         }
+    }
+
+    public void emote(){
+        playerState = PlayerState.EMOTING;
     }
 
     public void walk(Direction direction, float speed) {

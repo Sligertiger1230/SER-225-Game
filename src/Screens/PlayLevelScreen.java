@@ -45,7 +45,7 @@ public class PlayLevelScreen extends Screen {
     }
 
     public void initialize() {
-        questMenu = new QuestMenu();
+        questMenu = new QuestMenu(this);
 
         triggers = new ArrayList<QuestTrigger>();
 
@@ -123,7 +123,7 @@ public class PlayLevelScreen extends Screen {
         flagManager.addFlag("completedAllQuests", false);
         //false means it will start one
         flagManager.addFlag("Orientation", false);
-        flagManager.addFlag("Graduation", true);
+        flagManager.addFlag("Graduation", false);
 
         // define/setup map
         this.map = loadMap(4);
@@ -171,6 +171,7 @@ public class PlayLevelScreen extends Screen {
 
         winScreen = new WinScreen(this);
         transitionScreen = new TransitionScreen(this);
+        //asteroidScreen = new AsteroidScreen(this);
         playLevelScreenState = PlayLevelScreenState.RUNNING;
     }
 
@@ -184,7 +185,7 @@ public class PlayLevelScreen extends Screen {
                 player.update();
                 map.update(player);
                 if (questMenu.areQuestFinished()){
-                    map.addTrigger(player.getX(), player.getY(), 10, 10, new StartGraduationScript());
+                    map.addTrigger(player.getX(), player.getY(), 10, 10, new StartGraduationScript(), "completedAllQuests");
                 }
 
                 // updateTriggers changes size of map triggers size. so check if previous value
