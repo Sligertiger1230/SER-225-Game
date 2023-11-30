@@ -87,7 +87,7 @@ public class PlayLevelScreen extends Screen {
         flagManager.addFlag("nathanReturn", false);
         flagManager.addFlag("winRace", false);
         flagManager.addFlag("nathanActivelyRunning", false);
-        flagManager.addFlag("bikeActive", true);
+        flagManager.addFlag("bikeActive", false);
 
         // base game flags
         flagManager.addFlag("hasLostBall", false);

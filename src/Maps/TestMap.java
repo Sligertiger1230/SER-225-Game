@@ -114,11 +114,17 @@ public class TestMap extends Map {
         // adds Nathan's bike
         NathanBicycle nathanBike = new NathanBicycle(7, getMapTile(4, 32).getLocation());
         nathanBike.setInteractScript(new NathanBicycleScript());
+        if (getFlagManager().isFlagSet("bikeActive")) {
+            nathanBike.setIsHidden(true);
+        }
         npcs.add(nathanBike);
 
         // adds Nathan
         Nathan nathan = new Nathan(8, getMapTile(6, 33).getLocation());
         nathan.setInteractScript(new NathanScript());
+        if (getFlagManager().isFlagSet("winRace")) {
+            nathan.setIsHidden(true);
+        }
         npcs.add(nathan);
 
         // adds an npc boy (brunette white shirt)
