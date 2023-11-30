@@ -68,7 +68,7 @@ public class Nathan extends NPC {
                                 .withScale(3)
                                 .withBounds(1, 1, 19, 22)
                                 .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
-                                .build(),
+                                .build()
                 });
             }
         };

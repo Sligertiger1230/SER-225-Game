@@ -2779,7 +2779,25 @@ public class CommonTileset extends Tileset {
 
                 mapTiles.add(bkChairTile);
 
+                // ice block
+                Frame iceBlockFrame = new FrameBuilder(getSubImage(12, 4))
+                                .withScale(tileScale)
+                                .build();
 
+                MapTileBuilder iceBlockTile = new MapTileBuilder(iceBlockFrame)
+                                .withTileType(TileType.NOT_PASSABLE);
+
+                mapTiles.add(iceBlockTile);
+
+                 // ice block 2
+                Frame iceBlock2Frame = new FrameBuilder(getSubImage(12, 5))
+                                .withScale(tileScale)
+                                .build();
+
+                MapTileBuilder iceBlock2Tile = new MapTileBuilder(iceBlock2Frame)
+                                .withTileType(TileType.NOT_PASSABLE);
+
+                mapTiles.add(iceBlock2Tile);
 
 
 

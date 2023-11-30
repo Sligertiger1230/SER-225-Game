@@ -14,6 +14,7 @@ import Scripts.NPCDialogue.NPCBoy3Script;
 import Scripts.Quests.JaiswalDrawQuestCCE;
 import Scripts.Quests.WebbyScript;
 import Scripts.CCEClassroom.ChangeMapScript;
+import Scripts.CCEClassroom.ChangeMapScriptFromCCE;
 import Tilesets.CommonTileset;
 
 public class CCEClassroom extends Map {

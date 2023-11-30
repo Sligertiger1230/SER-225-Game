@@ -8,11 +8,16 @@ import Game.ScreenCoordinator;
 import Level.*;
 import Maps.CCEClassroom;
 import Maps.DrawQuest;
+import Maps.Graduation;
 import Maps.OrientationRoom;
 import Maps.IceRink;
+import Maps.IceRink1;
+import Maps.IceRink2;
+import Maps.IceRinkNPC;
 import Maps.TestMap;
 import Maps.TutorialRoom;
 import Players.Cat;
+import Scripts.StartGraduationScript;
 import Utils.Direction;
 import Utils.Point;
 
@@ -31,17 +36,18 @@ public class PlayLevelScreen extends Screen {
     protected ArrayList<QuestTrigger> triggers;
 
     private Sound musicPlayer;
+    private Ambience ambiencePlayer;
 
     public PlayLevelScreen(ScreenCoordinator screenCoordinator) {
         this.screenCoordinator = screenCoordinator;
         this.musicPlayer = new Sound();
+        this.ambiencePlayer = new Ambience();
     }
 
     public void initialize() {
         questMenu = new QuestMenu();
-        
+
         triggers = new ArrayList<QuestTrigger>();
-        
 
         // setup state
         flagManager = new FlagManager();
@@ -62,6 +68,8 @@ public class PlayLevelScreen extends Screen {
         flagManager.addFlag("isSprinting", false);
 
 
+        flagManager.addFlag("hasFinishedAllQuests");
+
         // Walrus Fish quest
         flagManager.addFlag("redFish", false);
         flagManager.addFlag("purpleFish", false);
@@ -81,13 +89,19 @@ public class PlayLevelScreen extends Screen {
         flagManager.addFlag("hasEncounteredJavaJohnWalk", false);
         flagManager.addFlag("isJavaJohnFloating", false);
 
+        //jaiswal quest flags
+        flagManager.addFlag("hasTalkedToJaiswal", false);
+        flagManager.addFlag("jaiswalWalking", false);
+        flagManager.addFlag("hasTalkedToJaiswalInPuzzle", false);
+        flagManager.addFlag("jaiswalWalkingInPuzzle", false);
+
         // Nathan quest flags
         flagManager.addFlag("hasTalkedToNathan", false);
         flagManager.addFlag("nathanRunning", false);
         flagManager.addFlag("nathanReturn", false);
         flagManager.addFlag("winRace", false);
         flagManager.addFlag("nathanActivelyRunning", false);
-        flagManager.addFlag("bikeActive", false);
+        flagManager.addFlag("bikeActive", true);
 
         // base game flags
         flagManager.addFlag("hasLostBall", false);
@@ -99,10 +113,21 @@ public class PlayLevelScreen extends Screen {
         flagManager.addFlag("hasTalkedToNPCBoy1", false);
         flagManager.addFlag("hasTalkedToNPCGirl1", false);
 
+        //Ice flags
+        flagManager.addFlag("hasTalkedToIceWalrus", false);
+        flagManager.addFlag("hasTalkedToIceWalrus2", false);
+        flagManager.addFlag("hasTalkedToIceWalrus3", false);
+        flagManager.addFlag("Ice1", true);
+        flagManager.addFlag("Ice2", true);
+        flagManager.addFlag("Ice3", true);
+        flagManager.addFlag("completedAllQuests", false);
+        //false means it will start one
+        flagManager.addFlag("Orientation", false);
+        flagManager.addFlag("Graduation", true);
+
         // define/setup map
         this.map = loadMap(4);
         this.map.setQuestMenu(questMenu);
-
 
         // setup player
         this.player = new Cat(map.getPlayerStartPosition().x, map.getPlayerStartPosition().y);
@@ -160,6 +185,9 @@ public class PlayLevelScreen extends Screen {
 
                 player.update();
                 map.update(player);
+                if (questMenu.areQuestFinished()){
+                    map.addTrigger(player.getX(), player.getY(), 10, 10, new StartGraduationScript());
+                }
 
                 // updateTriggers changes size of map triggers size. so check if previous value
                 // stored is the same
@@ -181,8 +209,18 @@ public class PlayLevelScreen extends Screen {
                     this.map.setQuestMenu(questMenu);
                     loadMapInfo(this.map);
                     this.player.setMap(this.map);
-                    Point playerStartPosition = map.getPlayerStartPosition();
-                    this.player.setLocation(playerStartPosition.x, playerStartPosition.y);
+                    if(player.getWasInCCE() == 1  && map.getIdSwitch() == 0){
+                        this.player.setLocation(4800, 2832); 
+                        player.setWasInCCE(0);
+                    }else if(player.getWasInCCE() == 2  && map.getIdSwitch() == 0){
+                        this.player.setLocation(6000, 1728); 
+                        player.setWasInCCE(0);
+                    }else{
+                        Point playerStartPosition = map.getPlayerStartPosition();
+                        this.player.setLocation(playerStartPosition.x, playerStartPosition.y);  
+                    }           
+
+
                 }
                 break;
             case ASTEROID:
@@ -193,13 +231,13 @@ public class PlayLevelScreen extends Screen {
                 winScreen.update();
                 break;
             case TRANSITION:
-            if (this.transitionScreen == null) {
-                this.transitionScreen = new TransitionScreen(this);
-            }
-            
+                if (this.transitionScreen == null) {
+                    this.transitionScreen = new TransitionScreen(this);
+                }
+
                 transitionScreen.update();
                 break;
-                
+
         }
     }
 
@@ -225,6 +263,7 @@ public class PlayLevelScreen extends Screen {
     public Map loadMap(int mapId) {
         Map newMap;
         musicPlayer.stop();
+        ambiencePlayer.stop();
 
         switch (mapId) {
             case 0:
@@ -234,6 +273,8 @@ public class PlayLevelScreen extends Screen {
                 newMap.setQuestMenu(questMenu);
                 musicPlayer.setFile(0);
                 musicPlayer.loop();
+                ambiencePlayer.setFile(27);
+                ambiencePlayer.loop();
                 return newMap;
             case 1:
                 newMap = new CCEClassroom(this);
@@ -242,13 +283,18 @@ public class PlayLevelScreen extends Screen {
                 newMap.setQuestMenu(questMenu);
                 musicPlayer.setFile(18);
                 musicPlayer.loop();
+                player.setWasInCCE(1);
+                System.out.println(player.getWasInCCE());
+                ambiencePlayer.setFile(28);
+                ambiencePlayer.loop();
                 return newMap;
             case 2:
-                newMap = new IceRink();
+                newMap = new IceRinkNPC();
                 newMap.setFlagManager(flagManager);
                 newMap.setNPCs();
                 newMap.setQuestMenu(questMenu);
                 musicPlayer.setFile(19);
+                player.setWasInCCE(2);
                 musicPlayer.loop();
                 return newMap;
             case 3:
@@ -266,9 +312,35 @@ public class PlayLevelScreen extends Screen {
                 newMap.setQuestMenu(questMenu);
                 musicPlayer.setFile(20);
                 musicPlayer.loop();
+                ambiencePlayer.setFile(28);
+                ambiencePlayer.loop();
                 return newMap;
-            case 5:
-                newMap = new TutorialRoom();
+            case 7:
+                newMap = new IceRink();
+                newMap.setFlagManager(flagManager);
+                newMap.setNPCs();
+                newMap.setQuestMenu(questMenu);
+                musicPlayer.setFile(20);
+                musicPlayer.loop();
+                return newMap;
+            case 8:
+                newMap = new IceRink2();
+                newMap.setFlagManager(flagManager);
+                newMap.setNPCs();
+                newMap.setQuestMenu(questMenu);
+                musicPlayer.setFile(20);
+                musicPlayer.loop();
+                return newMap;
+            case 9:
+                newMap = new IceRink1();
+                newMap.setFlagManager(flagManager);
+                newMap.setNPCs();
+                newMap.setQuestMenu(questMenu);
+                musicPlayer.setFile(20);
+                musicPlayer.loop();
+                return newMap;
+            case 10:
+                newMap = new Graduation();
                 newMap.setFlagManager(flagManager);
                 newMap.setNPCs();
                 newMap.setQuestMenu(questMenu);
@@ -337,7 +409,7 @@ public class PlayLevelScreen extends Screen {
         screenCoordinator.setGameState(GameState.MENU);
     }
 
-    public void returnFromAsteroid(){
+    public void returnFromAsteroid() {
         playLevelScreenState = PlayLevelScreenState.RUNNING;
         asteroidScreen = null;
     }
@@ -346,14 +418,15 @@ public class PlayLevelScreen extends Screen {
         asteroidScreen = null;
     }
 
-    public void returnFromTransition(){
+    public void returnFromTransition() {
         playLevelScreenState = PlayLevelScreenState.RUNNING;
         transitionScreen = null;
     }
+
     public void startTransition() {
         transitionScreen = new TransitionScreen(this);
         playLevelScreenState = PlayLevelScreenState.TRANSITION;
-        
+
     }
 
     public void startAsteroid() {

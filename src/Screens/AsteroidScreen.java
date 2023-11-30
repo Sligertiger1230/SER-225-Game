@@ -60,12 +60,18 @@ public class AsteroidScreen extends Screen {
                 }
                 if (Keyboard.isKeyDown(exitGame)) {
                     playLevelScreen.returnFromAsteroid();
+                    sound.stop();
+                    sound.setFile(18);
+                    sound.loop();
                 }
                 break;
             case RUNNING:
                 aster.update();
                 if (Keyboard.isKeyDown(exitGame)) {
                     playLevelScreen.returnFromAsteroid();
+                    sound.stop();
+                    sound.setFile(18);
+                    sound.loop();
                 }
                 break;
             case DEAD:
@@ -75,11 +81,17 @@ public class AsteroidScreen extends Screen {
                 }
                 if (Keyboard.isKeyDown(exitGame)) {
                     playLevelScreen.returnFromAsteroid();
+                    sound.stop();
+                    sound.setFile(18);
+                    sound.loop();
                 }
                 break;
             case WIN:
                 if (Keyboard.isKeyDown(exitGame)) {
                     playLevelScreen.returnFromAsteroid();
+                    sound.stop();
+                    sound.setFile(18);
+                    sound.loop();
                 }
                 break;
         }

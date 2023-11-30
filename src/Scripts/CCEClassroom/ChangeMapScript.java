@@ -7,6 +7,7 @@ import Level.Script;
 import Level.ScriptState;
 import Maps.CCEClassroom;
 import Players.Cat;
+import Utils.Stopwatch;
 import Game.GameState;
 import Game.ScreenCoordinator;
 
@@ -22,12 +23,10 @@ public class ChangeMapScript extends Script {
 
     @Override
     protected void setup() {
-
     }
 
     @Override
     protected void cleanup() {
-
     }
 
     @Override
