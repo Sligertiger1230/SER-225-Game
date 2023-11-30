@@ -315,6 +315,16 @@ public class PlayLevelScreen extends Screen {
                 ambiencePlayer.setFile(28);
                 ambiencePlayer.loop();
                 return newMap;
+            case 5:
+                newMap = new TutorialRoom();
+                newMap.setFlagManager(flagManager);
+                newMap.setNPCs();
+                newMap.setQuestMenu(questMenu);
+                musicPlayer.setFile(20);
+                musicPlayer.loop();
+                ambiencePlayer.setFile(28);
+                ambiencePlayer.loop();
+                return newMap;
             case 7:
                 newMap = new IceRink();
                 newMap.setFlagManager(flagManager);
