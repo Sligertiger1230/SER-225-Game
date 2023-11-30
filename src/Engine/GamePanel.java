@@ -45,18 +45,13 @@ public class GamePanel extends JPanel {
 
 		graphicsHandler = new GraphicsHandler();
 		try {
-		GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
-		ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, GamePanel.class.getResourceAsStream("/W95FA.otf")));
-		}
-		catch(Exception e){
+			GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+			ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, GamePanel.class.getResourceAsStream("/W95FA.otf")));
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
 		screenManager = new ScreenManager();
-
-		pauseLabel = new SpriteFont("OPTIONS", 365, CENTER_ALIGNMENT, "Comic Sans", 24, Color.white);
-		pauseLabel.setOutlineColor(Color.black);
-		pauseLabel.setOutlineThickness(2.0f);
 
 		fpsDisplayLabel = new SpriteFont("FPS", 4, 3, "Comic Sans", 12, Color.black);
 
@@ -125,13 +120,6 @@ public class GamePanel extends JPanel {
 
 	public void draw() {
 		screenManager.draw(graphicsHandler);
-
-		// if game is paused, draw pause gfx over Screen gfx
-		if (isGamePaused) {
-			graphicsHandler.drawFilledRectangle(0, 0, ScreenManager.getScreenWidth(), ScreenManager.getScreenHeight(),
-					new Color(0, 0, 0, 255));
-			pauseLabel.draw(graphicsHandler);
-		}
 
 		if (showFPS) {
 			fpsDisplayLabel.draw(graphicsHandler);

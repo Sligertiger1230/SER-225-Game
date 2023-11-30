@@ -21,7 +21,7 @@ public class MenuScreen extends Screen {
     protected SpriteFont controls;
     protected Map background;
     protected int keyPressTimer;
-    protected int pointerLocationX, pointerLocationY;
+    protected int pointerLocationY = 275;
     protected KeyLocker keyLocker = new KeyLocker();
 
     protected Sound cursorSound;
@@ -35,16 +35,16 @@ public class MenuScreen extends Screen {
 
     @Override
     public void initialize() {
-        boomer = new Sprite(ImageLoader.load("boomer.png"), pointerLocationX, pointerLocationY);
-        playGame = new SpriteFont("PLAY GAME", 150, 269, "Comic Sans", 30, new Color(49, 207, 240));
-        playGame.setOutlineColor(Color.white);
-        playGame.setOutlineThickness(3);
-        credits = new SpriteFont("CREDITS", 150, 319, "Comic Sans", 30, new Color(49, 207, 240));
-        credits.setOutlineColor(Color.white);
-        credits.setOutlineThickness(3);
-        controls = new SpriteFont("CONTROLS", 150, 369, "Comic Sans", 30, new Color(49, 207, 240));
-        controls.setOutlineColor(Color.white);
-        controls.setOutlineThickness(3);
+        boomer = new Sprite(ImageLoader.load("boomer.png"), 270, pointerLocationY);
+        playGame = new SpriteFont("PLAY GAME", 310, 269, "Times New Roman", 30, new Color(49, 207, 240));
+        playGame.setOutlineColor(Color.black);
+        playGame.setOutlineThickness(4);
+        credits = new SpriteFont("CREDITS", 310, 319, "Times New Roman", 30, new Color(49, 207, 240));
+        credits.setOutlineColor(Color.black);
+        credits.setOutlineThickness(4);
+        controls = new SpriteFont("CONTROLS", 310, 369, "Times New Roman", 30, new Color(49, 207, 240));
+        controls.setOutlineColor(Color.black);
+        controls.setOutlineThickness(4);
         background = new TitleScreenMap();
         background.setAdjustCamera(false);
         keyPressTimer = 0;
@@ -86,24 +86,28 @@ public class MenuScreen extends Screen {
 
         // sets location for blue square in front of text (pointerLocation) and also
         // sets color of spritefont text based on which menu item is being hovered
+        //also sets outline color as white if not highlighted
         if (currentMenuItemHovered == 0) {
-            playGame.setColor(new Color(255, 184, 29));
-            credits.setColor(new Color(12, 35, 64));
-            controls.setColor(new Color(12, 35, 64));
-            setPointerLocationX(120);
-            setPointerLocationY(275);
+            playGame.setColor(new Color(255, 215, 0));
+            credits.setColor(Color.white);
+            credits.setOutlineColor(new Color(12, 34, 63));
+            controls.setColor(Color.white);
+            controls.setOutlineColor(new Color(12, 34, 63));
+            boomer.setY(270);
         } else if (currentMenuItemHovered == 1) {
-            playGame.setColor(new Color(12, 35, 64));
-            credits.setColor(new Color(255, 184, 29));
-            controls.setColor(new Color(12, 35, 64));
-            setPointerLocationX(120);
-            setPointerLocationY(325);
+            playGame.setColor(Color.white);
+            playGame.setOutlineColor(new Color(12, 34, 63));
+            credits.setColor(new Color(255, 215, 0));
+            controls.setColor(Color.white);
+            controls.setOutlineColor(new Color(12, 34, 63));
+            boomer.setY(320);
         } else if (currentMenuItemHovered == 2) {
-            playGame.setColor(new Color(12, 35, 64));
-            credits.setColor(new Color(12, 35, 64));
-            controls.setColor(new Color(255, 184, 29));
-            setPointerLocationX(120);
-            setPointerLocationY(375);
+            playGame.setColor(Color.white);
+            playGame.setOutlineColor(new Color(12, 34, 63));
+            credits.setColor(Color.white);
+            credits.setOutlineColor(new Color(12, 34, 63));
+            controls.setColor(new Color(255, 215, 0));
+            boomer.setY(370);
         }
 
         // if space is pressed on menu item, change to appropriate screen based on which
@@ -131,16 +135,7 @@ public class MenuScreen extends Screen {
         credits.draw(graphicsHandler);
         controls.draw(graphicsHandler);
         boomer.draw(graphicsHandler);
-        // graphicsHandler.drawFilledRectangleWithBorder(pointerLocationX,
-        // pointerLocationY, 20, 20,
-        // new Color(49, 207, 240), Color.black, 2);
-    }
-
-    public void setPointerLocationX(int pointerLocationX) {
-        this.pointerLocationX = pointerLocationX;
-    }
-
-    public void setPointerLocationY(int pointerLocationY) {
-        this.pointerLocationY = pointerLocationY;
+        // graphicsHandler.drawFilledRectangleWithBorder(pointerLocationX, pointerLocationY, 20, 20,
+        //         new Color(49, 207, 240), Color.black, 2);
     }
 }

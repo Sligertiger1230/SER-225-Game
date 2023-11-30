@@ -3,52 +3,58 @@ package Scripts.Quests;
 import Level.NPC;
 import Level.Script;
 import Level.ScriptState;
-import Maps.TestMap;
-import Utils.Direction;
 
-// trigger script at beginning of game to set that heavy emotional plot
 public class JaiswalDrawQuestDrawRoom extends Script<NPC> {
-
-    private int amountMoved;
-    private int sequence = 0;
-
     @Override
     protected void setup() {
-        if (!isFlagSet("jaiswalWalkingInPuzzle")) {
-            lockPlayer();
-            showTextbox();
+        nextStep("Dr. J's Logo Dilemma");
+        lockPlayer();
+        showPortrait("jaiswalPortrait.png");
+        showTextbox();
 
-            if (!isFlagSet("hasTalkedToJaiswalInPuzzle")) {
-                addTextToTextboxQueue("Alright, we have arrived!");
-                addTextToTextboxQueue(
-                        "My favorite superhero is Superman, and I want to\nmake my logo the emblem of his.");
-                addTextToTextboxQueue("The problem is that some of the tiles are missing.");
-                addTextToTextboxQueue(
-                        "If you can match the tiles to where the blank spaces\nare, that would be amazing!");
-                addTextToTextboxQueue(
-                        "Just push the tiles by walking up to them and moving\nthem in any direction you need.");
-                addTextToTextboxQueue(
-                        "Once you are done head to the bottom right and hit the\nsign to complete the quest!");
-            }
+        if (isFlagSet("hasTalkedToJavaJohn")) {
+            addTextToTextboxQueue("Why thank you, dear boy!");
+            addTextToTextboxQueue("I couldn't have done this without your amazing\nhelp!");
+            addTextToTextboxQueue("Well, I must be off. I have some SER120 projects\nto meticulously grade.");
+            addTextToTextboxQueue("I swear if I see one more person use 'i' in\ntheir for-loop...");
+            addTextToTextboxQueue("...Ahh, never mind. Good luck with the rest\nof your journey!");
+            addTextToTextboxQueue("Use the sign in the bottom right when you are\nready to leave.");
+        } else {
+            addTextToTextboxQueue("Alright, we have arrived!");
+            addTextToTextboxQueue(
+                    "My favorite superhero is Superman, and I want to\nmake my logo the emblem of his.");
+            addTextToTextboxQueue("The problem is that some of the tiles are missing.");
+            addTextToTextboxQueue(
+                    "If you can match the tiles to where the blank spaces\nare, that would be amazing!");
+            addTextToTextboxQueue(
+                    "Just push the tiles by walking up to them and moving\nthem in any direction you need.");
+            addTextToTextboxQueue(
+                    "Come back and see me when you're done!\nIt will say in the terminal when you have finished.");
         }
     }
 
     @Override
     protected void cleanup() {
-        // removes text and lets player walk
         unlockPlayer();
-        hideTextbox();
         hidePortrait();
+        hideTextbox();
 
-        if (!isFlagSet("hasTalkedToJaiswalInPuzzle")) {
-            setFlag("hasTalkedToJaiswalInPuzzle");
-            setFlag("jaiswalWalkingInPuzzle");
+        if (!isFlagSet("hasTalkedToJavaJohn")) {
+            // set flag so john will react differently when talked to again
+            setFlag("hasTalkedToJavaJohn");
+        }
+        // if user has picked up glasses
+        if (isFlagSet("hasPickedUpGlasses")) {
+            // hides user since they reached off screen
+            // updates next step, since there is no next step quest just completes
+            nextStep("Help Java John get his glasses");
         }
     }
 
     @Override
     public ScriptState execute() {
-        if (!isFlagSet("hasTalkedToJaiswalInPuzzle")) {
+        // runs this code if you haven't talked to java john
+        if (!isFlagSet("hasTalkedToJavaJohn")) {
             // setup() function
             start();
             // goes through text
@@ -57,39 +63,20 @@ public class JaiswalDrawQuestDrawRoom extends Script<NPC> {
             }
             // cleanup() function
             end();
-        }
-        if (isFlagSet("jaiswalWalkingInPuzzle")) {
-            // player is not locked, but nathan walks
-            // sequence determines whether nathan is moving right or down
-            if (sequence == 0) {
-                entity.walk(Direction.UP, 2);
-                amountMoved += 1;
-                if (amountMoved >= 100) {
-                    sequence++;
-                    amountMoved = 0;
-                }
-                return ScriptState.RUNNING;
-            } else {
-                entity.walk(Direction.UP, 2);
-                amountMoved += 1;
-                if (amountMoved == 17) {
-                    amountMoved = 0;
-                    unsetFlag("nathanRunning");
-                    entity.stand(Direction.LEFT);
-                    entity.setIsHidden(true);
-                    end();
-                } else {
-                    return ScriptState.RUNNING;
-                }
-            }
-        } else {
-            // setup() function
+        } else if (isFlagSet("hasPickedUpGlasses")) {
+            // setup function
             start();
-            // goes through text
+            // if there is text run
             if (!isTextboxQueueEmpty()) {
                 return ScriptState.RUNNING;
             }
-            // cleanup() function
+        } else if (isFlagSet("hasTalkedToJavaJohn")) {
+            // setup function
+            start();
+            if (!isTextboxQueueEmpty()) {
+                return ScriptState.RUNNING;
+            }
+            // cleanup function
             end();
         }
         return ScriptState.COMPLETED;

@@ -18,7 +18,7 @@ public class NathanBicycleScript extends Script {
             addTextToTextboxQueue("...");
             addTextToTextboxQueue("(No one is using this bike now that the shoeless\nboy is gone)");
             addTextToTextboxQueue("*Looks around to see if anyone is watching*");
-            addTextToTextboxQueue("YOU GOT THE BIKE!!!\nHold E before moving to equip it.");
+            addTextToTextboxQueue("YOU GOT THE BIKE!!!\nHold E while running to use it.");
         }
     }
 

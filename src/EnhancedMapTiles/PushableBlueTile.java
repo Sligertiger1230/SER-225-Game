@@ -15,6 +15,9 @@ import Utils.Point;
 // This class is for the special rock in the map that can be moved around by the player
 // when the player walks into it, it will be "pushed" forward in the same direction the player was moving in
 public class PushableBlueTile extends EnhancedMapTile {
+
+    private boolean questCompleted = false; // Flag to track completion
+
     public PushableBlueTile(Point location) {
         super(location.x, location.y, new SpriteSheet(ImageLoader.load("CommonTileset.png"), 16, 16),
                 TileType.NOT_PASSABLE);
@@ -44,6 +47,11 @@ public class PushableBlueTile extends EnhancedMapTile {
                     moveYHandleCollision(1);
                 }
             }
+        }
+
+        if (!questCompleted && x >= 706 && x <= 726 && y >= 566 && y <= 586) {
+            System.out.println("Blue Complete!");
+            questCompleted = true; // Set the flag to indicate quest completion
         }
 
         // System.out.println("PushableBlueTile current location: " + new Point(x, y));

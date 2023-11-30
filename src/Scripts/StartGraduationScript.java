@@ -34,11 +34,11 @@ public class StartGraduationScript extends Script {
     @Override
     protected ScriptState execute() {
         start();
-        if (!isTextboxQueueEmpty()){
+        if (!isTextboxQueueEmpty()) {
             return ScriptState.RUNNING;
         }
         end();
         return ScriptState.COMPLETED;
     }
-    
+
 }
