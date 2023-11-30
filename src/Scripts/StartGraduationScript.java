@@ -11,6 +11,13 @@ public class StartGraduationScript extends Script {
         showTextbox();
         
         addTextToTextboxQueue("*DING DONG!* Attention all students! You all have graduated\nat the same time");
+        addTextToTextboxQueue("*Please report to the Gym that we have \n repurposed to host graduation");
+
+        createStepList();
+        addStep("Walk to the Orientation room");
+        createTriggerList();
+        addQuest("Graduate!!");
+
     }
 
     @Override
@@ -19,6 +26,8 @@ public class StartGraduationScript extends Script {
         hideTextbox();
 
         setFlag("completedAllQuests");
+        setFlag("Orientation");
+        unsetFlag("Graduation");
     }
 
     @Override

@@ -8,9 +8,14 @@ import Game.ScreenCoordinator;
 import Level.*;
 import Maps.CCEClassroom;
 import Maps.DrawQuest;
+import Maps.Graduation;
 import Maps.OrientationRoom;
 import Maps.IceRink;
+import Maps.IceRink1;
+import Maps.IceRink2;
+import Maps.IceRinkNPC;
 import Maps.TestMap;
+import Maps.TutorialRoom;
 import Players.Cat;
 import Scripts.StartGraduationScript;
 import Utils.Direction;
@@ -49,6 +54,19 @@ public class PlayLevelScreen extends Screen {
 
         // judy flag
         flagManager.addFlag("hasStartedGame", false);
+        flagManager.addFlag("tutorialTime", false);
+
+        // tutorial flags
+        flagManager.addFlag("isInTutorialRoom", false);
+        flagManager.addFlag("isWalkingForward", false);
+        flagManager.addFlag("hasWalkedForward", false);
+        flagManager.addFlag("choosesTutorial", false);
+        flagManager.addFlag("skipsTutorial", false);
+        flagManager.addFlag("returningFromTutorial", false);
+        flagManager.addFlag("hasPressedQ", false);
+        flagManager.addFlag("completedTutorial", false);
+        flagManager.addFlag("isSprinting", false);
+
 
         flagManager.addFlag("hasFinishedAllQuests");
 
@@ -95,7 +113,17 @@ public class PlayLevelScreen extends Screen {
         flagManager.addFlag("hasTalkedToNPCBoy1", false);
         flagManager.addFlag("hasTalkedToNPCGirl1", false);
 
+        //Ice flags
+        flagManager.addFlag("hasTalkedToIceWalrus", false);
+        flagManager.addFlag("hasTalkedToIceWalrus2", false);
+        flagManager.addFlag("hasTalkedToIceWalrus3", false);
+        flagManager.addFlag("Ice1", true);
+        flagManager.addFlag("Ice2", true);
+        flagManager.addFlag("Ice3", true);
         flagManager.addFlag("completedAllQuests", false);
+        //false means it will start one
+        flagManager.addFlag("Orientation", false);
+        flagManager.addFlag("Graduation", true);
 
         // define/setup map
         this.map = loadMap(4);
@@ -179,8 +207,18 @@ public class PlayLevelScreen extends Screen {
                     this.map.setQuestMenu(questMenu);
                     loadMapInfo(this.map);
                     this.player.setMap(this.map);
-                    Point playerStartPosition = map.getPlayerStartPosition();
-                    this.player.setLocation(playerStartPosition.x, playerStartPosition.y);
+                    if(player.getWasInCCE() == 1  && map.getIdSwitch() == 0){
+                        this.player.setLocation(4800, 2832); 
+                        player.setWasInCCE(0);
+                    }else if(player.getWasInCCE() == 2  && map.getIdSwitch() == 0){
+                        this.player.setLocation(6000, 1728); 
+                        player.setWasInCCE(0);
+                    }else{
+                        Point playerStartPosition = map.getPlayerStartPosition();
+                        this.player.setLocation(playerStartPosition.x, playerStartPosition.y);  
+                    }           
+
+
                 }
                 break;
             case ASTEROID:
@@ -243,15 +281,18 @@ public class PlayLevelScreen extends Screen {
                 newMap.setQuestMenu(questMenu);
                 musicPlayer.setFile(18);
                 musicPlayer.loop();
+                player.setWasInCCE(1);
+                System.out.println(player.getWasInCCE());
                 ambiencePlayer.setFile(28);
                 ambiencePlayer.loop();
                 return newMap;
             case 2:
-                newMap = new IceRink();
+                newMap = new IceRinkNPC();
                 newMap.setFlagManager(flagManager);
                 newMap.setNPCs();
                 newMap.setQuestMenu(questMenu);
                 musicPlayer.setFile(19);
+                player.setWasInCCE(2);
                 musicPlayer.loop();
                 return newMap;
             case 3:
@@ -271,6 +312,48 @@ public class PlayLevelScreen extends Screen {
                 musicPlayer.loop();
                 ambiencePlayer.setFile(28);
                 ambiencePlayer.loop();
+                return newMap;
+            case 5:
+                newMap = new TutorialRoom();
+                newMap.setFlagManager(flagManager);
+                newMap.setNPCs();
+                newMap.setQuestMenu(questMenu);
+                musicPlayer.setFile(20);
+                musicPlayer.loop();
+                ambiencePlayer.setFile(28);
+                ambiencePlayer.loop();
+                return newMap;
+            case 7:
+                newMap = new IceRink();
+                newMap.setFlagManager(flagManager);
+                newMap.setNPCs();
+                newMap.setQuestMenu(questMenu);
+                musicPlayer.setFile(20);
+                musicPlayer.loop();
+                return newMap;
+            case 8:
+                newMap = new IceRink2();
+                newMap.setFlagManager(flagManager);
+                newMap.setNPCs();
+                newMap.setQuestMenu(questMenu);
+                musicPlayer.setFile(20);
+                musicPlayer.loop();
+                return newMap;
+            case 9:
+                newMap = new IceRink1();
+                newMap.setFlagManager(flagManager);
+                newMap.setNPCs();
+                newMap.setQuestMenu(questMenu);
+                musicPlayer.setFile(20);
+                musicPlayer.loop();
+                return newMap;
+            case 10:
+                newMap = new Graduation();
+                newMap.setFlagManager(flagManager);
+                newMap.setNPCs();
+                newMap.setQuestMenu(questMenu);
+                musicPlayer.setFile(20);
+                musicPlayer.loop();
                 return newMap;
 
             default:
@@ -335,6 +418,10 @@ public class PlayLevelScreen extends Screen {
     }
 
     public void returnFromAsteroid() {
+        playLevelScreenState = PlayLevelScreenState.RUNNING;
+        asteroidScreen = null;
+    }
+    public void returnFromTutorial(){
         playLevelScreenState = PlayLevelScreenState.RUNNING;
         asteroidScreen = null;
     }

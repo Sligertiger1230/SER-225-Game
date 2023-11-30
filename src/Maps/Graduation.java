@@ -5,35 +5,34 @@ import java.util.ArrayList;
 import Level.Map;
 import Level.NPC;
 import Level.Trigger;
-import NPCs.Judy;
-import NPCs.IrishKid;
-import NPCs.EmoBoy;
-import NPCs.OrientationGirl;
-import NPCs.OrientationBoy2;
-import NPCs.OrientationBoy;
 import NPCs.BobcatGirl;
+import NPCs.EmoBoy;
+import NPCs.IrishKid;
+import NPCs.Judy;
+import NPCs.OrientationBoy;
+import NPCs.OrientationBoy2;
+import NPCs.OrientationGirl;
 import Scripts.CCEClassroom.ChangeMapScript;
-import Scripts.IceRink.JudyChangeMapScript;
-import Scripts.OrientationRoom.EmoBoyScript;
-import Scripts.OrientationRoom.OrientationGirlScript;
-import Scripts.OrientationRoom.OrientationBoyScript;
-import Scripts.OrientationRoom.OrientationBoy2Script;
 import Scripts.OrientationRoom.BobcatGirlScript;
-import Scripts.OrientationRoom.JudyScript;
+import Scripts.OrientationRoom.EmoBoyScript;
 import Scripts.OrientationRoom.IrishKidScript;
+import Scripts.OrientationRoom.JudyScript;
+import Scripts.OrientationRoom.OrientationBoy2Script;
+import Scripts.OrientationRoom.OrientationBoyScript;
+import Scripts.OrientationRoom.OrientationGirlScript;
 import Tilesets.CommonTileset;
 
-public class OrientationRoom extends Map{
-    public OrientationRoom() {
-        super("OrientationRoom.txt", new CommonTileset());
+public class Graduation extends Map{
+    public Graduation() {
+        super("Graduation.txt", new CommonTileset());
         this.playerStartPosition = getMapTile(15, 8).getLocation(); 
 
-        this.mapInt = 4;
-        this.idSwitch = 4;
+        this.mapInt = 10;
+        this.idSwitch = 10;
     }
     
     @Override
-    public ArrayList<NPC> loadNPCs() {
+    /*public ArrayList<NPC> loadNPCs() {
         ArrayList<NPC> npcs = new ArrayList<>();
 
         Judy judy = new Judy(0, getMapTile(16, 4).getLocation().subtractY(40));
@@ -66,8 +65,8 @@ public class OrientationRoom extends Map{
 
         return npcs;
 
-    }
-     public void loadScripts() {
+    }*/
+    public void loadScripts() {
         getMapTile(1, 2).setInteractScript(new ChangeMapScript(0));
 
         getMapTile(2, 2).setInteractScript(new ChangeMapScript(0));
@@ -84,13 +83,11 @@ public class OrientationRoom extends Map{
 
         getMapTile(28, 2).setInteractScript(new ChangeMapScript(0));
 
-     }
-     @Override
+    }
+    @Override
     public ArrayList<Trigger> loadTriggers() {
         ArrayList<Trigger> triggers = new ArrayList<>();
-
-        triggers.add(new Trigger((int)getMapTile(15, 8).getX(), (int)getMapTile(15, 8).getY(), 45, 45, new JudyChangeMapScript(5),"completedTutorial"));
+        triggers.add(new Trigger((int)getMapTile(15, 8).getX(), (int)getMapTile(15, 8).getY(), 45, 45, new JudyScript(), "hasStartedGame"));
         return triggers;
     }
-    
 }

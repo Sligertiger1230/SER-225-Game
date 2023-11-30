@@ -14,7 +14,7 @@ public class JavaJohnGlassesScript extends Script<NPC> {
         showTextbox();
         //advances from the first step to second step of JavaJohnScript.java quest
         nextStep("Help Java John get his glasses");
-        addTextToTextboxQueue("Ah, here they are. \nQuite spazzy looking must I say");
+        addTextToTextboxQueue("Ah, here they are. \nQuite snazzy looking must I say");
     }
 
     @Override

@@ -18,6 +18,8 @@ public class PushableRedTile extends EnhancedMapTile {
     public PushableRedTile(Point location) {
         super(location.x, location.y, new SpriteSheet(ImageLoader.load("CommonTileset.png"), 16, 16),
                 TileType.NOT_PASSABLE);
+
+        System.out.println("PushableRedTile initial location: " + location);
     }
 
     @Override
@@ -43,6 +45,8 @@ public class PushableRedTile extends EnhancedMapTile {
                 }
             }
         }
+
+        // System.out.println("PushableRedTile current location: " + new Point(x, y));
     }
 
     private boolean canMoveLeft(Player player) {
