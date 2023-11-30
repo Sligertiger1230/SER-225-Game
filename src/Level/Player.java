@@ -52,6 +52,7 @@ public abstract class Player extends GameObject {
     private boolean isPlayingSound;
     private Sound sounds;
 
+    protected int wasInCCE;
     private int delay;
 
     public static Boolean onIce = false;
@@ -384,7 +385,15 @@ public abstract class Player extends GameObject {
     public Direction getLastWalkingXDirection() {
         return lastWalkingXDirection;
     }
-    
+
+    public int getWasInCCE(){
+        return wasInCCE;
+    }
+
+    public void setWasInCCE(int wasInCCE){
+        this.wasInCCE = wasInCCE;
+    }
+
 
     public Direction getLastWalkingYDirection() {
         return lastWalkingYDirection;

@@ -85,6 +85,20 @@ public class NPC extends MapEntity {
         }
     }
 
+    public void animate(int animation){
+        switch (animation){
+            case 0:
+                this.currentAnimationName = "ANIMATION_0";
+                break;
+            case 1:
+                this.currentAnimationName = "ANIMATION_1";
+                break;
+            case 2:
+                this.currentAnimationName = "ANIMATION_2";
+                break;
+        }
+    }
+
     public void walk(Direction direction, float speed) {
         if (direction == Direction.RIGHT) {
             this.currentAnimationName = "WALK_RIGHT";

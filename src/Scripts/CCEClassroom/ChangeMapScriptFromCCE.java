@@ -13,10 +13,10 @@ import Game.ScreenCoordinator;
 
 
 
-public class ChangeMapScript extends Script {
+public class ChangeMapScriptFromCCE extends Script {
     private int idSwitch;
 
-    public ChangeMapScript(int idSwitch) {
+    public ChangeMapScriptFromCCE(int idSwitch) {
         this.idSwitch = idSwitch;
     }
 
@@ -27,11 +27,13 @@ public class ChangeMapScript extends Script {
 
     @Override
     protected void cleanup() {
+
     }
 
     @Override
     protected ScriptState execute() {
         map.setIdSwitch(idSwitch);
+        player.setLocation(100,100);
         return ScriptState.COMPLETED;
     }
 }

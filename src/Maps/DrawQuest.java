@@ -19,7 +19,7 @@ public class DrawQuest extends Map {
     public DrawQuest() {
         super("DrawQuest.txt", new CommonTileset());
         this.playerStartPosition = new Point(2, 2);
-        this.idSwitch = 3;  
+        this.idSwitch = 3;
         this.mapInt = 3;
     }
 
@@ -29,6 +29,11 @@ public class DrawQuest extends Map {
 
         PushableRedTile pushableRedTile = new PushableRedTile(getMapTile(4, 3).getLocation());
         enhancedMapTiles.add(pushableRedTile);
+
+        // Check if the PushableRedTile's location is (7, 8), then remove it
+        if (pushableRedTile.getLocation().equals(new Point(7, 8))) {
+            enhancedMapTiles.remove(pushableRedTile);
+        }
 
         PushableYellowTile pushableYellowTile = new PushableYellowTile(getMapTile(6, 3).getLocation());
         enhancedMapTiles.add(pushableYellowTile);
