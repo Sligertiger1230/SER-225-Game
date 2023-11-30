@@ -60,6 +60,7 @@ public class IceRinkBobcatQuest extends Script<NPC> {
         else{
             addTextToTextboxQueue("Thank you so much for Helping!!!!");
             nextStep("Turn down the Heat");
+            getNPC(0).setIsHidden(true);
         }
     }
 
