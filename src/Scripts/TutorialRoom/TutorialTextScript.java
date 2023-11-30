@@ -14,6 +14,7 @@ import Scripts.CCEClassroom.ChangeMapScript;
 import Utils.Direction;
 
 public class TutorialTextScript extends Script {
+    private int Sequence = 0;
 
     @Override
     protected void setup() {
@@ -36,7 +37,8 @@ public class TutorialTextScript extends Script {
                 addTextToTextboxQueue("Your mother and I are so proud.");
                 addTextToTextboxQueue("Use Q to access the quest menu.");
                 addTextToTextboxQueue("You'll encounter people who need\nyour help.");
-                setFlag("completedTutorial"); 
+                    setFlag("completedTutorial"); 
+                    setFlag("returningFromTutorial");
 
         } else if(isFlagSet("skipsTutorial")){
             addTextToTextboxQueue("You feel yourself waking up..");
@@ -44,31 +46,22 @@ public class TutorialTextScript extends Script {
                         setFlag("returningFromTutorial");
             
         } else if(isFlagSet("hasWalkedForward")){
-
-            addTextToTextboxQueue("Great job using your legs there buddy.");
-            addTextToTextboxQueue("Lets move on to something more\nchallenging.");
-            addTextToTextboxQueue("You can hold the shift button to sprint.");
-            addTextToTextboxQueue("You'll go really fast with this.\ntry it out.");
-              while (!Keyboard.isKeyDown(Key.SHIFT) ){
-                    if (Keyboard.isKeyDown(Key.SHIFT)) {
-                        setFlag("isSprinting");
-                            
-                    }
+            if (Sequence == 1) {
+                Sequence++;
+                addTextToTextboxQueue("Great job using your legs there buddy.");
+                addTextToTextboxQueue("Lets move on to something more\nchallenging.");
+                addTextToTextboxQueue("You can hold the shift button to sprint.");
+                addTextToTextboxQueue("You'll go really fast with this.\ntry it out.");
+            }
         
-        }
         } else if (isFlagSet("choosesTutorial")){
-
+            if (Sequence == 0) {
+                Sequence++;
                 addTextToTextboxQueue("Lets begin with movement.");
                 addTextToTextboxQueue("Use the arrow keys to move around.");
                 addTextToTextboxQueue("For now, just walk forward using\nthe up arrow.");
-                
-                    while (!Keyboard.isKeyDown(Key.DOWN) ){
-                        if (Keyboard.isKeyDown(Key.DOWN)) {
-                            setFlag("hasWalkedForward");
-                                
-                        }
-                }
-
+            }
+               
         } else {
             addTextToTextboxQueue("Welcome to the dream realm humble \nQuinnipiac student.");
             addTextToTextboxQueue("It is I, the tutorial master.");
@@ -100,12 +93,32 @@ public class TutorialTextScript extends Script {
             if (!isTextboxQueueEmpty()) {
                 return ScriptState.RUNNING;
             }
-        }
-        if(isFlagSet("returningFromTutorial")) {
+        } if(isFlagSet("returningFromTutorial")) {
             map.setIdSwitch(4);
+         } else if(isFlagSet("isSprinting")){
+             start();
+            if (!isTextboxQueueEmpty()) {
+                return ScriptState.RUNNING;
+            }
+            map.setIdSwitch(4);
+            return ScriptState.COMPLETED; 
+        } else if(isFlagSet("hasWalkedForward")){
+            unlockPlayer();
+            if (Keyboard.isKeyDown(Key.SHIFT) && (Keyboard.isKeyDown(Key.UP) || Keyboard.isKeyDown(Key.LEFT) || Keyboard.isKeyDown(Key.RIGHT) || Keyboard.isKeyDown(Key.DOWN))){
+            setFlag("isSprinting");   
+             }
+            } else if (isFlagSet(("choosesTutorial"))){
+                start();
+                if (!isTextboxQueueEmpty()) {
+                return ScriptState.RUNNING;
+        }
+        unlockPlayer();
+        if (Keyboard.isKeyDown(Key.DOWN) || (Keyboard.isKeyDown(Key.UP) || (Keyboard.isKeyDown(Key.LEFT) || (Keyboard.isKeyDown(Key.RIGHT))))){
+            setFlag("hasWalkedForward");
+
+            }
         }
         end();
-
         return ScriptState.COMPLETED;
     }
 }

@@ -59,7 +59,7 @@ public class PlayLevelScreen extends Screen {
         flagManager.addFlag("returningFromTutorial", false);
         flagManager.addFlag("hasPressedQ", false);
         flagManager.addFlag("completedTutorial", false);
-        flagManager.addFlag("hasSprinted", false);
+        flagManager.addFlag("isSprinting", false);
 
 
         // Walrus Fish quest
