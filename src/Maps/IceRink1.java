@@ -8,16 +8,16 @@ import Scripts.CCEClassroom.ChangeMapScript;
 import Scripts.IceRink.IceChangeMapScript;
 import Scripts.IceRink.Slide;
 import Scripts.IceRink.SlipperyIce;
-import Scripts.Quests.PubSafetyDectScript;
+import Scripts.TestMap.TreeScript;
 import Tilesets.CommonTileset;
 import Utils.Point;
 
-public class IceRink extends Map{
-    public IceRink() {
-        super("IceRink.txt", new CommonTileset());
+public class IceRink1 extends Map{
+     public IceRink1() {
+        super("IceRink1.txt", new CommonTileset());
         this.playerStartPosition = getMapTile(9, 15).getLocation();
-        this.mapInt = 7;
-        this.idSwitch = 7;
+        this.mapInt = 9;
+        this.idSwitch = 9;
     }
 
     @Override
@@ -29,9 +29,9 @@ public class IceRink extends Map{
         return triggers;
     }
 
+    @Override
     public void loadScripts() {
 
         getMapTile(9, 30).setInteractScript(new IceChangeMapScript(2));
     }
-
 }

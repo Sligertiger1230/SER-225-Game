@@ -25,8 +25,8 @@ public class IceChangeMapScript extends Script {
     protected void setup() {
         showTextbox();
         lockPlayer();
-        addTextToTextboxQueue("Congrats you made it to the end");
-        addTextToTextboxQueue("Maybe next time don't go on the ice without skates");
+        addTextToTextboxQueue("I think this is the heating controller \n let me turn it down a bit");
+        addTextToTextboxQueue("Hopefully the ice is good for the big game this weekend.");
     }
 
     @Override
@@ -45,4 +45,5 @@ public class IceChangeMapScript extends Script {
         end();
         return ScriptState.COMPLETED;
     }
+    
 }

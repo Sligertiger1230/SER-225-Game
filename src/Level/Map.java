@@ -271,7 +271,7 @@ public abstract class Map {
         return idSwitch;
     }
 
-    public int getMapTP(int mapTP) {
+    public int getMapTP() {
         return mapTP;
     }
 

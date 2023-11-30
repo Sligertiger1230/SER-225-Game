@@ -187,6 +187,11 @@ public class TestMap extends Map {
 
         getMapTile(100, 59).setInteractScript(new ChangeMapScript(1));
 
-        getMapTile(122, 40).setInteractScript(new ChangeMapScript(2));
+
+        //Shuttle interact
+        getMapTile(124, 39).setInteractScript(new ChangeMapScript(2));
+        getMapTile(125, 39).setInteractScript(new ChangeMapScript(2));
+        getMapTile(126, 39).setInteractScript(new ChangeMapScript(2));
+        getMapTile(127, 39).setInteractScript(new ChangeMapScript(2));
     }
 }
