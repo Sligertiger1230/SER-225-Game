@@ -33,7 +33,7 @@ public class PlayerShip extends Ship {
                 invulnCounter = 0;
             }
         }
-        
+
         moveAmountX = 0;
         moveAmountY = 0;
 
@@ -89,12 +89,12 @@ public class PlayerShip extends Ship {
     public void handleHit() {
         invuln = true;
         health--;
-        if (health == 0){
+        if (health == 0) {
             isPlayerDead = true;
         } else {
             handleInvulnDirection();
         }
-        
+
     }
 
     public void handleInvulnDirection() {
@@ -131,6 +131,25 @@ public class PlayerShip extends Ship {
             }
         }
         return false;
+    }
+
+    @Override
+    public String getCurrentAnimationName() {
+        if (currentAnimationName.startsWith("HURT")) {
+            switch (aimingDirection) {
+                case UP:
+                    return "STAND_UP";
+                case DOWN:
+                    return "STAND_DOWN";
+                case LEFT:
+                    return "STAND_LEFT";
+                case RIGHT:
+                    return "STAND_RIGHT";
+                default:
+                    return "STAND_UP";
+            }
+        }
+        return currentAnimationName;
     }
 
     @Override

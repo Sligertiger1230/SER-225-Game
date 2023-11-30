@@ -14,11 +14,11 @@ public class JaiswalDrawQuestDrawRoom extends Script<NPC> {
 
     @Override
     protected void setup() {
-        if (!isFlagSet("nathanRunning")) {
+        if (!isFlagSet("jaiswalWalkingInPuzzle")) {
             lockPlayer();
             showTextbox();
 
-            if (!isFlagSet("hasTalkedToNathan")) {
+            if (!isFlagSet("hasTalkedToJaiswalInPuzzle")) {
                 addTextToTextboxQueue("Alright, we have arrived!");
                 addTextToTextboxQueue(
                         "My favorite superhero is Superman, and I want to\nmake my logo the emblem of his.");
@@ -29,8 +29,6 @@ public class JaiswalDrawQuestDrawRoom extends Script<NPC> {
                         "Just push the tiles by walking up to them and moving\nthem in any direction you need.");
                 addTextToTextboxQueue(
                         "Once you are done head to the bottom right and hit the\nsign to complete the quest!");
-            } else {
-                addTextToTextboxQueue("Good luck!");
             }
         }
     }
@@ -42,16 +40,15 @@ public class JaiswalDrawQuestDrawRoom extends Script<NPC> {
         hideTextbox();
         hidePortrait();
 
-        if (!isFlagSet("hasTalkedToNathan")) {
-            setFlag("hasTalkedToNathan");
-        } else {
-            setFlag("nathanRunning");
+        if (!isFlagSet("hasTalkedToJaiswalInPuzzle")) {
+            setFlag("hasTalkedToJaiswalInPuzzle");
+            setFlag("jaiswalWalkingInPuzzle");
         }
     }
 
     @Override
     public ScriptState execute() {
-        if (!isFlagSet("hasTalkedToNathan")) {
+        if (!isFlagSet("hasTalkedToJaiswalInPuzzle")) {
             // setup() function
             start();
             // goes through text
@@ -60,7 +57,8 @@ public class JaiswalDrawQuestDrawRoom extends Script<NPC> {
             }
             // cleanup() function
             end();
-        } else if (isFlagSet("nathanRunning")) {
+        }
+        if (isFlagSet("jaiswalWalkingInPuzzle")) {
             // player is not locked, but nathan walks
             // sequence determines whether nathan is moving right or down
             if (sequence == 0) {

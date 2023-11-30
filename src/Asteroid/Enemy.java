@@ -22,8 +22,10 @@ public class Enemy extends Ship {
     }
 
     @Override
-    public void update(){
+    public void update() {
         super.update();
+
+        checkPlayerOnSide();
 
         moveAmountX = 0;
         moveAmountY = 0;
@@ -40,21 +42,58 @@ public class Enemy extends Ship {
         return false;
     }
 
+    public void checkPlayerOnSide() {
+        switch (this.aimingDirection) {
+            case UP:
+            case DOWN:
+                if (playerShip.getX() < this.x
+                        && playerShip.getY() >= this.y - 26
+                        && playerShip.getY() <= this.y + 26) {
+                    this.currentAnimationName = "STAND_LEFT";
+                } else if (playerShip.getX() > this.x
+                        && playerShip.getY() >= this.y - 26
+                        && playerShip.getY() <= this.y + 26) {
+                    this.currentAnimationName = "STAND_RIGHT";
+                } else if (playerShip.getY() > this.y) {
+                    this.currentAnimationName = "STAND_DOWN";
+                } else if (playerShip.getY() < this.y) {
+                    this.currentAnimationName = "STAND_UP";
+                }
+                break;
+            case LEFT:
+            case RIGHT:
+                if (playerShip.getY() <= this.y
+                        && playerShip.getX() >= this.x - 13
+                        && playerShip.getX() <= this.x + 13) {
+                    this.currentAnimationName = "STAND_UP";
+                } else if (playerShip.getY() >= this.y
+                        && playerShip.getX() >= this.x - 13
+                        && playerShip.getX() <= this.x + 13) {
+                    this.currentAnimationName = "STAND_DOWN";
+                } else if (playerShip.getX() > this.x) {
+                    this.currentAnimationName = "STAND_RIGHT";
+                } else if (playerShip.getX() < this.x) {
+                    this.currentAnimationName = "STAND_LEFT";
+                }
+                break;
+        }
+    }
+
     @Override
     void handleHit() {
         health--;
-        if (health == 0){
+        if (health == 0) {
             aster.collectEnemy(this);
         }
     }
 
     @Override
     void handleShipShooting() {
-        switch (aimingDirection) {
-            case RIGHT:
-            case LEFT:
+        switch (currentAnimationName) {
+            case "STAND_RIGHT":
+            case "STAND_LEFT":
                 if (y > playerShip.getY() - 5 && y < playerShip.getY() + 5) {
-                    if (!shot){
+                    if (!shot) {
                         fire();
                         shot = true;
                     }
@@ -62,8 +101,8 @@ public class Enemy extends Ship {
                     shot = false;
                 }
                 break;
-            case UP:
-            case DOWN:
+            case "STAND_UP":
+            case "STAND_DOWN":
                 if (x > playerShip.getX() - 5 && x < playerShip.getX() + 5) {
                     if (!shot) {
                         fire();
@@ -72,6 +111,9 @@ public class Enemy extends Ship {
                 } else {
                     shot = false;
                 }
+                break;
+            default:
+                break;
         }
     }
 

@@ -3,6 +3,7 @@ package Screens;
 import Engine.*;
 import Game.GameState;
 import Game.ScreenCoordinator;
+import GameObject.Sprite;
 import Level.Map;
 import Level.Sound;
 import Maps.TitleScreenMap;
@@ -25,6 +26,8 @@ public class MenuScreen extends Screen {
 
     protected Sound cursorSound;
 
+    private Sprite boomer;
+
     public MenuScreen(ScreenCoordinator screenCoordinator) {
         this.screenCoordinator = screenCoordinator;
         cursorSound = new Sound();
@@ -32,13 +35,14 @@ public class MenuScreen extends Screen {
 
     @Override
     public void initialize() {
-        playGame = new SpriteFont("PLAY GAME", 200, 119, "Comic Sans", 30, new Color(49, 207, 240));
+        boomer = new Sprite(ImageLoader.load("boomer.png"), pointerLocationX, pointerLocationY);
+        playGame = new SpriteFont("PLAY GAME", 150, 269, "Comic Sans", 30, new Color(49, 207, 240));
         playGame.setOutlineColor(Color.black);
         playGame.setOutlineThickness(3);
-        credits = new SpriteFont("CREDITS", 200, 219, "Comic Sans", 30, new Color(49, 207, 240));
+        credits = new SpriteFont("CREDITS", 150, 319, "Comic Sans", 30, new Color(49, 207, 240));
         credits.setOutlineColor(Color.black);
         credits.setOutlineThickness(3);
-        controls = new SpriteFont("CONTROLS", 200, 319, "Comic Sans", 30, new Color(49, 207, 240));
+        controls = new SpriteFont("CONTROLS", 150, 369, "Comic Sans", 30, new Color(49, 207, 240));
         controls.setOutlineColor(Color.black);
         controls.setOutlineThickness(3);
         background = new TitleScreenMap();
@@ -86,20 +90,20 @@ public class MenuScreen extends Screen {
             playGame.setColor(new Color(255, 215, 0));
             credits.setColor(new Color(49, 207, 240));
             controls.setColor(new Color(49, 207, 240));
-            pointerLocationX = 170;
-            pointerLocationY = 130;
+            setPointerLocationX(120);
+            setPointerLocationY(275);
         } else if (currentMenuItemHovered == 1) {
             playGame.setColor(new Color(49, 207, 240));
             credits.setColor(new Color(255, 215, 0));
             controls.setColor(new Color(49, 207, 240));
-            pointerLocationX = 170;
-            pointerLocationY = 230;
+            setPointerLocationX(120);
+            setPointerLocationY(325);
         } else if (currentMenuItemHovered == 2) {
             playGame.setColor(new Color(49, 207, 240));
             credits.setColor(new Color(49, 207, 240));
             controls.setColor(new Color(255, 215, 0));
-            pointerLocationX = 170;
-            pointerLocationY = 330;
+            setPointerLocationX(120);
+            setPointerLocationY(375);
         }
 
         // if space is pressed on menu item, change to appropriate screen based on which
@@ -126,7 +130,16 @@ public class MenuScreen extends Screen {
         playGame.draw(graphicsHandler);
         credits.draw(graphicsHandler);
         controls.draw(graphicsHandler);
-        graphicsHandler.drawFilledRectangleWithBorder(pointerLocationX, pointerLocationY, 20, 20,
-                new Color(49, 207, 240), Color.black, 2);
+        boomer.draw(graphicsHandler);
+        // graphicsHandler.drawFilledRectangleWithBorder(pointerLocationX, pointerLocationY, 20, 20,
+        //         new Color(49, 207, 240), Color.black, 2);
+    }
+
+    public void setPointerLocationX(int pointerLocationX) {
+        this.pointerLocationX = pointerLocationX;
+    }
+
+    public void setPointerLocationY(int pointerLocationY) {
+        this.pointerLocationY = pointerLocationY;
     }
 }

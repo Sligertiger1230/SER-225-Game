@@ -34,5 +34,7 @@ Changes to content in the `docs` folder will not show up on the website unless t
 ## Credits
 
 **Julia Bock, Ryan Sliger, Brooks Jackson, Connor Ryan, Hayden Lacey\***: Programmed new elements and created new game
+##
 **Alex Thimineur**: Programmed the base game
+##
 **Julia Bock**: Made the art

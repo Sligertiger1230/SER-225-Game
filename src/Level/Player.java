@@ -46,12 +46,15 @@ public abstract class Player extends GameObject {
     protected Key INTERACT_KEY = Key.SPACE;
     protected Key SPRINT_KEY = Key.SHIFT;
     protected Key TOGGLE_BIKE = Key.E;
+    protected Key EMOTE = Key.F;
 
     private ScheduledExecutorService soundExecutor;
     private boolean isPlayingSound;
     private Sound sounds;
 
     protected int wasInCCE;
+    private int delay;
+
     public static Boolean onIce = false;
 
     public Boolean isBikeActive = false;
@@ -109,10 +112,8 @@ public abstract class Player extends GameObject {
             case INTERACTING:
                 playerInteracting();
                 break;
-            case BIKING:
-                //if (map.getFlagManager().isFlagSet("bikeActive")){
-                    playerBiking();
-                //}
+            case EMOTING:
+                playerEmoting();
                 break;
         }
     }
@@ -124,20 +125,20 @@ public abstract class Player extends GameObject {
             map.entityInteract(this);
         }
 
-        // if a bike key is pressed, player enters BIKING state
-        if ((Keyboard.isKeyDown(MOVE_LEFT_KEY) || Keyboard.isKeyDown(MOVE_RIGHT_KEY) || Keyboard.isKeyDown(MOVE_UP_KEY)
-                || Keyboard.isKeyDown(MOVE_DOWN_KEY)) && Keyboard.isKeyDown(TOGGLE_BIKE)) {
-            if (map.getFlagManager().isFlagSet("bikeActive")){
-                playerState = playerState.BIKING;
-            }
-            else {
-                playerState = PlayerState.WALKING;
-            }
-        }
         // if a walk key is pressed, player enters WALKING state
         else if (Keyboard.isKeyDown(MOVE_LEFT_KEY) || Keyboard.isKeyDown(MOVE_RIGHT_KEY) || Keyboard.isKeyDown(MOVE_UP_KEY)
                 || Keyboard.isKeyDown(MOVE_DOWN_KEY)) {
             playerState = PlayerState.WALKING;
+        }
+        else if (Keyboard.isKeyDown(EMOTE)) {
+        //    keyLocker.lockKey(EMOTE);
+            playerState = PlayerState.EMOTING;
+        }
+    }
+
+    protected void playerEmoting() {
+        if(Keyboard.isKeyUp(EMOTE)){
+            playerState = PlayerState.STANDING;
         }
     }
 
@@ -150,7 +151,9 @@ public abstract class Player extends GameObject {
 
         // if walk left key is pressed, move player to the left
         if (Keyboard.isKeyDown(MOVE_LEFT_KEY)) {
-            if (Keyboard.isKeyDown(SPRINT_KEY)) {
+            if ((map.getFlagManager().isFlagSet("bikeActive")) && Keyboard.isKeyDown(TOGGLE_BIKE)) {
+                moveAmountX -= walkSpeed * 6;
+            } else if (Keyboard.isKeyDown(SPRINT_KEY)) {
                 moveAmountX -= walkSpeed * 3;
             } else {
                 moveAmountX -= walkSpeed;
@@ -163,7 +166,9 @@ public abstract class Player extends GameObject {
         // if walk right key is pressed, move player to the right
         else if (Keyboard.isKeyDown(MOVE_RIGHT_KEY)) {
             // if shift is held down player will sprint
-            if (Keyboard.isKeyDown(SPRINT_KEY)) {
+            if ((map.getFlagManager().isFlagSet("bikeActive")) && Keyboard.isKeyDown(TOGGLE_BIKE)) {
+                moveAmountX += walkSpeed * 6;
+            } else if (Keyboard.isKeyDown(SPRINT_KEY)) {
                 moveAmountX += walkSpeed * 3;
             } else {
                 moveAmountX += walkSpeed;
@@ -177,7 +182,10 @@ public abstract class Player extends GameObject {
 
         if (Keyboard.isKeyDown(MOVE_UP_KEY)) {
             // if shift is held down player will sprint
-            if (Keyboard.isKeyDown(SPRINT_KEY)) {
+            if ((map.getFlagManager().isFlagSet("bikeActive")) && Keyboard.isKeyDown(TOGGLE_BIKE)) {
+                moveAmountY -= walkSpeed * 6;
+            }
+            else if (Keyboard.isKeyDown(SPRINT_KEY)) {
                 moveAmountY -= walkSpeed * 3;
             } else {
                 moveAmountY -= walkSpeed;
@@ -187,7 +195,10 @@ public abstract class Player extends GameObject {
             lastWalkingYDirection = Direction.UP;
         } else if (Keyboard.isKeyDown(MOVE_DOWN_KEY)) {
             // if shift is held down player will sprint
-            if (Keyboard.isKeyDown(SPRINT_KEY)) {
+            if ((map.getFlagManager().isFlagSet("bikeActive")) && Keyboard.isKeyDown(TOGGLE_BIKE)) {
+                moveAmountY += walkSpeed * 6;
+            }
+            else if (Keyboard.isKeyDown(SPRINT_KEY)) {
                 moveAmountY += walkSpeed * 3;
             } else {
                 moveAmountY += walkSpeed;
@@ -195,6 +206,8 @@ public abstract class Player extends GameObject {
             facingDirection = Direction.DOWN;
             currentWalkingYDirection = Direction.DOWN;
             lastWalkingYDirection = Direction.DOWN;
+        } else if (Keyboard.isKeyDown(EMOTE)) {
+            playerState = PlayerState.EMOTING;
         } else {
             currentWalkingYDirection = Direction.NONE;
         }
@@ -214,58 +227,6 @@ public abstract class Player extends GameObject {
             playerState = PlayerState.STANDING;
         }
     }
-
-    protected void playerBiking() {
-        if (!keyLocker.isKeyLocked(INTERACT_KEY) && Keyboard.isKeyDown(INTERACT_KEY)) {
-            keyLocker.lockKey(INTERACT_KEY);
-            map.entityInteract(this);
-        }
-
-        // if walk left key is pressed, move player to the left
-        if (Keyboard.isKeyDown(MOVE_LEFT_KEY)) {
-            moveAmountX -= walkSpeed * 6;
-            facingDirection = Direction.LEFT;
-            currentWalkingXDirection = Direction.LEFT;
-            lastWalkingXDirection = Direction.LEFT;
-        }
-
-        // if walk right key is pressed, move player to the right
-        else if (Keyboard.isKeyDown(MOVE_RIGHT_KEY)) {
-            moveAmountX += walkSpeed * 6;
-            facingDirection = Direction.RIGHT;
-            currentWalkingXDirection = Direction.RIGHT;
-            lastWalkingXDirection = Direction.RIGHT;
-            currentWalkingXDirection = Direction.NONE;
-        }
-
-        if (Keyboard.isKeyDown(MOVE_UP_KEY)) {
-            moveAmountY -= walkSpeed * 6;
-            currentWalkingYDirection = Direction.UP;
-            lastWalkingYDirection = Direction.UP;
-        } else if (Keyboard.isKeyDown(MOVE_DOWN_KEY)) {
-            moveAmountY += walkSpeed * 6;
-            currentWalkingYDirection = Direction.DOWN;
-            lastWalkingYDirection = Direction.DOWN;
-        } else {
-            currentWalkingYDirection = Direction.NONE;
-        }
-
-        if ((currentWalkingXDirection == Direction.RIGHT || currentWalkingXDirection == Direction.LEFT)
-                && currentWalkingYDirection == Direction.NONE) {
-            lastWalkingYDirection = Direction.NONE;
-        }
-
-        if ((currentWalkingYDirection == Direction.UP || currentWalkingYDirection == Direction.DOWN)
-                && currentWalkingXDirection == Direction.NONE) {
-            lastWalkingXDirection = Direction.NONE;
-        }
-
-        if (Keyboard.isKeyUp(MOVE_LEFT_KEY) && Keyboard.isKeyUp(MOVE_RIGHT_KEY) && Keyboard.isKeyUp(MOVE_UP_KEY)
-                && Keyboard.isKeyUp(MOVE_DOWN_KEY)) {
-            playerState = PlayerState.STANDING;
-        }
-    }
-
 
     // player INTERACTING state logic -- intentionally does nothing so player is
     // locked in place while a script is running
@@ -276,6 +237,9 @@ public abstract class Player extends GameObject {
         if (Keyboard.isKeyUp(INTERACT_KEY) && playerState != PlayerState.INTERACTING) {
             keyLocker.unlockKey(INTERACT_KEY);
         }
+        // if (Keyboard.isKeyUp(EMOTE) && playerState != PlayerState.EMOTING) {
+        //     keyLocker.unlockKey(EMOTE);
+        // }
     }
 
     // anything extra the player should do based on interactions can be handled here
@@ -299,16 +263,36 @@ public abstract class Player extends GameObject {
             // sets animation to a WALK animation based on which way player is facing
             //this.currentAnimationName = facingDirection == Direction.RIGHT ? "WALK_RIGHT" : "WALK_LEFT";
             if (facingDirection == Direction.RIGHT){
-                this.currentAnimationName = "WALK_RIGHT";
+                if ((map.getFlagManager().isFlagSet("bikeActive")) && Keyboard.isKeyDown(TOGGLE_BIKE)) {
+                    this.currentAnimationName = "BIKE_RIGHT";
+                }
+                else {
+                    this.currentAnimationName = "WALK_RIGHT";
+                }
             }
             else if (facingDirection == Direction.LEFT){
-                this.currentAnimationName = "WALK_LEFT";
+                if ((map.getFlagManager().isFlagSet("bikeActive")) && Keyboard.isKeyDown(TOGGLE_BIKE)) {
+                    this.currentAnimationName = "BIKE_LEFT";
+                }
+                else {
+                    this.currentAnimationName = "WALK_LEFT";
+                }
             }
             else if (facingDirection == Direction.UP){
-                this.currentAnimationName = "WALK_UP";
+                if ((map.getFlagManager().isFlagSet("bikeActive")) && Keyboard.isKeyDown(TOGGLE_BIKE)) {
+                    this.currentAnimationName = "BIKE_UP";
+                }
+                else {
+                    this.currentAnimationName = "WALK_UP";
+                }
             }
             else {
-                this.currentAnimationName = "WALK_DOWN";
+                if ((map.getFlagManager().isFlagSet("bikeActive")) && Keyboard.isKeyDown(TOGGLE_BIKE)) {
+                    this.currentAnimationName = "BIKE_DOWN";
+                }
+                else {
+                    this.currentAnimationName = "WALK_DOWN";
+                }
             }
         } else if (playerState == PlayerState.INTERACTING) {
             // sets animation to STAND when player is interacting
@@ -326,9 +310,9 @@ public abstract class Player extends GameObject {
             else if (facingDirection == Direction.DOWN){
                 this.currentAnimationName = "STAND_DOWN";
             }
-        } else if (playerState == PlayerState.BIKING){
-            // sets animation to a BIKE animation based on which way player is facing
-            this.currentAnimationName = facingDirection == Direction.RIGHT ? "WALK_UP" : "WALK_UP";
+        } else if (playerState == PlayerState.EMOTING){
+            //plays the emote if the player is set to EMOTING
+            this.currentAnimationName = "EMOTE";
         }
     }
 
@@ -421,6 +405,10 @@ public abstract class Player extends GameObject {
             this.currentAnimationName = "STAND_RIGHT";
         } else if (direction == Direction.LEFT) {
             this.currentAnimationName = "STAND_LEFT";
+        } else if (direction == Direction.UP) {
+            this.currentAnimationName = "STAND_UP";
+        } else if (direction == Direction.DOWN) {
+            this.currentAnimationName = "STAND_DOWN";
         }
     }
 

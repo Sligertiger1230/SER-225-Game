@@ -15,6 +15,7 @@ public class JavaJohnScript extends Script<NPC> {
         lockPlayer();
         showPortrait("JavaJohnPortrait.png");
         showTextbox();
+        entity.facePlayer(player);
 
         // if player have picked up glasses, shows them this text
         if (isFlagSet("hasPickedUpGlasses")) {
@@ -96,7 +97,7 @@ public class JavaJohnScript extends Script<NPC> {
             //setup function
             start();
             //for now it's just the standing right sprite, but this is java john with glasses :)
-            entity.stand(Direction.RIGHT);
+            entity.animate(0);
             //if there is text run
             if (!isTextboxQueueEmpty()) {
                 return ScriptState.RUNNING;
