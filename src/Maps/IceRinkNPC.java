@@ -35,9 +35,10 @@ public class IceRinkNPC extends Map{
     public ArrayList<Trigger> loadTriggers() {
         ArrayList<Trigger> triggers = new ArrayList<>();
 
-        triggers.add(new Trigger(336, 768, 192, 24, new ChangeMapScript(9), "Ice1"));
-        triggers.add(new Trigger(336, 768, 192, 24, new ChangeMapScript(8), "Ice2"));
-        triggers.add(new Trigger(336, 768, 192, 24, new ChangeMapScript(7), "Ice3"));
+        triggers.add(new Trigger(336, 0, 192, 24, new ChangeMapScript(0)));
+        triggers.add(new Trigger(336, 816, 192, 24, new ChangeMapScript(9), "Ice1"));
+        triggers.add(new Trigger(336, 816, 192, 24, new ChangeMapScript(8), "Ice2"));
+        triggers.add(new Trigger(336, 816, 192, 24, new ChangeMapScript(7), "Ice3"));
         return triggers;
     }
 }

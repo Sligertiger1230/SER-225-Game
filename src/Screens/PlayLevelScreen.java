@@ -8,6 +8,7 @@ import Game.ScreenCoordinator;
 import Level.*;
 import Maps.CCEClassroom;
 import Maps.DrawQuest;
+import Maps.Graduation;
 import Maps.OrientationRoom;
 import Maps.IceRink;
 import Maps.IceRink1;
@@ -106,6 +107,9 @@ public class PlayLevelScreen extends Screen {
         flagManager.addFlag("Ice2", true);
         flagManager.addFlag("Ice3", true);
         flagManager.addFlag("completedAllQuests", false);
+        //false means it will start one
+        flagManager.addFlag("Orientation", false);
+        flagManager.addFlag("Graduation", true);
 
         // define/setup map
         this.map = loadMap(4);
@@ -194,6 +198,9 @@ public class PlayLevelScreen extends Screen {
                     if(player.getWasInCCE() == 1  && map.getIdSwitch() == 0){
                         this.player.setLocation(4800, 2832); 
                         player.setWasInCCE(0);
+                    }else if(player.getWasInCCE() == 2  && map.getIdSwitch() == 0){
+                        this.player.setLocation(6000, 1728); 
+                        player.setWasInCCE(0);
                     }else{
                         Point playerStartPosition = map.getPlayerStartPosition();
                         this.player.setLocation(playerStartPosition.x, playerStartPosition.y);  
@@ -273,6 +280,7 @@ public class PlayLevelScreen extends Screen {
                 newMap.setNPCs();
                 newMap.setQuestMenu(questMenu);
                 musicPlayer.setFile(19);
+                player.setWasInCCE(2);
                 musicPlayer.loop();
                 return newMap;
             case 3:
@@ -311,6 +319,14 @@ public class PlayLevelScreen extends Screen {
                 return newMap;
             case 9:
                 newMap = new IceRink1();
+                newMap.setFlagManager(flagManager);
+                newMap.setNPCs();
+                newMap.setQuestMenu(questMenu);
+                musicPlayer.setFile(20);
+                musicPlayer.loop();
+                return newMap;
+            case 10:
+                newMap = new Graduation();
                 newMap.setFlagManager(flagManager);
                 newMap.setNPCs();
                 newMap.setQuestMenu(questMenu);

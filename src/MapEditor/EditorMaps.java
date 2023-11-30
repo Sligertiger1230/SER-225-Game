@@ -3,6 +3,7 @@ package MapEditor;
 import Level.Map;
 import Maps.CCEClassroom;
 import Maps.DrawQuest;
+import Maps.Graduation;
 import Maps.IceRink;
 import Maps.IceRink2;
 import Maps.IceRinkNPC;
@@ -27,6 +28,7 @@ public class EditorMaps {
             add("IceRink2");
             add("IceRink1");
             add("IceRinkNPC");
+            add("Graduation");
         }};
     }
 
@@ -52,6 +54,8 @@ public class EditorMaps {
                 return new IceRink1();
             case "IceRinkNPC":
                 return new IceRinkNPC();
+            case "Graduation":
+                return new Graduation();
             default:
                 throw new RuntimeException("Unrecognized map name");
         }
