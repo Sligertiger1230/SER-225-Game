@@ -1,15 +1,34 @@
 package Scripts.Quests;
 
+import EnhancedMapTiles.PushableBlueTile;
+import EnhancedMapTiles.PushableRedTile;
+import EnhancedMapTiles.PushableYellowTile;
 import Level.NPC;
 import Level.Script;
 import Level.ScriptState;
 
 public class JaiswalDrawQuestDrawRoom extends Script<NPC> {
+
+    private PushableBlueTile blueTile;
+    private PushableRedTile redTile;
+    private PushableYellowTile yellowTile;
+
+    public void setBlueTile(PushableBlueTile blueTile) {
+        this.blueTile = blueTile;
+    }
+
+    public void setRedTile(PushableRedTile redTile) {
+        this.redTile = redTile;
+    }
+
+    public void setYellowTile(PushableYellowTile yellowTile) {
+        this.yellowTile = yellowTile;
+    }
+
     @Override
     protected void setup() {
         nextStep("Dr. J's Logo Dilemma");
         lockPlayer();
-        showPortrait("jaiswalPortrait.png");
         showTextbox();
 
         if (isFlagSet("hasTalkedToJavaJohn")) {
@@ -51,6 +70,36 @@ public class JaiswalDrawQuestDrawRoom extends Script<NPC> {
         }
     }
 
+    private boolean areTilesInPlace() {
+        if (blueTile == null || redTile == null || yellowTile == null) {
+            return false;
+        }
+
+        int blueMinX = 706;
+        int blueMaxX = 726;
+        int blueMinY = 566;
+        int blueMaxY = 586;
+
+        int redMinX = 323;
+        int redMaxX = 343;
+        int redMinY = 376;
+        int redMaxY = 396;
+
+        int yellowMinX = 423;
+        int yellowMaxX = 443;
+        int yellowMinY = 566;
+        int yellowMaxY = 586;
+
+        // Check if all tiles are within their respective bounds
+        return (blueTile.getX() >= blueMinX && blueTile.getX() <= blueMaxX &&
+                blueTile.getY() >= blueMinY && blueTile.getY() <= blueMaxY) &&
+                (redTile.getX() >= redMinX && redTile.getX() <= redMaxX &&
+                        redTile.getY() >= redMinY && redTile.getY() <= redMaxY)
+                &&
+                (yellowTile.getX() >= yellowMinX && yellowTile.getX() <= yellowMaxX &&
+                        yellowTile.getY() >= yellowMinY && yellowTile.getY() <= yellowMaxY);
+    }
+
     @Override
     public ScriptState execute() {
         // runs this code if you haven't talked to java john
@@ -78,6 +127,13 @@ public class JaiswalDrawQuestDrawRoom extends Script<NPC> {
             }
             // cleanup function
             end();
+        }
+        if (areTilesInPlace()) {
+            if (!isFlagSet("questCompleted")) {
+                setFlag("questCompleted");
+                System.out.println("Quest Complete!");
+                return ScriptState.COMPLETED;
+            }
         }
         return ScriptState.COMPLETED;
     }
