@@ -5,13 +5,13 @@ import Level.Script;
 import Level.ScriptState;
 import Screens.PlayLevelScreen;
 
-public class WebbyScript extends Script<NPC>{
+public class WebbyScript extends Script<NPC> {
     private PlayLevelScreen screen;
 
-    public WebbyScript(){
+    public WebbyScript() {
     }
 
-    public WebbyScript(PlayLevelScreen screen){
+    public WebbyScript(PlayLevelScreen screen) {
         this.screen = screen;
     }
 
@@ -19,21 +19,30 @@ public class WebbyScript extends Script<NPC>{
     protected void setup() {
         lockPlayer();
         showTextbox();
-        addTextToTextboxQueue("101010010100101010\nOh right, you don't understand that");
-        addTextToTextboxQueue("That's the limitations of flesh I guess\n...");
-        addTextToTextboxQueue("Well this is awkward, escaping this scenario by\nsending you to the net realm");
+        if (!isFlagSet("hasTalkedToWebby")) {
+            addTextToTextboxQueue("Booting up...");
+            addTextToTextboxQueue("Hi! I'm Webby. You're virtual friend! Let's play \ngames together forever! Please don't leave me.");
+            addTextToTextboxQueue("When no ones is playing I cease to exist.");
+        } else {
+            addTextToTextboxQueue("Welcome back. So glad I exist again. Last time, you\nreached wave "
+                    + screen.getWebbyLastWave() + ". Think you can do better this time?");
+        }
     }
 
     @Override
     protected void cleanup() {
         unlockPlayer();
         hideTextbox();
+
+        if (!isFlagSet("hasTalkedToWebby")) {
+            setFlag("hasTalkedToWebby");
+        }
     }
 
     @Override
     protected ScriptState execute() {
         start();
-        if (!isTextboxQueueEmpty()){
+        if (!isTextboxQueueEmpty()) {
             return ScriptState.RUNNING;
         }
         if (screen != null)
@@ -41,5 +50,4 @@ public class WebbyScript extends Script<NPC>{
         end();
         return ScriptState.COMPLETED;
     }
-    
 }

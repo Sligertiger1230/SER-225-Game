@@ -31,8 +31,9 @@ public class Asteroid {
 
     protected int waveCounter = 0;
     protected int waveTic;
+    protected int maxWave;
 
-    public Asteroid(AsteroidScreen screen) {
+    public Asteroid(AsteroidScreen screen, int maxWave) {
         this.playerBullets = new ArrayList<Bullet>();
         this.enemyBullets = new ArrayList<Bullet>();
         this.bulletCollection = new ArrayList<Bullet>();
@@ -41,6 +42,7 @@ public class Asteroid {
         this.group2 = new ArrayList<Enemy>();
         this.enemyCollection = new ArrayList<Enemy>();
         this.screen = screen;
+        this.maxWave = maxWave;
         win95 = null;
         gridMap = new boolean[3][3];
         for (int x = 0; x < 3; x++) {
@@ -52,8 +54,6 @@ public class Asteroid {
     }
 
     public void initialize() {
-        // ClassLoader classLoader = Asteroid.getClassLoader();
-
         try {
             win95 = Font.createFont(Font.TRUETYPE_FONT, Asteroid.class.getResourceAsStream("/W95FA.otf"))
                     .deriveFont(17f);
@@ -111,10 +111,15 @@ public class Asteroid {
     public void handleWave() {
         waveTic++;
         if (group1.isEmpty() && group2.isEmpty()) {
-            waveCounter++;
-            waveIndic = new SpriteFont("Wave: " + waveCounter, 600, 37, win95, Color.BLACK);
-            spawner1 = new EnemySpawner(this, gridMap, group1, playerShip);
-            spawner2 = new EnemySpawner(this, gridMap, group2, playerShip);
+            
+            if (waveCounter == maxWave && maxWave != 0) {
+                screen.setAsteroidState(AsteroidState.WIN);
+            } else {
+                waveCounter++;
+                waveIndic = new SpriteFont("Wave: " + waveCounter, 600, 37, win95, Color.BLACK);
+                spawner1 = new EnemySpawner(this, gridMap, group1, playerShip);
+                spawner2 = new EnemySpawner(this, gridMap, group2, playerShip);
+            }
 
             for (int x = 0; x < 3; x++) {
                 for (int y = 0; y < 3; y++) {
@@ -143,7 +148,7 @@ public class Asteroid {
         for (Enemy enemy : enemyCollection) {
             if (group1.contains(enemy)) {
                 group1.remove(enemy);
-            } else {
+            } else if (group2.contains(enemy)) {
                 group2.remove(enemy);
             }
             // enemies.remove(enemy);
@@ -226,6 +231,10 @@ public class Asteroid {
 
     public ArrayList<Enemy> getEnemies() {
         return enemies;
+    }
+
+    public int getFinalWave(){
+        return waveCounter;
     }
 
     public void updateHealth() {

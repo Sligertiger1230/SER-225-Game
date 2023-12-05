@@ -19,6 +19,8 @@ public class AsteroidScreen extends Screen {
     protected Sprite deadScreen;
     protected Sprite winScreen;
 
+    protected int maxWave;
+
     protected Key startGame = Key.ENTER;
     protected Key exitGame = Key.E;
     protected Key restartGame = Key.R;
@@ -31,6 +33,13 @@ public class AsteroidScreen extends Screen {
 
     public AsteroidScreen(PlayLevelScreen playLevelScreen) {
         this.playLevelScreen = playLevelScreen;
+        this.maxWave = 0;
+        initialize();
+    }
+
+    public AsteroidScreen(PlayLevelScreen playLevelScreen, int maxWave){
+        this.playLevelScreen = playLevelScreen;
+        this.maxWave = maxWave;
         initialize();
     }
 
@@ -41,7 +50,7 @@ public class AsteroidScreen extends Screen {
         deadScreen = new Sprite(ImageLoader.load("deadScreen.png"));
         winScreen = new Sprite(ImageLoader.load("winScreen.png"));
         this.asteroidState = AsteroidState.START;
-        aster = new Asteroid(this);
+        aster = new Asteroid(this, maxWave);
         this.sound = new Sound();
     }
 
@@ -59,7 +68,7 @@ public class AsteroidScreen extends Screen {
                     sound.loop();
                 }
                 if (Keyboard.isKeyDown(exitGame)) {
-                    playLevelScreen.returnFromAsteroid();
+                    playLevelScreen.returnFromAsteroid(asteroidState, aster.getFinalWave(), maxWave);
                     sound.stop();
                     sound.setFile(18);
                     sound.loop();
@@ -68,7 +77,7 @@ public class AsteroidScreen extends Screen {
             case RUNNING:
                 aster.update();
                 if (Keyboard.isKeyDown(exitGame)) {
-                    playLevelScreen.returnFromAsteroid();
+                    playLevelScreen.returnFromAsteroid(asteroidState, aster.getFinalWave(), maxWave);
                     sound.stop();
                     sound.setFile(18);
                     sound.loop();
@@ -77,10 +86,10 @@ public class AsteroidScreen extends Screen {
             case DEAD:
                 if (Keyboard.isKeyDown(restartGame)) {
                     asteroidState = AsteroidState.RUNNING;
-                    aster = new Asteroid(this);
+                    aster = new Asteroid(this, maxWave);
                 }
                 if (Keyboard.isKeyDown(exitGame)) {
-                    playLevelScreen.returnFromAsteroid();
+                    playLevelScreen.returnFromAsteroid(asteroidState, aster.getFinalWave(), maxWave);
                     sound.stop();
                     sound.setFile(18);
                     sound.loop();
@@ -88,7 +97,7 @@ public class AsteroidScreen extends Screen {
                 break;
             case WIN:
                 if (Keyboard.isKeyDown(exitGame)) {
-                    playLevelScreen.returnFromAsteroid();
+                    playLevelScreen.returnFromAsteroid(asteroidState, aster.getFinalWave(), maxWave);
                     sound.stop();
                     sound.setFile(18);
                     sound.loop();
