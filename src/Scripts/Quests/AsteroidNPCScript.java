@@ -40,28 +40,33 @@ public class AsteroidNPCScript extends Script<NPC> {
                         "Alright pilot-in-training. I have a test for you,\nif you can beat 5 waves of viruses I'll promote you");
                 addTextToTextboxQueue("to private. Ready? Doesn't matter.");
             } else {
-                switch (screen.getAsteroidNPCLastState()){
+                switch (screen.getAsteroidNPCLastState()) {
                     case DEAD:
-                        addTextToTextboxQueue("This isn't just some game. People die here, now take this seriously\n and get in there and win!");
+                        addTextToTextboxQueue(
+                                "This isn't just some game. People die here, now take this seriously\n and get in there and win!");
                         break;
                     case WIN:
-                        addTextToTextboxQueue("Well good job cadet-- I mean private. That's right, I promoted you\nCome back to me again when you want a");
+                        addTextToTextboxQueue(
+                                "Well good job cadet-- I mean private. That's right, I promoted you\nCome back to me again when you want a");
                         addTextToTextboxQueue("real challenge.");
                         break;
                     case RUNNING:
                     case START:
-                        addTextToTextboxQueue("Well? You won't destroy viruses like this, get back in and fight again.");
+                        addTextToTextboxQueue(
+                                "Well? You won't destroy viruses like this, get back in and fight again.");
                         break;
                 }
             }
         } else if (!isFlagSet("hasCompleted10Waves")) {
-            if (screen.getAsteroidNPCLastMaxWave() == 5){
-                addTextToTextboxQueue("Your next mission, you'll need to endure against the\nviruses for as long as possible. Finish this mission and");
+            if (screen.getAsteroidNPCLastMaxWave() == 5) {
+                addTextToTextboxQueue(
+                        "Your next mission, you'll need to endure against the\nviruses for as long as possible. Finish this mission and");
                 addTextToTextboxQueue("I'll make you a lieutenant kid.");
             } else {
                 switch (screen.getAsteroidNPCLastState()) {
                     case WIN:
-                        addTextToTextboxQueue("Wow, you're a prodigy. We gotta get you back in there ASAP. I'm promoting you to\ngeneral. Come back to me and I'll");
+                        addTextToTextboxQueue(
+                                "Wow, you're a prodigy. We gotta get you back in there ASAP. I'm promoting you to\ngeneral. Come back to me and I'll");
                         addTextToTextboxQueue("give a final mission.");
                     case RUNNING:
                     case START:
@@ -100,18 +105,19 @@ public class AsteroidNPCScript extends Script<NPC> {
             } else {
                 setFlag("hasCompleted5Waves");
             }
-        } else if (!isFlagSet("hasCompleted10Waves")){
+        } else if (!isFlagSet("hasCompleted10Waves")) {
             if (!isTextboxQueueEmpty()) {
                 return ScriptState.RUNNING;
             }
-            if (screen != null && (screen.getAsteroidNPCLastState() != AsteroidState.WIN || screen.getAsteroidNPCLastMaxWave() == 5)) {
+            if (screen != null && (screen.getAsteroidNPCLastState() != AsteroidState.WIN
+                    || screen.getAsteroidNPCLastMaxWave() == 5)) {
                 screen.startQuestAsteroid(5);
             } else {
                 setFlag("hasCompleted10Waves");
             }
-        
-        end();
-        return ScriptState.COMPLETED;
-    }
 
+            end();
+            return ScriptState.COMPLETED;
+        }
+    }
 }
