@@ -10,7 +10,7 @@ public class AsteroidNPCScript extends Script<NPC> {
     PlayLevelScreen screen;
 
     public AsteroidNPCScript() {
-
+        this.screen = null;
     }
 
     public AsteroidNPCScript(PlayLevelScreen screen) {
@@ -21,7 +21,7 @@ public class AsteroidNPCScript extends Script<NPC> {
     protected void setup() {
         lockPlayer();
         showTextbox();
-        showPortrait("asteroidNPCState.png", 3);
+        showPortrait("asteroidNPCPortrait.png", 3);
         entity.facePlayer(player);
 
         if (!isFlagSet("hasTalkedToAsteroidNPC")) {
@@ -43,17 +43,17 @@ public class AsteroidNPCScript extends Script<NPC> {
                 switch (screen.getAsteroidNPCLastState()) {
                     case DEAD:
                         addTextToTextboxQueue(
-                                "This isn't just some game. People die here, now take this seriously\n and get in there and win!");
+                                "This isn't just some game. People die here, now take\nthis seriously and get in there and win!");
                         break;
                     case WIN:
                         addTextToTextboxQueue(
-                                "Well good job cadet-- I mean private. That's right, I promoted you\nCome back to me again when you want a");
-                        addTextToTextboxQueue("real challenge.");
+                                "Well good job cadet-- I mean private. That's right,\nI promoted you. Come back to me again when you");
+                        addTextToTextboxQueue("want a real challenge.");
                         break;
                     case RUNNING:
                     case START:
                         addTextToTextboxQueue(
-                                "Well? You won't destroy viruses like this, get back in and fight again.");
+                                "Well? You won't destroy viruses like this, get back in\nand fight again.");
                         break;
                 }
             }
@@ -61,17 +61,36 @@ public class AsteroidNPCScript extends Script<NPC> {
             if (screen.getAsteroidNPCLastMaxWave() == 5) {
                 addTextToTextboxQueue(
                         "Your next mission, you'll need to endure against the\nviruses for as long as possible. Finish this mission and");
-                addTextToTextboxQueue("I'll make you a lieutenant kid.");
+                addTextToTextboxQueue("I'll make you a lieutenant kid. Survive 10 waves");
             } else {
                 switch (screen.getAsteroidNPCLastState()) {
                     case WIN:
                         addTextToTextboxQueue(
-                                "Wow, you're a prodigy. We gotta get you back in there ASAP. I'm promoting you to\ngeneral. Come back to me and I'll");
-                        addTextToTextboxQueue("give a final mission.");
+                                "Wow, you're a prodigy. We gotta get you back in there \nASAP. I'm promoting you to general. Come back to me");
+                        addTextToTextboxQueue("and I'll give a final mission.");
                     case RUNNING:
                     case START:
                     case DEAD:
-                        addTextToTextboxQueue("Many soldiers have quit at your point. Do not falter. RISE RAGE");
+                        addTextToTextboxQueue("Many soldiers have quit at your point. Do not falter.\nRISE RAGE");
+                        break;
+                }
+            }
+        } else if (!isFlagSet("hasCompleted15Waves")) {
+            if (screen.getAsteroidNPCLastMaxWave() == 10) {
+                addTextToTextboxQueue(
+                        "Alright, you've gained my respect. Wanna be second\nin command? Beat this final mission. 15 waves.");
+            } else {
+                switch (screen.getAsteroidNPCLastState()) {
+                    case WIN:
+                        addTextToTextboxQueue(
+                                "Comrades, soliders, the fallen and the forsaken. They\nfought for this very moment.");
+                        addTextToTextboxQueue("I, Commander Erwin, knight you as Second-in\n-Command General Ryan.");
+                        break;
+                    case RUNNING:
+                    case DEAD:
+                    case START:
+                        addTextToTextboxQueue(
+                                "You stand on the bodies of the dead, you've almost \npeaked this hill of bloodshed. Don't you dare quit.");
                         break;
                 }
             }
@@ -86,6 +105,12 @@ public class AsteroidNPCScript extends Script<NPC> {
 
         if (!isFlagSet("hasTalkedToAsteroidNPC")) {
             setFlag("hasTalkedToAsteroidNPC");
+            createTriggerList();
+            createStepList();
+            addStep("Complete your first mission");
+            addStep("Complete your second mission");
+            addStep("Complete your third mission");
+            addQuest("Cyber Warfare");
         }
     }
 
@@ -104,6 +129,7 @@ public class AsteroidNPCScript extends Script<NPC> {
                 screen.startQuestAsteroid(5);
             } else {
                 setFlag("hasCompleted5Waves");
+                nextStep("Cyber Warfare");
             }
         } else if (!isFlagSet("hasCompleted10Waves")) {
             if (!isTextboxQueueEmpty()) {
@@ -111,13 +137,24 @@ public class AsteroidNPCScript extends Script<NPC> {
             }
             if (screen != null && (screen.getAsteroidNPCLastState() != AsteroidState.WIN
                     || screen.getAsteroidNPCLastMaxWave() == 5)) {
-                screen.startQuestAsteroid(5);
+                screen.startQuestAsteroid(10);
             } else {
                 setFlag("hasCompleted10Waves");
+                nextStep("Cyber Warfare");
             }
-
-            end();
-            return ScriptState.COMPLETED;
+        } else if (!isFlagSet("hasCompleted15Waves")) {
+            if (!isTextboxQueueEmpty()) {
+                return ScriptState.RUNNING;
+            }
+            if (screen != null && (screen.getAsteroidNPCLastState() != AsteroidState.WIN
+                    || screen.getAsteroidNPCLastMaxWave() == 10)) {
+                screen.startQuestAsteroid(15);
+            } else {
+                setFlag("hasCompleted15Waves");
+                nextStep("Cyber Warfare");
+            }
         }
+        end();
+        return ScriptState.COMPLETED;
     }
 }
