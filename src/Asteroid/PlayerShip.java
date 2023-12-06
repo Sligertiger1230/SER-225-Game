@@ -19,7 +19,7 @@ public class PlayerShip extends Ship {
     protected boolean isPlayerDead = false;
 
     public PlayerShip(float x, float y, Asteroid aster) {
-        super(x, y, ship, startingAnim, aster, 15);
+        super(x, y, ship, startingAnim, aster, 25);
         this.aster = aster;
     }
 
