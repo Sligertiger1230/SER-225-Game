@@ -10,6 +10,7 @@ import Engine.KeyLocker;
 import Engine.Keyboard;
 import SpriteFont.SpriteFont;
 import GameObject.Sprite;
+import Screens.PlayLevelScreen;
 import Engine.Screen;
 
 public class QuestMenu extends Screen {
@@ -24,6 +25,9 @@ public class QuestMenu extends Screen {
     private final int width = 180;
     private final int height = 30;
     private int completedQuests, totalQuests;
+
+    private PlayLevelScreen screen;
+
     // spritefont array that accounts for all 5 quest name spaces
     private SpriteFont[] questText, questStepText;
     private SpriteFont progressBar;
@@ -38,7 +42,7 @@ public class QuestMenu extends Screen {
     private boolean isQuestCompleted;
 
     // default constructor
-    public QuestMenu() {
+    public QuestMenu(PlayLevelScreen screen) {
         questMenuGraphic = new Sprite(ImageLoader.load("questBoard.png"), x, y);
         questCompleted = new Sprite(ImageLoader.load("QuestComplete.png"), notifX, notifY);
         newQuest = new Sprite(ImageLoader.load("NewQuest.png"), notifX, notifY);
@@ -49,6 +53,7 @@ public class QuestMenu extends Screen {
         this.totalQuests = 1;
         this.isQuestCompleted = false;
         this.isNewQuest = false;
+        this.screen = screen;
     }
 
     // retrieves arraylist of quests

@@ -10,8 +10,9 @@ public class StartGraduationScript extends Script {
         lockPlayer();
         showTextbox();
         
-        addTextToTextboxQueue("*DING DONG!* Attention all students! You all have graduated\nat the same time");
-        addTextToTextboxQueue("*Please report to the Gym that we have \n repurposed to host graduation");
+        addTextToTextboxQueue("*DING DONG!* Attention all students! \nWe went bankrupt trying to fund Quad upkeep.");
+        addTextToTextboxQueue("So you all have graduated at the same time!\nPlease report to the Gym that we have");
+        addTextToTextboxQueue("repurposed to host graduation");
 
         createStepList();
         addStep("Walk to the Orientation room");
@@ -33,11 +34,11 @@ public class StartGraduationScript extends Script {
     @Override
     protected ScriptState execute() {
         start();
-        if (!isTextboxQueueEmpty()){
+        if (!isTextboxQueueEmpty()) {
             return ScriptState.RUNNING;
         }
         end();
         return ScriptState.COMPLETED;
     }
-    
+
 }
