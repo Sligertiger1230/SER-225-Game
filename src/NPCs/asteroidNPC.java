@@ -5,16 +5,14 @@ import java.util.HashMap;
 import Builders.FrameBuilder;
 import Engine.ImageLoader;
 import GameObject.Frame;
-import GameObject.ImageEffect;
 import GameObject.SpriteSheet;
 import Level.NPC;
 import Utils.Point;
 
 public class AsteroidNPC extends NPC {
-
         public AsteroidNPC(int id, Point location) {
-                super(id, location.x, location.y, new SpriteSheet(ImageLoader.load("asteroidNPC.png"), 18, 31),
-                                "STAND_LEFT");
+        super(id, location.x, location.y, new SpriteSheet(ImageLoader.load("asteroidNPC.png"), 18, 31),
+                        "STAND_LEFT");
         }
 
         @Override
