@@ -42,6 +42,8 @@ public class JudyScript extends Script {
             lockPlayer();
         else
             unlockPlayer();
+
+        setFlag("won");
         hideTextbox();
         hidePortrait();
     }

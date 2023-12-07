@@ -12,6 +12,8 @@ import NPCs.Walrus;
 import NPCs.WalrusFish;
 import NPCs.WalrusPurpFish;
 import NPCs.Webby;
+import Screens.PlayLevelScreen;
+import NPCs.AsteroidNPC;
 import NPCs.JavaJohn;
 import NPCs.JavaJohnGlasses;
 import NPCs.NPCBoy1;
@@ -44,11 +46,19 @@ import java.util.ArrayList;
 // Represents a test map to be used in a level
 public class TestMap extends Map {
 
-    private int currentChoice;
+    private PlayLevelScreen screen;
 
     public TestMap() {
         super("test_map.txt", new CommonTileset());
         this.playerStartPosition = getMapTile(1, 5).getLocation();
+        this.mapInt = 0;
+        this.idSwitch = 0;
+    }
+
+    public TestMap(PlayLevelScreen screen) {
+        super("test_map.txt", new CommonTileset());
+        this.playerStartPosition = getMapTile(1, 5).getLocation();
+        this.screen = screen;
         this.mapInt = 0;
         this.idSwitch = 0;
     }
@@ -153,6 +163,14 @@ public class TestMap extends Map {
             pubSDectLooker.setIsHidden(true);
         }
         npcs.add(pubSDectLooker);
+
+        AsteroidNPC asteroidNPC = new AsteroidNPC(14, getMapTile(103, 57).getLocation());
+        if (screen != null) {
+            asteroidNPC.setInteractScript(new AsteroidNPCScript(screen));
+        } else {
+            asteroidNPC.setInteractScript(new AsteroidNPCScript());
+        }
+        npcs.add(asteroidNPC);
 
         return npcs;
 

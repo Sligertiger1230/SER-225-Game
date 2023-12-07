@@ -4,6 +4,7 @@ import Utils.Direction;
 import Utils.Point;
 import Level.Script;
 import Level.ScriptState;
+import Screens.PlayLevelScreen;
 
 public class GraduationCutscene extends Script {
 

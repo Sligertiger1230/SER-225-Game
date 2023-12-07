@@ -10,61 +10,99 @@ import GameObject.SpriteSheet;
 import Level.NPC;
 import Utils.Point;
 
-public class asteroidNPC extends NPC{
-    public asteroidNPC(int id, Point location) {
-        super(id, location.x, location.y, new SpriteSheet(ImageLoader.load("asteroidNPC.png"), 18, 31), "STAND_DOWN");
-    }
+public class AsteroidNPC extends NPC {
 
-    @Override
-    public HashMap<String, Frame[]> loadAnimations(SpriteSheet spriteSheet) {
-        return new HashMap<String, Frame[]>() {{
-            put("STAND_LEFT", new Frame[] {
-                    new FrameBuilder(spriteSheet.getSprite(2, 0))
-                            .withScale(3)
-                            .withBounds(4, 5, 5, 10)
-                            .build()
-            });
-            put("STAND_RIGHT", new Frame[] {
-                   new FrameBuilder(spriteSheet.getSprite(3, 0))
-                           .withScale(3)
-                           .withBounds(4, 5, 5, 10)
-                           .build()
-           });
-            put ("STAND_DOWN", new Frame[] {
-                new FrameBuilder(spriteSheet.getSprite(1, 0))
-                            .withScale(3)
-                            .withBounds(4, 5, 5, 10)
-                            .build()
-            });     
-            put ("STAND_UP", new Frame[] {
-                new FrameBuilder(spriteSheet.getSprite(0, 0))
-                            .withScale(3)
-                            .withBounds(4, 5, 5, 10)
-                            .build()
-            });
-            put("WALK_LEFT", new Frame[]{
-                    new FrameBuilder(spriteSheet.getSprite(1, 0), 14)
-                            .withScale(3)
-                            .withBounds(4, 5, 5, 10)
-                            .build(),
-                    new FrameBuilder(spriteSheet.getSprite(1, 1), 14)
-                            .withScale(3)
-                            .withBounds(4, 5, 5, 10)
-                            .build()
-            });
+        public AsteroidNPC(int id, Point location) {
+                super(id, location.x, location.y, new SpriteSheet(ImageLoader.load("asteroidNPC.png"), 18, 31),
+                                "STAND_LEFT");
+        }
 
-            put("WALK_RIGHT", new Frame[]{
-                    new FrameBuilder(spriteSheet.getSprite(1, 0), 14)
-                            .withScale(3)
-                            .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
-                            .withBounds(4, 5, 5, 10)
-                            .build(),
-                    new FrameBuilder(spriteSheet.getSprite(1, 1), 14)
-                            .withScale(3)
-                            .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
-                            .withBounds(4, 5, 5, 10)
-                            .build()
-            });
-        }};
-    }
+        @Override
+        public HashMap<String, Frame[]> loadAnimations(SpriteSheet spriteSheet) {
+                return new HashMap<String, Frame[]>() {
+                        {
+                                put("STAND_LEFT", new Frame[] {
+                                                new FrameBuilder(spriteSheet.getSprite(2, 0))
+                                                                .withScale(3)
+                                                                .withBounds(3, 10, 15, 12)
+                                                                .build()
+                                });
+                                put("STAND_RIGHT", new Frame[] {
+                                                new FrameBuilder(spriteSheet.getSprite(3, 0))
+                                                                .withScale(3)
+                                                                .withBounds(3, 10, 15, 12)
+                                                                .build()
+                                });
+                                put("STAND_DOWN", new Frame[] {
+                                                new FrameBuilder(spriteSheet.getSprite(1, 0))
+                                                                .withScale(3)
+                                                                .withBounds(3, 10, 15, 12)
+                                                                .build()
+                                });
+                                put("STAND_UP", new Frame[] {
+                                                new FrameBuilder(spriteSheet.getSprite(0, 0))
+                                                                .withScale(3)
+                                                                .withBounds(3, 10, 15, 12)
+                                                                .build()
+                                });
+                                put("WALK_UP", new Frame[] {
+                                                new FrameBuilder(spriteSheet.getSprite(0, 1), 14)
+                                                                .withScale(3)
+                                                                .withBounds(3, 10, 15, 12)
+                                                                .build(),
+                                                new FrameBuilder(spriteSheet.getSprite(0, 2), 14)
+                                                                .withScale(3)
+                                                                .withBounds(3, 10, 15, 12)
+                                                                .build(),
+                                                new FrameBuilder(spriteSheet.getSprite(0, 0), 14)
+                                                                .withScale(3)
+                                                                .withBounds(3, 10, 15, 12)
+                                                                .build()               
+                                });
+                                put("WALK_DOWN", new Frame[] {
+                                                new FrameBuilder(spriteSheet.getSprite(1, 1), 14)
+                                                                .withScale(3)
+                                                                .withBounds(3, 10, 15, 12)
+                                                                .build(),
+                                                new FrameBuilder(spriteSheet.getSprite(1, 2), 14)
+                                                                .withScale(3)
+                                                                .withBounds(3, 10, 15, 12)
+                                                                .build(),
+                                                new FrameBuilder(spriteSheet.getSprite(1, 0), 14)
+                                                                .withScale(3)
+                                                                .withBounds(3, 10, 15, 12)
+                                                                .build()
+                                });
+                                put("WALK_LEFT", new Frame[] {
+                                                new FrameBuilder(spriteSheet.getSprite(2, 1), 14)
+                                                                .withScale(3)
+                                                                .withBounds(3, 10, 15, 12)
+                                                                .build(),
+                                                new FrameBuilder(spriteSheet.getSprite(2, 2), 14)
+                                                                .withScale(3)
+                                                                .withBounds(3, 10, 15, 12)
+                                                                .build(),
+                                                new FrameBuilder(spriteSheet.getSprite(2, 0), 14)
+                                                                .withScale(3)
+                                                                .withBounds(3, 10, 15, 12)
+                                                                .build()
+
+                                });
+                                put("WALK_RIGHT", new Frame[] {
+                                                new FrameBuilder(spriteSheet.getSprite(3, 1), 14)
+                                                                .withScale(3)
+                                                                .withBounds(3, 10, 15, 12)
+                                                                .build(),
+                                                new FrameBuilder(spriteSheet.getSprite(3, 2), 14)
+                                                                .withScale(3)
+                                                                .withBounds(3, 10, 15, 12)
+                                                                .build(),
+                                                new FrameBuilder(spriteSheet.getSprite(3, 0), 14)
+                                                                .withScale(3)
+                                                                .withBounds(3, 10, 15, 12)
+                                                                .build()
+                                });
+                        }
+                };
+        }
 }

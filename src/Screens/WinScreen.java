@@ -1,6 +1,7 @@
 package Screens;
 
 import Engine.*;
+import GameObject.Sprite;
 import SpriteFont.SpriteFont;
 
 import java.awt.*;
@@ -9,40 +10,29 @@ import java.awt.*;
 public class WinScreen extends Screen {
     protected SpriteFont winMessage;
     protected SpriteFont instructions;
+    protected Sprite winImage;
     protected KeyLocker keyLocker = new KeyLocker();
     protected PlayLevelScreen playLevelScreen;
 
     public WinScreen(PlayLevelScreen playLevelScreen) {
         this.playLevelScreen = playLevelScreen;
         initialize();
+        winImage = new Sprite(ImageLoader.load("pixil-frame-0_480.png"));
     }
 
     @Override
     public void initialize() {
         keyLocker.lockKey(Key.SPACE);
         keyLocker.lockKey(Key.ESC);
+        winMessage = new SpriteFont("You graduated. I'm proud", 400, 500, "Comic Sans", 30, Color.BLACK);
     }
 
     @Override
     public void update() {
-        if (Keyboard.isKeyUp(Key.SPACE)) {
-            keyLocker.unlockKey(Key.SPACE);
-        }
-        if (Keyboard.isKeyUp(Key.ESC)) {
-            keyLocker.unlockKey(Key.ESC);
-        }
-
-        // if space is pressed, reset level. if escape is pressed, go back to main menu
-        if (Keyboard.isKeyDown(Key.SPACE) && !keyLocker.isKeyLocked(Key.SPACE)) {
-            playLevelScreen.resetLevel();
-        } else if (Keyboard.isKeyDown(Key.ESC) && !keyLocker.isKeyLocked(Key.ESC)) {
-            playLevelScreen.goBackToMenu();
-        }
     }
 
     public void draw(GraphicsHandler graphicsHandler) {
-        graphicsHandler.drawFilledRectangle(0, 0, ScreenManager.getScreenWidth(), ScreenManager.getScreenHeight(), Color.black);
+        winImage.draw(graphicsHandler);
         winMessage.draw(graphicsHandler);
-        instructions.draw(graphicsHandler);
     }
 }

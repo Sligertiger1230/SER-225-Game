@@ -14,7 +14,7 @@ import Utils.Point;
 public class JavaJohn extends NPC {
 
     public JavaJohn(int id, Point location) {
-        super(id, location.x, location.y, new SpriteSheet(ImageLoader.load("javaJohn.png"), 21, 25), "STAND_LEFT");
+        super(id, location.x, location.y, new SpriteSheet(ImageLoader.load("javaJohn.png"), 21, 25), "STAND_DOWN");
     }
 
     @Override

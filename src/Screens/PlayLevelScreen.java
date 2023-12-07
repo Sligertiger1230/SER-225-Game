@@ -2,6 +2,8 @@ package Screens;
 
 // Changed the engine import to all so that we can use Config (September 27th)
 import java.util.ArrayList;
+
+import Asteroid.AsteroidState;
 import Engine.*;
 import Game.GameState;
 import Game.ScreenCoordinator;
@@ -26,14 +28,25 @@ public class PlayLevelScreen extends Screen {
     protected ScreenCoordinator screenCoordinator;
     protected Map map;
     protected Player player;
-    protected int triggerSize;
+
     protected PlayLevelScreenState playLevelScreenState;
+    protected AsteroidState asteroidState;
+    protected int wavesCompleted;
+
+    protected int webbyLastWave;
+    protected int asteroidNPCLastWave;
+    protected int asteroidNPCLastMaxWave;
+    protected AsteroidState asteroidNPCLastState;
+
     protected WinScreen winScreen;
     protected TransitionScreen transitionScreen;
-    protected static AsteroidScreen asteroidScreen;
+    protected AsteroidScreen asteroidScreen;
+
     protected FlagManager flagManager;
     protected QuestMenu questMenu;
+
     protected ArrayList<QuestTrigger> triggers;
+    protected int triggerSize;
 
     private Sound musicPlayer;
     private Ambience ambiencePlayer;
@@ -67,7 +80,6 @@ public class PlayLevelScreen extends Screen {
         flagManager.addFlag("completedTutorial", false);
         flagManager.addFlag("isSprinting", false);
 
-
         flagManager.addFlag("hasFinishedAllQuests");
 
         // Walrus Fish quest
@@ -89,7 +101,7 @@ public class PlayLevelScreen extends Screen {
         flagManager.addFlag("hasEncounteredJavaJohnWalk", false);
         flagManager.addFlag("isJavaJohnFloating", false);
 
-        //jaiswal quest flags
+        // jaiswal quest flags
         flagManager.addFlag("hasTalkedToJaiswal", false);
         flagManager.addFlag("jaiswalWalking", false);
         flagManager.addFlag("hasTalkedToJaiswalInPuzzle", false);
@@ -113,7 +125,7 @@ public class PlayLevelScreen extends Screen {
         flagManager.addFlag("hasTalkedToNPCBoy1", false);
         flagManager.addFlag("hasTalkedToNPCGirl1", false);
 
-        //Ice flags
+        // Ice flags
         flagManager.addFlag("hasTalkedToIceWalrus", false);
         flagManager.addFlag("hasTalkedToIceWalrus2", false);
         flagManager.addFlag("hasTalkedToIceWalrus3", false);
@@ -121,9 +133,21 @@ public class PlayLevelScreen extends Screen {
         flagManager.addFlag("Ice2", true);
         flagManager.addFlag("Ice3", true);
         flagManager.addFlag("completedAllQuests", false);
-        //false means it will start one
+        // false means it will start one
         flagManager.addFlag("Orientation", false);
         flagManager.addFlag("Graduation", false);
+
+        //asteroid npc
+        flagManager.addFlag("hasTalkedToAsteroidNPC", false);
+        flagManager.addFlag("hasCompleted5Waves", false);
+        flagManager.addFlag("hasCompleted10Waves", false);
+        flagManager.addFlag("hasCompleted15Waves", false);
+
+        //webby
+        flagManager.addFlag("hasTalkedToWebby", false);
+
+        // win condition
+        flagManager.addFlag("won", false);
 
         // define/setup map
         this.map = loadMap(4);
@@ -171,7 +195,7 @@ public class PlayLevelScreen extends Screen {
 
         winScreen = new WinScreen(this);
         transitionScreen = new TransitionScreen(this);
-        //asteroidScreen = new AsteroidScreen(this);
+        // asteroidScreen = new AsteroidScreen(this);
         playLevelScreenState = PlayLevelScreenState.RUNNING;
     }
 
@@ -181,46 +205,7 @@ public class PlayLevelScreen extends Screen {
             // if level is "running" update player and map to keep game logic for the
             // platformer level going
             case RUNNING:
-
-                player.update();
-                map.update(player);
-                if (questMenu.areQuestFinished()){
-                    map.addTrigger(player.getX(), player.getY(), 10, 10, new StartGraduationScript(), "completedAllQuests");
-                }
-
-                // updateTriggers changes size of map triggers size. so check if previous value
-                // stored is the same
-                // if its not
-                if (map.getUpdatedTriggerSize() != triggerSize) {
-                    // go through every new trigger addition
-                    for (int index = triggerSize; index < map.getUpdatedTriggerSize(); index++) {
-                        if (map.getUpdatedTriggers().get(index).getMapInt() == map.getMapInt()) {
-                            map.getUpdatedTriggers().get(index).getTrigger().getTriggerScript().setMap(map);
-                            map.getUpdatedTriggers().get(index).getTrigger().getTriggerScript().setPlayer(player);
-                        }
-                    }
-                    triggerSize = map.getUpdatedTriggerSize();
-                }
-                if (map.getMapInt() != map.getIdSwitch()) {
-                    this.playLevelScreenState = PlayLevelScreenState.TRANSITION;
-                    this.map = loadMap(map.getIdSwitch());
-                    this.map.setFlagManager(flagManager);
-                    this.map.setQuestMenu(questMenu);
-                    loadMapInfo(this.map);
-                    this.player.setMap(this.map);
-                    if(player.getWasInCCE() == 1  && map.getIdSwitch() == 0){
-                        this.player.setLocation(4800, 2832); 
-                        player.setWasInCCE(0);
-                    }else if(player.getWasInCCE() == 2  && map.getIdSwitch() == 0){
-                        this.player.setLocation(6000, 1728); 
-                        player.setWasInCCE(0);
-                    }else{
-                        Point playerStartPosition = map.getPlayerStartPosition();
-                        this.player.setLocation(playerStartPosition.x, playerStartPosition.y);  
-                    }           
-
-
-                }
+                runningUpdate();
                 break;
             case ASTEROID:
                 asteroidScreen.update();
@@ -233,9 +218,54 @@ public class PlayLevelScreen extends Screen {
                 if (this.transitionScreen == null) {
                     this.transitionScreen = new TransitionScreen(this);
                 }
-
                 transitionScreen.update();
                 break;
+
+        }
+    }
+
+    public void runningUpdate() {
+        player.update();
+
+        if (flagManager.isFlagSet("won")) {
+            playLevelScreenState = PlayLevelScreenState.LEVEL_COMPLETED;
+        }
+
+        map.update(player);
+        if (questMenu.areQuestFinished()) {
+            map.addTrigger(player.getX(), player.getY(), 10, 10, new StartGraduationScript(), "completedAllQuests");
+        }
+
+        // updateTriggers changes size of map triggers size. so check if previous value
+        // stored is the same
+        // if its not
+        if (map.getUpdatedTriggerSize() != triggerSize) {
+            // go through every new trigger addition
+            for (int index = triggerSize; index < map.getUpdatedTriggerSize(); index++) {
+                if (map.getUpdatedTriggers().get(index).getMapInt() == map.getMapInt()) {
+                    map.getUpdatedTriggers().get(index).getTrigger().getTriggerScript().setMap(map);
+                    map.getUpdatedTriggers().get(index).getTrigger().getTriggerScript().setPlayer(player);
+                }
+            }
+            triggerSize = map.getUpdatedTriggerSize();
+        }
+        if (map.getMapInt() != map.getIdSwitch()) {
+            this.playLevelScreenState = PlayLevelScreenState.TRANSITION;
+            this.map = loadMap(map.getIdSwitch());
+            this.map.setFlagManager(flagManager);
+            this.map.setQuestMenu(questMenu);
+            loadMapInfo(this.map);
+            this.player.setMap(this.map);
+            if (player.getWasInCCE() == 1 && map.getIdSwitch() == 0) {
+                this.player.setLocation(4800, 2832);
+                player.setWasInCCE(0);
+            } else if (player.getWasInCCE() == 2 && map.getIdSwitch() == 0) {
+                this.player.setLocation(6000, 1728);
+                player.setWasInCCE(0);
+            } else {
+                Point playerStartPosition = map.getPlayerStartPosition();
+                this.player.setLocation(playerStartPosition.x, playerStartPosition.y);
+            }
 
         }
     }
@@ -266,7 +296,7 @@ public class PlayLevelScreen extends Screen {
 
         switch (mapId) {
             case 0:
-                newMap = new TestMap();
+                newMap = new TestMap(this);
                 newMap.setFlagManager(flagManager);
                 newMap.setNPCs();
                 newMap.setQuestMenu(questMenu);
@@ -418,11 +448,29 @@ public class PlayLevelScreen extends Screen {
         screenCoordinator.setGameState(GameState.MENU);
     }
 
-    public void returnFromAsteroid() {
+    public void returnFromAsteroid(AsteroidState asteroidState, int wavesCompleted, int maxWave) {
         playLevelScreenState = PlayLevelScreenState.RUNNING;
         asteroidScreen = null;
+        if (maxWave == 0) {
+            webbyLastWave = wavesCompleted;
+        } else {
+            asteroidNPCLastWave = wavesCompleted;
+            asteroidNPCLastState = asteroidState;
+            asteroidNPCLastMaxWave = maxWave;
+        }
+        this.asteroidState = asteroidState;
+        this.wavesCompleted = wavesCompleted;
     }
-    public void returnFromTutorial(){
+
+    public AsteroidState getAsteroidStateResult() {
+        return asteroidState;
+    }
+
+    public int getWavesCompleted() {
+        return wavesCompleted;
+    }
+
+    public void returnFromTutorial() {
         playLevelScreenState = PlayLevelScreenState.RUNNING;
         asteroidScreen = null;
     }
@@ -441,6 +489,27 @@ public class PlayLevelScreen extends Screen {
     public void startAsteroid() {
         asteroidScreen = new AsteroidScreen(this);
         playLevelScreenState = PlayLevelScreenState.ASTEROID;
+    }
+
+    public void startQuestAsteroid(int maxWave){
+        asteroidScreen = new AsteroidScreen(this, maxWave);
+        playLevelScreenState = PlayLevelScreenState.ASTEROID;
+    }
+
+    public int getWebbyLastWave() {
+        return webbyLastWave;
+    }
+
+    public int getAsteroidNPCLastWave() {
+        return asteroidNPCLastWave;
+    }
+
+    public int getAsteroidNPCLastMaxWave() {
+        return asteroidNPCLastMaxWave;
+    }
+
+    public AsteroidState getAsteroidNPCLastState() {
+        return asteroidNPCLastState;
     }
 
     // This enum represents the different states this screen can be in

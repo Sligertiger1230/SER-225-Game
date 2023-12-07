@@ -50,7 +50,7 @@ public class QuestMenu extends Screen {
         this.questText = new SpriteFont[5];
         this.questStepText = new SpriteFont[5];
         this.completedQuests = 0;
-        this.totalQuests = 1;
+        this.totalQuests = 7;
         this.isQuestCompleted = false;
         this.isNewQuest = false;
         this.screen = screen;
