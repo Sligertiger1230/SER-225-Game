@@ -1,40 +1,57 @@
-# Quinnipiac RPG
+<p align="center">
+  <img width="500" alt="title screen" src="Resources/titlescreen.png">
+</p>
+
+# Quinnipiac: A Campus Quest
 
 Welcome to Quinnipiac University! As a new student you will get to explore campus exploring all the academic buildings, completing fun quests, and interacting with all of the school's wacky characters!
 
 ## Controls
 
-This game has fairly straight forward controls:
+This game has a number of controls that are straight forward:
 
-- Up Arrow - Move upwards
-- Down Arrow - Move downwards
-- Left Arrow - Move left
-- Right Arrow - Move right
-- Space Bar - Interact with NPCs, Teleport signs, and objects
-- Q - Pull up quest menu
+- Up Arrow - Move Upwards
+- Down Arrow - Move Downwards
+- Left Arrow - Move Left
+- Right Arrow - Move Right
+- Space Bar - Interact
+- Q - Quest Menu
 - Shift - Sprint
-- Esc - Options Menu
-- Hold E - Interact with Bike
+- Esc - Options
+- E - Use Bike  
 
-## How to run this project?
+## Running the game
 
-I did not use any external libraries for this, so you can clone this repo as is and run it out of the box with Java (min version 8).
-I recommend using an IDE such as IntelliJ or Eclipse to run this game.
+There are two main ways to run this game, either through the source code or the JAR file. For running the game, make sure you have a minimum of Java 8.
 
-The main method for the game is in the `Game` package > `Game.java` file.<br>
-The main method for the map editor is in the `MapEditor` package > `MapEditor.java` file.
+### Downloading the source code
+
+Clone the repository:
+
+```shell
+git clone https://github.com/Sligertiger1230/SER-225-Game
+cd SER-225-Game
+```
+
+Note that in the source code, we have two programs: the game itself and a tile editor. Here is how to run each one:
+
+- Game - Navigate to `Game.java` and run
+- Tile Editor - Navigate to `MapEditor.java` and run
+
+### Downloading the JAR file
+
+At [https://a-r-t.github.io/SER225-Project-Website/semesters/fall2023/teams/art](https://a-r-t.github.io/SER225-Project-Website/semesters/fall2023/teams/art) you can find a page for our game. If you scroll to the bottom of the page you will find the download for the game's JAR file. Simply open the file by right clicking on it and pressing "Open".
+
 
 ## Documentation
 
-This project includes a GitHub pages website in the `docs` folder where the documentation resides.<br>
-It can be accessed at [https://a-r-t.github.io/SER-225-Game-RPG/](https://a-r-t.github.io/SER-225-Game-RPG/).
-
-Changes to content in the `docs` folder will not show up on the website unless they are pushed to the `master` branch.
+The base game was originally created by [https://github.com/a-r-t](Alex Thimineur). Documentation for how the engine, NPCs, screens, and much more works can be accessed at [https://a-r-t.github.io/SER-225-Game-RPG/](https://a-r-t.github.io/SER-225-Game-RPG/).
 
 ## Credits
 
-**Julia Bock, Ryan Sliger, Connor Ryan, Hayden Lacey, Brooks Jackson\***: Programmed new elements and created new game
-##
-**Alex Thimineur**: Programmed the base game
-##
-**Julia Bock**: Made the art
+- Alex Thimineur, Project Manager
+- Julia Bock, Developer
+- Brooks Jackson, Developer
+- Hayden Lacy, Developer
+- Connor Ryan, Developer
+- Ryan Sliger, Developer
