@@ -40,12 +40,15 @@ Note that in the source code, we have two programs: the game itself and a tile e
 
 ### Downloading the JAR file
 
-At [https://a-r-t.github.io/SER225-Project-Website/semesters/fall2023/teams/art](https://a-r-t.github.io/SER225-Project-Website/semesters/fall2023/teams/art) you can find a page for our game. If you scroll to the bottom of the page you will find the download for the game's JAR file. Simply open the file by right clicking on it and pressing "Open".
+At [https://a-r-t.github.io/SER225-Project-Website/semesters/fall2023/teams/art](https://a-r-t.github.io/SER225-Project-Website/semesters/fall2023/teams/art) you can find a page for our game. 
+If you scroll to the bottom of the page you will find the download for the game's JAR file. 
+Simply open the file by right clicking on it and pressing "Open".
 
 
 ## Documentation
 
-The base game was originally created by [https://github.com/a-r-t](Alex Thimineur). Documentation for how the engine, NPCs, screens, and much more works can be accessed at [https://a-r-t.github.io/SER-225-Game-RPG/](https://a-r-t.github.io/SER-225-Game-RPG/).
+The base game was originally created by [Alex Thimineur](https://github.com/a-r-t). 
+Documentation for how the engine, NPCs, screens, and much more works can be accessed at [his documentation website](https://a-r-t.github.io/SER-225-Game-RPG/).
 
 ## Credits
 
